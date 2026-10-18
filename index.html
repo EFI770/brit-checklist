@@ -63,8 +63,8 @@ main{padding:12px;max-width:640px;margin:auto}
 <header>
 <button class="theme-btn" onclick="document.body.classList.toggle('dark')">🌓</button>
 <h1>צ׳קליסט לברית חב״דית</h1>
-<p class="sub">ברית שנדחתה משבת עקב צהבת · הכנות, מנהגים וסעודה</p>
-<p class="sub" style="margin-top:5px;font-size:11.5px;opacity:.85">לשימוש אישי ומשפחתי · אין אחריות · לברר עם רופא, מוהל ורב</p>
+<p class="sub">הכנות, מנהגים וסעודה · כולל מחשבון יום השמיני ומחשבון הוצאות</p>
+<p class="sub" style="margin-top:5px;font-size:11.5px;opacity:.85">כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה — ובמיוחד בדחיית ברית או בספק ביום השמיני — יש לפנות לרב מורה הוראה, למוהל ולרופא</p>
 <div class="progress"><div class="percent" id="percent">0%</div></div>
 <div class="bar"><div class="fill" id="fill"></div></div>
 </header>
@@ -78,8 +78,8 @@ main{padding:12px;max-width:640px;margin:auto}
 <details class="section" open>
 <summary style="background:rgba(58,168,192,.1)"><span>📖 מידע הלכתי ומנהגי חב״ד</span><span class="count">גלול ↓</span></summary>
 <div class="tasks info-box scroll-box">
-<p style="font-size:12.5px;color:var(--mu);margin-bottom:10px">לקריאה בכל לילה עד הברית · מסוכם מחוברת ועד אברכי אנ״ש צפת, שבח הברית ומנהגי חב״ד · <strong>אין זה פסק הלכה</strong></p>
-<h3>א. דחיית ברית – צהבת וחולי</h3>
+<p style="font-size:12.5px;color:var(--mu);margin-bottom:10px">לקריאה והכנה · מסוכם ממנהגי חב״ד ומחוברות קהילה והלכה · <strong>אין זה פסק הלכה</strong><br>אם הרופא או המוהל מורים לדחות את הברית — ראו להלן מנהגים והלכות לברית דחויה</p>
+<h3>א. דחיית ברית (צהבת, חולי או חולשה)</h3>
 <ul>
 <li>אפילו על חשש קל, על ספק חשש קל, ואפילו על ספק ספיקא שהתינוק לא התחזק מספיק, צהוב וכדומה – <strong>יש לדחות את הברית</strong>, ואפילו בשבוע.</li>
 <li>אם יש ספק האם לדחות – יש לדחות על פי הוראת רב. <strong>אין להקל בזה</strong>.</li>
@@ -153,7 +153,7 @@ main{padding:12px;max-width:640px;margin:auto}
 <details class="section">
 <summary style="background:rgba(180,140,60,.1)"><span>⏰ מחשבון זמן ברית</span><span class="count">לחץ</span></summary>
 <div class="tasks zman-card" style="padding:12px">
-<p style="font-size:12.5px;color:var(--mu);margin-bottom:6px">חישוב יום השמיני. <strong>עזר בלבד</strong>.</p>
+<p style="font-size:12.5px;color:var(--mu);margin-bottom:6px">חישוב יום השמיני — <strong>עזר בלבד</strong>. לאמת מול זמני חב״ד, במיוחד בלידה סביב שקיעה או בין השמשות.</p>
 <label>מיקום</label>
 <input id="zloc" list="zplaces" value="תל אביב-יפו">
 <datalist id="zplaces"></datalist>
@@ -204,8 +204,20 @@ main{padding:12px;max-width:640px;margin:auto}
 </details>
 
 <div id="sections"></div>
-<div class="notice"><strong>דגשים:</strong> צהבת – הערכה רפואית + הלכתית. ברית שלא בזמנה אינה דוחה שבת.</div>
-<div class="footer">גרסה 5.2 · לשימוש אישי ומשפחתי · אין אחריות</div>
+<div class="notice"><strong>דגשים:</strong> ברית שנדחתה אינה דוחה שבת או יום טוב. בכל ספק ביום השמיני או בדחייה — יש לפנות לרב, למוהל ולרופא. מחשבון יום השמיני הוא עזר בלבד; יש לאמת מול זמני חב״ד, במיוחד בלידה סביב שקיעה או בין השמשות.</div>
+
+<details class="section">
+<summary><span>ℹ️ אודות · מקורות · פרטיות</span><span class="count">לחץ</span></summary>
+<div class="tasks info-box" style="padding:12px;font-size:13.5px;line-height:1.6">
+<p><strong>מה זה?</strong> צ׳קליסט ומחשבונים להכנות לברית מילה במנהג חב״ד — כולל מחשבון יום השמיני ומחשבון הוצאות.</p>
+<p><strong>מקורות:</strong> מנהגי חב״ד; חוברת מידע לידה·ברית·פדיון (ועד אברכי אנ״ש צפת); שבח הברית (הרב שמואל הלוי הורוויץ); שמירת השמחות. הסיכום נעשה לצורכי לימוד והכנה בלבד.</p>
+<p><strong>פרטיות:</strong> המחשבונים והצ׳קליסט פועלים בדפדפן שלך בלבד. הנתונים נשמרים מקומית במכשיר (localStorage) ולא נשלחים לשום שרת.</p>
+<p><strong>אחריות:</strong> כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה הלכתית או רפואית — יש לפנות לרב מורה הוראה, למוהל ולרופא.</p>
+<p style="font-size:12px;color:var(--mu);margin-top:8px">הערות ותיקונים: ניתן לפנות למפתח דרך GitHub — <a href="https://github.com/EFI770/brit-checklist" target="_blank" rel="noopener">efi770/brit-checklist</a></p>
+</div>
+</details>
+
+<div class="footer">גרסה 5.3 · כלי עזר · אינו פסק הלכה</div>
 </main>
 <script src="zman-calc.js"></script>
 <script>
