@@ -11,84 +11,23 @@
 <link rel="apple-touch-icon" href="icon.png">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --card:rgba(255,255,255,.86);
-  --card-solid:#f8fcff;
-  --text:#122b33;
-  --muted:#4a6e7a;
-  --primary:#0d5a6e;
-  --accent:#3aa8c0;
-  --border:rgba(13,90,110,.13);
-  --success:#1b8a6b;
-  --shadow:0 8px 28px rgba(13,70,90,.13);
-  --danger:#c45c5c;
-}
-body.dark{
-  --card:rgba(16,30,38,.92);
-  --card-solid:#14242c;
-  --text:#e2f0f4;
-  --muted:#7aa0ac;
-  --primary:#1a6b7e;
-  --accent:#4ab8d0;
-  --border:rgba(180,220,230,.12);
-  --success:#2d9b7a;
-  --shadow:0 8px 28px rgba(0,0,0,.4);
-}
+:root{--card:rgba(255,255,255,.86);--card-solid:#f8fcff;--text:#122b33;--muted:#4a6e7a;--primary:#0d5a6e;--accent:#3aa8c0;--border:rgba(13,90,110,.13);--success:#1b8a6b;--shadow:0 8px 28px rgba(13,70,90,.13);--danger:#c45c5c}
+body.dark{--card:rgba(16,30,38,.92);--card-solid:#14242c;--text:#e2f0f4;--muted:#7aa0ac;--primary:#1a6b7e;--accent:#4ab8d0;--border:rgba(180,220,230,.12);--success:#2d9b7a;--shadow:0 8px 28px rgba(0,0,0,.4)}
 html,body{height:100%}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
-  color:var(--text);
-  overflow-x:hidden;
-  min-height:100vh;
-  position:relative;
-}
-.bg{
-  position:fixed;inset:0;z-index:-2;
-  background:linear-gradient(180deg,
-    #7ec8e3 0%,#5bb8d4 12%,#3aa0c0 28%,#6ec4d8 42%,
-    #a8d8e8 55%,#d4eef5 68%,#e8f4f0 82%,#f0f7f4 100%);
-}
-body.dark .bg{
-  background:linear-gradient(180deg,
-    #0a1c28 0%,#0f2a38 20%,#163848 40%,#1a4050 55%,#1e4a45 75%,#1a3a35 100%);
-}
-.wave{
-  position:fixed;bottom:0;left:0;width:200%;height:140px;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%232a8aaa' fill-opacity='0.45' d='M0,55 C180,90 360,25 540,55 C720,85 900,30 1080,60 C1260,90 1380,40 1440,55 L1440,120 L0,120 Z'/%3E%3C/svg%3E") repeat-x;
-  background-size:50% 100%;animation:waveMove 14s linear infinite;z-index:-1;
-}
-.wave2{
-  bottom:18px;height:110px;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='%233a9aba' fill-opacity='0.35' d='M0,40 C240,75 480,15 720,45 C960,75 1200,20 1440,50 L1440,100 L0,100 Z'/%3E%3C/svg%3E") repeat-x;
-  background-size:50% 100%;animation:waveMove 20s linear infinite reverse;
-}
-.wave3{
-  bottom:35px;height:85px;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%234ab0c8' fill-opacity='0.28' d='M0,30 C300,55 600,10 900,35 C1100,50 1300,15 1440,30 L1440,80 L0,80 Z'/%3E%3C/svg%3E") repeat-x;
-  background-size:50% 100%;animation:waveMove 10s linear infinite;
-}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:var(--text);overflow-x:hidden;min-height:100vh;position:relative}
+.bg{position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,#7ec8e3 0%,#5bb8d4 12%,#3aa0c0 28%,#6ec4d8 42%,#a8d8e8 55%,#d4eef5 68%,#e8f4f0 82%,#f0f7f4 100%)}
+body.dark .bg{background:linear-gradient(180deg,#0a1c28 0%,#0f2a38 20%,#163848 40%,#1a4050 55%,#1e4a45 75%,#1a3a35 100%)}
+.wave{position:fixed;bottom:0;left:0;width:200%;height:140px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%232a8aaa' fill-opacity='0.45' d='M0,55 C180,90 360,25 540,55 C720,85 900,30 1080,60 C1260,90 1380,40 1440,55 L1440,120 L0,120 Z'/%3E%3C/svg%3E") repeat-x;background-size:50% 100%;animation:waveMove 14s linear infinite;z-index:-1}
+.wave2{bottom:18px;height:110px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='%233a9aba' fill-opacity='0.35' d='M0,40 C240,75 480,15 720,45 C960,75 1200,20 1440,50 L1440,100 L0,100 Z'/%3E%3C/svg%3E") repeat-x;background-size:50% 100%;animation:waveMove 20s linear infinite reverse}
+.wave3{bottom:35px;height:85px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%234ab0c8' fill-opacity='0.28' d='M0,30 C300,55 600,10 900,35 C1100,50 1300,15 1440,30 L1440,80 L0,80 Z'/%3E%3C/svg%3E") repeat-x;background-size:50% 100%;animation:waveMove 10s linear infinite}
 @keyframes waveMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .palms{position:fixed;bottom:70px;left:0;right:0;height:200px;pointer-events:none;z-index:-1;overflow:hidden}
 .palm{position:absolute;bottom:0;font-size:48px;opacity:.65;filter:drop-shadow(0 3px 6px rgba(0,40,50,.2))}
-.palm.p1{left:3%;font-size:42px;opacity:.55}
-.palm.p2{left:11%;font-size:56px}
-.palm.p3{right:4%;font-size:46px;transform:scaleX(-1);opacity:.6}
-.palm.p4{right:14%;font-size:52px;opacity:.7}
+.palm.p1{left:3%;font-size:42px;opacity:.55}.palm.p2{left:11%;font-size:56px}.palm.p3{right:4%;font-size:46px;transform:scaleX(-1);opacity:.6}.palm.p4{right:14%;font-size:52px;opacity:.7}
 body.dark .palm{opacity:.4;filter:brightness(.65)}
-.sun{
-  position:fixed;top:28px;left:24px;width:64px;height:64px;border-radius:50%;
-  background:radial-gradient(circle at 35% 35%,#fff9e8,#ffe08a 45%,#f0b840);
-  box-shadow:0 0 50px 18px rgba(255,200,90,.3);z-index:-1;
-}
-body.dark .sun{
-  background:radial-gradient(circle at 35% 35%,#e8f4ff,#90b8d8 55%,#5080a0);
-  box-shadow:0 0 35px 12px rgba(140,180,220,.18);
-}
-header{
-  background:linear-gradient(135deg,rgba(13,80,100,.93),rgba(20,100,115,.9));
-  color:white;padding:26px 16px 20px;border-radius:0 0 26px 26px;
-  position:relative;box-shadow:0 8px 28px rgba(13,70,90,.22);backdrop-filter:blur(10px);
-}
+.sun{position:fixed;top:28px;left:24px;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff9e8,#ffe08a 45%,#f0b840);box-shadow:0 0 50px 18px rgba(255,200,90,.3);z-index:-1}
+body.dark .sun{background:radial-gradient(circle at 35% 35%,#e8f4ff,#90b8d8 55%,#5080a0);box-shadow:0 0 35px 12px rgba(140,180,220,.18)}
+header{background:linear-gradient(135deg,rgba(13,80,100,.93),rgba(20,100,115,.9));color:white;padding:26px 16px 20px;border-radius:0 0 26px 26px;position:relative;box-shadow:0 8px 28px rgba(13,70,90,.22);backdrop-filter:blur(10px)}
 body.dark header{background:linear-gradient(135deg,rgba(10,40,55,.95),rgba(15,55,60,.93))}
 h1{font-size:22px;margin:0 0 5px;line-height:1.3;font-weight:800}
 header .sub{margin:0;color:rgba(255,255,255,.88);font-size:13.5px;line-height:1.45}
@@ -98,20 +37,10 @@ header .sub{margin:0;color:rgba(255,255,255,.88);font-size:13.5px;line-height:1.
 .fill{height:100%;background:linear-gradient(90deg,#6ec8d8,#3aa8c0);width:0;transition:width .4s ease;border-radius:20px}
 main{padding:14px 12px 55px;max-width:720px;margin:auto}
 .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.toolbar button,button.sec-btn{
-  font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card);
-  backdrop-filter:blur(12px);border-radius:13px;padding:10px 13px;
-  color:var(--text);font-size:13.5px;box-shadow:var(--shadow);transition:transform .12s;
-}
+.toolbar button,button.sec-btn{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card);backdrop-filter:blur(12px);border-radius:13px;padding:10px 13px;color:var(--text);font-size:13.5px;box-shadow:var(--shadow);transition:transform .12s}
 .toolbar button:active{transform:scale(.97)}
-.section{
-  background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--border);
-  border-radius:16px;margin:11px 0;overflow:hidden;box-shadow:var(--shadow);
-}
-.section summary{
-  padding:15px 14px;font-size:15.5px;font-weight:700;cursor:pointer;
-  display:flex;justify-content:space-between;align-items:center;list-style:none;gap:8px;
-}
+.section{background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:16px;margin:11px 0;overflow:hidden;box-shadow:var(--shadow)}
+.section summary{padding:15px 14px;font-size:15.5px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;gap:8px}
 .section summary::-webkit-details-marker{display:none}
 .count{font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap}
 .tasks{padding:0 13px 13px}
@@ -125,16 +54,13 @@ main{padding:14px 12px 55px;max-width:720px;margin:auto}
 .custom-input button{padding:9px 13px;background:var(--primary);color:white;border:none;border-radius:11px;font-weight:600}
 .notice{padding:14px;background:rgba(220,240,248,.75);border:1px solid rgba(58,168,192,.28);border-radius:15px;line-height:1.55;font-size:13.5px;margin:16px 0;backdrop-filter:blur(8px)}
 body.dark .notice{background:rgba(20,45,55,.7);border-color:rgba(80,160,180,.25)}
-.notice ul{margin:8px 0 0;padding-right:18px}
-.notice li{margin-bottom:6px}
+.notice ul{margin:8px 0 0;padding-right:18px}.notice li{margin-bottom:6px}
 .footer{text-align:center;color:var(--muted);font-size:12px;padding:12px;opacity:.85}
 .theme-btn{position:absolute;top:14px;left:12px;background:rgba(255,255,255,.18);border:none;color:white;width:34px;height:34px;border-radius:50%;font-size:17px;cursor:pointer}
-.celebrate{position:fixed;inset:0;pointer-events:none;z-index:99;display:none}
-.celebrate.show{display:block}
+.celebrate{position:fixed;inset:0;pointer-events:none;z-index:99;display:none}.celebrate.show{display:block}
 .confetti{position:absolute;width:8px;height:8px;border-radius:2px;animation:fall 2.5s ease-out forwards}
 @keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
-.sec-actions{display:flex;gap:6px;margin-bottom:4px;flex-wrap:wrap}
-.sec-actions button{font-size:12px;padding:5px 9px}
+.sec-actions{display:flex;gap:6px;margin-bottom:4px;flex-wrap:wrap}.sec-actions button{font-size:12px;padding:5px 9px}
 .pdf-box{display:flex;align-items:center;gap:12px;padding:14px;background:rgba(255,255,255,.7);border:1px solid var(--border);border-radius:14px;margin:12px 0;box-shadow:var(--shadow)}
 body.dark .pdf-box{background:rgba(20,40,50,.75)}
 .pdf-box a{display:inline-block;padding:10px 16px;background:var(--primary);color:white;border-radius:11px;text-decoration:none;font-weight:600;font-size:14px}
@@ -144,10 +70,19 @@ body.dark .pdf-box{background:rgba(20,40,50,.75)}
 .file-item button{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:var(--card-solid);color:var(--text);cursor:pointer}
 .file-item .del-f{color:var(--danger);border-color:transparent;background:none;font-size:16px}
 .upload-area{border:2px dashed var(--border);border-radius:14px;padding:18px;text-align:center;margin-top:10px;cursor:pointer;background:rgba(58,168,192,.06)}
-.upload-area:active{background:rgba(58,168,192,.12)}
-.upload-area input{display:none}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--primary);color:white;padding:12px 20px;border-radius:12px;font-size:14px;z-index:100;opacity:0;transition:opacity .3s;pointer-events:none;max-width:90%;text-align:center}
-.toast.show{opacity:1}
+.upload-area:active{background:rgba(58,168,192,.12)}.upload-area input{display:none}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--primary);color:white;padding:12px 20px;border-radius:12px;font-size:14px;z-index:100;opacity:0;transition:opacity .3s;pointer-events:none;max-width:90%;text-align:center}.toast.show{opacity:1}
+.calc-g{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:6px;align-items:center;font-size:13px;margin-bottom:6px}
+.calc-g.h{color:var(--muted);font-size:12px}
+.calc-g input,.calc-f input{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:var(--card-solid);color:var(--text);font:inherit;font-size:14px}
+.calc-f{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.calc-f label{font-size:12px;color:var(--muted);display:block;margin-bottom:3px}
+.calc-r{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:14px}
+.calc-r:last-child{border:0}.calc-r b{color:var(--success)}
+.calc-t{background:rgba(58,168,192,.12);border-radius:12px;padding:12px;font-size:17px;text-align:center;margin-top:10px;font-weight:700}
+.calc-bt{display:flex;gap:8px;margin-top:8px}
+.calc-bt a,.calc-bt button{flex:1;text-align:center;padding:10px;border-radius:11px;border:0;background:var(--primary);color:white;font-size:13.5px;text-decoration:none;cursor:pointer;font-weight:600}
+.calc-check{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:14px}.calc-check input{width:auto}
 </style>
 </head>
 <body>
@@ -156,27 +91,15 @@ body.dark .pdf-box{background:rgba(20,40,50,.75)}
 <div class="wave wave3"></div>
 <div class="wave wave2"></div>
 <div class="wave"></div>
-<div class="palms">
-  <div class="palm p1">🌴</div>
-  <div class="palm p2">🌴</div>
-  <div class="palm p3">🌴</div>
-  <div class="palm p4">🌴</div>
-</div>
-
+<div class="palms"><div class="palm p1">🌴</div><div class="palm p2">🌴</div><div class="palm p3">🌴</div><div class="palm p4">🌴</div></div>
 <header>
   <button class="theme-btn" onclick="toggleTheme()" title="מצב כהה/בהיר">🌓</button>
   <h1>צ׳קליסט לברית חב״דית</h1>
   <p class="sub">ברית שנדחתה משבת עקב צהבת · הכנות, מנהגים, סעודה ותשורה</p>
   <p class="sub" style="margin-top:8px;font-size:12px;opacity:.9">לשימוש אישי ומשפחתי בלבד · אין אחריות להחלטות רפואיות או הלכתיות · יש לברר עם רופא, מוהל ורב</p>
-  <div class="progress">
-    <div>
-      <div class="percent" id="percent">0%</div>
-      <small id="fraction">0 מתוך 0</small>
-    </div>
-  </div>
+  <div class="progress"><div><div class="percent" id="percent">0%</div><small id="fraction">0 מתוך 0</small></div></div>
   <div class="bar"><div class="fill" id="fill"></div></div>
 </header>
-
 <main>
   <div class="toolbar">
     <button onclick="expandAll(true)">פתח הכל</button>
@@ -185,12 +108,8 @@ body.dark .pdf-box{background:rgba(20,40,50,.75)}
     <button onclick="printList()">הדפסה</button>
     <button onclick="resetAll()" style="color:var(--danger)">איפוס</button>
   </div>
-
   <details class="section" open style="border-color:var(--accent)">
-    <summary style="background:rgba(58,168,192,.1)">
-      <span>📖 מידע כללי ומנהגי חב״ד</span>
-      <span class="count">לחץ</span>
-    </summary>
+    <summary style="background:rgba(58,168,192,.1)"><span>📖 מידע כללי ומנהגי חב״ד</span><span class="count">לחץ</span></summary>
     <div class="tasks" style="font-size:14px;line-height:1.55;padding:12px 14px">
       <p><strong>דחיית ברית בגלל צהבת / חולי</strong></p>
       <ul style="margin:6px 0 12px;padding-right:18px">
@@ -211,24 +130,60 @@ body.dark .pdf-box{background:rgba(20,40,50,.75)}
       <p style="font-size:13px;color:var(--muted);margin-top:8px">מקורות: שבח הברית, שמירת השמחות, חוברת צפת. תמיד לברר עם הרב והמוהל.</p>
     </div>
   </details>
-
   <div class="pdf-box" style="margin:12px 0">
     <div>
       <a href="https://www.chabad.org/library/article_cdo/aid/145053/jewish/Zohar-for-the-Brit-Aramaic-Original.htm" target="_blank" rel="noopener">📜 זוהר לליל הברית – לקריאה באתר חב״ד</a>
       <p style="margin-top:6px">קישור ישיר לנוסח הארמי המקורי</p>
     </div>
   </div>
-
+  <details class="section" style="border-color:#5a9a7a">
+    <summary style="background:rgba(27,138,107,.1)"><span>🧮 מחשבון ברית</span><span class="count">לחץ</span></summary>
+    <div class="tasks" style="padding:14px">
+      <h3 style="font-size:15px;margin:0 0 10px;color:var(--primary)">רשימת מודיעים</h3>
+      <div class="calc-g h"><span></span><span>קיבלו הודעה</span><span>ילדים</span><span>% הגעה</span></div>
+      <div class="calc-g"><span>משפחה</span><input id="a0" type="number" inputmode="numeric" value="40"><input id="k0" type="number" inputmode="numeric" value="12"><input id="p0" type="number" inputmode="numeric" value="90"></div>
+      <div class="calc-g"><span>יישוב</span><input id="a1" type="number" inputmode="numeric" value="30"><input id="k1" type="number" inputmode="numeric" value="10"><input id="p1" type="number" inputmode="numeric" value="70"></div>
+      <div class="calc-g"><span>כללי</span><input id="a2" type="number" inputmode="numeric" value="20"><input id="k2" type="number" inputmode="numeric" value="4"><input id="p2" type="number" inputmode="numeric" value="50"></div>
+      <p style="font-size:12px;color:var(--muted);margin:4px 0 14px">"קיבלו הודעה" = סך האנשים כולל ילדים</p>
+      <h3 style="font-size:15px;margin:0 0 10px;color:var(--primary)">הגדרות</h3>
+      <div class="calc-f">
+        <div><label>עלות מנה למבוגר (₪)</label><input id="ca" type="number" inputmode="numeric" value="90"></div>
+        <div><label>עלות מנה לילד (₪)</label><input id="ck" type="number" inputmode="numeric" value="45"></div>
+        <div><label>מרווח ביטחון (%)</label><input id="bf" type="number" inputmode="numeric" value="10"></div>
+        <div><label>מקומות ישיבה לשולחן</label><input id="ts" type="number" inputmode="numeric" value="10"></div>
+        <div><label>אולם ₪</label><input id="hl" type="number" inputmode="numeric" value="1500"></div>
+        <div><label>עלויות אחרות (מוהל, צילום...) ₪</label><input id="fx" type="number" inputmode="numeric" value="500"></div>
+        <div><label>רזרבה לבלת"מים (%)</label><input id="rs" type="number" inputmode="numeric" value="5"></div>
+        <div><label>תקציב ₪</label><input id="bd" type="number" inputmode="numeric" value="10000"></div>
+      </div>
+      <label class="calc-check"><input id="sy" type="checkbox"> בבית כנסת (בלי עלות אולם)</label>
+      <h3 style="font-size:15px;margin:16px 0 8px;color:var(--primary)">תוצאות</h3>
+      <div id="calc-out"></div>
+      <div class="calc-t" id="calc-tot"></div>
+      <h3 style="font-size:15px;margin:18px 0 8px;color:var(--primary)">הודעה לוואטסאפ</h3>
+      <div class="calc-f">
+        <div><label>יום ותאריך</label><input id="dt" type="text" placeholder="יום ג׳ י״ח בחשוון"></div>
+        <div><label>שעה</label><input id="tm" type="text" placeholder="10:00"></div>
+      </div>
+      <div style="margin-top:8px"><label style="font-size:12px;color:var(--muted)">מקום</label><input id="pl" type="text" placeholder="בית הכנסת"></div>
+      <textarea id="m1" readonly rows="4" style="width:100%;margin-top:8px;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--card-solid);color:var(--text);font:inherit;resize:none"></textarea>
+      <div class="calc-bt"><a id="wa" target="_blank" rel="noopener">שלח בוואטסאפ</a><button type="button" onclick="cpCalc('m1')">העתק</button></div>
+      <p style="font-size:12px;color:var(--muted);margin-top:6px">ההודעה לא מבקשת אישור הגעה, לפי המנהג.</p>
+      <h3 style="font-size:15px;margin:18px 0 8px;color:var(--primary)">חלוקת משימות למשפחה</h3>
+      <div class="calc-f">
+        <div><label>סידור</label><input id="t0" type="text"></div>
+        <div><label>כיבוד</label><input id="t1" type="text"></div>
+        <div><label>ניקיון</label><input id="t2" type="text"></div>
+        <div><label>הסעות</label><input id="t3" type="text"></div>
+      </div>
+      <textarea id="m2" readonly rows="5" style="width:100%;margin-top:8px;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--card-solid);color:var(--text);font:inherit;resize:none"></textarea>
+      <div class="calc-bt"><a id="wb" target="_blank" rel="noopener">שלח לקבוצת המשפחה</a><button type="button" onclick="cpCalc('m2')">העתק</button></div>
+    </div>
+  </details>
   <details class="section" style="border-color:#6a9a7a">
-    <summary style="background:rgba(27,138,107,.08)">
-      <span>📁 קבצים שלי (שמורים במכשיר)</span>
-      <span class="count" id="files-count">0</span>
-    </summary>
+    <summary style="background:rgba(27,138,107,.08)"><span>📁 קבצים שלי (שמורים במכשיר)</span><span class="count" id="files-count">0</span></summary>
     <div class="tasks" style="padding:12px 14px">
-      <p style="font-size:13.5px;color:var(--muted);margin-bottom:10px;line-height:1.45">
-        כאן אפשר לשמור הצעות מחיר מקייטרינג, מכתבים מהרבי, תמונות, מסמכים וכו׳.<br>
-        הקבצים נשמרים <strong>רק במכשיר שלך</strong> (לא נשלחים לשום שרת).
-      </p>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:10px;line-height:1.45">כאן אפשר לשמור הצעות מחיר מקייטרינג, מכתבים מהרבי, תמונות, מסמכים וכו׳.<br>הקבצים נשמרים <strong>רק במכשיר שלך</strong> (לא נשלחים לשום שרת).</p>
       <div id="files-list"></div>
       <label class="upload-area" id="upload-label">
         <input type="file" id="file-input" multiple accept="*/*">
@@ -238,9 +193,7 @@ body.dark .pdf-box{background:rgba(20,40,50,.75)}
       </label>
     </div>
   </details>
-
   <div id="sections"></div>
-
   <div class="notice">
     <strong>דגשים לברית שנדחתה</strong>
     <ul>
@@ -249,481 +202,46 @@ body.dark .pdf-box{background:rgba(20,40,50,.75)}
       <li><strong>גיבוי:</strong> מומלץ לשלוח לוואטסאפ מדי פעם (כפתור למעלה). כשמסיימים קטע – נשלח אוטומטית.</li>
     </ul>
   </div>
-  <div class="footer">לשימוש אישי ומשפחתי · אין אחריות · גרסה 4.5</div>
+  <div class="footer">לשימוש אישי ומשפחתי · אין אחריות · גרסה 4.6 · מחשבון</div>
 </main>
-
 <div class="celebrate" id="celebrate"></div>
 <div class="toast" id="toast"></div>
-
 <script>
-const data = [
-  ['רפואי וקביעת מועד', [
-    'מעקב אחר רמת הבילירובין והצהבת',
-    'קבלת אישור מהרופא לביצוע הברית',
-    'עדכון המוהל בתוצאות הבדיקות',
-    'בירור עם המוהל מתי מותר לבצע את הברית לפי ההלכה',
-    'קביעת יום ושעה סופיים',
-    'וידוא שהמוהל זמין למועד החדש',
-    'קבלת הנחיות מהמוהל לגבי האכלה וטיפול לפני הברית'
-  ]],
-  ['מיקום ולוגיסטיקה', [
-    'סגירת בית כנסת או אולם',
-    'תיאום שעה עם הגבאי',
-    'סידור שולחן לברית וכיסא אליהו',
-    'הכנת מקום למוהל ולציוד',
-    'סידור מקומות ישיבה לגברים ולנשים',
-    'בדיקת מיזוג, תאורה ושירותים',
-    'סידור חניה והכוונה לאורחים',
-    'מינוי אחראי לסידור המקום ולניקיון'
-  ]],
-  ['כיבודים ותפקידים', [
-    'בחירת סנדק',
-    'בחירת קוואטער וקוואטערין',
-    'כיבוד בכיסא אליהו',
-    'כיבוד בהבאת התינוק והנחתו על הכיסא',
-    'כיבוד בעמידה לברכות (לפי מנהג המקום)',
-    'בחירת מי שיברך על הכוס ויקרא את השם',
-    'הכנת רשימת הכיבודים והודעה למכובדים',
-    'תיאום מראש של כל הכיבודים עם המוהל'
-  ]],
-  ['מנהגי חב״ד והפן הרוחני', [
-    'לימוד חסידות כהכנה לברית',
-    'לימוד מאמר חסידות בבוקר הברית',
-    'הכנת מאמר או שיחת הרבי ללימוד בסעודה',
-    'בדיקת מנהגי ליל הברית עם רב חב״די, בפרט בברית דחויה',
-    'הכנת י״ב הפסוקים לילדים',
-    'ארגון אמירת לחיים והתוועדות חסידית',
-    'בחירת ניגונים חב״דיים לסעודה',
-    'הכנת דבר תורה קצר בענייני ברית מילה'
-  ]],
-  ['ציוד לברית', [
-    'טלית לאבי הבן לפי הצורך והמנהג',
-    'כיפות לאורחים',
-    'יין או מיץ ענבים לברכות',
-    'גביע לברכות וצלחת',
-    'בשמים לפי הנוסח והמנהג',
-    'סידור עם נוסח ברית מילה חב״די',
-    'חיתולים ומגבונים',
-    'בגדים להחלפה לתינוק',
-    'שמיכה לתינוק',
-    'מוצץ אם משתמשים',
-    'ציוד רפואי ומשככי כאבים רק לפי הוראות המוהל והרופא'
-  ]],
-  ['סעודת מצווה', [
-    'קביעת מספר מוזמנים',
-    'בחירת קייטרינג או הכנת אוכל',
-    'הזמנת מנות וסגירת תפריט',
-    'לחמניות או חלות לנטילת ידיים',
-    'נטלות וכלים לנטילת ידיים',
-    'יין ומשקה לאמירת לחיים',
-    'שתייה קרה וחמה',
-    'צלחות, כוסות, סכו״ם ומפיות',
-    'מפות וסידור שולחנות',
-    'כיבוד לילדים',
-    'בירור כשרות המזון והכלים',
-    'תיאום ברכת המזון וזימון'
-  ]],
-  ['הזמנות ועדכונים', [
-    'עדכון המשפחה שהברית נדחתה',
-    'הודעה על התאריך החדש',
-    'הכנת הזמנה מעודכנת לוואטסאפ',
-    'עדכון קרובי משפחה שמגיעים מרחוק',
-    'הודעה למכובדים ולסנדק',
-    'שליחת מיקום ושעת התחלה',
-    'וידוא הגעה של בני משפחה חשובים'
-  ]],
-  ['תשורה חב״דית', [
-    'סיום עריכת התשורה',
-    'הגהת הטקסטים והמקורות',
-    'בדיקת הפתח דבר וההקדשה לעילוי נשמת רבקה ע״ה',
-    'שילוב צילום מכתב הרבי לסב התינוק',
-    'בדיקת המאמרים והקטעים מתורה אור',
-    'סגירת קובץ PDF להדפסה',
-    'בדיקת סדר העמודים והכריכה',
-    'הזמנת הדפסה וכמות עותקים',
-    'איסוף התשורות מבית הדפוס',
-    'מינוי אחראי לחלוקת התשורה'
-  ]],
-  ['ביום הברית', [
-    'קבלת אישור סופי שהמצב הרפואי מאפשר את הברית',
-    'וידוא הגעת המוהל והסנדק',
-    'הכנת התינוק לפי הנחיות המוהל',
-    'הבאת כל הציוד והיין',
-    'סידור כיסא אליהו ומקום הברית',
-    'חלוקת הכיבודים',
-    'צילום ותיעוד לפי רצון המשפחה',
-    'חלוקת התשורות',
-    'לימוד והתוועדות בסעודה',
-    'קבלת הנחיות כתובות לטיפול לאחר הברית',
-    'קביעת ביקורת ומעקב עם המוהל'
-  ]]
-];
-
-const key = 'bris-checklist-v4';
-let state = {};
-let custom = {};
-let removed = {};
-let notifiedSections = {};
-
-try {
-  const saved = JSON.parse(localStorage.getItem(key) || '{}');
-  state = saved.state || {};
-  custom = saved.custom || {};
-  removed = saved.removed || {};
-  notifiedSections = saved.notifiedSections || {};
-} catch(e) {}
-
-function save() {
-  localStorage.setItem(key, JSON.stringify({state, custom, removed, notifiedSections}));
-  update();
-}
-
-function getActiveTasks(i) {
-  const orig = data[i][1];
-  const rem = new Set(removed[i] || []);
-  const activeOrig = orig.map((t, idx) => ({t, origIdx: idx, isCustom: false})).filter(x => !rem.has(x.origIdx));
-  const customs = (custom[i] || []).map((t, idx) => ({t, origIdx: idx, isCustom: true}));
-  return [...activeOrig, ...customs];
-}
-
-function isSectionComplete(i) {
-  const tasks = getActiveTasks(i);
-  if (tasks.length === 0) return false;
-  return tasks.every(item => {
-    const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
-    return !!state[k];
-  });
-}
-
-function buildFullText() {
-  let txt = '📋 צ׳קליסט לברית חב״דית\nברית שנדחתה משבת עקב צהבת\n\n';
-  data.forEach((s, i) => {
-    const tasks = getActiveTasks(i);
-    const done = tasks.filter(item => {
-      const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
-      return !!state[k];
-    }).length;
-    txt += '▸ ' + s[0] + ' (' + done + '/' + tasks.length + ')\n';
-    tasks.forEach(item => {
-      const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
-      txt += (state[k] ? '☑ ' : '☐ ') + item.t + '\n';
-    });
-    txt += '\n';
-  });
-  return txt;
-}
-
-function shareToWhatsApp() {
-  const txt = buildFullText();
-  const url = 'https://wa.me/?text=' + encodeURIComponent(txt);
-  window.open(url, '_blank');
-  showToast('נפתח וואטסאפ עם הגיבוי');
-}
-
-function autoSendSection(i) {
-  if (notifiedSections[i]) return;
-  if (!isSectionComplete(i)) return;
-  notifiedSections[i] = true;
-  save();
-  const s = data[i];
-  const tasks = getActiveTasks(i);
-  let txt = '✅ סיימתי קטע בברית!\n\n▸ ' + s[0] + ' (' + tasks.length + '/' + tasks.length + ')\n\n';
-  tasks.forEach(item => { txt += '☑ ' + item.t + '\n'; });
-  txt += '\n(גיבוי אוטומטי מהאפליקציה)';
-  const url = 'https://wa.me/?text=' + encodeURIComponent(txt);
-  setTimeout(() => {
-    if (confirm('סיימת את הקטע "' + s[0] + '"!\nלשלוח גיבוי לוואטסאפ?')) {
-      window.open(url, '_blank');
-    }
-  }, 300);
-}
-
-function update() {
-  let total = 0, done = 0;
-  data.forEach((s, i) => {
-    const tasks = getActiveTasks(i);
-    let count = 0;
-    tasks.forEach(item => {
-      total++;
-      const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
-      if (state[k]) { done++; count++; }
-    });
-    const el = document.getElementById('count-' + i);
-    if (el) el.textContent = count + '/' + tasks.length;
-    if (count === tasks.length && tasks.length > 0) autoSendSection(i);
-  });
-  const p = total ? Math.round(100 * done / total) : 0;
-  document.getElementById('percent').textContent = p + '%';
-  document.getElementById('fraction').textContent = done + ' מתוך ' + total;
-  document.getElementById('fill').style.width = p + '%';
-  if (p === 100 && total > 0) celebrate();
-}
-
-function render() {
-  const root = document.getElementById('sections');
-  root.innerHTML = '';
-  data.forEach((s, i) => {
-    const details = document.createElement('details');
-    details.className = 'section';
-    details.open = i === 0;
-    details.id = 'sec-' + i;
-
-    const summary = document.createElement('summary');
-    const name = document.createElement('span');
-    name.textContent = (i + 1) + '. ' + s[0];
-    const count = document.createElement('span');
-    count.className = 'count';
-    count.id = 'count-' + i;
-    summary.append(name, count);
-    details.append(summary);
-
-    const tasksDiv = document.createElement('div');
-    tasksDiv.className = 'tasks';
-
-    const actions = document.createElement('div');
-    actions.className = 'sec-actions';
-    const markAll = document.createElement('button');
-    markAll.className = 'sec-btn';
-    markAll.textContent = 'סמן הכל';
-    markAll.onclick = (e) => { e.preventDefault(); toggleSection(i, true); };
-    const unmarkAll = document.createElement('button');
-    unmarkAll.className = 'sec-btn';
-    unmarkAll.textContent = 'בטל הכל';
-    unmarkAll.onclick = (e) => { e.preventDefault(); toggleSection(i, false); };
-    actions.append(markAll, unmarkAll);
-    tasksDiv.append(actions);
-
-    const tasks = getActiveTasks(i);
-    tasks.forEach(item => {
-      const label = document.createElement('label');
-      label.className = 'task';
-      const cb = document.createElement('input');
-      cb.type = 'checkbox';
-      const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
-      cb.checked = !!state[k];
-      cb.onchange = () => {
-        state[k] = cb.checked;
-        save();
-      };
-      const span = document.createElement('span');
-      span.textContent = item.t;
-      label.append(cb, span);
-
-      const del = document.createElement('button');
-      del.className = 'del';
-      del.textContent = '×';
-      del.title = 'מחק משימה';
-      del.onclick = (e) => {
-        e.preventDefault();
-        if (!confirm('למחוק את המשימה הזו?')) return;
-        if (item.isCustom) {
-          custom[i].splice(item.origIdx, 1);
-          delete state[i + '-c' + item.origIdx];
-          const newState = {};
-          Object.keys(state).forEach(key => {
-            if (key.startsWith(i + '-c')) {
-              const oldIdx = parseInt(key.split('-c')[1]);
-              if (oldIdx < item.origIdx) newState[key] = state[key];
-              else if (oldIdx > item.origIdx) newState[i + '-c' + (oldIdx - 1)] = state[key];
-            } else newState[key] = state[key];
-          });
-          state = newState;
-        } else {
-          if (!removed[i]) removed[i] = [];
-          removed[i].push(item.origIdx);
-          delete state[i + '-' + item.origIdx];
-        }
-        save();
-        render();
-      };
-      label.append(del);
-      tasksDiv.append(label);
-    });
-
-    const addDiv = document.createElement('div');
-    addDiv.className = 'custom-input';
-    const inp = document.createElement('input');
-    inp.placeholder = 'הוסף משימה אישית...';
-    inp.id = 'inp-' + i;
-    const addBtn = document.createElement('button');
-    addBtn.textContent = '+';
-    addBtn.onclick = () => addCustom(i);
-    inp.onkeydown = (e) => { if (e.key === 'Enter') addCustom(i); };
-    addDiv.append(inp, addBtn);
-    tasksDiv.append(addDiv);
-
-    details.append(tasksDiv);
-    root.append(details);
-  });
-  update();
-}
-
-function toggleSection(i, checked) {
-  getActiveTasks(i).forEach(item => {
-    const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
-    state[k] = checked;
-  });
-  save();
-  render();
-}
-
-function addCustom(i) {
-  const inp = document.getElementById('inp-' + i);
-  const val = (inp.value || '').trim();
-  if (!val) return;
-  if (!custom[i]) custom[i] = [];
-  custom[i].push(val);
-  inp.value = '';
-  save();
-  render();
-}
-
-function expandAll(open) {
-  document.querySelectorAll('details.section').forEach(d => d.open = open);
-}
-
-function resetAll() {
-  if (confirm('לאפס את כל הסימונים, המחיקות והמשימות האישיות?')) {
-    state = {};
-    custom = {};
-    removed = {};
-    notifiedSections = {};
-    save();
-    render();
-  }
-}
-
-function printList() { window.print(); }
-
-function toggleTheme() {
-  document.body.classList.toggle('dark');
-  localStorage.setItem('bris-theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-}
-
-function celebrate() {
-  const el = document.getElementById('celebrate');
-  if (el.dataset.done) return;
-  el.dataset.done = '1';
-  el.classList.add('show');
-  const colors = ['#3aa8c0','#1b8a6b','#0d5a6e','#6ec8d8','#fff'];
-  for (let i = 0; i < 50; i++) {
-    const c = document.createElement('div');
-    c.className = 'confetti';
-    c.style.left = Math.random() * 100 + 'vw';
-    c.style.background = colors[Math.floor(Math.random() * colors.length)];
-    c.style.animationDelay = Math.random() * 0.7 + 's';
-    c.style.animationDuration = (2 + Math.random() * 1.4) + 's';
-    el.append(c);
-  }
-  setTimeout(() => { el.innerHTML = ''; el.classList.remove('show'); delete el.dataset.done; }, 3200);
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-const DB_NAME = 'bris-files-db';
-const STORE = 'files';
-let db = null;
-
-function openDB() {
-  return new Promise((resolve, reject) => {
-    const req = indexedDB.open(DB_NAME, 1);
-    req.onupgradeneeded = (e) => {
-      const d = e.target.result;
-      if (!d.objectStoreNames.contains(STORE)) {
-        d.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
-      }
-    };
-    req.onsuccess = (e) => { db = e.target.result; resolve(db); };
-    req.onerror = () => reject(req.error);
-  });
-}
-
-async function getAllFiles() {
-  if (!db) await openDB();
-  return new Promise((resolve) => {
-    const tx = db.transaction(STORE, 'readonly');
-    const req = tx.objectStore(STORE).getAll();
-    req.onsuccess = () => resolve(req.result || []);
-  });
-}
-
-async function addFile(name, blob, type) {
-  if (!db) await openDB();
-  return new Promise((resolve) => {
-    const tx = db.transaction(STORE, 'readwrite');
-    const req = tx.objectStore(STORE).add({ name, blob, type, date: Date.now() });
-    req.onsuccess = () => resolve(req.result);
-  });
-}
-
-async function deleteFile(id) {
-  if (!db) await openDB();
-  return new Promise((resolve) => {
-    const tx = db.transaction(STORE, 'readwrite');
-    tx.objectStore(STORE).delete(id);
-    tx.oncomplete = () => resolve();
-  });
-}
-
-async function renderFiles() {
-  const list = document.getElementById('files-list');
-  const files = await getAllFiles();
-  document.getElementById('files-count').textContent = files.length;
-  if (files.length === 0) {
-    list.innerHTML = '<p style="font-size:13.5px;color:var(--muted);padding:8px 0">עדיין אין קבצים. העלה מהטלפון למטה.</p>';
-    return;
-  }
-  list.innerHTML = '';
-  files.sort((a,b) => b.date - a.date).forEach(f => {
-    const div = document.createElement('div');
-    div.className = 'file-item';
-    const name = document.createElement('span');
-    name.className = 'fname';
-    name.textContent = f.name;
-    const openBtn = document.createElement('button');
-    openBtn.textContent = 'פתח';
-    openBtn.onclick = () => {
-      const url = URL.createObjectURL(f.blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = f.name;
-      a.target = '_blank';
-      a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 5000);
-    };
-    const delBtn = document.createElement('button');
-    delBtn.className = 'del-f';
-    delBtn.textContent = '×';
-    delBtn.onclick = async () => {
-      if (!confirm('למחוק את הקובץ "' + f.name + '"?')) return;
-      await deleteFile(f.id);
-      renderFiles();
-      showToast('הקובץ נמחק');
-    };
-    div.append(name, openBtn, delBtn);
-    list.append(div);
-  });
-}
-
-document.getElementById('file-input').addEventListener('change', async (e) => {
-  const files = Array.from(e.target.files || []);
-  if (!files.length) return;
-  for (const file of files) {
-    await addFile(file.name, file, file.type || 'application/octet-stream');
-  }
-  e.target.value = '';
-  await renderFiles();
-  showToast(files.length === 1 ? 'הקובץ נשמר במכשיר' : files.length + ' קבצים נשמרו במכשיר');
-});
-
-if (localStorage.getItem('bris-theme') === 'dark') document.body.classList.add('dark');
-openDB().then(() => { renderFiles(); render(); });
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+const data=[['רפואי וקביעת מועד',['מעקב אחר רמת הבילירובין והצהבת','קבלת אישור מהרופא לביצוע הברית','עדכון המוהל בתוצאות הבדיקות','בירור עם המוהל מתי מותר לבצע את הברית לפי ההלכה','קביעת יום ושעה סופיים','וידוא שהמוהל זמין למועד החדש','קבלת הנחיות מהמוהל לגבי האכלה וטיפול לפני הברית']],['מיקום ולוגיסטיקה',['סגירת בית כנסת או אולם','תיאום שעה עם הגבאי','סידור שולחן לברית וכיסא אליהו','הכנת מקום למוהל ולציוד','סידור מקומות ישיבה לגברים ולנשים','בדיקת מיזוג, תאורה ושירותים','סידור חניה והכוונה לאורחים','מינוי אחראי לסידור המקום ולניקיון']],['כיבודים ותפקידים',['בחירת סנדק','בחירת קוואטער וקוואטערין','כיבוד בכיסא אליהו','כיבוד בהבאת התינוק והנחתו על הכיסא','כיבוד בעמידה לברכות (לפי מנהג המקום)','בחירת מי שיברך על הכוס ויקרא את השם','הכנת רשימת הכיבודים והודעה למכובדים','תיאום מראש של כל הכיבודים עם המוהל']],['מנהגי חב״ד והפן הרוחני',['לימוד חסידות כהכנה לברית','לימוד מאמר חסידות בבוקר הברית','הכנת מאמר או שיחת הרבי ללימוד בסעודה','בדיקת מנהגי ליל הברית עם רב חב״די, בפרט בברית דחויה','הכנת י״ב הפסוקים לילדים','ארגון אמירת לחיים והתוועדות חסידית','בחירת ניגונים חב״דיים לסעודה','הכנת דבר תורה קצר בענייני ברית מילה']],['ציוד לברית',['טלית לאבי הבן לפי הצורך והמנהג','כיפות לאורחים','יין או מיץ ענבים לברכות','גביע לברכות וצלחת','בשמים לפי הנוסח והמנהג','סידור עם נוסח ברית מילה חב״די','חיתולים ומגבונים','בגדים להחלפה לתינוק','שמיכה לתינוק','מוצץ אם משתמשים','ציוד רפואי ומשככי כאבים רק לפי הוראות המוהל והרופא']],['סעודת מצווה',['קביעת מספר מוזמנים','בחירת קייטרינג או הכנת אוכל','הזמנת מנות וסגירת תפריט','לחמניות או חלות לנטילת ידיים','נטלות וכלים לנטילת ידיים','יין ומשקה לאמירת לחיים','שתייה קרה וחמה','צלחות, כוסות, סכו״ם ומפיות','מפות וסידור שולחנות','כיבוד לילדים','בירור כשרות המזון והכלים','תיאום ברכת המזון וזימון']],['הזמנות ועדכונים',['עדכון המשפחה שהברית נדחתה','הודעה על התאריך החדש','הכנת הזמנה מעודכנת לוואטסאפ','עדכון קרובי משפחה שמגיעים מרחוק','הודעה למכובדים ולסנדק','שליחת מיקום ושעת התחלה','וידוא הגעה של בני משפחה חשובים']],['תשורה חב״דית',['סיום עריכת התשורה','הגהת הטקסטים והמקורות','בדיקת הפתח דבר וההקדשה לעילוי נשמת רבקה ע״ה','שילוב צילום מכתב הרבי לסב התינוק','בדיקת המאמרים והקטעים מתורה אור','סגירת קובץ PDF להדפסה','בדיקת סדר העמודים והכריכה','הזמנת הדפסה וכמות עותקים','איסוף התשורות מבית הדפוס','מינוי אחראי לחלוקת התשורה']],['ביום הברית',['קבלת אישור סופי שהמצב הרפואי מאפשר את הברית','וידוא הגעת המוהל והסנדק','הכנת התינוק לפי הנחיות המוהל','הבאת כל הציוד והיין','סידור כיסא אליהו ומקום הברית','חלוקת הכיבודים','צילום ותיעוד לפי רצון המשפחה','חלוקת התשורות','לימוד והתוועדות בסעודה','קבלת הנחיות כתובות לטיפול לאחר הברית','קביעת ביקורת ומעקב עם המוהל']]];
+const key='bris-checklist-v4';let state={},custom={},removed={},notifiedSections={};
+try{const saved=JSON.parse(localStorage.getItem(key)||'{}');state=saved.state||{};custom=saved.custom||{};removed=saved.removed||{};notifiedSections=saved.notifiedSections||{}}catch(e){}
+function save(){localStorage.setItem(key,JSON.stringify({state,custom,removed,notifiedSections}));update()}
+function getActiveTasks(i){const orig=data[i][1],rem=new Set(removed[i]||[]),activeOrig=orig.map((t,idx)=>({t,origIdx:idx,isCustom:false})).filter(x=>!rem.has(x.origIdx)),customs=(custom[i]||[]).map((t,idx)=>({t,origIdx:idx,isCustom:true}));return[...activeOrig,...customs]}
+function isSectionComplete(i){const tasks=getActiveTasks(i);if(!tasks.length)return false;return tasks.every(item=>{const k=item.isCustom?i+'-c'+item.origIdx:i+'-'+item.origIdx;return!!state[k]})}
+function buildFullText(){let txt='📋 צ׳קליסט לברית חב״דית\nברית שנדחתה משבת עקב צהבת\n\n';data.forEach((s,i)=>{const tasks=getActiveTasks(i),done=tasks.filter(item=>{const k=item.isCustom?i+'-c'+item.origIdx:i+'-'+item.origIdx;return!!state[k]}).length;txt+='▸ '+s[0]+' ('+done+'/'+tasks.length+')\n';tasks.forEach(item=>{const k=item.isCustom?i+'-c'+item.origIdx:i+'-'+item.origIdx;txt+=(state[k]?'☑ ':'☐ ')+item.t+'\n'});txt+='\n'});return txt}
+function shareToWhatsApp(){const txt=buildFullText();window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank');showToast('נפתח וואטסאפ עם הגיבוי')}
+function autoSendSection(i){if(notifiedSections[i])return;if(!isSectionComplete(i))return;notifiedSections[i]=true;save();const s=data[i],tasks=getActiveTasks(i);let txt='✅ סיימתי קטע בברית!\n\n▸ '+s[0]+' ('+tasks.length+'/'+tasks.length+')\n\n';tasks.forEach(item=>{txt+='☑ '+item.t+'\n'});txt+='\n(גיבוי אוטומטי מהאפליקציה)';const url='https://wa.me/?text='+encodeURIComponent(txt);setTimeout(()=>{if(confirm('סיימת את הקטע "'+s[0]+'"!\nלשלוח גיבוי לוואטסאפ?'))window.open(url,'_blank')},300)}
+function update(){let total=0,done=0;data.forEach((s,i)=>{const tasks=getActiveTasks(i);let count=0;tasks.forEach(item=>{total++;const k=item.isCustom?i+'-c'+item.origIdx:i+'-'+item.origIdx;if(state[k]){done++;count++}});const el=document.getElementById('count-'+i);if(el)el.textContent=count+'/'+tasks.length;if(count===tasks.length&&tasks.length>0)autoSendSection(i)});const p=total?Math.round(100*done/total):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fraction').textContent=done+' מתוך '+total;document.getElementById('fill').style.width=p+'%';if(p===100&&total>0)celebrate()}
+function render(){const root=document.getElementById('sections');root.innerHTML='';data.forEach((s,i)=>{const details=document.createElement('details');details.className='section';details.open=i===0;details.id='sec-'+i;const summary=document.createElement('summary');const name=document.createElement('span');name.textContent=(i+1)+'. '+s[0];const count=document.createElement('span');count.className='count';count.id='count-'+i;summary.append(name,count);details.append(summary);const tasksDiv=document.createElement('div');tasksDiv.className='tasks';const actions=document.createElement('div');actions.className='sec-actions';const markAll=document.createElement('button');markAll.className='sec-btn';markAll.textContent='סמן הכל';markAll.onclick=e=>{e.preventDefault();toggleSection(i,true)};const unmarkAll=document.createElement('button');unmarkAll.className='sec-btn';unmarkAll.textContent='בטל הכל';unmarkAll.onclick=e=>{e.preventDefault();toggleSection(i,false)};actions.append(markAll,unmarkAll);tasksDiv.append(actions);const tasks=getActiveTasks(i);tasks.forEach(item=>{const label=document.createElement('label');label.className='task';const cb=document.createElement('input');cb.type='checkbox';const k=item.isCustom?i+'-c'+item.origIdx:i+'-'+item.origIdx;cb.checked=!!state[k];cb.onchange=()=>{state[k]=cb.checked;save()};const span=document.createElement('span');span.textContent=item.t;label.append(cb,span);const del=document.createElement('button');del.className='del';del.textContent='×';del.title='מחק משימה';del.onclick=e=>{e.preventDefault();if(!confirm('למחוק את המשימה הזו?'))return;if(item.isCustom){custom[i].splice(item.origIdx,1);delete state[i+'-c'+item.origIdx];const newState={};Object.keys(state).forEach(key=>{if(key.startsWith(i+'-c')){const oldIdx=parseInt(key.split('-c')[1]);if(oldIdx<item.origIdx)newState[key]=state[key];else if(oldIdx>item.origIdx)newState[i+'-c'+(oldIdx-1)]=state[key]}else newState[key]=state[key]});state=newState}else{if(!removed[i])removed[i]=[];removed[i].push(item.origIdx);delete state[i+'-'+item.origIdx]}save();render()};label.append(del);tasksDiv.append(label)});const addDiv=document.createElement('div');addDiv.className='custom-input';const inp=document.createElement('input');inp.placeholder='הוסף משימה אישית...';inp.id='inp-'+i;const addBtn=document.createElement('button');addBtn.textContent='+';addBtn.onclick=()=>addCustom(i);inp.onkeydown=e=>{if(e.key==='Enter')addCustom(i)};addDiv.append(inp,addBtn);tasksDiv.append(addDiv);details.append(tasksDiv);root.append(details)});update()}
+function toggleSection(i,checked){getActiveTasks(i).forEach(item=>{const k=item.isCustom?i+'-c'+item.origIdx:i+'-'+item.origIdx;state[k]=checked});save();render()}
+function addCustom(i){const inp=document.getElementById('inp-'+i);const val=(inp.value||'').trim();if(!val)return;if(!custom[i])custom[i]=[];custom[i].push(val);inp.value='';save();render()}
+function expandAll(open){document.querySelectorAll('details.section').forEach(d=>d.open=open)}
+function resetAll(){if(confirm('לאפס את כל הסימונים, המחיקות והמשימות האישיות?')){state={};custom={};removed={};notifiedSections={};save();render()}}
+function printList(){window.print()}
+function toggleTheme(){document.body.classList.toggle('dark');localStorage.setItem('bris-theme',document.body.classList.contains('dark')?'dark':'light')}
+function celebrate(){const el=document.getElementById('celebrate');if(el.dataset.done)return;el.dataset.done='1';el.classList.add('show');const colors=['#3aa8c0','#1b8a6b','#0d5a6e','#6ec8d8','#fff'];for(let i=0;i<50;i++){const c=document.createElement('div');c.className='confetti';c.style.left=Math.random()*100+'vw';c.style.background=colors[Math.floor(Math.random()*colors.length)];c.style.animationDelay=Math.random()*0.7+'s';c.style.animationDuration=(2+Math.random()*1.4)+'s';el.append(c)}setTimeout(()=>{el.innerHTML='';el.classList.remove('show');delete el.dataset.done},3200)}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)}
+const DB_NAME='bris-files-db',STORE='files';let db=null;
+function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains(STORE))d.createObjectStore(STORE,{keyPath:'id',autoIncrement:true})};req.onsuccess=e=>{db=e.target.result;resolve(db)};req.onerror=()=>reject(req.error)})}
+async function getAllFiles(){if(!db)await openDB();return new Promise(resolve=>{const tx=db.transaction(STORE,'readonly');const req=tx.objectStore(STORE).getAll();req.onsuccess=()=>resolve(req.result||[])})}
+async function addFile(name,blob,type){if(!db)await openDB();return new Promise(resolve=>{const tx=db.transaction(STORE,'readwrite');const req=tx.objectStore(STORE).add({name,blob,type,date:Date.now()});req.onsuccess=()=>resolve(req.result)})}
+async function deleteFile(id){if(!db)await openDB();return new Promise(resolve=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).delete(id);tx.oncomplete=()=>resolve()})}
+async function renderFiles(){const list=document.getElementById('files-list');const files=await getAllFiles();document.getElementById('files-count').textContent=files.length;if(!files.length){list.innerHTML='<p style="font-size:13.5px;color:var(--muted);padding:8px 0">עדיין אין קבצים. העלה מהטלפון למטה.</p>';return}list.innerHTML='';files.sort((a,b)=>b.date-a.date).forEach(f=>{const div=document.createElement('div');div.className='file-item';const name=document.createElement('span');name.className='fname';name.textContent=f.name;const openBtn=document.createElement('button');openBtn.textContent='פתח';openBtn.onclick=()=>{const url=URL.createObjectURL(f.blob);const a=document.createElement('a');a.href=url;a.download=f.name;a.target='_blank';a.click();setTimeout(()=>URL.revokeObjectURL(url),5000)};const delBtn=document.createElement('button');delBtn.className='del-f';delBtn.textContent='×';delBtn.onclick=async()=>{if(!confirm('למחוק את הקובץ "'+f.name+'"?'))return;await deleteFile(f.id);renderFiles();showToast('הקובץ נמחק')};div.append(name,openBtn,delBtn);list.append(div)})}
+document.getElementById('file-input').addEventListener('change',async e=>{const files=Array.from(e.target.files||[]);if(!files.length)return;for(const file of files)await addFile(file.name,file,file.type||'application/octet-stream');e.target.value='';await renderFiles();showToast(files.length===1?'הקובץ נשמר במכשיר':files.length+' קבצים נשמרו במכשיר')});
+const calcIds=[];for(let i=0;i<3;i++)calcIds.push('a'+i,'k'+i,'p'+i);calcIds.push('ca','ck','bf','ts','hl','fx','rs','bd','dt','tm','pl','t0','t1','t2','t3','sy');
+const calcNames=['משפחה','יישוב','כללי'];const $c=id=>document.getElementById(id);const nC=id=>parseFloat($c(id)?.value)||0;const fmtC=x=>Math.round(x).toLocaleString('he-IL');
+function msgsCalc(){const v=i=>$c(i)?.value.trim()||'___';const m1=`בס"ד\nבשמחה ובהודיה לה' נודיע כי הברית תתקיים אי"ה ב${v('dt')} בשעה ${v('tm')} ב${v('pl')}.\nמי שיוכל להשתתף ישמח אותנו.`;const tn=['סידור','כיבוד','ניקיון','הסעות'];const m2='חלוקת משימות לברית:\n'+tn.map((t,i)=>`• ${t}: ${v('t'+i)}`).join('\n');if($c('m1'))$c('m1').value=m1;if($c('m2'))$c('m2').value=m2;if($c('wa'))$c('wa').href='https://wa.me/?text='+encodeURIComponent(m1);if($c('wb'))$c('wb').href='https://wa.me/?text='+encodeURIComponent(m2)}
+function cpCalc(id){const t=$c(id);if(!t)return;t.select();try{navigator.clipboard.writeText(t.value);showToast('הועתק')}catch(e){try{document.execCommand('copy')}catch(e2){}}}
+function calcBrit(){if(!$c('calc-out'))return;let ea=0,ek=0,inv=0,h='';for(let i=0;i<3;i++){const a=nC('a'+i),k=Math.min(nC('k'+i),a),p=nC('p'+i)/100;const ex=a*p,exk=k*p;inv+=a;ea+=ex-exk;ek+=exk;h+=`<div class="calc-r"><span>${calcNames[i]}: צפויים</span><b>${Math.round(ex)} מתוך ${a}</b></div>`}const bf=1+nC('bf')/100,pa=Math.ceil(ea*bf),pk=Math.ceil(ek*bf);const tabs=Math.ceil((ea+ek)*bf/(nC('ts')||10));const food=pa*nC('ca')+pk*nC('ck'),hall=$c('sy')?.checked?0:nC('hl'),total=food+hall+nC('fx');const res=nC('bd')*nC('rs')/100,left=nC('bd')-res-total;h+=`<div class="calc-r"><span>סה״כ צפויים</span><b>${Math.round(ea+ek)} מתוך ${inv}</b></div><div class="calc-r"><span>מנות מבוגרים / ילדים להזמין</span><b>${pa} / ${pk}</b></div><div class="calc-r"><span>שולחנות</span><b>${tabs}</b></div><div class="calc-r"><span>עלות אוכל</span><b>₪${fmtC(food)}</b></div><div class="calc-r"><span>עלות לאורח צפוי</span><b>₪${fmtC(total/Math.max(ea+ek,1))}</b></div><div class="calc-r"><span>רזרבה לבלת"מים</span><b>₪${fmtC(res)}</b></div><div class="calc-r"><span>${left>=0?'נשאר בתקציב':'חריגה מהתקציב'}</span><b>₪${fmtC(Math.abs(left))}</b></div>`;$c('calc-out').innerHTML=h;$c('calc-tot').innerHTML=`סה״כ עלות: <b>₪${fmtC(total)}</b>`;msgsCalc();try{localStorage.setItem('brit-calc',JSON.stringify(calcIds.map(i=>i==='sy'?!!$c(i)?.checked:$c(i)?.value||'')))}catch(e){}}
+function initCalc(){try{const s=JSON.parse(localStorage.getItem('brit-calc')||'null');if(s&&s.length===calcIds.length)calcIds.forEach((i,j)=>{if(!$c(i))return;if(i==='sy')$c(i).checked=!!s[j];else $c(i).value=s[j]})}catch(e){}calcIds.forEach(i=>{const el=$c(i);if(el)el.addEventListener('input',calcBrit)});if($c('sy'))$c('sy').addEventListener('change',calcBrit);calcBrit()}
+if(localStorage.getItem('bris-theme')==='dark')document.body.classList.add('dark');
+openDB().then(()=>{renderFiles();render();initCalc()});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
 </html>
