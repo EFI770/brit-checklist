@@ -5,66 +5,252 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="הברית שלנו">
-<meta name="theme-color" content="#123e35">
+<meta name="theme-color" content="#1a5f7a">
 <title>צ׳קליסט לברית חב״דית</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon.png">
 <style>
-*{box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f5f5ee;--card:#fff;--text:#1c302b;--muted:#58766a;
-  --primary:#123e35;--accent:#d6bd74;--border:#e0e6de;
-  --success:#1b7259;--warn-bg:#fff9e8;--warn-border:#ecdda8;
+  --card:rgba(255,252,245,.88);
+  --card-solid:#fffef9;
+  --text:#1a2e28;
+  --muted:#4a6b5e;
+  --primary:#0d4a5c;
+  --accent:#d4a84b;
+  --border:rgba(26,94,110,.12);
+  --success:#1b8a6b;
+  --shadow:0 8px 32px rgba(13,74,92,.12);
 }
 body.dark{
-  --bg:#0f1a17;--card:#1a2a25;--text:#e8f0ed;--muted:#8aa399;
-  --primary:#1a4a3e;--accent:#c9a84c;--border:#2a3d36;
-  --success:#2d9b7a;--warn-bg:#2a2418;--warn-border:#5c4d2a;
+  --card:rgba(18,32,38,.9);
+  --card-solid:#15262c;
+  --text:#e8f4f0;
+  --muted:#8ab0a0;
+  --primary:#1a6b7a;
+  --accent:#e0b85c;
+  --border:rgba(200,230,220,.1);
+  --success:#2d9b7a;
+  --shadow:0 8px 32px rgba(0,0,0,.35);
 }
-body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Arial',sans-serif;transition:background .3s,color .3s}
-header{background:var(--primary);color:white;padding:26px 16px 20px;border-radius:0 0 26px 26px;position:relative}
-h1{font-size:24px;margin:0 0 6px;line-height:1.25}
-header .sub{margin:0;color:#d5e6de;font-size:13.5px;line-height:1.45}
+html,body{height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+  color:var(--text);
+  overflow-x:hidden;
+  min-height:100vh;
+  position:relative;
+}
+
+/* ===== Animated Beach Background ===== */
+.bg{
+  position:fixed;inset:0;z-index:-2;
+  background:linear-gradient(180deg,
+    #87CEEB 0%,
+    #5eb3d4 18%,
+    #f5d78e 42%,
+    #f0c96a 55%,
+    #e8b84a 68%,
+    #d4a03a 100%
+  );
+}
+body.dark .bg{
+  background:linear-gradient(180deg,
+    #0a1f2e 0%,
+    #123a4a 25%,
+    #2a4a3a 50%,
+    #3d5a2e 70%,
+    #2a4020 100%
+  );
+}
+
+/* Waves */
+.wave{
+  position:fixed;bottom:0;left:0;width:200%;height:160px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%231a7a9c' d='M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z'/%3E%3C/svg%3E") repeat-x;
+  background-size:50% 100%;
+  animation:waveMove 12s linear infinite;
+  opacity:.55;z-index:-1;
+}
+.wave2{
+  bottom:20px;height:120px;opacity:.4;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='%232a9ab8' d='M0,40 C360,80 720,10 1080,50 C1260,70 1380,30 1440,45 L1440,100 L0,100 Z'/%3E%3C/svg%3E") repeat-x;
+  background-size:50% 100%;
+  animation:waveMove 18s linear infinite reverse;
+}
+.wave3{
+  bottom:40px;height:90px;opacity:.3;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%2340b8d0' d='M0,30 C300,60 600,10 900,40 C1100,55 1300,20 1440,35 L1440,80 L0,80 Z'/%3E%3C/svg%3E") repeat-x;
+  background-size:50% 100%;
+  animation:waveMove 9s linear infinite;
+}
+@keyframes waveMove{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+/* Palm trees */
+.palms{
+  position:fixed;bottom:80px;left:0;right:0;height:220px;
+  pointer-events:none;z-index:-1;overflow:hidden;
+}
+.palm{
+  position:absolute;bottom:0;
+  width:60px;height:180px;
+  background:transparent;
+}
+.palm::before{
+  content:'';
+  position:absolute;bottom:0;left:50%;
+  width:8px;height:110px;
+  background:#2d5a3a;
+  border-radius:4px;
+  transform:translateX(-50%);
+}
+.palm::after{
+  content:'🌴';
+  position:absolute;top:0;left:50%;
+  font-size:52px;
+  transform:translateX(-50%);
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));
+}
+.palm.p1{left:4%;transform:scale(.85);opacity:.7}
+.palm.p2{left:12%;transform:scale(1.1);opacity:.85}
+.palm.p3{right:6%;transform:scale(.9) scaleX(-1);opacity:.75}
+.palm.p4{right:16%;transform:scale(1.05);opacity:.8}
+body.dark .palm::before{background:#1a3a28}
+body.dark .palm::after{filter:brightness(.7) drop-shadow(0 2px 4px rgba(0,0,0,.4))}
+
+/* Soft sun / moon */
+.sun{
+  position:fixed;top:40px;left:30px;
+  width:70px;height:70px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#fff8e0,#ffd56a 50%,#f0a830);
+  box-shadow:0 0 40px 15px rgba(255,200,80,.35);
+  z-index:-1;opacity:.9;
+}
+body.dark .sun{
+  background:radial-gradient(circle at 35% 35%,#e8f0ff,#a0c0e0 60%,#6080a0);
+  box-shadow:0 0 30px 10px rgba(160,190,230,.2);
+}
+
+header{
+  background:linear-gradient(135deg,rgba(13,74,92,.92),rgba(26,110,100,.88));
+  color:white;
+  padding:28px 16px 22px;
+  border-radius:0 0 28px 28px;
+  position:relative;
+  box-shadow:0 10px 30px rgba(13,74,92,.25);
+  backdrop-filter:blur(8px);
+}
+body.dark header{
+  background:linear-gradient(135deg,rgba(10,40,50,.95),rgba(20,60,55,.92));
+}
+h1{font-size:23px;margin:0 0 6px;line-height:1.3;font-weight:800}
+header .sub{margin:0;color:rgba(255,255,255,.85);font-size:13.5px;line-height:1.45}
 .progress{margin-top:18px;display:flex;justify-content:space-between;align-items:center}
-.percent{font-size:32px;font-weight:800}
-.bar{height:10px;background:#41665c;border-radius:20px;overflow:hidden;margin-top:10px}
-.fill{height:100%;background:var(--accent);width:0;transition:width .3s}
-main{padding:14px 12px 50px;max-width:720px;margin:auto}
-.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.percent{font-size:34px;font-weight:800;letter-spacing:-1px}
+.bar{height:11px;background:rgba(255,255,255,.2);border-radius:20px;overflow:hidden;margin-top:12px}
+.fill{height:100%;background:linear-gradient(90deg,#e8c547,#d4a84b);width:0;transition:width .4s ease;border-radius:20px}
+
+main{padding:16px 12px 60px;max-width:720px;margin:auto}
+
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .toolbar button,button.sec-btn{
-  font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card);
-  border-radius:12px;padding:10px 12px;color:var(--text);font-size:13.5px
+  font:inherit;cursor:pointer;
+  border:1px solid var(--border);
+  background:var(--card);
+  backdrop-filter:blur(12px);
+  border-radius:14px;padding:11px 14px;
+  color:var(--text);font-size:13.5px;
+  box-shadow:var(--shadow);
+  transition:transform .15s,box-shadow .15s;
 }
-.toolbar button:active{opacity:.8}
-.section{background:var(--card);border:1px solid var(--border);border-radius:16px;margin:10px 0;overflow:hidden}
+.toolbar button:active{transform:scale(.97)}
+.toolbar button:hover{box-shadow:0 4px 16px rgba(13,74,92,.15)}
+
+.section{
+  background:var(--card);
+  backdrop-filter:blur(14px);
+  border:1px solid var(--border);
+  border-radius:18px;
+  margin:12px 0;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
 .section summary{
-  padding:15px 14px;font-size:15.5px;font-weight:700;cursor:pointer;
-  display:flex;justify-content:space-between;align-items:center;list-style:none;gap:8px
+  padding:16px 15px;font-size:15.5px;font-weight:700;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  list-style:none;gap:8px;
 }
 .section summary::-webkit-details-marker{display:none}
 .count{font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap}
-.tasks{padding:0 12px 12px}
-.task{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-top:1px solid var(--border);font-size:14.5px;line-height:1.4}
-.task input{width:21px;height:21px;flex:none;accent-color:var(--success);margin:1px 0 0}
+.tasks{padding:0 14px 14px}
+.task{
+  display:flex;align-items:flex-start;gap:11px;
+  padding:10px 0;border-top:1px solid var(--border);
+  font-size:14.5px;line-height:1.45;
+}
+.task input{
+  width:22px;height:22px;flex:none;
+  accent-color:var(--success);margin:1px 0 0;
+  border-radius:6px;
+}
 .task:has(input:checked) span{text-decoration:line-through;color:var(--muted)}
-.task .del{margin-right:auto;background:none;border:none;color:#c45c5c;font-size:17px;padding:0 4px;cursor:pointer;opacity:.55}
-.custom-input{display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border)}
-.custom-input input{flex:1;padding:9px 11px;border:1px solid var(--border);border-radius:10px;font:inherit;background:var(--bg);color:var(--text);font-size:14px}
-.custom-input button{padding:9px 13px;background:var(--primary);color:white;border:none;border-radius:10px}
-.notice{padding:13px;background:var(--warn-bg);border:1px solid var(--warn-border);border-radius:14px;line-height:1.55;font-size:13.5px;margin:16px 0}
+.task .del{margin-right:auto;background:none;border:none;color:#c45c5c;font-size:18px;padding:0 4px;cursor:pointer;opacity:.5}
+.custom-input{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--border)}
+.custom-input input{
+  flex:1;padding:10px 12px;
+  border:1px solid var(--border);border-radius:12px;
+  font:inherit;background:var(--card-solid);color:var(--text);font-size:14px;
+}
+.custom-input button{
+  padding:10px 14px;background:var(--primary);color:white;
+  border:none;border-radius:12px;font-weight:600;
+}
+.notice{
+  padding:15px;background:rgba(255,248,220,.75);
+  border:1px solid rgba(212,168,75,.3);
+  border-radius:16px;line-height:1.55;font-size:13.5px;margin:18px 0;
+  backdrop-filter:blur(8px);
+}
+body.dark .notice{background:rgba(50,40,20,.7);border-color:rgba(200,160,60,.25)}
 .notice ul{margin:8px 0 0;padding-right:18px}
 .notice li{margin-bottom:6px}
-.footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
-.theme-btn{position:absolute;top:16px;left:14px;background:rgba(255,255,255,.15);border:none;color:white;width:34px;height:34px;border-radius:50%;font-size:17px;cursor:pointer}
+.footer{text-align:center;color:var(--muted);font-size:12px;padding:14px;opacity:.85}
+.theme-btn{
+  position:absolute;top:16px;left:14px;
+  background:rgba(255,255,255,.18);border:none;color:white;
+  width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;
+  backdrop-filter:blur(6px);
+}
 .celebrate{position:fixed;inset:0;pointer-events:none;z-index:99;display:none}
 .celebrate.show{display:block}
 .confetti{position:absolute;width:9px;height:9px;border-radius:2px;animation:fall 2.5s ease-out forwards}
 @keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
 .sec-actions{display:flex;gap:6px;margin-bottom:4px}
-.sec-actions button{font-size:12px;padding:5px 9px}
+.sec-actions button{font-size:12px;padding:6px 10px}
+
+/* Decorative Brit motif */
+.motif{
+  text-align:center;font-size:22px;opacity:.5;margin:8px 0 4px;
+  letter-spacing:8px;
+}
 </style>
 </head>
 <body>
+<div class="bg"></div>
+<div class="sun"></div>
+<div class="wave wave3"></div>
+<div class="wave wave2"></div>
+<div class="wave"></div>
+<div class="palms">
+  <div class="palm p1"></div>
+  <div class="palm p2"></div>
+  <div class="palm p3"></div>
+  <div class="palm p4"></div>
+</div>
+
 <header>
   <button class="theme-btn" onclick="toggleTheme()" title="מצב כהה/בהיר">🌓</button>
   <h1>צ׳קליסט לברית חב״דית</h1>
@@ -74,12 +260,13 @@ main{padding:14px 12px 50px;max-width:720px;margin:auto}
       <div class="percent" id="percent">0%</div>
       <small id="fraction">0 מתוך 0</small>
     </div>
-    <div style="font-size:40px">✡</div>
+    <div style="font-size:42px">✡</div>
   </div>
   <div class="bar"><div class="fill" id="fill"></div></div>
 </header>
 
 <main>
+  <div class="motif">✡ · 🌴 · ✡</div>
   <div class="toolbar">
     <button onclick="expandAll(true)">פתח הכל</button>
     <button onclick="expandAll(false)">סגור הכל</button>
@@ -89,7 +276,7 @@ main{padding:14px 12px 50px;max-width:720px;margin:auto}
   </div>
 
   <details class="section" open style="border-color:var(--accent)">
-    <summary style="background:var(--warn-bg)">
+    <summary style="background:rgba(212,168,75,.12)">
       <span>📖 מידע כללי ומנהגי חב״ד (מתוך הספרים)</span>
       <span class="count">לחץ</span>
     </summary>
@@ -135,13 +322,13 @@ main{padding:14px 12px 50px;max-width:720px;margin:auto}
         <li>נהוג לתת דמי קדימה למוסד תורני בעת הברית.</li>
       </ul>
       <p style="font-size:13px;color:var(--muted);margin-top:10px">
-        מקורות: <em>שבח הברית</em> (ר׳ שמואל הורוויץ), <em>שמירת השמחות</em> (ר׳ שמעון גדסי), <em>חוברת מידע – ועד אברכי אנ״ש צפת</em>. תמיד לברר עם הרב והמוהל.
+        מקורות: <em>שבח הברית</em>, <em>שמירת השמחות</em>, <em>חוברת מידע – ועד אברכי אנ״ש צפת</em>. תמיד לברר עם הרב והמוהל.
       </p>
     </div>
   </details>
 
   <details class="section" style="border-color:#8b6b3a">
-    <summary style="background:#f8f0e0">
+    <summary style="background:rgba(139,107,58,.1)">
       <span>📚 לימודים לפני הברית ובברית</span>
       <span class="count">לחץ</span>
     </summary>
@@ -179,8 +366,7 @@ main{padding:14px 12px 50px;max-width:720px;margin:auto}
         <li>לבדוק עם הרב/המוהל אם יש מנהגים מיוחדים לברית דחויה.</li>
       </ul>
       <p style="font-size:13px;color:var(--muted);margin-top:8px">
-        מקורות: <em>ברית יצחק</em>, <em>זוהר לליל הברית</em> (כסא אליהו + ביאורי הרבי ואביו), <em>שבח הברית</em>.  
-        הספרים המלאים מומלצים להכנה מראש.
+        מקורות: <em>ברית יצחק</em>, <em>זוהר לליל הברית</em>, <em>שבח הברית</em>.
       </p>
     </div>
   </details>
@@ -196,7 +382,7 @@ main{padding:14px 12px 50px;max-width:720px;margin:auto}
       <li><strong>סעודה:</strong> אפשר לנצל את המועד החדש להכנת סעודת מצווה והתוועדות חסידית מסודרת.</li>
     </ul>
   </div>
-  <div class="footer">שמור למסך הבית · עובד גם ללא אינטרנט · גרסה 3.2 · לימודים + מידע כללי</div>
+  <div class="footer">שמור למסך הבית · עובד גם ללא אינטרנט · גרסה 4.0 · חוף רגוע</div>
 </main>
 
 <div class="celebrate" id="celebrate"></div>
@@ -511,7 +697,7 @@ function celebrate() {
   if (el.dataset.done) return;
   el.dataset.done = '1';
   el.classList.add('show');
-  const colors = ['#d6bd74','#1b7259','#123e35','#e8c547','#fff'];
+  const colors = ['#d4a84b','#1b8a6b','#0d4a5c','#e8c547','#fff'];
   for (let i = 0; i < 60; i++) {
     const c = document.createElement('div');
     c.className = 'confetti';
