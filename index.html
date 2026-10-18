@@ -8,195 +8,126 @@
 <meta name="theme-color" content="#1a5f7a">
 <title>צ׳קליסט לברית חב״דית</title>
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icon.png">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--card:rgba(255,255,255,.86);--card-solid:#f8fcff;--text:#122b33;--muted:#4a6e7a;--primary:#0d5a6e;--accent:#3aa8c0;--border:rgba(13,90,110,.13);--success:#1b8a6b;--shadow:0 8px 28px rgba(13,70,90,.13);--danger:#c45c5c}
 body.dark{--card:rgba(16,30,38,.92);--card-solid:#14242c;--text:#e2f0f4;--muted:#7aa0ac;--primary:#1a6b7e;--accent:#4ab8d0;--border:rgba(180,220,230,.12);--success:#2d9b7a;--shadow:0 8px 28px rgba(0,0,0,.4)}
-html,body{height:100%}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:var(--text);overflow-x:hidden;min-height:100vh;position:relative}
-.bg{position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,#7ec8e3 0%,#5bb8d4 12%,#3aa0c0 28%,#6ec4d8 42%,#a8d8e8 55%,#d4eef5 68%,#e8f4f0 82%,#f0f7f4 100%)}
-body.dark .bg{background:linear-gradient(180deg,#0a1c28 0%,#0f2a38 20%,#163848 40%,#1a4050 55%,#1e4a45 75%,#1a3a35 100%)}
-.wave{position:fixed;bottom:0;left:0;width:200%;height:140px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%232a8aaa' fill-opacity='0.45' d='M0,55 C180,90 360,25 540,55 C720,85 900,30 1080,60 C1260,90 1380,40 1440,55 L1440,120 L0,120 Z'/%3E%3C/svg%3E") repeat-x;background-size:50% 100%;animation:waveMove 14s linear infinite;z-index:-1}
-.wave2{bottom:18px;height:110px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='%233a9aba' fill-opacity='0.35' d='M0,40 C240,75 480,15 720,45 C960,75 1200,20 1440,50 L1440,100 L0,100 Z'/%3E%3C/svg%3E") repeat-x;background-size:50% 100%;animation:waveMove 20s linear infinite reverse}
-.wave3{bottom:35px;height:85px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%234ab0c8' fill-opacity='0.28' d='M0,30 C300,55 600,10 900,35 C1100,50 1300,15 1440,30 L1440,80 L0,80 Z'/%3E%3C/svg%3E") repeat-x;background-size:50% 100%;animation:waveMove 10s linear infinite}
-@keyframes waveMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.palms{position:fixed;bottom:70px;left:0;right:0;height:200px;pointer-events:none;z-index:-1;overflow:hidden}
-.palm{position:absolute;bottom:0;font-size:48px;opacity:.65;filter:drop-shadow(0 3px 6px rgba(0,40,50,.2))}
-.palm.p1{left:3%;font-size:42px;opacity:.55}.palm.p2{left:11%;font-size:56px}.palm.p3{right:4%;font-size:46px;transform:scaleX(-1);opacity:.6}.palm.p4{right:14%;font-size:52px;opacity:.7}
-body.dark .palm{opacity:.4;filter:brightness(.65)}
-.sun{position:fixed;top:28px;left:24px;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff9e8,#ffe08a 45%,#f0b840);box-shadow:0 0 50px 18px rgba(255,200,90,.3);z-index:-1}
-body.dark .sun{background:radial-gradient(circle at 35% 35%,#e8f4ff,#90b8d8 55%,#5080a0);box-shadow:0 0 35px 12px rgba(140,180,220,.18)}
-header{background:linear-gradient(135deg,rgba(13,80,100,.93),rgba(20,100,115,.9));color:white;padding:26px 16px 20px;border-radius:0 0 26px 26px;position:relative;box-shadow:0 8px 28px rgba(13,70,90,.22);backdrop-filter:blur(10px)}
-body.dark header{background:linear-gradient(135deg,rgba(10,40,55,.95),rgba(15,55,60,.93))}
-h1{font-size:22px;margin:0 0 5px;line-height:1.3;font-weight:800}
-header .sub{margin:0;color:rgba(255,255,255,.88);font-size:13.5px;line-height:1.45}
-.progress{margin-top:16px;display:flex;justify-content:space-between;align-items:center}
-.percent{font-size:32px;font-weight:800;letter-spacing:-.5px}
-.bar{height:10px;background:rgba(255,255,255,.22);border-radius:20px;overflow:hidden;margin-top:10px}
-.fill{height:100%;background:linear-gradient(90deg,#6ec8d8,#3aa8c0);width:0;transition:width .4s ease;border-radius:20px}
-main{padding:14px 12px 55px;max-width:720px;margin:auto}
-.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.toolbar button,button.sec-btn{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card);backdrop-filter:blur(12px);border-radius:13px;padding:10px 13px;color:var(--text);font-size:13.5px;box-shadow:var(--shadow);transition:transform .12s}
-.toolbar button:active{transform:scale(.97)}
-.section{background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:16px;margin:11px 0;overflow:hidden;box-shadow:var(--shadow)}
-.section summary{padding:15px 14px;font-size:15.5px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;gap:8px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:var(--text);min-height:100vh;position:relative;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,#7ec8e3,#5bb8d4 20%,#3aa0c0 40%,#a8d8e8 70%,#f0f7f4)}
+body.dark .bg{background:linear-gradient(180deg,#0a1c28,#163848 50%,#1a3a35)}
+header{background:linear-gradient(135deg,rgba(13,80,100,.93),rgba(20,100,115,.9));color:#fff;padding:22px 16px 18px;border-radius:0 0 24px 24px}
+h1{font-size:20px;margin:0 0 4px}
+.sub{font-size:13px;opacity:.9;margin:0}
+.progress{margin-top:12px}.percent{font-size:28px;font-weight:800}
+.bar{height:8px;background:rgba(255,255,255,.2);border-radius:20px;margin-top:8px;overflow:hidden}
+.fill{height:100%;background:linear-gradient(90deg,#6ec8d8,#3aa8c0);width:0;transition:width .3s;border-radius:20px}
+main{padding:12px;max-width:720px;margin:auto}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.toolbar button{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card);border-radius:12px;padding:9px 12px;color:var(--text);font-size:13px}
+.section{background:var(--card);border:1px solid var(--border);border-radius:14px;margin:10px 0;overflow:hidden;box-shadow:var(--shadow)}
+.section summary{padding:14px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;list-style:none}
 .section summary::-webkit-details-marker{display:none}
-.count{font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap}
-.tasks{padding:0 13px 13px}
-.task{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-top:1px solid var(--border);font-size:14.5px;line-height:1.4}
-.task input{width:21px;height:21px;flex:none;accent-color:var(--success);margin:1px 0 0}
+.count{font-size:13px;color:var(--muted);font-weight:500}
+.tasks{padding:0 12px 12px}
+.task{display:flex;gap:8px;padding:8px 0;border-top:1px solid var(--border);font-size:14px;align-items:flex-start}
+.task input{width:20px;height:20px;accent-color:var(--success);flex:none}
 .task:has(input:checked) span{text-decoration:line-through;color:var(--muted)}
-.task .del{margin-right:auto;background:none;border:none;color:var(--danger);font-size:17px;padding:0 3px;cursor:pointer;opacity:.45;line-height:1}
-.custom-input{display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border)}
-.custom-input input{flex:1;padding:9px 11px;border:1px solid var(--border);border-radius:11px;font:inherit;background:var(--card-solid);color:var(--text);font-size:14px}
-.custom-input button{padding:9px 13px;background:var(--primary);color:white;border:none;border-radius:11px;font-weight:600}
-.notice{padding:14px;background:rgba(220,240,248,.75);border:1px solid rgba(58,168,192,.28);border-radius:15px;line-height:1.55;font-size:13.5px;margin:16px 0;backdrop-filter:blur(8px)}
-body.dark .notice{background:rgba(20,45,55,.7);border-color:rgba(80,160,180,.25)}
-.notice ul{margin:8px 0 0;padding-right:18px}.notice li{margin-bottom:6px}
-.footer{text-align:center;color:var(--muted);font-size:12px;padding:12px;opacity:.85}
-.theme-btn{position:absolute;top:14px;left:12px;background:rgba(255,255,255,.18);border:none;color:white;width:34px;height:34px;border-radius:50%;font-size:17px;cursor:pointer}
-.celebrate{position:fixed;inset:0;pointer-events:none;z-index:99;display:none}.celebrate.show{display:block}
-.confetti{position:absolute;width:8px;height:8px;border-radius:2px;animation:fall 2.5s ease-out forwards}
-@keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
-.sec-actions{display:flex;gap:6px;margin-bottom:4px;flex-wrap:wrap}.sec-actions button{font-size:12px;padding:5px 9px}
-.pdf-box{display:flex;align-items:center;gap:12px;padding:14px;background:rgba(255,255,255,.7);border:1px solid var(--border);border-radius:14px;margin:12px 0;box-shadow:var(--shadow)}
-body.dark .pdf-box{background:rgba(20,40,50,.75)}
-.pdf-box a{display:inline-block;padding:10px 16px;background:var(--primary);color:white;border-radius:11px;text-decoration:none;font-weight:600;font-size:14px}
-.pdf-box p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.4}
-.file-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--border);font-size:14px}
-.file-item .fname{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.file-item button{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:var(--card-solid);color:var(--text);cursor:pointer}
-.file-item .del-f{color:var(--danger);border-color:transparent;background:none;font-size:16px}
-.upload-area{border:2px dashed var(--border);border-radius:14px;padding:18px;text-align:center;margin-top:10px;cursor:pointer;background:rgba(58,168,192,.06)}
-.upload-area:active{background:rgba(58,168,192,.12)}.upload-area input{display:none}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--primary);color:white;padding:12px 20px;border-radius:12px;font-size:14px;z-index:100;opacity:0;transition:opacity .3s;pointer-events:none;max-width:90%;text-align:center}.toast.show{opacity:1}
-.calc-g{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:6px;align-items:center;font-size:13px;margin-bottom:6px}
-.calc-g.h{color:var(--muted);font-size:12px}
-.calc-g input,.calc-f input{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:10px;background:var(--card-solid);color:var(--text);font:inherit;font-size:14px}
-.calc-f{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.calc-f label{font-size:12px;color:var(--muted);display:block;margin-bottom:3px}
-.calc-r{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:14px}
-.calc-r:last-child{border:0}.calc-r b{color:var(--success)}
-.calc-t{background:rgba(58,168,192,.12);border-radius:12px;padding:12px;font-size:17px;text-align:center;margin-top:10px;font-weight:700}
-.calc-bt{display:flex;gap:8px;margin-top:8px}
-.calc-bt a,.calc-bt button{flex:1;text-align:center;padding:10px;border-radius:11px;border:0;background:var(--primary);color:white;font-size:13.5px;text-decoration:none;cursor:pointer;font-weight:600}
-.calc-check{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:14px}.calc-check input{width:auto}
+.pdf-box{padding:14px;background:var(--card);border:1px solid var(--border);border-radius:14px;margin:12px 0}
+.pdf-box a{display:inline-block;padding:10px 14px;background:var(--primary);color:#fff;border-radius:10px;text-decoration:none;font-weight:600}
+.footer{text-align:center;color:var(--muted);font-size:12px;padding:12px}
+.theme-btn{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.2);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer}
 .zman-card label{display:block;font-size:12px;color:var(--muted);margin:8px 0 3px}
-.zman-card input{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:10px;background:var(--card-solid);color:var(--text);font:inherit;font-size:14px}
+.zman-card input{width:100%;padding:9px;border:1px solid var(--border);border-radius:10px;background:var(--card-solid);color:var(--text);font:inherit}
 .zman-row{display:flex;gap:8px}.zman-row>div{flex:1}
-.zman-big{font-size:1.2rem;font-weight:700;color:var(--primary);margin:8px 0 4px}
-.zman-note{background:rgba(255,200,80,.15);border-radius:10px;padding:10px;margin-top:8px;font-size:13.5px;line-height:1.5}
+.zman-big{font-size:1.15rem;font-weight:700;color:var(--primary);margin:8px 0 4px}
+.zman-note{background:rgba(255,200,80,.15);border-radius:10px;padding:10px;margin-top:8px;font-size:13px;line-height:1.5}
 .zman-ok{background:rgba(27,138,107,.12)}
 .zman-table{width:100%;font-size:14px;border-collapse:collapse;margin:8px 0}
 .zman-table td{padding:4px 0}.zman-table td:last-child{text-align:left;font-weight:600}
 .zman-small{font-size:12px;color:var(--muted);display:block;margin-top:4px}
+.notice{padding:12px;background:rgba(220,240,248,.7);border-radius:12px;font-size:13px;margin:12px 0;line-height:1.5}
 </style>
 </head>
 <body>
-<div class="bg"></div><div class="sun"></div><div class="wave wave3"></div><div class="wave wave2"></div><div class="wave"></div>
-<div class="palms"><div class="palm p1">🌴</div><div class="palm p2">🌴</div><div class="palm p3">🌴</div><div class="palm p4">🌴</div></div>
+<div class="bg"></div>
 <header>
-<button class="theme-btn" onclick="toggleTheme()">🌓</button>
+<button class="theme-btn" onclick="document.body.classList.toggle('dark')">🌓</button>
 <h1>צ׳קליסט לברית חב״דית</h1>
-<p class="sub">ברית שנדחתה משבת עקב צהבת · הכנות, מנהגים, סעודה ותשורה</p>
-<p class="sub" style="margin-top:8px;font-size:12px;opacity:.9">לשימוש אישי ומשפחתי בלבד · אין אחריות להחלטות רפואיות או הלכתיות · יש לברר עם רופא, מוהל ורב</p>
-<div class="progress"><div><div class="percent" id="percent">0%</div><small id="fraction">0 מתוך 0</small></div></div>
+<p class="sub">ברית שנדחתה משבת עקב צהבת · הכנות ומנהגים</p>
+<p class="sub" style="margin-top:6px;font-size:12px;opacity:.85">לשימוש אישי ומשפחתי · אין אחריות · לברר עם רופא, מוהל ורב</p>
+<div class="progress"><div class="percent" id="percent">0%</div></div>
 <div class="bar"><div class="fill" id="fill"></div></div>
 </header>
 <main>
 <div class="toolbar">
-<button onclick="expandAll(true)">פתח הכל</button>
-<button onclick="expandAll(false)">סגור הכל</button>
-<button onclick="shareToWhatsApp()">📱 שלח לוואטסאפ</button>
-<button onclick="printList()">הדפסה</button>
-<button onclick="resetAll()" style="color:var(--danger)">איפוס</button>
+<button onclick="document.querySelectorAll('details').forEach(d=>d.open=true)">פתח הכל</button>
+<button onclick="document.querySelectorAll('details').forEach(d=>d.open=false)">סגור הכל</button>
+<button onclick="shareWA()">📱 וואטסאפ</button>
 </div>
-<details class="section" open style="border-color:var(--accent)">
-<summary style="background:rgba(58,168,192,.1)"><span>📖 מידע כללי ומנהגי חב״ד</span><span class="count">לחץ</span></summary>
-<div class="tasks" style="font-size:14px;line-height:1.55;padding:12px 14px">
-<p><strong>דחיית ברית בגלל צהבת / חולי</strong></p>
-<ul style="margin:6px 0 12px;padding-right:18px">
-<li>אפילו על חשש קל – יש לדחות. ההחלטה בידי רב מורה הוראה הבקיא.</li>
-<li>ברית שנדחתה ונעשתה מאוחר – נחשבת כאילו נימול בזמנו.</li>
+
+<details class="section" open>
+<summary><span>📖 מידע כללי</span><span class="count">לחץ</span></summary>
+<div class="tasks" style="font-size:14px;line-height:1.55;padding:12px">
+<p><strong>דחיית ברית בגלל צהבת</strong></p>
+<ul style="padding-right:18px;margin:6px 0">
+<li>אפילו על חשש קל – יש לדחות. ההחלטה בידי רב.</li>
 <li>ברית שלא בזמנה <strong>אינה דוחה שבת או יום טוב</strong>.</li>
 </ul>
-<p><strong>ליל שימורים</strong></p>
-<ul style="margin:6px 0 12px;padding-right:18px">
-<li>הלילה שלפני הברית – ליל שמירה. נוהגים להיות נעורים וללמוד תורה / זוהר.</li>
-<li>מביאים תינוקות של בית רבן לקרוא קריאת שמע ו״המלאך הגואל״.</li>
-</ul>
-<p><strong>כיבודים עיקריים (מנהג חב״ד)</strong></p>
-<ul style="margin:6px 0 12px;padding-right:18px">
-<li><strong>קוואטער / קוואטערין</strong> · <strong>חייקה</strong> · <strong>כיסא אליהו</strong></li>
-<li><strong>סנדק</strong> (דמיושב) · <strong>עמידה לברכות</strong> (דמעומד)</li>
-</ul>
-<p style="font-size:13px;color:var(--muted);margin-top:8px">מקורות: שבח הברית, שמירת השמחות, חוברת צפת. תמיד לברר עם הרב והמוהל.</p>
+<p><strong>ליל שימורים</strong> – ליל שמירה, לימוד תורה/זוהר.</p>
 </div>
 </details>
-<details class="section" style="border-color:#8a7a5a">
-<summary style="background:rgba(180,140,60,.1)"><span>⏰ מחשבון זמן ברית (יום שמיני)</span><span class="count">לחץ</span></summary>
+
+<details class="section" open>
+<summary><span>⏰ מחשבון זמן ברית</span><span class="count">לחץ</span></summary>
 <div class="tasks zman-card" style="padding:14px">
-<p style="font-size:13px;color:var(--muted);margin-bottom:10px;line-height:1.45">חישוב יום השמיני לפי שעת הלידה מול שקיעה ובין השמשות. <strong>עזר בלבד</strong> – בספק, שבת/יו״ט או מצב רפואי יש להתייעץ עם מוהל ורב.</p>
+<p style="font-size:13px;color:var(--muted);margin-bottom:8px">חישוב יום השמיני לפי שעת לידה מול שקיעה. <strong>עזר בלבד</strong>.</p>
 <label>מיקום</label>
-<input id="zloc" list="zplaces" value="תל אביב-יפו" autocomplete="off" onfocus="this.select()">
+<input id="zloc" list="zplaces" value="תל אביב-יפו">
 <datalist id="zplaces"></datalist>
-<small class="zman-small" id="zlocmsg">הקלד לחיפוש או הזן קואורדינטות (למשל 31.03,34.72)</small>
 <label>זמן הלידה</label>
 <input type="datetime-local" id="zbirth">
 <div class="zman-row">
-<div><label>שקיעה (עריכה ידנית)</label><input type="time" id="zsset"></div>
-<div><label>צאת הכוכבים (ידני)</label><input type="time" id="ztzet"></div>
+<div><label>שקיעה</label><input type="time" id="zsset"></div>
+<div><label>צאת הכוכבים</label><input type="time" id="ztzet"></div>
 </div>
-<small class="zman-small">הזמנים נמשכים אוטומטית מ־Hebcal. לאימות מול חב״ד: <a href="https://he.chabad.org/calendar/zmanim.htm/locationid/531/locationtype/1" target="_blank" rel="noopener">זמנים בחב״ד</a> · <a href="https://sites.google.com/site/zmanimadmorhazaken/" target="_blank" rel="noopener">זמני אדמו״ר הזקן</a></small>
+<small class="zman-small">העתק זמנים מדויקים מ־
+<a href="https://he.chabad.org/calendar/zmanim.htm/locationid/531/locationtype/1" target="_blank" rel="noopener">חב״ד</a> ·
+<a href="https://sites.google.com/site/zmanimadmorhazaken/" target="_blank" rel="noopener">אדמו״ר הזקן</a>
+ואז עדכן ידנית למעלה.</small>
 <div id="zout" style="margin-top:12px" hidden></div>
 </div>
 </details>
-<div class="pdf-box" style="margin:12px 0">
-<div>
-<a href="https://www.chabad.org/library/article_cdo/aid/145053/jewish/Zohar-for-the-Brit-Aramaic-Original.htm" target="_blank" rel="noopener">📜 זוהר לליל הברית – לקריאה באתר חב״ד</a>
-<p style="margin-top:6px">קישור ישיר לנוסח הארמי המקורי</p>
+
+<div class="pdf-box">
+<a href="https://www.chabad.org/library/article_cdo/aid/145053/jewish/Zohar-for-the-Brit-Aramaic-Original.htm" target="_blank" rel="noopener">📜 זוהר לליל הברית – חב״ד</a>
 </div>
-</div>
-<details class="section" style="border-color:#5a9a7a">
-<summary style="background:rgba(27,138,107,.1)"><span>🧮 מחשבון ברית</span><span class="count">לחץ</span></summary>
-<div class="tasks" style="padding:14px">
-<p style="font-size:13px;color:var(--muted)">מחשבון עלויות ומוזמנים – ראה פירוט מלא בגרסה הקודמת / רענן אם חסר.</p>
-</div>
-</details>
-<details class="section" style="border-color:#6a9a7a">
-<summary style="background:rgba(27,138,107,.08)"><span>📁 קבצים שלי</span><span class="count" id="files-count">0</span></summary>
-<div class="tasks" style="padding:12px 14px">
-<div id="files-list"></div>
-<label class="upload-area"><input type="file" id="file-input" multiple accept="*/*"><div style="font-weight:600">העלאת קבצים</div></label>
-</div>
-</details>
+
 <div id="sections"></div>
-<div class="notice"><strong>דגשים</strong><ul><li>צהבת: הערכה רפואית + הלכתית</li><li>ברית שלא בזמנה אינה דוחה שבת</li></ul></div>
-<div class="footer">לשימוש אישי ומשפחתי · אין אחריות · גרסה 4.8 · זמנים מ־Hebcal</div>
+
+<div class="notice"><strong>דגשים:</strong> צהבת – הערכה רפואית + הלכתית. ברית שלא בזמנה אינה דוחה שבת.</div>
+<div class="footer">גרסה 4.9 · לשימוש אישי ומשפחתי · אין אחריות</div>
 </main>
-<div class="celebrate" id="celebrate"></div>
-<div class="toast" id="toast"></div>
+
 <script src="zman-calc.js"></script>
 <script>
-/* Minimal bootstrap - full checklist logic preserved in previous version; zman from external file */
-const data=[['רפואי וקביעת מועד',['מעקב בילירובין','אישור רופא','עדכון מוהל','בירור הלכה','קביעת מועד','זמינות מוהל','הנחיות האכלה']],['מיקום ולוגיסטיקה',['סגירת מקום','תיאום גבאי','כיסא אליהו','מקום למוהל','ישיבה','מיזוג','חניה','אחראי ניקיון']],['כיבודים ותפקידים',['סנדק','קוואטער','כיסא אליהו','הבאת התינוק','עמידה לברכות','ברכה על הכוס','רשימת כיבודים','תיאום עם מוהל']],['מנהגי חב״ד',['לימוד חסידות','מאמר בבוקר','מאמר בסעודה','מנהגי ליל ברית','י״ב פסוקים','לחיים','ניגונים','דבר תורה']],['ציוד לברית',['טלית','כיפות','יין','גביע','בשמים','סידור','חיתולים','בגדים','שמיכה','מוצץ','ציוד רפואי']],['סעודת מצווה',['מספר מוזמנים','קייטרינג','תפריט','חלות','נטלות','יין ללחיים','שתייה','צלחות','מפות','כיבוד ילדים','כשרות','זימון']],['הזמנות',['עדכון דחייה','תאריך חדש','הזמנה','קרובים מרחוק','מכובדים','מיקום','וידוא הגעה']],['תשורה',['עריכה','הגהה','הקדשה','מכתב הרבי','תורה אור','PDF','כריכה','הדפסה','איסוף','חלוקה']],['ביום הברית',['אישור סופי','הגעת מוהל','הכנת תינוק','ציוד','כיסא אליהו','כיבודים','צילום','תשורות','לימוד','הנחיות אחרי','מעקב']]];
-const key='bris-checklist-v4';let state={},custom={},removed={},notifiedSections={};
-try{const s=JSON.parse(localStorage.getItem(key)||'{}');state=s.state||{};custom=s.custom||{};removed=s.removed||{};notifiedSections=s.notifiedSections||{}}catch(e){}
-function save(){localStorage.setItem(key,JSON.stringify({state,custom,removed,notifiedSections}));update()}
-function getActiveTasks(i){const o=data[i][1],r=new Set(removed[i]||[]);return[...o.map((t,idx)=>({t,origIdx:idx,isCustom:false})).filter(x=>!r.has(x.origIdx)),...(custom[i]||[]).map((t,idx)=>({t,origIdx:idx,isCustom:true}))]}
-function update(){let t=0,d=0;data.forEach((s,i)=>{const tasks=getActiveTasks(i);let c=0;tasks.forEach(item=>{t++;const k=item.isCustom?i+'-c'+item.origIdx:i+'-'+item.origIdx;if(state[k]){d++;c++}});const el=document.getElementById('count-'+i);if(el)el.textContent=c+'/'+tasks.length});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fraction').textContent=d+' מתוך '+t;document.getElementById('fill').style.width=p+'%'}
-function render(){const root=document.getElementById('sections');root.innerHTML='';data.forEach((s,i)=>{const details=document.createElement('details');details.className='section';details.open=i===0;const sm=document.createElement('summary');const n=document.createElement('span');n.textContent=(i+1)+'. '+s[0];const ct=document.createElement('span');ct.className='count';ct.id='count-'+i;sm.append(n,ct);details.append(sm);const td=document.createElement('div');td.className='tasks';getActiveTasks(i).forEach(item=>{const lb=document.createElement('label');lb.className='task';const cb=document.createElement('input');cb.type='checkbox';const k=item.isCustom?i+'-c'+item.origIdx:i+'-'+item.origIdx;cb.checked=!!state[k];cb.onchange=()=>{state[k]=cb.checked;save()};const sp=document.createElement('span');sp.textContent=item.t;lb.append(cb,sp);td.append(lb)});details.append(td);root.append(details)});update()}
-function expandAll(o){document.querySelectorAll('details.section').forEach(d=>d.open=o)}
-function shareToWhatsApp(){let t='📋 צ׳קליסט ברית\n';data.forEach((s,i)=>{t+='▸ '+s[0]+'\n'});window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank')}
-function printList(){window.print()}
-function resetAll(){if(confirm('לאפס?')){state={};custom={};removed={};notifiedSections={};save();render()}}
-function toggleTheme(){document.body.classList.toggle('dark');localStorage.setItem('bris-theme',document.body.classList.contains('dark')?'dark':'light')}
-if(localStorage.getItem('bris-theme')==='dark')document.body.classList.add('dark');
+const data=[
+['רפואי וקביעת מועד',['מעקב בילירובין והצהבת','אישור רופא','עדכון המוהל','בירור מתי מותר לפי ההלכה','קביעת יום ושעה','וידוא זמינות מוהל','הנחיות האכלה לפני הברית']],
+['מיקום ולוגיסטיקה',['סגירת בית כנסת/אולם','תיאום עם גבאי','שולחן וכיסא אליהו','מקום למוהל','ישיבה גברים/נשים','מיזוג ותאורה','חניה','אחראי ניקיון']],
+['כיבודים ותפקידים',['בחירת סנדק','קוואטער וקוואטערין','כיסא אליהו','הבאת התינוק','עמידה לברכות','מברך על הכוס וקורא השם','רשימת כיבודים','תיאום עם המוהל']],
+['מנהגי חב״ד',['לימוד חסידות','מאמר בבוקר הברית','מאמר/שיחה בסעודה','מנהגי ליל ברית עם רב','י״ב פסוקים','לחיים והתוועדות','ניגונים חב״דיים','דבר תורה']],
+['ציוד לברית',['טלית','כיפות','יין/מיץ ענבים','גביע','בשמים','סידור ברית','חיתולים','בגדים להחלפה','שמיכה','מוצץ','ציוד לפי הוראות מוהל']],
+['סעודת מצווה',['מספר מוזמנים','קייטרינג/אוכל','תפריט','חלות','נטלות','יין ללחיים','שתייה','צלחות וסכום','מפות','כיבוד ילדים','כשרות','זימון']],
+['הזמנות',['עדכון שהברית נדחתה','הודעה על תאריך חדש','הזמנה לוואטסאפ','קרובים מרחוק','מכובדים וסנדק','מיקום ושעה','וידוא הגעה']],
+['תשורה',['סיום עריכה','הגהה','הקדשה','מכתב הרבי','תורה אור','PDF להדפסה','כריכה','הזמנת הדפסה','איסוף','חלוקה']],
+['ביום הברית',['אישור רפואי סופי','הגעת מוהל וסנדק','הכנת התינוק','הבאת ציוד','סידור כיסא אליהו','חלוקת כיבודים','צילום','חלוקת תשורות','לימוד בסעודה','הנחיות אחרי','מעקב עם מוהל']]
+];
+const key='bris-checklist-v4';
+let state={};try{state=JSON.parse(localStorage.getItem(key)||'{}').state||{}}catch(e){}
+function save(){localStorage.setItem(key,JSON.stringify({state}));update()}
+function update(){let t=0,d=0;data.forEach((s,i)=>{s[1].forEach((_,j)=>{t++;if(state[i+'-'+j])d++});const el=document.getElementById('c'+i);if(el)el.textContent=(s[1].filter((_,j)=>state[i+'-'+j]).length)+'/'+s[1].length});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%'}
+function render(){const root=document.getElementById('sections');root.innerHTML='';data.forEach((s,i)=>{const det=document.createElement('details');det.className='section';det.open=i===0;det.innerHTML='<summary><span>'+(i+1)+'. '+s[0]+'</span><span class="count" id="c'+i+'">0/'+s[1].length+'</span></summary>';const td=document.createElement('div');td.className='tasks';s[1].forEach((t,j)=>{const lb=document.createElement('label');lb.className='task';const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!state[i+'-'+j];cb.onchange=()=>{state[i+'-'+j]=cb.checked;save()};lb.append(cb,document.createTextNode(' '+t));td.append(lb)});det.append(td);root.append(det)});update()}
+function shareWA(){let t='📋 צ׳קליסט ברית\n';data.forEach(s=>{t+='▸ '+s[0]+'\n'});window.open('https://wa.me/?text='+encodeURIComponent(t))}
 render();
-if(typeof initZman==='function')initZman();
-else if(typeof calcZman==='function'){const n=new Date(),p=x=>String(x).padStart(2,'0');const el=document.getElementById('zbirth');if(el){el.value=n.getFullYear()+'-'+p(n.getMonth()+1)+'-'+p(n.getDate())+'T12:00';el.onchange=()=>calcZman(true);document.getElementById('zloc').onchange=()=>calcZman(true);document.getElementById('zsset').onchange=()=>calcZman(false);document.getElementById('ztzet').onchange=()=>calcZman(false);calcZman(true)}}
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
 </html>
