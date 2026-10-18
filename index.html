@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="הברית שלנו">
 <meta name="theme-color" content="#123e35">
-<title>הברית שלנו | צ׳קליסט מלא</title>
+<title>צ׳קליסט לברית חב״דית</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon.png">
 <style>
@@ -22,57 +22,59 @@ body.dark{
   --success:#2d9b7a;--warn-bg:#2a2418;--warn-border:#5c4d2a;
 }
 body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Arial',sans-serif;transition:background .3s,color .3s}
-header{background:var(--primary);color:white;padding:28px 18px 22px;border-radius:0 0 28px 28px;position:relative}
-h1{font-size:28px;margin:0 0 4px}
-header p{margin:0;color:#d5e6de;font-size:14px}
-.progress{margin-top:20px;display:flex;justify-content:space-between;align-items:center}
-.percent{font-size:34px;font-weight:800}
+header{background:var(--primary);color:white;padding:26px 16px 20px;border-radius:0 0 26px 26px;position:relative}
+h1{font-size:24px;margin:0 0 6px;line-height:1.25}
+header .sub{margin:0;color:#d5e6de;font-size:13.5px;line-height:1.45}
+.progress{margin-top:18px;display:flex;justify-content:space-between;align-items:center}
+.percent{font-size:32px;font-weight:800}
 .bar{height:10px;background:#41665c;border-radius:20px;overflow:hidden;margin-top:10px}
 .fill{height:100%;background:var(--accent);width:0;transition:width .3s}
 main{padding:14px 12px 50px;max-width:720px;margin:auto}
 .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .toolbar button,button.sec-btn{
   font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card);
-  border-radius:12px;padding:10px 12px;color:var(--text);font-size:14px
+  border-radius:12px;padding:10px 12px;color:var(--text);font-size:13.5px
 }
 .toolbar button:active{opacity:.8}
 .section{background:var(--card);border:1px solid var(--border);border-radius:16px;margin:10px 0;overflow:hidden}
 .section summary{
-  padding:16px 14px;font-size:16px;font-weight:700;cursor:pointer;
+  padding:15px 14px;font-size:15.5px;font-weight:700;cursor:pointer;
   display:flex;justify-content:space-between;align-items:center;list-style:none;gap:8px
 }
 .section summary::-webkit-details-marker{display:none}
 .count{font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap}
 .tasks{padding:0 12px 12px}
-.task{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:1px solid var(--border);font-size:15px;line-height:1.4}
-.task input{width:22px;height:22px;flex:none;accent-color:var(--success);margin:1px 0 0}
+.task{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-top:1px solid var(--border);font-size:14.5px;line-height:1.4}
+.task input{width:21px;height:21px;flex:none;accent-color:var(--success);margin:1px 0 0}
 .task:has(input:checked) span{text-decoration:line-through;color:var(--muted)}
-.task .del{margin-right:auto;background:none;border:none;color:#c45c5c;font-size:18px;padding:0 4px;cursor:pointer;opacity:.6}
+.task .del{margin-right:auto;background:none;border:none;color:#c45c5c;font-size:17px;padding:0 4px;cursor:pointer;opacity:.55}
 .custom-input{display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border)}
-.custom-input input{flex:1;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit;background:var(--bg);color:var(--text)}
-.custom-input button{padding:10px 14px;background:var(--primary);color:white;border:none;border-radius:10px}
+.custom-input input{flex:1;padding:9px 11px;border:1px solid var(--border);border-radius:10px;font:inherit;background:var(--bg);color:var(--text);font-size:14px}
+.custom-input button{padding:9px 13px;background:var(--primary);color:white;border:none;border-radius:10px}
 .notice{padding:13px;background:var(--warn-bg);border:1px solid var(--warn-border);border-radius:14px;line-height:1.55;font-size:13.5px;margin:16px 0}
+.notice ul{margin:8px 0 0;padding-right:18px}
+.notice li{margin-bottom:6px}
 .footer{text-align:center;color:var(--muted);font-size:12px;padding:10px}
-.theme-btn{position:absolute;top:18px;left:16px;background:rgba(255,255,255,.15);border:none;color:white;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer}
+.theme-btn{position:absolute;top:16px;left:14px;background:rgba(255,255,255,.15);border:none;color:white;width:34px;height:34px;border-radius:50%;font-size:17px;cursor:pointer}
 .celebrate{position:fixed;inset:0;pointer-events:none;z-index:99;display:none}
 .celebrate.show{display:block}
-.confetti{position:absolute;width:10px;height:10px;border-radius:2px;animation:fall 2.5s ease-out forwards}
+.confetti{position:absolute;width:9px;height:9px;border-radius:2px;animation:fall 2.5s ease-out forwards}
 @keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
-.sec-actions{display:flex;gap:6px;margin-bottom:6px}
-.sec-actions button{font-size:12px;padding:6px 10px}
+.sec-actions{display:flex;gap:6px;margin-bottom:4px}
+.sec-actions button{font-size:12px;padding:5px 9px}
 </style>
 </head>
 <body>
 <header>
   <button class="theme-btn" onclick="toggleTheme()" title="מצב כהה/בהיר">🌓</button>
-  <h1>הברית שלנו ✨</h1>
-  <p>צ׳קליסט מלא להכנות לברית (חב״ד + כללי)</p>
+  <h1>צ׳קליסט לברית חב״דית</h1>
+  <p class="sub">ברית שנדחתה משבת עקב צהבת · הכנות, מנהגים, סעודה ותשורה</p>
   <div class="progress">
     <div>
       <div class="percent" id="percent">0%</div>
-      <small id="fraction">0 משימות הושלמו</small>
+      <small id="fraction">0 מתוך 0</small>
     </div>
-    <div style="font-size:42px">✡</div>
+    <div style="font-size:40px">✡</div>
   </div>
   <div class="bar"><div class="fill" id="fill"></div></div>
 </header>
@@ -81,7 +83,7 @@ main{padding:14px 12px 50px;max-width:720px;margin:auto}
   <div class="toolbar">
     <button onclick="expandAll(true)">פתח הכל</button>
     <button onclick="expandAll(false)">סגור הכל</button>
-    <button onclick="share()">שיתוף</button>
+    <button onclick="share()">העתקה לוואטסאפ</button>
     <button onclick="printList()">הדפסה</button>
     <button onclick="resetAll()" style="color:#c45c5c">איפוס</button>
   </div>
@@ -89,89 +91,124 @@ main{padding:14px 12px 50px;max-width:720px;margin:auto}
   <div id="sections"></div>
 
   <div class="notice">
-    <strong>חשוב:</strong> הרשימה מבוססת על מנהגי חב״ד וניסיון מעשי. תמיד להתייעץ עם המוהל והרופא שלכם.  
-    אפשר להוסיף משימות אישיות בכל קטגוריה.
+    <strong>דגשים חשובים לברית שנדחתה</strong>
+    <ul>
+      <li><strong>צהבת:</strong> לא לקבוע את הברית רק לפי מספר הבילירובין. נדרשת הערכה רפואית, וההחלטה ההלכתית תלויה גם בסיבת הצהבת ובמצב התינוק. לעיתים נדרשת המתנה נוספת.</li>
+      <li><strong>שבת:</strong> ברית שלא מתקיימת ביום השמיני אינה דוחה שבת או יום טוב.</li>
+      <li><strong>מנהגי חב״ד:</strong> כדאי לברר עם הרב והמוהל את הפרטים המיוחדים לברית דחויה, כולל ליל הברית.</li>
+      <li><strong>סעודה:</strong> אפשר לנצל את המועד החדש להכנת סעודת מצווה והתוועדות חסידית מסודרת.</li>
+    </ul>
   </div>
-  <div class="footer">שמור למסך הבית · עובד גם ללא אינטרנט · גרסה 2.0</div>
+  <div class="footer">שמור למסך הבית · עובד גם ללא אינטרנט · גרסה 3.0</div>
 </main>
 
 <div class="celebrate" id="celebrate"></div>
 
 <script>
 const data = [
-  ['מיד אחרי הלידה', [
-    'יצירת קשר עם מוהל מוסמך (רשיון משרד הבריאות)',
-    'קבלת המלצות על מוהל מנוסה',
-    'תיאום מועד ראשוני עם המוהל (יום השמיני)',
-    'בדיקת מצב רפואי של התינוק עם הרופא',
-    'בחירת סנדק (ואישור שלו)',
-    'החלטה על מקום הברית (בית כנסת / אולם / בית)'
+  ['רפואי וקביעת מועד', [
+    'מעקב אחר רמת הבילירובין והצהבת',
+    'קבלת אישור מהרופא לביצוע הברית',
+    'עדכון המוהל בתוצאות הבדיקות',
+    'בירור עם המוהל מתי מותר לבצע את הברית לפי ההלכה',
+    'קביעת יום ושעה סופיים',
+    'וידוא שהמוהל זמין למועד החדש',
+    'קבלת הנחיות מהמוהל לגבי האכלה וטיפול לפני הברית'
   ]],
-  ['ציוד לברית (חובה)', [
-    '4 חיתולי בד נקיים',
-    '3–4 טיטולים',
-    'מגבונים לחים',
-    'מוצץ',
-    'כרית לברית (או כרית רגילה רכה)',
-    '2 טליתות (לאבא ולסנדק)',
-    'יין אדום כשר (לא מקורר) + גביע',
-    'משחת אלחוש (עזרקאין / אמלה) לפי הנחיית המוהל',
-    'משחת ריפוי (בפנטן פלוס / ויטה מורפן)',
-    'שמן תינוקות / שמן שקדים',
-    'אקמול / נובימול לתינוקות (סירופ או נרות)',
-    'בגדים חלופיים לתינוק',
-    'ערכת כלים סטרילית (אם המוהל מבקש)'
+  ['מיקום ולוגיסטיקה', [
+    'סגירת בית כנסת או אולם',
+    'תיאום שעה עם הגבאי',
+    'סידור שולחן לברית וכיסא אליהו',
+    'הכנת מקום למוהל ולציוד',
+    'סידור מקומות ישיבה לגברים ולנשים',
+    'בדיקת מיזוג, תאורה ושירותים',
+    'סידור חניה והכוונה לאורחים',
+    'מינוי אחראי לסידור המקום ולניקיון'
   ]],
-  ['הזמנות ואורחים', [
-    'הכנת רשימת מוזמנים',
-    'הזמנת אורחים (טלפון / וואטסאפ / הזמנה מודפסת)',
-    'הזמנת קייטרינג או כיבוד (עוגות, פירות, שתייה)',
-    'הזמנת צלם / וידאו / שידור חי',
-    'הזמנת כלי נגינה / חזן / מנגינות (אם רוצים)',
-    'הדפסת תשורות / חוברות / הזמנות',
-    'מינוי אחראי לחלוקת תשורות'
+  ['כיבודים ותפקידים', [
+    'בחירת סנדק',
+    'בחירת קוואטער וקוואטערין',
+    'כיבוד בכיסא אליהו',
+    'כיבוד בהבאת התינוק והנחתו על הכיסא',
+    'כיבוד בעמידה לברכות (לפי מנהג המקום)',
+    'בחירת מי שיברך על הכוס ויקרא את השם',
+    'הכנת רשימת הכיבודים והודעה למכובדים',
+    'תיאום מראש של כל הכיבודים עם המוהל'
   ]],
-  ['הכנות לוגיסטיות', [
-    'וידוא זמינות כיסא אליהו במקום',
-    'תיאום עם הגבאי / בעל האולם על שעות',
-    'הכנת רשימת כיבודים (מי קורא, מי מחזיק וכו\')',
-    'בחירת בגדים ליולדת ולאחים',
-    'הכנת תיק עם כל הציוד לברית',
-    'סידור הסעה / חניה לאורחים אם צריך'
+  ['מנהגי חב״ד והפן הרוחני', [
+    'לימוד חסידות כהכנה לברית',
+    'לימוד מאמר חסידות בבוקר הברית',
+    'הכנת מאמר או שיחת הרבי ללימוד בסעודה',
+    'בדיקת מנהגי ליל הברית עם רב חב״די, בפרט בברית דחויה',
+    'הכנת י״ב הפסוקים לילדים',
+    'ארגון אמירת לחיים והתוועדות חסידית',
+    'בחירת ניגונים חב״דיים לסעודה',
+    'הכנת דבר תורה קצר בענייני ברית מילה'
   ]],
-  ['יום לפני הברית', [
-    'וידוא אישור רפואי סופי מהרופא',
-    'קביעת שעה מדויקת עם המוהל',
-    'רחיצת התינוק (אחרי הברית קשה יותר)',
-    'האכלה אחרונה לפי הנחיות המוהל (בדרך כלל עד 30–60 דק\' לפני)',
-    'בדיקה שכל הציוד מוכן בתיק',
-    'אישור עם הסנדק והאורחים הקרובים',
-    'הכנת הבגדים והטליתות'
+  ['ציוד לברית', [
+    'טלית לאבי הבן לפי הצורך והמנהג',
+    'כיפות לאורחים',
+    'יין או מיץ ענבים לברכות',
+    'גביע לברכות וצלחת',
+    'בשמים לפי הנוסח והמנהג',
+    'סידור עם נוסח ברית מילה חב״די',
+    'חיתולים ומגבונים',
+    'בגדים להחלפה לתינוק',
+    'שמיכה לתינוק',
+    'מוצץ אם משתמשים',
+    'ציוד רפואי ומשככי כאבים רק לפי הוראות המוהל והרופא'
+  ]],
+  ['סעודת מצווה', [
+    'קביעת מספר מוזמנים',
+    'בחירת קייטרינג או הכנת אוכל',
+    'הזמנת מנות וסגירת תפריט',
+    'לחמניות או חלות לנטילת ידיים',
+    'נטלות וכלים לנטילת ידיים',
+    'יין ומשקה לאמירת לחיים',
+    'שתייה קרה וחמה',
+    'צלחות, כוסות, סכו״ם ומפיות',
+    'מפות וסידור שולחנות',
+    'כיבוד לילדים',
+    'בירור כשרות המזון והכלים',
+    'תיאום ברכת המזון וזימון'
+  ]],
+  ['הזמנות ועדכונים', [
+    'עדכון המשפחה שהברית נדחתה',
+    'הודעה על התאריך החדש',
+    'הכנת הזמנה מעודכנת לוואטסאפ',
+    'עדכון קרובי משפחה שמגיעים מרחוק',
+    'הודעה למכובדים ולסנדק',
+    'שליחת מיקום ושעת התחלה',
+    'וידוא הגעה של בני משפחה חשובים'
+  ]],
+  ['תשורה חב״דית', [
+    'סיום עריכת התשורה',
+    'הגהת הטקסטים והמקורות',
+    'בדיקת הפתח דבר וההקדשה לעילוי נשמת רבקה ע״ה',
+    'שילוב צילום מכתב הרבי לסב התינוק',
+    'בדיקת המאמרים והקטעים מתורה אור',
+    'סגירת קובץ PDF להדפסה',
+    'בדיקת סדר העמודים והכריכה',
+    'הזמנת הדפסה וכמות עותקים',
+    'איסוף התשורות מבית הדפוס',
+    'מינוי אחראי לחלוקת התשורה'
   ]],
   ['ביום הברית', [
-    'קבלת אישור סופי שהמצב הרפואי מאפשר',
+    'קבלת אישור סופי שהמצב הרפואי מאפשר את הברית',
     'וידוא הגעת המוהל והסנדק',
     'הכנת התינוק לפי הנחיות המוהל',
-    'הבאת כל הציוד, היין והגביע',
+    'הבאת כל הציוד והיין',
     'סידור כיסא אליהו ומקום הברית',
     'חלוקת הכיבודים',
-    'צילום ותיעוד',
+    'צילום ותיעוד לפי רצון המשפחה',
     'חלוקת התשורות',
-    'לימוד / התוועדות בסעודה (מנהג חב״ד)',
+    'לימוד והתוועדות בסעודה',
     'קבלת הנחיות כתובות לטיפול לאחר הברית',
     'קביעת ביקורת ומעקב עם המוהל'
-  ]],
-  ['אחרי הברית', [
-    'מעקב אחרי הטמפרטורה של התינוק',
-    'בדיקת מתן שתן (תוך 5–6 שעות)',
-    'מריחת משחה לפי הנחיות',
-    'החלפת חיתול בעדינות',
-    'יצירת קשר עם המוהל בכל שאלה',
-    'מנוחה ליולדת ולתינוק'
   ]]
 ];
 
-const key = 'bris-checklist-v2';
+const key = 'bris-checklist-v3-chabad';
 let state = {};
 let custom = {};
 
@@ -200,7 +237,7 @@ function update() {
   });
   const p = total ? Math.round(100 * done / total) : 0;
   document.getElementById('percent').textContent = p + '%';
-  document.getElementById('fraction').textContent = done + ' מתוך ' + total + ' משימות הושלמו';
+  document.getElementById('fraction').textContent = done + ' מתוך ' + total;
   document.getElementById('fill').style.width = p + '%';
   if (p === 100 && total > 0) celebrate();
 }
@@ -211,7 +248,7 @@ function render() {
   data.forEach((s, i) => {
     const details = document.createElement('details');
     details.className = 'section';
-    details.open = i < 2;
+    details.open = i === 0;
     details.id = 'sec-' + i;
 
     const summary = document.createElement('summary');
@@ -341,7 +378,7 @@ function resetAll() {
 }
 
 function share() {
-  let txt = '📋 צ׳קליסט הכנות לברית\n\n';
+  let txt = '📋 צ׳קליסט לברית חב״דית\nברית שנדחתה משבת עקב צהבת\n\n';
   data.forEach((s, i) => {
     const allTasks = [...s[1], ...(custom[i] || [])];
     txt += '▸ ' + s[0] + '\n';
@@ -351,7 +388,7 @@ function share() {
     txt += '\n';
   });
   if (navigator.share) {
-    navigator.share({title: 'הברית שלנו', text: txt}).catch(() => copyTxt(txt));
+    navigator.share({title: 'צ׳קליסט לברית חב״דית', text: txt}).catch(() => copyTxt(txt));
   } else {
     copyTxt(txt);
   }
