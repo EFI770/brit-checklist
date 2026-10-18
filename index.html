@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--card:rgba(255,255,255,.9);--cs:#f8fcff;--tx:#122b33;--mu:#4a6e7a;--pr:#0d5a6e;--ac:#3aa8c0;--bd:rgba(13,90,110,.13);--ok:#1b8a6b;--sh:0 6px 20px rgba(13,70,90,.12);--dn:#c45c5c}
+:root{--card:rgba(255,255,255,.9);--cs:#f8fcff;--tx:#122b33;--mu:#4a6e7a;--pr:#0d5a6e;--ac:#3aa8c0;--bd:rgba(13,90,110,.13);--ok:#1b8a6b;--sh:0 6px 20px rgba(13,70,90,.12)}
 body.dark{--card:rgba(16,30,38,.92);--cs:#14242c;--tx:#e2f0f4;--mu:#7aa0ac;--pr:#1a6b7e;--ac:#4ab8d0;--bd:rgba(180,220,230,.12);--ok:#2d9b7a;--sh:0 6px 20px rgba(0,0,0,.4)}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:var(--tx);min-height:100vh;background:linear-gradient(180deg,#7ec8e3,#5bb8d4 25%,#a8d8e8 60%,#f0f7f4)}
 body.dark{background:linear-gradient(180deg,#0a1c28,#163848 50%,#1a3a35)}
@@ -34,12 +34,12 @@ main{padding:12px;max-width:640px;margin:auto}
 .pdf-box a{display:inline-block;padding:9px 13px;background:var(--pr);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;font-size:13.5px}
 .footer{text-align:center;color:var(--mu);font-size:11.5px;padding:10px}
 .theme-btn{position:absolute;top:12px;left:10px;background:rgba(255,255,255,.2);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:15px;cursor:pointer}
-.scroll-box{max-height:65vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.info-box{font-size:13.5px;line-height:1.6;padding:12px}
-.info-box h3{color:var(--pr);font-size:14.5px;margin:14px 0 6px}
-.info-box h3:first-child{margin-top:0}
-.info-box ul{margin:0 0 10px;padding-right:16px}
-.info-box li{margin-bottom:5px}
+.scroll-box{max-height:70vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.info-box{font-size:13.5px;line-height:1.65;padding:12px}
+.info-box h3{color:var(--pr);font-size:14.5px;margin:16px 0 6px}
+.info-box h3:first-of-type{margin-top:4px}
+.info-box ul{margin:0 0 8px;padding-right:16px}
+.info-box li{margin-bottom:6px}
 .zman-card label,.calc-f label{display:block;font-size:12px;color:var(--mu);margin:7px 0 2px}
 .zman-card input,.calc-f input,.calc-g input{width:100%;padding:8px;border:1px solid var(--bd);border-radius:9px;background:var(--cs);color:var(--tx);font:inherit;font-size:14px}
 .zman-row,.calc-f{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -78,50 +78,78 @@ main{padding:12px;max-width:640px;margin:auto}
 <details class="section" open>
 <summary style="background:rgba(58,168,192,.1)"><span>📖 מידע הלכתי ומנהגי חב״ד</span><span class="count">גלול ↓</span></summary>
 <div class="tasks info-box scroll-box">
-<h3>דחיית ברית בגלל צהבת או חולי</h3>
+<p style="font-size:12.5px;color:var(--mu);margin-bottom:10px">לקריאה בכל לילה עד הברית · מסוכם מחוברת ועד אברכי אנ״ש צפת, שבח הברית ומנהגי חב״ד · <strong>אין זה פסק הלכה</strong></p>
+<h3>א. דחיית ברית – צהבת וחולי</h3>
 <ul>
-<li>אפילו על חשש קל של חולשת התינוק – יש לדחות. ההחלטה בידי רופא ומוהל; בספק – רב מורה הוראה.</li>
-<li>ברית שנדחתה ונעשתה מאוחר – נחשבת כאילו נימול בזמנו.</li>
+<li>אפילו על חשש קל, על ספק חשש קל, ואפילו על ספק ספיקא שהתינוק לא התחזק מספיק, צהוב וכדומה – <strong>יש לדחות את הברית</strong>, ואפילו בשבוע.</li>
+<li>אם יש ספק האם לדחות – יש לדחות על פי הוראת רב. <strong>אין להקל בזה</strong>.</li>
+<li>ההחלטה נתונה ביד רב מורה הוראה הבקיא – לא ביד המוהל או ההורים בלבד.</li>
+<li>ברית שנעשתה מאוחר – הרי זה כאילו נימול בזמנו (מתקנת למפרע).</li>
 <li>ברית שלא ביום השמיני <strong>אינה דוחה שבת או יום טוב</strong>.</li>
-<li>בצהבת: לא לקבוע רק לפי מספר הבילירובין – נדרשת הערכה רפואית מלאה.</li>
 </ul>
-<h3>יום השמיני ובין השמשות</h3>
+<h3>ב. יום השמיני ובין השמשות</h3>
 <ul>
-<li>נולד לפני שקיעה – אותו יום הוא יום ראשון; הברית ביום השמיני.</li>
-<li>נולד אחרי צאת הכוכבים – היום העברי למחרת.</li>
-<li>נולד בין השמשות (ספק) – מחמירים למנות מהיום המאוחר; ספק אינו דוחה שבת.</li>
+<li>נולד לפני השקיעה – אותו יום נספר כיום הראשון; הברית ביום השמיני מאותו תאריך.</li>
+<li>נולד אחרי צאת הכוכבים – היום העברי הוא למחרת.</li>
+<li>נולד בין השמשות (ספק) – נוהגים להחמיר ולמנות מהיום המאוחר. ספק אינו דוחה שבת/יו״ט.</li>
+<li>מומלץ להשתמש במחשבון זמן הברית, ולאמת מול זמני חב״ד.</li>
 </ul>
-<h3>ליל שימורים</h3>
+<h3>ג. בין הלידה לברית</h3>
 <ul>
-<li>הלילה שלפני הברית – ליל שמירה. נוהגים להיות נעורים וללמוד תורה וזוהר.</li>
-<li>מביאים תינוקות לקרוא קריאת שמע ו״המלאך הגואל״.</li>
-<li>בברית דחויה – כדאי לברר עם רב חב״די דגשים מיוחדים.</li>
+<li>בהולדת בן מברכים «הטוב והמטיב». גם האשה מברכת. אם לא בירך בשעת הבשורה – יכול לברך כל זמן שהשמחה עדיין בליבו.</li>
+<li>לאבי הבן זכות קדימה לעלייה לתורה בשבת שלפני הברית (אינו דוחה: חתן לפני חתונה, בר מצווה, בעל יולדת בשבת הראשונה, יארצייט).</li>
+<li>כשהתינוק מגיע מבית הרפואה – נוהגים לאסוף לידו תינוקות של בית רבן שיאמרו פסוקים ומאמרי חז״ל לפני השינה.</li>
+<li>בליל שבת שאחר הלידה – נוהגים לעשות התוועדות «שלום זכר» (חומוס/קטניות, מזונות, פירות).</li>
+<li>נהגו ישראל להניח כיפה על ראש התינוק מאז לידתו.</li>
+<li>הקובעים את השם הם ההורים, בהסכמת שניהם. מנהג החסידים לקרוא על שם הרביים והרבניות – ואין לצרף שם נוסף לשמות הרביים.</li>
 </ul>
-<h3>כיבודים במנהג חב״ד</h3>
+<h3>ד. ליל שימורים (ואך-נאכט)</h3>
 <ul>
-<li><strong>קוואטער / קוואטערין</strong> – מביאים את התינוק.</li>
+<li>נוהגים להיות ערים כל הלילה שלפני הברית, ליד התינוק, ולעסוק בתורה.</li>
+<li>קוראים פסוקים שונים וקטעי זוהר (יש גמ״ח לספרים אלה).</li>
+<li>יש מחלוקת האם חובה להיות ערים בכל הלילה כשחל בשבת או בליל שימורים (פסח) – אבל ברור שיש לומר את הפסוקים וקטעי הזוהר.</li>
+<li>בברית דחויה – כדאי לברר עם רב חב״די אם יש דגשים מיוחדים.</li>
+</ul>
+<h3>ה. הכנה לברית – מנהגים מעשיים</h3>
+<ul>
+<li><strong>אין מזמינים לברית אלא מודיעים</strong> על מקום ושעת הברית (לפי המנהג).</li>
+<li>יש להאכיל את התינוק עד כשעה לפני הברית.</li>
+<li>ציוד מומלץ: 2 חיתולי בד, טיטולים, מגבונים, יין + כוס, 2 טליתות, סט בגדים להחלפה. בבית מרקחת: משחה ונובימול – לפי הוראות המוהל.</li>
+<li>עדיף להלביש בבגד שני חלקים (חולצה ומכנסיים). על פי הלכה – בגד נאה.</li>
+<li>ההידור – לקחת מוהל מומחה. נהוג לשלם למוהל על הברית.</li>
+</ul>
+<h3>ו. כיבודים במנהג חב״ד</h3>
+<ul>
+<li><strong>קוואטער / קוואטערין</strong> – מביאים את התינוק לברית (לרוב זוג).</li>
 <li><strong>חייקה</strong> – מחזיק לפני כיסא אליהו.</li>
-<li><strong>כיסא אליהו</strong> · <strong>סנדק</strong> (דמיושב) · <strong>עמידה לברכות</strong> (דמעומד).</li>
-<li>מברך על הכוס וקורא את השם – לרוב אבי הבן.</li>
-<li>לתאם הכל מראש עם המוהל ולהודיע למכובדים.</li>
+<li><strong>כיסא אליהו</strong> · <strong>סנדק</strong> (דמיושב) – מחזיק בשעת המילה. נחשב כמקטיר קטורת; סגולה לאריכות ימים.</li>
+<li><strong>עמידה לברכות</strong> (דמעומד) – מחזיק בעת הברכות והשם.</li>
+<li>מברך על הכוס וקורא את השם – לרוב אבי הבן. בעת הברית נהוג לעמוד.</li>
+<li>הוראת הרבי: מי שרוצה לכבד את הרבי בסנדקאות – מניחים תמונת הרבי על <strong>ברכי הסנדק</strong> (לא למראשות התינוק).</li>
+<li>כשהרבי (הריי״ץ והרבי) כובדו בסנדקאות – לא הסתכלו על הברית אלא הפנו ראשם לצד.</li>
 </ul>
-<h3>סעודה והתוועדות</h3>
+<h3>ז. תחנון ביום הברית</h3>
 <ul>
-<li>סעודת מצווה עם זימון. בחב״ד – התוועדות, לחיים, מאמר/שיחה, ניגונים.</li>
-<li>י״ב הפסוקים – ילדים אומרים. דבר תורה קצר בענייני ברית.</li>
+<li>אין אומרים תחנון במקום הברית; המוהל, הסנדק ואבי הבן – עד לאחר הברית.</li>
+<li>אם מנחה בזמן הסעודה – אין תחנון. אחרי הסעודה – הציבור כרגיל; בעלי הברית אינם אומרים תחנון כל היום.</li>
 </ul>
-<h3>תשורה</h3>
+<h3>ח. סעודת הברית והתוועדות</h3>
 <ul>
-<li>חוברת עם מאמרים, שיחות, תורה אור; לעיתים מכתב מהרבי והקדשה.</li>
-<li>להכין מבעוד מועד, להגיה ולהדפיס.</li>
+<li>סעודה עם בשר (לפי המנהג). נוהגים לחזור מאמר חסידות. ניתן לנגן ניגון ד׳ בבות.</li>
+<li>«הרחמן הוא יברך את בעלי הברית» – יש דעות שונות היכן לאומרו. אחרי כל הרחמן – הציבור עונה אמן.</li>
+<li>נוהגים לתת דמי קדימה למוסד תורני (תמכי תמימים) – «כשם שנכנס לברית כן יכנס לתורה».</li>
 </ul>
-<h3>ביום הברית</h3>
+<h3>ט. תשורה</h3>
+<ul>
+<li>חוברת עם מאמרים, שיחות, תורה אור; לעיתים מכתב מהרבי והקדשה. להכין מבעוד מועד.</li>
+</ul>
+<h3>י. ביום הברית – תזכורת</h3>
 <ul>
 <li>אישור רפואי סופי · הכנת התינוק לפי המוהל · כיסא אליהו ויין · חלוקת כיבודים · הנחיות אחרי ומעקב.</li>
 </ul>
-<p style="font-size:12px;color:var(--mu);margin-top:10px;border-top:1px solid var(--bd);padding-top:8px">
-מקורות: שבח הברית (הרב הורוויץ), שמירת השמחות, חוברת צפת, מנהגי חב״ד.<br>
-<strong>אין זה פסק הלכה.</strong> בכל שאלה – מוהל, רופא ורב.
+<p style="font-size:12px;color:var(--mu);margin-top:12px;border-top:1px solid var(--bd);padding-top:8px">
+מקורות: חוברת מידע לידה·ברית·פדיון (ועד אברכי אנ״ש צפת), שבח הברית (הרב הורוויץ), שמירת השמחות, מנהגי חב״ד והוראות הרבי.<br>
+<strong>אין זה פסק הלכה.</strong> בכל ספק – מוהל, רופא ורב מורה הוראה.
 </p>
 </div>
 </details>
@@ -151,29 +179,24 @@ main{padding:12px;max-width:640px;margin:auto}
 <details class="section">
 <summary style="background:rgba(27,138,107,.1)"><span>🧮 מחשבון הוצאות ברית</span><span class="count">לחץ</span></summary>
 <div class="tasks" style="padding:12px">
-<h3 style="font-size:14px;color:var(--pr);margin:0 0 8px">רשימת מודיעים</h3>
 <div class="calc-g h"><span></span><span>קיבלו הודעה</span><span>ילדים</span><span>% הגעה</span></div>
 <div class="calc-g"><span>משפחה</span><input id="a0" type="number" value="40"><input id="k0" type="number" value="12"><input id="p0" type="number" value="90"></div>
 <div class="calc-g"><span>יישוב</span><input id="a1" type="number" value="30"><input id="k1" type="number" value="10"><input id="p1" type="number" value="70"></div>
 <div class="calc-g"><span>כללי</span><input id="a2" type="number" value="20"><input id="k2" type="number" value="4"><input id="p2" type="number" value="50"></div>
-<p style="font-size:11.5px;color:var(--mu);margin:4px 0 10px">"קיבלו הודעה" = סך כולל ילדים</p>
-<h3 style="font-size:14px;color:var(--pr);margin:0 0 8px">הגדרות</h3>
-<div class="calc-f">
+<div class="calc-f" style="margin-top:10px">
 <div><label>מנה מבוגר ₪</label><input id="ca" type="number" value="90"></div>
 <div><label>מנה ילד ₪</label><input id="ck" type="number" value="45"></div>
-<div><label>מרווח ביטחון %</label><input id="bf" type="number" value="10"></div>
+<div><label>מרווח %</label><input id="bf" type="number" value="10"></div>
 <div><label>מקומות לשולחן</label><input id="ts" type="number" value="10"></div>
 <div><label>אולם ₪</label><input id="hl" type="number" value="1500"></div>
-<div><label>אחרות (מוהל...) ₪</label><input id="fx" type="number" value="500"></div>
+<div><label>אחרות ₪</label><input id="fx" type="number" value="500"></div>
 <div><label>רזרבה %</label><input id="rs" type="number" value="5"></div>
 <div><label>תקציב ₪</label><input id="bd" type="number" value="10000"></div>
 </div>
 <label class="calc-check"><input id="sy" type="checkbox"> בבית כנסת (בלי אולם)</label>
-<h3 style="font-size:14px;color:var(--pr);margin:12px 0 6px">תוצאות</h3>
-<div id="calc-out"></div>
+<div id="calc-out" style="margin-top:10px"></div>
 <div class="calc-t" id="calc-tot"></div>
-<h3 style="font-size:14px;color:var(--pr);margin:12px 0 6px">הודעה לוואטסאפ</h3>
-<div class="calc-f">
+<div class="calc-f" style="margin-top:10px">
 <div><label>יום ותאריך</label><input id="dt" type="text" placeholder="יום ג׳ י״ח בחשוון"></div>
 <div><label>שעה</label><input id="tm" type="text" placeholder="10:00"></div>
 </div>
@@ -185,8 +208,8 @@ main{padding:12px;max-width:640px;margin:auto}
 </details>
 
 <div id="sections"></div>
-<div class="notice"><strong>דגשים:</strong> צהבת – הערכה רפואית + הלכתית. ברית שלא בזמנה אינה דוחה שבת. גיבוי בוואטסאפ מומלץ.</div>
-<div class="footer">גרסה 5.0 · לשימוש אישי ומשפחתי · אין אחריות</div>
+<div class="notice"><strong>דגשים:</strong> צהבת – הערכה רפואית + הלכתית. ברית שלא בזמנה אינה דוחה שבת.</div>
+<div class="footer">גרסה 5.1 · לשימוש אישי ומשפחתי · אין אחריות</div>
 </main>
 <script src="zman-calc.js"></script>
 <script>
@@ -205,14 +228,8 @@ for(let i=0;i<3;i++){const a=nC('a'+i),k=Math.min(nC('k'+i),a),p=nC('p'+i)/100;c
 const bf=1+nC('bf')/100,pa=Math.ceil(ea*bf),pk=Math.ceil(ek*bf);const tabs=Math.ceil((ea+ek)*bf/(nC('ts')||10));
 const food=pa*nC('ca')+pk*nC('ck'),hall=$c('sy')?.checked?0:nC('hl'),total=food+hall+nC('fx');
 const res=nC('bd')*nC('rs')/100,left=nC('bd')-res-total;
-h+=`<div class="calc-r"><span>סה״כ צפויים</span><b>${Math.round(ea+ek)} מתוך ${inv}</b></div>
-<div class="calc-r"><span>מנות מבוגרים / ילדים</span><b>${pa} / ${pk}</b></div>
-<div class="calc-r"><span>שולחנות</span><b>${tabs}</b></div>
-<div class="calc-r"><span>עלות אוכל</span><b>₪${fmtC(food)}</b></div>
-<div class="calc-r"><span>עלות לאורח</span><b>₪${fmtC(total/Math.max(ea+ek,1))}</b></div>
-<div class="calc-r"><span>רזרבה</span><b>₪${fmtC(res)}</b></div>
-<div class="calc-r"><span>${left>=0?'נשאר בתקציב':'חריגה'}</span><b>₪${fmtC(Math.abs(left))}</b></div>`;
-$c('calc-out').innerHTML=h;$c('calc-tot').innerHTML=`סה״כ עלות: <b>₪${fmtC(total)}</b>`;msgsCalc();
+h+=`<div class="calc-r"><span>סה״כ צפויים</span><b>${Math.round(ea+ek)} מתוך ${inv}</b></div><div class="calc-r"><span>מנות מבוגרים / ילדים</span><b>${pa} / ${pk}</b></div><div class="calc-r"><span>שולחנות</span><b>${tabs}</b></div><div class="calc-r"><span>עלות אוכל</span><b>₪${fmtC(food)}</b></div><div class="calc-r"><span>${left>=0?'נשאר':'חריגה'}</span><b>₪${fmtC(Math.abs(left))}</b></div>`;
+$c('calc-out').innerHTML=h;$c('calc-tot').innerHTML=`סה״כ: <b>₪${fmtC(total)}</b>`;msgsCalc();
 try{localStorage.setItem('brit-calc',JSON.stringify(calcIds.map(i=>i==='sy'?!!$c(i)?.checked:($c(i)?.value||''))))}catch(e){}}
 function initCalc(){try{const s=JSON.parse(localStorage.getItem('brit-calc')||'null');if(s&&s.length===calcIds.length)calcIds.forEach((i,j)=>{if(!$c(i))return;if(i==='sy')$c(i).checked=!!s[j];else $c(i).value=s[j]})}catch(e){}
 calcIds.forEach(i=>{const el=$c(i);if(el)el.addEventListener('input',calcBrit)});if($c('sy'))$c('sy').addEventListener('change',calcBrit);calcBrit()}
