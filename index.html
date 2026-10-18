@@ -45,70 +45,40 @@ body{
 .bg{
   position:fixed;inset:0;z-index:-2;
   background:linear-gradient(180deg,
-    #7ec8e3 0%,
-    #5bb8d4 12%,
-    #3aa0c0 28%,
-    #6ec4d8 42%,
-    #a8d8e8 55%,
-    #d4eef5 68%,
-    #e8f4f0 82%,
-    #f0f7f4 100%
-  );
+    #7ec8e3 0%,#5bb8d4 12%,#3aa0c0 28%,#6ec4d8 42%,
+    #a8d8e8 55%,#d4eef5 68%,#e8f4f0 82%,#f0f7f4 100%);
 }
 body.dark .bg{
   background:linear-gradient(180deg,
-    #0a1c28 0%,
-    #0f2a38 20%,
-    #163848 40%,
-    #1a4050 55%,
-    #1e4a45 75%,
-    #1a3a35 100%
-  );
+    #0a1c28 0%,#0f2a38 20%,#163848 40%,#1a4050 55%,#1e4a45 75%,#1a3a35 100%);
 }
 .wave{
   position:fixed;bottom:0;left:0;width:200%;height:140px;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%232a8aaa' fill-opacity='0.45' d='M0,55 C180,90 360,25 540,55 C720,85 900,30 1080,60 C1260,90 1380,40 1440,55 L1440,120 L0,120 Z'/%3E%3C/svg%3E") repeat-x;
-  background-size:50% 100%;
-  animation:waveMove 14s linear infinite;
-  z-index:-1;
+  background-size:50% 100%;animation:waveMove 14s linear infinite;z-index:-1;
 }
 .wave2{
   bottom:18px;height:110px;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='%233a9aba' fill-opacity='0.35' d='M0,40 C240,75 480,15 720,45 C960,75 1200,20 1440,50 L1440,100 L0,100 Z'/%3E%3C/svg%3E") repeat-x;
-  background-size:50% 100%;
-  animation:waveMove 20s linear infinite reverse;
+  background-size:50% 100%;animation:waveMove 20s linear infinite reverse;
 }
 .wave3{
   bottom:35px;height:85px;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%234ab0c8' fill-opacity='0.28' d='M0,30 C300,55 600,10 900,35 C1100,50 1300,15 1440,30 L1440,80 L0,80 Z'/%3E%3C/svg%3E") repeat-x;
-  background-size:50% 100%;
-  animation:waveMove 10s linear infinite;
+  background-size:50% 100%;animation:waveMove 10s linear infinite;
 }
-@keyframes waveMove{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-50%)}
-}
-.palms{
-  position:fixed;bottom:70px;left:0;right:0;height:200px;
-  pointer-events:none;z-index:-1;overflow:hidden;
-}
-.palm{
-  position:absolute;bottom:0;
-  font-size:48px;
-  opacity:.65;
-  filter:drop-shadow(0 3px 6px rgba(0,40,50,.2));
-}
+@keyframes waveMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.palms{position:fixed;bottom:70px;left:0;right:0;height:200px;pointer-events:none;z-index:-1;overflow:hidden}
+.palm{position:absolute;bottom:0;font-size:48px;opacity:.65;filter:drop-shadow(0 3px 6px rgba(0,40,50,.2))}
 .palm.p1{left:3%;font-size:42px;opacity:.55}
 .palm.p2{left:11%;font-size:56px}
 .palm.p3{right:4%;font-size:46px;transform:scaleX(-1);opacity:.6}
 .palm.p4{right:14%;font-size:52px;opacity:.7}
 body.dark .palm{opacity:.4;filter:brightness(.65)}
 .sun{
-  position:fixed;top:28px;left:24px;
-  width:64px;height:64px;border-radius:50%;
+  position:fixed;top:28px;left:24px;width:64px;height:64px;border-radius:50%;
   background:radial-gradient(circle at 35% 35%,#fff9e8,#ffe08a 45%,#f0b840);
-  box-shadow:0 0 50px 18px rgba(255,200,90,.3);
-  z-index:-1;
+  box-shadow:0 0 50px 18px rgba(255,200,90,.3);z-index:-1;
 }
 body.dark .sun{
   background:radial-gradient(circle at 35% 35%,#e8f4ff,#90b8d8 55%,#5080a0);
@@ -116,16 +86,10 @@ body.dark .sun{
 }
 header{
   background:linear-gradient(135deg,rgba(13,80,100,.93),rgba(20,100,115,.9));
-  color:white;
-  padding:26px 16px 20px;
-  border-radius:0 0 26px 26px;
-  position:relative;
-  box-shadow:0 8px 28px rgba(13,70,90,.22);
-  backdrop-filter:blur(10px);
+  color:white;padding:26px 16px 20px;border-radius:0 0 26px 26px;
+  position:relative;box-shadow:0 8px 28px rgba(13,70,90,.22);backdrop-filter:blur(10px);
 }
-body.dark header{
-  background:linear-gradient(135deg,rgba(10,40,55,.95),rgba(15,55,60,.93));
-}
+body.dark header{background:linear-gradient(135deg,rgba(10,40,55,.95),rgba(15,55,60,.93))}
 h1{font-size:22px;margin:0 0 5px;line-height:1.3;font-weight:800}
 header .sub{margin:0;color:rgba(255,255,255,.88);font-size:13.5px;line-height:1.45}
 .progress{margin-top:16px;display:flex;justify-content:space-between;align-items:center}
@@ -135,93 +99,55 @@ header .sub{margin:0;color:rgba(255,255,255,.88);font-size:13.5px;line-height:1.
 main{padding:14px 12px 55px;max-width:720px;margin:auto}
 .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .toolbar button,button.sec-btn{
-  font:inherit;cursor:pointer;
-  border:1px solid var(--border);
-  background:var(--card);
-  backdrop-filter:blur(12px);
-  border-radius:13px;padding:10px 13px;
-  color:var(--text);font-size:13.5px;
-  box-shadow:var(--shadow);
-  transition:transform .12s;
+  font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card);
+  backdrop-filter:blur(12px);border-radius:13px;padding:10px 13px;
+  color:var(--text);font-size:13.5px;box-shadow:var(--shadow);transition:transform .12s;
 }
 .toolbar button:active{transform:scale(.97)}
 .section{
-  background:var(--card);
-  backdrop-filter:blur(14px);
-  border:1px solid var(--border);
-  border-radius:16px;
-  margin:11px 0;
-  overflow:hidden;
-  box-shadow:var(--shadow);
+  background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--border);
+  border-radius:16px;margin:11px 0;overflow:hidden;box-shadow:var(--shadow);
 }
 .section summary{
   padding:15px 14px;font-size:15.5px;font-weight:700;cursor:pointer;
-  display:flex;justify-content:space-between;align-items:center;
-  list-style:none;gap:8px;
+  display:flex;justify-content:space-between;align-items:center;list-style:none;gap:8px;
 }
 .section summary::-webkit-details-marker{display:none}
 .count{font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap}
 .tasks{padding:0 13px 13px}
-.task{
-  display:flex;align-items:flex-start;gap:10px;
-  padding:9px 0;border-top:1px solid var(--border);
-  font-size:14.5px;line-height:1.4;
-}
-.task input{
-  width:21px;height:21px;flex:none;
-  accent-color:var(--success);margin:1px 0 0;
-}
+.task{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-top:1px solid var(--border);font-size:14.5px;line-height:1.4}
+.task input{width:21px;height:21px;flex:none;accent-color:var(--success);margin:1px 0 0}
 .task:has(input:checked) span{text-decoration:line-through;color:var(--muted)}
-.task .del{
-  margin-right:auto;background:none;border:none;
-  color:var(--danger);font-size:17px;padding:0 3px;
-  cursor:pointer;opacity:.45;line-height:1;
-}
+.task .del{margin-right:auto;background:none;border:none;color:var(--danger);font-size:17px;padding:0 3px;cursor:pointer;opacity:.45;line-height:1}
 .task .del:hover{opacity:.9}
 .custom-input{display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border)}
-.custom-input input{
-  flex:1;padding:9px 11px;
-  border:1px solid var(--border);border-radius:11px;
-  font:inherit;background:var(--card-solid);color:var(--text);font-size:14px;
-}
-.custom-input button{
-  padding:9px 13px;background:var(--primary);color:white;
-  border:none;border-radius:11px;font-weight:600;
-}
-.notice{
-  padding:14px;background:rgba(220,240,248,.75);
-  border:1px solid rgba(58,168,192,.28);
-  border-radius:15px;line-height:1.55;font-size:13.5px;margin:16px 0;
-  backdrop-filter:blur(8px);
-}
+.custom-input input{flex:1;padding:9px 11px;border:1px solid var(--border);border-radius:11px;font:inherit;background:var(--card-solid);color:var(--text);font-size:14px}
+.custom-input button{padding:9px 13px;background:var(--primary);color:white;border:none;border-radius:11px;font-weight:600}
+.notice{padding:14px;background:rgba(220,240,248,.75);border:1px solid rgba(58,168,192,.28);border-radius:15px;line-height:1.55;font-size:13.5px;margin:16px 0;backdrop-filter:blur(8px)}
 body.dark .notice{background:rgba(20,45,55,.7);border-color:rgba(80,160,180,.25)}
 .notice ul{margin:8px 0 0;padding-right:18px}
 .notice li{margin-bottom:6px}
 .footer{text-align:center;color:var(--muted);font-size:12px;padding:12px;opacity:.85}
-.theme-btn{
-  position:absolute;top:14px;left:12px;
-  background:rgba(255,255,255,.18);border:none;color:white;
-  width:34px;height:34px;border-radius:50%;font-size:17px;cursor:pointer;
-}
+.theme-btn{position:absolute;top:14px;left:12px;background:rgba(255,255,255,.18);border:none;color:white;width:34px;height:34px;border-radius:50%;font-size:17px;cursor:pointer}
 .celebrate{position:fixed;inset:0;pointer-events:none;z-index:99;display:none}
 .celebrate.show{display:block}
 .confetti{position:absolute;width:8px;height:8px;border-radius:2px;animation:fall 2.5s ease-out forwards}
 @keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
 .sec-actions{display:flex;gap:6px;margin-bottom:4px;flex-wrap:wrap}
 .sec-actions button{font-size:12px;padding:5px 9px}
-.pdf-box{
-  display:flex;align-items:center;gap:12px;
-  padding:14px;background:rgba(255,255,255,.7);
-  border:1px solid var(--border);border-radius:14px;
-  margin:12px 0;box-shadow:var(--shadow);
-}
+.pdf-box{display:flex;align-items:center;gap:12px;padding:14px;background:rgba(255,255,255,.7);border:1px solid var(--border);border-radius:14px;margin:12px 0;box-shadow:var(--shadow)}
 body.dark .pdf-box{background:rgba(20,40,50,.75)}
-.pdf-box a{
-  display:inline-block;padding:10px 16px;
-  background:var(--primary);color:white;border-radius:11px;
-  text-decoration:none;font-weight:600;font-size:14px;
-}
+.pdf-box a{display:inline-block;padding:10px 16px;background:var(--primary);color:white;border-radius:11px;text-decoration:none;font-weight:600;font-size:14px}
 .pdf-box p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.4}
+.file-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--border);font-size:14px}
+.file-item .fname{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-item button{font-size:12px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:var(--card-solid);color:var(--text);cursor:pointer}
+.file-item .del-f{color:var(--danger);border-color:transparent;background:none;font-size:16px}
+.upload-area{border:2px dashed var(--border);border-radius:14px;padding:18px;text-align:center;margin-top:10px;cursor:pointer;background:rgba(58,168,192,.06)}
+.upload-area:active{background:rgba(58,168,192,.12)}
+.upload-area input{display:none}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--primary);color:white;padding:12px 20px;border-radius:12px;font-size:14px;z-index:100;opacity:0;transition:opacity .3s;pointer-events:none;max-width:90%;text-align:center}
+.toast.show{opacity:1}
 </style>
 </head>
 <body>
@@ -254,7 +180,7 @@ body.dark .pdf-box{background:rgba(20,40,50,.75)}
   <div class="toolbar">
     <button onclick="expandAll(true)">פתח הכל</button>
     <button onclick="expandAll(false)">סגור הכל</button>
-    <button onclick="share()">העתקה לוואטסאפ</button>
+    <button onclick="shareToWhatsApp()">📱 שלח לוואטסאפ</button>
     <button onclick="printList()">הדפסה</button>
     <button onclick="resetAll()" style="color:var(--danger)">איפוס</button>
   </div>
@@ -267,24 +193,21 @@ body.dark .pdf-box{background:rgba(20,40,50,.75)}
     <div class="tasks" style="font-size:14px;line-height:1.55;padding:12px 14px">
       <p><strong>דחיית ברית בגלל צהבת / חולי</strong></p>
       <ul style="margin:6px 0 12px;padding-right:18px">
-        <li>אפילו על חשש קל או ספק שהתינוק לא התחזק מספיק – יש לדחות את הברית. ההחלטה בידי רב מורה הוראה הבקיא.</li>
+        <li>אפילו על חשש קל – יש לדחות. ההחלטה בידי רב מורה הוראה הבקיא.</li>
         <li>ברית שנדחתה ונעשתה מאוחר – נחשבת כאילו נימול בזמנו.</li>
         <li>ברית שלא בזמנה <strong>אינה דוחה שבת או יום טוב</strong>.</li>
       </ul>
       <p><strong>ליל שימורים</strong></p>
       <ul style="margin:6px 0 12px;padding-right:18px">
-        <li>הלילה שלפני הברית – ליל שמירה. נוהגים להיות נעורים וללמוד תורה / זוהר / מזמורי תנ״ך.</li>
+        <li>הלילה שלפני הברית – ליל שמירה. נוהגים להיות נעורים וללמוד תורה / זוהר.</li>
         <li>מביאים תינוקות של בית רבן לקרוא קריאת שמע ו״המלאך הגואל״.</li>
       </ul>
       <p><strong>כיבודים עיקריים (מנהג חב״ד)</strong></p>
       <ul style="margin:6px 0 12px;padding-right:18px">
         <li><strong>קוואטער / קוואטערין</strong> · <strong>חייקה</strong> · <strong>כיסא אליהו</strong></li>
         <li><strong>סנדק</strong> (דמיושב) · <strong>עמידה לברכות</strong> (דמעומד)</li>
-        <li>טלית: קוואטער, אבי הבן, מוהל, סנדק, עמידה לברכות ומקריא הברכות.</li>
       </ul>
-      <p style="font-size:13px;color:var(--muted);margin-top:8px">
-        מקורות: שבח הברית, שמירת השמחות, חוברת צפת. תמיד לברר עם הרב והמוהל.
-      </p>
+      <p style="font-size:13px;color:var(--muted);margin-top:8px">מקורות: שבח הברית, שמירת השמחות, חוברת צפת. תמיד לברר עם הרב והמוהל.</p>
     </div>
   </details>
 
@@ -297,22 +220,40 @@ body.dark .pdf-box{background:rgba(20,40,50,.75)}
       <p><strong>ליל שימורים</strong></p>
       <ul style="margin:6px 0 10px;padding-right:18px">
         <li>נוהגים להיות נעורים ולעסוק בתורה, זוהר ומזמורי תנ״ך.</li>
-        <li>מביאים תינוקות לקריאת שמע ו״המלאך הגואל״.</li>
         <li>מחלקים קטעי זוהר בין הנוכחים.</li>
       </ul>
-      <p><strong>זוהר לליל הברית – להורדה</strong></p>
+      <p><strong>זוהר לליל הברית</strong></p>
       <div class="pdf-box">
         <div>
           <a href="zohar-lel-habrit.pdf" target="_blank" rel="noopener">📄 הורד / פתח את הזוהר</a>
-          <p style="margin-top:6px">חוברת זוהר לליל הברית (כסא אליהו + ביאורים)</p>
+          <p style="margin-top:6px">אם לא עובד – העלה את הקובץ לרפוזיטורי (ראה הוראות)</p>
         </div>
       </div>
       <p><strong>ביום הברית ובסעודה</strong></p>
       <ul style="margin:6px 0 8px;padding-right:18px">
         <li>נוהגים לחזור <strong>מאמר חסידות</strong> בסעודה.</li>
-        <li>ניגונים חב״דיים + דבר תורה קצר בענייני ברית.</li>
+        <li>ניגונים חב״דיים + דבר תורה קצר.</li>
       </ul>
-      <p style="font-size:13px;color:var(--muted)">מקורות: ברית יצחק, זוהר לליל הברית, שבח הברית</p>
+    </div>
+  </details>
+
+  <details class="section" style="border-color:#6a9a7a">
+    <summary style="background:rgba(27,138,107,.08)">
+      <span>📁 קבצים שלי (שמורים במכשיר)</span>
+      <span class="count" id="files-count">0</span>
+    </summary>
+    <div class="tasks" style="padding:12px 14px">
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:10px;line-height:1.45">
+        כאן אפשר לשמור הצעות מחיר מקייטרינג, מכתבים מהרבי, תמונות, מסמכים וכו׳.<br>
+        הקבצים נשמרים <strong>רק במכשיר שלך</strong> (לא נשלחים לשום שרת).
+      </p>
+      <div id="files-list"></div>
+      <label class="upload-area" id="upload-label">
+        <input type="file" id="file-input" multiple accept="*/*">
+        <div style="font-size:28px;margin-bottom:6px">📎</div>
+        <div style="font-weight:600">לחץ להעלאת קבצים מהטלפון</div>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:4px">תמונות, PDF, מסמכים וכו׳</div>
+      </label>
     </div>
   </details>
 
@@ -323,13 +264,14 @@ body.dark .pdf-box{background:rgba(20,40,50,.75)}
     <ul>
       <li><strong>צהבת:</strong> לא לקבוע רק לפי מספר הבילירובין – נדרשת הערכה רפואית והחלטה הלכתית.</li>
       <li><strong>שבת:</strong> ברית שלא ביום השמיני אינה דוחה שבת או יום טוב.</li>
-      <li><strong>מנהגי חב״ד:</strong> כדאי לברר עם הרב והמוהל פרטים לברית דחויה.</li>
+      <li><strong>גיבוי:</strong> מומלץ לשלוח לוואטסאפ מדי פעם (כפתור למעלה). כשמסיימים קטע – נשלח אוטומטית.</li>
     </ul>
   </div>
-  <div class="footer">שמור למסך הבית · עובד גם ללא אינטרנט · גרסה 4.1</div>
+  <div class="footer">שמור למסך הבית · עובד גם ללא אינטרנט · גרסה 4.2</div>
 </main>
 
 <div class="celebrate" id="celebrate"></div>
+<div class="toast" id="toast"></div>
 
 <script>
 const data = [
@@ -439,16 +381,18 @@ const key = 'bris-checklist-v4';
 let state = {};
 let custom = {};
 let removed = {};
+let notifiedSections = {};
 
 try {
   const saved = JSON.parse(localStorage.getItem(key) || '{}');
   state = saved.state || {};
   custom = saved.custom || {};
   removed = saved.removed || {};
+  notifiedSections = saved.notifiedSections || {};
 } catch(e) {}
 
 function save() {
-  localStorage.setItem(key, JSON.stringify({state, custom, removed}));
+  localStorage.setItem(key, JSON.stringify({state, custom, removed, notifiedSections}));
   update();
 }
 
@@ -460,18 +404,71 @@ function getActiveTasks(i) {
   return [...activeOrig, ...customs];
 }
 
+function isSectionComplete(i) {
+  const tasks = getActiveTasks(i);
+  if (tasks.length === 0) return false;
+  return tasks.every(item => {
+    const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
+    return !!state[k];
+  });
+}
+
+function buildFullText() {
+  let txt = '📋 צ׳קליסט לברית חב״דית\nברית שנדחתה משבת עקב צהבת\n\n';
+  data.forEach((s, i) => {
+    const tasks = getActiveTasks(i);
+    const done = tasks.filter(item => {
+      const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
+      return !!state[k];
+    }).length;
+    txt += '▸ ' + s[0] + ' (' + done + '/' + tasks.length + ')\n';
+    tasks.forEach(item => {
+      const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
+      txt += (state[k] ? '☑ ' : '☐ ') + item.t + '\n';
+    });
+    txt += '\n';
+  });
+  return txt;
+}
+
+function shareToWhatsApp() {
+  const txt = buildFullText();
+  const url = 'https://wa.me/?text=' + encodeURIComponent(txt);
+  window.open(url, '_blank');
+  showToast('נפתח וואטסאפ עם הגיבוי');
+}
+
+function autoSendSection(i) {
+  if (notifiedSections[i]) return;
+  if (!isSectionComplete(i)) return;
+  notifiedSections[i] = true;
+  save();
+  const s = data[i];
+  const tasks = getActiveTasks(i);
+  let txt = '✅ סיימתי קטע בברית!\n\n▸ ' + s[0] + ' (' + tasks.length + '/' + tasks.length + ')\n\n';
+  tasks.forEach(item => { txt += '☑ ' + item.t + '\n'; });
+  txt += '\n(גיבוי אוטומטי מהאפליקציה)';
+  const url = 'https://wa.me/?text=' + encodeURIComponent(txt);
+  setTimeout(() => {
+    if (confirm('סיימת את הקטע "' + s[0] + '"!\nלשלוח גיבוי לוואטסאפ?')) {
+      window.open(url, '_blank');
+    }
+  }, 300);
+}
+
 function update() {
   let total = 0, done = 0;
   data.forEach((s, i) => {
     const tasks = getActiveTasks(i);
     let count = 0;
-    tasks.forEach((item) => {
+    tasks.forEach(item => {
       total++;
       const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
       if (state[k]) { done++; count++; }
     });
     const el = document.getElementById('count-' + i);
     if (el) el.textContent = count + '/' + tasks.length;
+    if (count === tasks.length && tasks.length > 0) autoSendSection(i);
   });
   const p = total ? Math.round(100 * done / total) : 0;
   document.getElementById('percent').textContent = p + '%';
@@ -515,7 +512,7 @@ function render() {
     tasksDiv.append(actions);
 
     const tasks = getActiveTasks(i);
-    tasks.forEach((item) => {
+    tasks.forEach(item => {
       const label = document.createElement('label');
       label.className = 'task';
       const cb = document.createElement('input');
@@ -608,33 +605,10 @@ function resetAll() {
     state = {};
     custom = {};
     removed = {};
+    notifiedSections = {};
     save();
     render();
   }
-}
-
-function share() {
-  let txt = '📋 צ׳קליסט לברית חב״דית\nברית שנדחתה משבת עקב צהבת\n\n';
-  data.forEach((s, i) => {
-    const tasks = getActiveTasks(i);
-    txt += '▸ ' + s[0] + '\n';
-    tasks.forEach(item => {
-      const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
-      txt += (state[k] ? '☑ ' : '☐ ') + item.t + '\n';
-    });
-    txt += '\n';
-  });
-  if (navigator.share) {
-    navigator.share({title: 'צ׳קליסט לברית חב״דית', text: txt}).catch(() => copyTxt(txt));
-  } else {
-    copyTxt(txt);
-  }
-}
-
-function copyTxt(txt) {
-  if (navigator.clipboard?.writeText) {
-    navigator.clipboard.writeText(txt).then(() => alert('הרשימה הועתקה!')).catch(() => prompt('העתק:', txt));
-  } else prompt('העתק:', txt);
 }
 
 function printList() { window.print(); }
@@ -662,8 +636,111 @@ function celebrate() {
   setTimeout(() => { el.innerHTML = ''; el.classList.remove('show'); delete el.dataset.done; }, 3200);
 }
 
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+const DB_NAME = 'bris-files-db';
+const STORE = 'files';
+let db = null;
+
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, 1);
+    req.onupgradeneeded = (e) => {
+      const d = e.target.result;
+      if (!d.objectStoreNames.contains(STORE)) {
+        d.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
+      }
+    };
+    req.onsuccess = (e) => { db = e.target.result; resolve(db); };
+    req.onerror = () => reject(req.error);
+  });
+}
+
+async function getAllFiles() {
+  if (!db) await openDB();
+  return new Promise((resolve) => {
+    const tx = db.transaction(STORE, 'readonly');
+    const req = tx.objectStore(STORE).getAll();
+    req.onsuccess = () => resolve(req.result || []);
+  });
+}
+
+async function addFile(name, blob, type) {
+  if (!db) await openDB();
+  return new Promise((resolve) => {
+    const tx = db.transaction(STORE, 'readwrite');
+    const req = tx.objectStore(STORE).add({ name, blob, type, date: Date.now() });
+    req.onsuccess = () => resolve(req.result);
+  });
+}
+
+async function deleteFile(id) {
+  if (!db) await openDB();
+  return new Promise((resolve) => {
+    const tx = db.transaction(STORE, 'readwrite');
+    tx.objectStore(STORE).delete(id);
+    tx.oncomplete = () => resolve();
+  });
+}
+
+async function renderFiles() {
+  const list = document.getElementById('files-list');
+  const files = await getAllFiles();
+  document.getElementById('files-count').textContent = files.length;
+  if (files.length === 0) {
+    list.innerHTML = '<p style="font-size:13.5px;color:var(--muted);padding:8px 0">עדיין אין קבצים. העלה מהטלפון למטה.</p>';
+    return;
+  }
+  list.innerHTML = '';
+  files.sort((a,b) => b.date - a.date).forEach(f => {
+    const div = document.createElement('div');
+    div.className = 'file-item';
+    const name = document.createElement('span');
+    name.className = 'fname';
+    name.textContent = f.name;
+    const openBtn = document.createElement('button');
+    openBtn.textContent = 'פתח';
+    openBtn.onclick = () => {
+      const url = URL.createObjectURL(f.blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = f.name;
+      a.target = '_blank';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+    };
+    const delBtn = document.createElement('button');
+    delBtn.className = 'del-f';
+    delBtn.textContent = '×';
+    delBtn.onclick = async () => {
+      if (!confirm('למחוק את הקובץ "' + f.name + '"?')) return;
+      await deleteFile(f.id);
+      renderFiles();
+      showToast('הקובץ נמחק');
+    };
+    div.append(name, openBtn, delBtn);
+    list.append(div);
+  });
+}
+
+document.getElementById('file-input').addEventListener('change', async (e) => {
+  const files = Array.from(e.target.files || []);
+  if (!files.length) return;
+  for (const file of files) {
+    await addFile(file.name, file, file.type || 'application/octet-stream');
+  }
+  e.target.value = '';
+  await renderFiles();
+  showToast(files.length === 1 ? 'הקובץ נשמר במכשיר' : files.length + ' קבצים נשמרו במכשיר');
+});
+
 if (localStorage.getItem('bris-theme') === 'dark') document.body.classList.add('dark');
-render();
+openDB().then(() => { renderFiles(); render(); });
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 </script>
 </body>
