@@ -4,83 +4,132 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="הברית שלנו">
 <meta name="theme-color" content="#1a5f7a">
 <title>צ׳קליסט לברית חב״דית</title>
 <link rel="manifest" href="manifest.webmanifest">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--card:rgba(255,255,255,.86);--card-solid:#f8fcff;--text:#122b33;--muted:#4a6e7a;--primary:#0d5a6e;--accent:#3aa8c0;--border:rgba(13,90,110,.13);--success:#1b8a6b;--shadow:0 8px 28px rgba(13,70,90,.13);--danger:#c45c5c}
-body.dark{--card:rgba(16,30,38,.92);--card-solid:#14242c;--text:#e2f0f4;--muted:#7aa0ac;--primary:#1a6b7e;--accent:#4ab8d0;--border:rgba(180,220,230,.12);--success:#2d9b7a;--shadow:0 8px 28px rgba(0,0,0,.4)}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:var(--text);min-height:100vh;position:relative;overflow-x:hidden}
-.bg{position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,#7ec8e3,#5bb8d4 20%,#3aa0c0 40%,#a8d8e8 70%,#f0f7f4)}
-body.dark .bg{background:linear-gradient(180deg,#0a1c28,#163848 50%,#1a3a35)}
-header{background:linear-gradient(135deg,rgba(13,80,100,.93),rgba(20,100,115,.9));color:#fff;padding:22px 16px 18px;border-radius:0 0 24px 24px}
-h1{font-size:20px;margin:0 0 4px}
-.sub{font-size:13px;opacity:.9;margin:0}
-.progress{margin-top:12px}.percent{font-size:28px;font-weight:800}
-.bar{height:8px;background:rgba(255,255,255,.2);border-radius:20px;margin-top:8px;overflow:hidden}
+:root{--card:rgba(255,255,255,.9);--cs:#f8fcff;--tx:#122b33;--mu:#4a6e7a;--pr:#0d5a6e;--ac:#3aa8c0;--bd:rgba(13,90,110,.13);--ok:#1b8a6b;--sh:0 6px 20px rgba(13,70,90,.12);--dn:#c45c5c}
+body.dark{--card:rgba(16,30,38,.92);--cs:#14242c;--tx:#e2f0f4;--mu:#7aa0ac;--pr:#1a6b7e;--ac:#4ab8d0;--bd:rgba(180,220,230,.12);--ok:#2d9b7a;--sh:0 6px 20px rgba(0,0,0,.4)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:var(--tx);min-height:100vh;background:linear-gradient(180deg,#7ec8e3,#5bb8d4 25%,#a8d8e8 60%,#f0f7f4)}
+body.dark{background:linear-gradient(180deg,#0a1c28,#163848 50%,#1a3a35)}
+header{background:linear-gradient(135deg,rgba(13,80,100,.95),rgba(20,100,115,.9));color:#fff;padding:20px 14px 16px;border-radius:0 0 22px 22px;position:relative}
+h1{font-size:19px;margin:0 0 4px;font-weight:800}
+.sub{font-size:12.5px;opacity:.9;margin:0;line-height:1.4}
+.progress{margin-top:12px}.percent{font-size:26px;font-weight:800}
+.bar{height:8px;background:rgba(255,255,255,.22);border-radius:20px;margin-top:8px;overflow:hidden}
 .fill{height:100%;background:linear-gradient(90deg,#6ec8d8,#3aa8c0);width:0;transition:width .3s;border-radius:20px}
-main{padding:12px;max-width:720px;margin:auto}
-.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-.toolbar button{font:inherit;cursor:pointer;border:1px solid var(--border);background:var(--card);border-radius:12px;padding:9px 12px;color:var(--text);font-size:13px}
-.section{background:var(--card);border:1px solid var(--border);border-radius:14px;margin:10px 0;overflow:hidden;box-shadow:var(--shadow)}
-.section summary{padding:14px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;list-style:none}
+main{padding:12px;max-width:640px;margin:auto}
+.toolbar{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.toolbar button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);border-radius:11px;padding:8px 11px;color:var(--tx);font-size:13px}
+.section{background:var(--card);border:1px solid var(--bd);border-radius:14px;margin:10px 0;overflow:hidden;box-shadow:var(--sh)}
+.section summary{padding:13px 12px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;list-style:none;font-size:15px}
 .section summary::-webkit-details-marker{display:none}
-.count{font-size:13px;color:var(--muted);font-weight:500}
+.count{font-size:12.5px;color:var(--mu);font-weight:500}
 .tasks{padding:0 12px 12px}
-.task{display:flex;gap:8px;padding:8px 0;border-top:1px solid var(--border);font-size:14px;align-items:flex-start}
-.task input{width:20px;height:20px;accent-color:var(--success);flex:none}
-.task:has(input:checked) span{text-decoration:line-through;color:var(--muted)}
-.pdf-box{padding:14px;background:var(--card);border:1px solid var(--border);border-radius:14px;margin:12px 0}
-.pdf-box a{display:inline-block;padding:10px 14px;background:var(--primary);color:#fff;border-radius:10px;text-decoration:none;font-weight:600}
-.footer{text-align:center;color:var(--muted);font-size:12px;padding:12px}
-.theme-btn{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.2);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer}
-.zman-card label{display:block;font-size:12px;color:var(--muted);margin:8px 0 3px}
-.zman-card input{width:100%;padding:9px;border:1px solid var(--border);border-radius:10px;background:var(--card-solid);color:var(--text);font:inherit}
-.zman-row{display:flex;gap:8px}.zman-row>div{flex:1}
-.zman-big{font-size:1.15rem;font-weight:700;color:var(--primary);margin:8px 0 4px}
-.zman-note{background:rgba(255,200,80,.15);border-radius:10px;padding:10px;margin-top:8px;font-size:13px;line-height:1.5}
+.task{display:flex;gap:8px;padding:7px 0;border-top:1px solid var(--bd);font-size:14px;align-items:flex-start}
+.task input{width:19px;height:19px;accent-color:var(--ok);flex:none;margin-top:1px}
+.task:has(input:checked) span{text-decoration:line-through;color:var(--mu)}
+.pdf-box{padding:12px;background:var(--card);border:1px solid var(--bd);border-radius:12px;margin:10px 0}
+.pdf-box a{display:inline-block;padding:9px 13px;background:var(--pr);color:#fff;border-radius:10px;text-decoration:none;font-weight:600;font-size:13.5px}
+.footer{text-align:center;color:var(--mu);font-size:11.5px;padding:10px}
+.theme-btn{position:absolute;top:12px;left:10px;background:rgba(255,255,255,.2);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:15px;cursor:pointer}
+.scroll-box{max-height:65vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.info-box{font-size:13.5px;line-height:1.6;padding:12px}
+.info-box h3{color:var(--pr);font-size:14.5px;margin:14px 0 6px}
+.info-box h3:first-child{margin-top:0}
+.info-box ul{margin:0 0 10px;padding-right:16px}
+.info-box li{margin-bottom:5px}
+.zman-card label,.calc-f label{display:block;font-size:12px;color:var(--mu);margin:7px 0 2px}
+.zman-card input,.calc-f input,.calc-g input{width:100%;padding:8px;border:1px solid var(--bd);border-radius:9px;background:var(--cs);color:var(--tx);font:inherit;font-size:14px}
+.zman-row,.calc-f{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.zman-big{font-size:1.1rem;font-weight:700;color:var(--pr);margin:8px 0 4px}
+.zman-note{background:rgba(255,200,80,.15);border-radius:9px;padding:9px;margin-top:7px;font-size:13px;line-height:1.45}
 .zman-ok{background:rgba(27,138,107,.12)}
-.zman-table{width:100%;font-size:14px;border-collapse:collapse;margin:8px 0}
-.zman-table td{padding:4px 0}.zman-table td:last-child{text-align:left;font-weight:600}
-.zman-small{font-size:12px;color:var(--muted);display:block;margin-top:4px}
-.notice{padding:12px;background:rgba(220,240,248,.7);border-radius:12px;font-size:13px;margin:12px 0;line-height:1.5}
+.zman-table{width:100%;font-size:13.5px;margin:6px 0}.zman-table td{padding:3px 0}.zman-table td:last-child{text-align:left;font-weight:600}
+.zman-small{font-size:12px;color:var(--mu);display:block;margin-top:4px}
+.calc-g{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:5px;align-items:center;font-size:12.5px;margin-bottom:5px}
+.calc-g.h{color:var(--mu);font-size:11.5px}
+.calc-r{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);font-size:13.5px}
+.calc-r b{color:var(--ok)}
+.calc-t{background:rgba(58,168,192,.12);border-radius:10px;padding:10px;font-size:16px;text-align:center;margin-top:8px;font-weight:700}
+.calc-bt{display:flex;gap:7px;margin-top:7px}
+.calc-bt a,.calc-bt button{flex:1;text-align:center;padding:9px;border-radius:9px;border:0;background:var(--pr);color:#fff;font-size:13px;text-decoration:none;cursor:pointer;font-weight:600}
+.calc-check{display:flex;gap:7px;align-items:center;margin-top:8px;font-size:13.5px}
+.notice{padding:11px;background:rgba(220,240,248,.7);border-radius:11px;font-size:13px;margin:10px 0;line-height:1.5}
 </style>
 </head>
 <body>
-<div class="bg"></div>
 <header>
 <button class="theme-btn" onclick="document.body.classList.toggle('dark')">🌓</button>
 <h1>צ׳קליסט לברית חב״דית</h1>
-<p class="sub">ברית שנדחתה משבת עקב צהבת · הכנות ומנהגים</p>
-<p class="sub" style="margin-top:6px;font-size:12px;opacity:.85">לשימוש אישי ומשפחתי · אין אחריות · לברר עם רופא, מוהל ורב</p>
+<p class="sub">ברית שנדחתה משבת עקב צהבת · הכנות, מנהגים, סעודה ותשורה</p>
+<p class="sub" style="margin-top:5px;font-size:11.5px;opacity:.85">לשימוש אישי ומשפחתי · אין אחריות · לברר עם רופא, מוהל ורב</p>
 <div class="progress"><div class="percent" id="percent">0%</div></div>
 <div class="bar"><div class="fill" id="fill"></div></div>
 </header>
 <main>
 <div class="toolbar">
-<button onclick="document.querySelectorAll('details').forEach(d=>d.open=true)">פתח הכל</button>
-<button onclick="document.querySelectorAll('details').forEach(d=>d.open=false)">סגור הכל</button>
+<button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=true)">פתח הכל</button>
+<button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=false)">סגור הכל</button>
 <button onclick="shareWA()">📱 וואטסאפ</button>
 </div>
 
 <details class="section" open>
-<summary><span>📖 מידע כללי</span><span class="count">לחץ</span></summary>
-<div class="tasks" style="font-size:14px;line-height:1.55;padding:12px">
-<p><strong>דחיית ברית בגלל צהבת</strong></p>
-<ul style="padding-right:18px;margin:6px 0">
-<li>אפילו על חשש קל – יש לדחות. ההחלטה בידי רב.</li>
-<li>ברית שלא בזמנה <strong>אינה דוחה שבת או יום טוב</strong>.</li>
+<summary style="background:rgba(58,168,192,.1)"><span>📖 מידע הלכתי ומנהגי חב״ד</span><span class="count">גלול ↓</span></summary>
+<div class="tasks info-box scroll-box">
+<h3>דחיית ברית בגלל צהבת או חולי</h3>
+<ul>
+<li>אפילו על חשש קל של חולשת התינוק – יש לדחות. ההחלטה בידי רופא ומוהל; בספק – רב מורה הוראה.</li>
+<li>ברית שנדחתה ונעשתה מאוחר – נחשבת כאילו נימול בזמנו.</li>
+<li>ברית שלא ביום השמיני <strong>אינה דוחה שבת או יום טוב</strong>.</li>
+<li>בצהבת: לא לקבוע רק לפי מספר הבילירובין – נדרשת הערכה רפואית מלאה.</li>
 </ul>
-<p><strong>ליל שימורים</strong> – ליל שמירה, לימוד תורה/זוהר.</p>
+<h3>יום השמיני ובין השמשות</h3>
+<ul>
+<li>נולד לפני שקיעה – אותו יום הוא יום ראשון; הברית ביום השמיני.</li>
+<li>נולד אחרי צאת הכוכבים – היום העברי למחרת.</li>
+<li>נולד בין השמשות (ספק) – מחמירים למנות מהיום המאוחר; ספק אינו דוחה שבת.</li>
+</ul>
+<h3>ליל שימורים</h3>
+<ul>
+<li>הלילה שלפני הברית – ליל שמירה. נוהגים להיות נעורים וללמוד תורה וזוהר.</li>
+<li>מביאים תינוקות לקרוא קריאת שמע ו״המלאך הגואל״.</li>
+<li>בברית דחויה – כדאי לברר עם רב חב״די דגשים מיוחדים.</li>
+</ul>
+<h3>כיבודים במנהג חב״ד</h3>
+<ul>
+<li><strong>קוואטער / קוואטערין</strong> – מביאים את התינוק.</li>
+<li><strong>חייקה</strong> – מחזיק לפני כיסא אליהו.</li>
+<li><strong>כיסא אליהו</strong> · <strong>סנדק</strong> (דמיושב) · <strong>עמידה לברכות</strong> (דמעומד).</li>
+<li>מברך על הכוס וקורא את השם – לרוב אבי הבן.</li>
+<li>לתאם הכל מראש עם המוהל ולהודיע למכובדים.</li>
+</ul>
+<h3>סעודה והתוועדות</h3>
+<ul>
+<li>סעודת מצווה עם זימון. בחב״ד – התוועדות, לחיים, מאמר/שיחה, ניגונים.</li>
+<li>י״ב הפסוקים – ילדים אומרים. דבר תורה קצר בענייני ברית.</li>
+</ul>
+<h3>תשורה</h3>
+<ul>
+<li>חוברת עם מאמרים, שיחות, תורה אור; לעיתים מכתב מהרבי והקדשה.</li>
+<li>להכין מבעוד מועד, להגיה ולהדפיס.</li>
+</ul>
+<h3>ביום הברית</h3>
+<ul>
+<li>אישור רפואי סופי · הכנת התינוק לפי המוהל · כיסא אליהו ויין · חלוקת כיבודים · הנחיות אחרי ומעקב.</li>
+</ul>
+<p style="font-size:12px;color:var(--mu);margin-top:10px;border-top:1px solid var(--bd);padding-top:8px">
+מקורות: שבח הברית (הרב הורוויץ), שמירת השמחות, חוברת צפת, מנהגי חב״ד.<br>
+<strong>אין זה פסק הלכה.</strong> בכל שאלה – מוהל, רופא ורב.
+</p>
 </div>
 </details>
 
-<details class="section" open>
-<summary><span>⏰ מחשבון זמן ברית</span><span class="count">לחץ</span></summary>
-<div class="tasks zman-card" style="padding:14px">
-<p style="font-size:13px;color:var(--muted);margin-bottom:8px">חישוב יום השמיני לפי שעת לידה מול שקיעה. <strong>עזר בלבד</strong>.</p>
+<details class="section">
+<summary style="background:rgba(180,140,60,.1)"><span>⏰ מחשבון זמן ברית</span><span class="count">לחץ</span></summary>
+<div class="tasks zman-card" style="padding:12px">
+<p style="font-size:12.5px;color:var(--mu);margin-bottom:6px">חישוב יום השמיני. <strong>עזר בלבד</strong>.</p>
 <label>מיקום</label>
 <input id="zloc" list="zplaces" value="תל אביב-יפו">
 <datalist id="zplaces"></datalist>
@@ -90,11 +139,8 @@ main{padding:12px;max-width:720px;margin:auto}
 <div><label>שקיעה</label><input type="time" id="zsset"></div>
 <div><label>צאת הכוכבים</label><input type="time" id="ztzet"></div>
 </div>
-<small class="zman-small">העתק זמנים מדויקים מ־
-<a href="https://he.chabad.org/calendar/zmanim.htm/locationid/531/locationtype/1" target="_blank" rel="noopener">חב״ד</a> ·
-<a href="https://sites.google.com/site/zmanimadmorhazaken/" target="_blank" rel="noopener">אדמו״ר הזקן</a>
-ואז עדכן ידנית למעלה.</small>
-<div id="zout" style="margin-top:12px" hidden></div>
+<small class="zman-small">העתק מחב״ד לדיוק: <a href="https://he.chabad.org/calendar/zmanim.htm/locationid/531/locationtype/1" target="_blank" rel="noopener">זמנים בחב״ד</a></small>
+<div id="zout" style="margin-top:10px" hidden></div>
 </div>
 </details>
 
@@ -102,32 +148,75 @@ main{padding:12px;max-width:720px;margin:auto}
 <a href="https://www.chabad.org/library/article_cdo/aid/145053/jewish/Zohar-for-the-Brit-Aramaic-Original.htm" target="_blank" rel="noopener">📜 זוהר לליל הברית – חב״ד</a>
 </div>
 
+<details class="section">
+<summary style="background:rgba(27,138,107,.1)"><span>🧮 מחשבון הוצאות ברית</span><span class="count">לחץ</span></summary>
+<div class="tasks" style="padding:12px">
+<h3 style="font-size:14px;color:var(--pr);margin:0 0 8px">רשימת מודיעים</h3>
+<div class="calc-g h"><span></span><span>קיבלו הודעה</span><span>ילדים</span><span>% הגעה</span></div>
+<div class="calc-g"><span>משפחה</span><input id="a0" type="number" value="40"><input id="k0" type="number" value="12"><input id="p0" type="number" value="90"></div>
+<div class="calc-g"><span>יישוב</span><input id="a1" type="number" value="30"><input id="k1" type="number" value="10"><input id="p1" type="number" value="70"></div>
+<div class="calc-g"><span>כללי</span><input id="a2" type="number" value="20"><input id="k2" type="number" value="4"><input id="p2" type="number" value="50"></div>
+<p style="font-size:11.5px;color:var(--mu);margin:4px 0 10px">"קיבלו הודעה" = סך כולל ילדים</p>
+<h3 style="font-size:14px;color:var(--pr);margin:0 0 8px">הגדרות</h3>
+<div class="calc-f">
+<div><label>מנה מבוגר ₪</label><input id="ca" type="number" value="90"></div>
+<div><label>מנה ילד ₪</label><input id="ck" type="number" value="45"></div>
+<div><label>מרווח ביטחון %</label><input id="bf" type="number" value="10"></div>
+<div><label>מקומות לשולחן</label><input id="ts" type="number" value="10"></div>
+<div><label>אולם ₪</label><input id="hl" type="number" value="1500"></div>
+<div><label>אחרות (מוהל...) ₪</label><input id="fx" type="number" value="500"></div>
+<div><label>רזרבה %</label><input id="rs" type="number" value="5"></div>
+<div><label>תקציב ₪</label><input id="bd" type="number" value="10000"></div>
+</div>
+<label class="calc-check"><input id="sy" type="checkbox"> בבית כנסת (בלי אולם)</label>
+<h3 style="font-size:14px;color:var(--pr);margin:12px 0 6px">תוצאות</h3>
+<div id="calc-out"></div>
+<div class="calc-t" id="calc-tot"></div>
+<h3 style="font-size:14px;color:var(--pr);margin:12px 0 6px">הודעה לוואטסאפ</h3>
+<div class="calc-f">
+<div><label>יום ותאריך</label><input id="dt" type="text" placeholder="יום ג׳ י״ח בחשוון"></div>
+<div><label>שעה</label><input id="tm" type="text" placeholder="10:00"></div>
+</div>
+<label style="font-size:12px;color:var(--mu)">מקום</label>
+<input id="pl" type="text" placeholder="בית הכנסת">
+<textarea id="m1" readonly rows="3" style="width:100%;margin-top:6px;padding:8px;border:1px solid var(--bd);border-radius:9px;background:var(--cs);color:var(--tx);font:inherit;resize:none"></textarea>
+<div class="calc-bt"><a id="wa" target="_blank" rel="noopener">שלח בוואטסאפ</a><button type="button" onclick="cpCalc('m1')">העתק</button></div>
+</div>
+</details>
+
 <div id="sections"></div>
-
-<div class="notice"><strong>דגשים:</strong> צהבת – הערכה רפואית + הלכתית. ברית שלא בזמנה אינה דוחה שבת.</div>
-<div class="footer">גרסה 4.9 · לשימוש אישי ומשפחתי · אין אחריות</div>
+<div class="notice"><strong>דגשים:</strong> צהבת – הערכה רפואית + הלכתית. ברית שלא בזמנה אינה דוחה שבת. גיבוי בוואטסאפ מומלץ.</div>
+<div class="footer">גרסה 5.0 · לשימוש אישי ומשפחתי · אין אחריות</div>
 </main>
-
 <script src="zman-calc.js"></script>
 <script>
-const data=[
-['רפואי וקביעת מועד',['מעקב בילירובין והצהבת','אישור רופא','עדכון המוהל','בירור מתי מותר לפי ההלכה','קביעת יום ושעה','וידוא זמינות מוהל','הנחיות האכלה לפני הברית']],
-['מיקום ולוגיסטיקה',['סגירת בית כנסת/אולם','תיאום עם גבאי','שולחן וכיסא אליהו','מקום למוהל','ישיבה גברים/נשים','מיזוג ותאורה','חניה','אחראי ניקיון']],
-['כיבודים ותפקידים',['בחירת סנדק','קוואטער וקוואטערין','כיסא אליהו','הבאת התינוק','עמידה לברכות','מברך על הכוס וקורא השם','רשימת כיבודים','תיאום עם המוהל']],
-['מנהגי חב״ד',['לימוד חסידות','מאמר בבוקר הברית','מאמר/שיחה בסעודה','מנהגי ליל ברית עם רב','י״ב פסוקים','לחיים והתוועדות','ניגונים חב״דיים','דבר תורה']],
-['ציוד לברית',['טלית','כיפות','יין/מיץ ענבים','גביע','בשמים','סידור ברית','חיתולים','בגדים להחלפה','שמיכה','מוצץ','ציוד לפי הוראות מוהל']],
-['סעודת מצווה',['מספר מוזמנים','קייטרינג/אוכל','תפריט','חלות','נטלות','יין ללחיים','שתייה','צלחות וסכום','מפות','כיבוד ילדים','כשרות','זימון']],
-['הזמנות',['עדכון שהברית נדחתה','הודעה על תאריך חדש','הזמנה לוואטסאפ','קרובים מרחוק','מכובדים וסנדק','מיקום ושעה','וידוא הגעה']],
-['תשורה',['סיום עריכה','הגהה','הקדשה','מכתב הרבי','תורה אור','PDF להדפסה','כריכה','הזמנת הדפסה','איסוף','חלוקה']],
-['ביום הברית',['אישור רפואי סופי','הגעת מוהל וסנדק','הכנת התינוק','הבאת ציוד','סידור כיסא אליהו','חלוקת כיבודים','צילום','חלוקת תשורות','לימוד בסעודה','הנחיות אחרי','מעקב עם מוהל']]
-];
-const key='bris-checklist-v4';
-let state={};try{state=JSON.parse(localStorage.getItem(key)||'{}').state||{}}catch(e){}
-function save(){localStorage.setItem(key,JSON.stringify({state}));update()}
-function update(){let t=0,d=0;data.forEach((s,i)=>{s[1].forEach((_,j)=>{t++;if(state[i+'-'+j])d++});const el=document.getElementById('c'+i);if(el)el.textContent=(s[1].filter((_,j)=>state[i+'-'+j]).length)+'/'+s[1].length});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%'}
-function render(){const root=document.getElementById('sections');root.innerHTML='';data.forEach((s,i)=>{const det=document.createElement('details');det.className='section';det.open=i===0;det.innerHTML='<summary><span>'+(i+1)+'. '+s[0]+'</span><span class="count" id="c'+i+'">0/'+s[1].length+'</span></summary>';const td=document.createElement('div');td.className='tasks';s[1].forEach((t,j)=>{const lb=document.createElement('label');lb.className='task';const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!state[i+'-'+j];cb.onchange=()=>{state[i+'-'+j]=cb.checked;save()};lb.append(cb,document.createTextNode(' '+t));td.append(lb)});det.append(td);root.append(det)});update()}
-function shareWA(){let t='📋 צ׳קליסט ברית\n';data.forEach(s=>{t+='▸ '+s[0]+'\n'});window.open('https://wa.me/?text='+encodeURIComponent(t))}
-render();
+const data=[['רפואי וקביעת מועד',['מעקב בילירובין והצהבת','אישור רופא','עדכון המוהל','בירור מתי מותר לפי ההלכה','קביעת יום ושעה','וידוא זמינות מוהל','הנחיות האכלה לפני הברית']],['מיקום ולוגיסטיקה',['סגירת בית כנסת/אולם','תיאום עם גבאי','שולחן וכיסא אליהו','מקום למוהל','ישיבה גברים/נשים','מיזוג ותאורה','חניה','אחראי ניקיון']],['כיבודים ותפקידים',['בחירת סנדק','קוואטער וקוואטערין','כיסא אליהו','הבאת התינוק','עמידה לברכות','מברך על הכוס וקורא השם','רשימת כיבודים','תיאום עם המוהל']],['מנהגי חב״ד',['לימוד חסידות','מאמר בבוקר הברית','מאמר/שיחה בסעודה','מנהגי ליל ברית עם רב','י״ב פסוקים','לחיים והתוועדות','ניגונים חב״דיים','דבר תורה']],['ציוד לברית',['טלית','כיפות','יין/מיץ ענבים','גביע','בשמים','סידור ברית','חיתולים','בגדים להחלפה','שמיכה','מוצץ','ציוד לפי הוראות מוהל']],['סעודת מצווה',['מספר מוזמנים','קייטרינג/אוכל','תפריט','חלות','נטלות','יין ללחיים','שתייה','צלחות וסכום','מפות','כיבוד ילדים','כשרות','זימון']],['הזמנות',['עדכון שהברית נדחתה','הודעה על תאריך חדש','הזמנה לוואטסאפ','קרובים מרחוק','מכובדים וסנדק','מיקום ושעה','וידוא הגעה']],['תשורה',['סיום עריכה','הגהה','הקדשה','מכתב הרבי','תורה אור','PDF להדפסה','כריכה','הזמנת הדפסה','איסוף','חלוקה']],['ביום הברית',['אישור רפואי סופי','הגעת מוהל וסנדק','הכנת התינוק','הבאת ציוד','סידור כיסא אליהו','חלוקת כיבודים','צילום','חלוקת תשורות','לימוד בסעודה','הנחיות אחרי','מעקב עם מוהל']]];
+const key='bris-checklist-v4';let state={};try{state=(JSON.parse(localStorage.getItem(key)||'{}').state)||{}}catch(e){}
+function save(){localStorage.setItem(key,JSON.stringify({state}));upd()}
+function upd(){let t=0,d=0;data.forEach((s,i)=>{s[1].forEach((_,j)=>{t++;if(state[i+'-'+j])d++});const el=document.getElementById('c'+i);if(el)el.textContent=s[1].filter((_,j)=>state[i+'-'+j]).length+'/'+s[1].length});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%'}
+function render(){const root=document.getElementById('sections');root.innerHTML='';data.forEach((s,i)=>{const det=document.createElement('details');det.className='section';det.open=i===0;const sm=document.createElement('summary');sm.innerHTML='<span>'+(i+1)+'. '+s[0]+'</span><span class="count" id="c'+i+'">0/'+s[1].length+'</span>';det.append(sm);const td=document.createElement('div');td.className='tasks';s[1].forEach((t,j)=>{const lb=document.createElement('label');lb.className='task';const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!state[i+'-'+j];cb.onchange=()=>{state[i+'-'+j]=cb.checked;save()};const sp=document.createElement('span');sp.textContent=t;lb.append(cb,sp);td.append(lb)});det.append(td);root.append(det)});upd()}
+function shareWA(){let t='📋 צ׳קליסט ברית\n';data.forEach((s,i)=>{const done=s[1].filter((_,j)=>state[i+'-'+j]).length;t+='▸ '+s[0]+' ('+done+'/'+s[1].length+')\n'});window.open('https://wa.me/?text='+encodeURIComponent(t))}
+const $c=id=>document.getElementById(id),nC=id=>parseFloat($c(id)?.value)||0,fmtC=x=>Math.round(x).toLocaleString('he-IL');
+const calcIds=[];for(let i=0;i<3;i++)calcIds.push('a'+i,'k'+i,'p'+i);calcIds.push('ca','ck','bf','ts','hl','fx','rs','bd','dt','tm','pl','sy');
+function msgsCalc(){const v=i=>$c(i)?.value.trim()||'___';const m1=`בס"ד\nבשמחה ובהודיה לה' נודיע כי הברית תתקיים אי"ה ב${v('dt')} בשעה ${v('tm')} ב${v('pl')}.\nמי שיוכל להשתתף ישמח אותנו.`;if($c('m1'))$c('m1').value=m1;if($c('wa'))$c('wa').href='https://wa.me/?text='+encodeURIComponent(m1)}
+function cpCalc(id){const t=$c(id);if(!t)return;t.select();try{navigator.clipboard.writeText(t.value)}catch(e){}}
+function calcBrit(){if(!$c('calc-out'))return;let ea=0,ek=0,inv=0,h='';const names=['משפחה','יישוב','כללי'];
+for(let i=0;i<3;i++){const a=nC('a'+i),k=Math.min(nC('k'+i),a),p=nC('p'+i)/100;const ex=a*p,exk=k*p;inv+=a;ea+=ex-exk;ek+=exk;h+=`<div class="calc-r"><span>${names[i]}: צפויים</span><b>${Math.round(ex)} מתוך ${a}</b></div>`}
+const bf=1+nC('bf')/100,pa=Math.ceil(ea*bf),pk=Math.ceil(ek*bf);const tabs=Math.ceil((ea+ek)*bf/(nC('ts')||10));
+const food=pa*nC('ca')+pk*nC('ck'),hall=$c('sy')?.checked?0:nC('hl'),total=food+hall+nC('fx');
+const res=nC('bd')*nC('rs')/100,left=nC('bd')-res-total;
+h+=`<div class="calc-r"><span>סה״כ צפויים</span><b>${Math.round(ea+ek)} מתוך ${inv}</b></div>
+<div class="calc-r"><span>מנות מבוגרים / ילדים</span><b>${pa} / ${pk}</b></div>
+<div class="calc-r"><span>שולחנות</span><b>${tabs}</b></div>
+<div class="calc-r"><span>עלות אוכל</span><b>₪${fmtC(food)}</b></div>
+<div class="calc-r"><span>עלות לאורח</span><b>₪${fmtC(total/Math.max(ea+ek,1))}</b></div>
+<div class="calc-r"><span>רזרבה</span><b>₪${fmtC(res)}</b></div>
+<div class="calc-r"><span>${left>=0?'נשאר בתקציב':'חריגה'}</span><b>₪${fmtC(Math.abs(left))}</b></div>`;
+$c('calc-out').innerHTML=h;$c('calc-tot').innerHTML=`סה״כ עלות: <b>₪${fmtC(total)}</b>`;msgsCalc();
+try{localStorage.setItem('brit-calc',JSON.stringify(calcIds.map(i=>i==='sy'?!!$c(i)?.checked:($c(i)?.value||''))))}catch(e){}}
+function initCalc(){try{const s=JSON.parse(localStorage.getItem('brit-calc')||'null');if(s&&s.length===calcIds.length)calcIds.forEach((i,j)=>{if(!$c(i))return;if(i==='sy')$c(i).checked=!!s[j];else $c(i).value=s[j]})}catch(e){}
+calcIds.forEach(i=>{const el=$c(i);if(el)el.addEventListener('input',calcBrit)});if($c('sy'))$c('sy').addEventListener('change',calcBrit);calcBrit()}
+render();initCalc();
 </script>
 </body>
 </html>
