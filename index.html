@@ -12,26 +12,27 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --card:rgba(255,252,245,.88);
-  --card-solid:#fffef9;
-  --text:#1a2e28;
-  --muted:#4a6b5e;
-  --primary:#0d4a5c;
-  --accent:#d4a84b;
-  --border:rgba(26,94,110,.12);
+  --card:rgba(255,255,255,.86);
+  --card-solid:#f8fcff;
+  --text:#122b33;
+  --muted:#4a6e7a;
+  --primary:#0d5a6e;
+  --accent:#3aa8c0;
+  --border:rgba(13,90,110,.13);
   --success:#1b8a6b;
-  --shadow:0 8px 32px rgba(13,74,92,.12);
+  --shadow:0 8px 28px rgba(13,70,90,.13);
+  --danger:#c45c5c;
 }
 body.dark{
-  --card:rgba(18,32,38,.9);
-  --card-solid:#15262c;
-  --text:#e8f4f0;
-  --muted:#8ab0a0;
-  --primary:#1a6b7a;
-  --accent:#e0b85c;
-  --border:rgba(200,230,220,.1);
+  --card:rgba(16,30,38,.92);
+  --card-solid:#14242c;
+  --text:#e2f0f4;
+  --muted:#7aa0ac;
+  --primary:#1a6b7e;
+  --accent:#4ab8d0;
+  --border:rgba(180,220,230,.12);
   --success:#2d9b7a;
-  --shadow:0 8px 32px rgba(0,0,0,.35);
+  --shadow:0 8px 28px rgba(0,0,0,.4);
 }
 html,body{height:100%}
 body{
@@ -41,201 +42,186 @@ body{
   min-height:100vh;
   position:relative;
 }
-
-/* ===== Animated Beach Background ===== */
 .bg{
   position:fixed;inset:0;z-index:-2;
   background:linear-gradient(180deg,
-    #87CEEB 0%,
-    #5eb3d4 18%,
-    #f5d78e 42%,
-    #f0c96a 55%,
-    #e8b84a 68%,
-    #d4a03a 100%
+    #7ec8e3 0%,
+    #5bb8d4 12%,
+    #3aa0c0 28%,
+    #6ec4d8 42%,
+    #a8d8e8 55%,
+    #d4eef5 68%,
+    #e8f4f0 82%,
+    #f0f7f4 100%
   );
 }
 body.dark .bg{
   background:linear-gradient(180deg,
-    #0a1f2e 0%,
-    #123a4a 25%,
-    #2a4a3a 50%,
-    #3d5a2e 70%,
-    #2a4020 100%
+    #0a1c28 0%,
+    #0f2a38 20%,
+    #163848 40%,
+    #1a4050 55%,
+    #1e4a45 75%,
+    #1a3a35 100%
   );
 }
-
-/* Waves */
 .wave{
-  position:fixed;bottom:0;left:0;width:200%;height:160px;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%231a7a9c' d='M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z'/%3E%3C/svg%3E") repeat-x;
+  position:fixed;bottom:0;left:0;width:200%;height:140px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%232a8aaa' fill-opacity='0.45' d='M0,55 C180,90 360,25 540,55 C720,85 900,30 1080,60 C1260,90 1380,40 1440,55 L1440,120 L0,120 Z'/%3E%3C/svg%3E") repeat-x;
   background-size:50% 100%;
-  animation:waveMove 12s linear infinite;
-  opacity:.55;z-index:-1;
+  animation:waveMove 14s linear infinite;
+  z-index:-1;
 }
 .wave2{
-  bottom:20px;height:120px;opacity:.4;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='%232a9ab8' d='M0,40 C360,80 720,10 1080,50 C1260,70 1380,30 1440,45 L1440,100 L0,100 Z'/%3E%3C/svg%3E") repeat-x;
+  bottom:18px;height:110px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath fill='%233a9aba' fill-opacity='0.35' d='M0,40 C240,75 480,15 720,45 C960,75 1200,20 1440,50 L1440,100 L0,100 Z'/%3E%3C/svg%3E") repeat-x;
   background-size:50% 100%;
-  animation:waveMove 18s linear infinite reverse;
+  animation:waveMove 20s linear infinite reverse;
 }
 .wave3{
-  bottom:40px;height:90px;opacity:.3;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%2340b8d0' d='M0,30 C300,60 600,10 900,40 C1100,55 1300,20 1440,35 L1440,80 L0,80 Z'/%3E%3C/svg%3E") repeat-x;
+  bottom:35px;height:85px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%234ab0c8' fill-opacity='0.28' d='M0,30 C300,55 600,10 900,35 C1100,50 1300,15 1440,30 L1440,80 L0,80 Z'/%3E%3C/svg%3E") repeat-x;
   background-size:50% 100%;
-  animation:waveMove 9s linear infinite;
+  animation:waveMove 10s linear infinite;
 }
 @keyframes waveMove{
   0%{transform:translateX(0)}
   100%{transform:translateX(-50%)}
 }
-
-/* Palm trees */
 .palms{
-  position:fixed;bottom:80px;left:0;right:0;height:220px;
+  position:fixed;bottom:70px;left:0;right:0;height:200px;
   pointer-events:none;z-index:-1;overflow:hidden;
 }
 .palm{
   position:absolute;bottom:0;
-  width:60px;height:180px;
-  background:transparent;
+  font-size:48px;
+  opacity:.65;
+  filter:drop-shadow(0 3px 6px rgba(0,40,50,.2));
 }
-.palm::before{
-  content:'';
-  position:absolute;bottom:0;left:50%;
-  width:8px;height:110px;
-  background:#2d5a3a;
-  border-radius:4px;
-  transform:translateX(-50%);
-}
-.palm::after{
-  content:'🌴';
-  position:absolute;top:0;left:50%;
-  font-size:52px;
-  transform:translateX(-50%);
-  filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));
-}
-.palm.p1{left:4%;transform:scale(.85);opacity:.7}
-.palm.p2{left:12%;transform:scale(1.1);opacity:.85}
-.palm.p3{right:6%;transform:scale(.9) scaleX(-1);opacity:.75}
-.palm.p4{right:16%;transform:scale(1.05);opacity:.8}
-body.dark .palm::before{background:#1a3a28}
-body.dark .palm::after{filter:brightness(.7) drop-shadow(0 2px 4px rgba(0,0,0,.4))}
-
-/* Soft sun / moon */
+.palm.p1{left:3%;font-size:42px;opacity:.55}
+.palm.p2{left:11%;font-size:56px}
+.palm.p3{right:4%;font-size:46px;transform:scaleX(-1);opacity:.6}
+.palm.p4{right:14%;font-size:52px;opacity:.7}
+body.dark .palm{opacity:.4;filter:brightness(.65)}
 .sun{
-  position:fixed;top:40px;left:30px;
-  width:70px;height:70px;border-radius:50%;
-  background:radial-gradient(circle at 35% 35%,#fff8e0,#ffd56a 50%,#f0a830);
-  box-shadow:0 0 40px 15px rgba(255,200,80,.35);
-  z-index:-1;opacity:.9;
+  position:fixed;top:28px;left:24px;
+  width:64px;height:64px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#fff9e8,#ffe08a 45%,#f0b840);
+  box-shadow:0 0 50px 18px rgba(255,200,90,.3);
+  z-index:-1;
 }
 body.dark .sun{
-  background:radial-gradient(circle at 35% 35%,#e8f0ff,#a0c0e0 60%,#6080a0);
-  box-shadow:0 0 30px 10px rgba(160,190,230,.2);
+  background:radial-gradient(circle at 35% 35%,#e8f4ff,#90b8d8 55%,#5080a0);
+  box-shadow:0 0 35px 12px rgba(140,180,220,.18);
 }
-
 header{
-  background:linear-gradient(135deg,rgba(13,74,92,.92),rgba(26,110,100,.88));
+  background:linear-gradient(135deg,rgba(13,80,100,.93),rgba(20,100,115,.9));
   color:white;
-  padding:28px 16px 22px;
-  border-radius:0 0 28px 28px;
+  padding:26px 16px 20px;
+  border-radius:0 0 26px 26px;
   position:relative;
-  box-shadow:0 10px 30px rgba(13,74,92,.25);
-  backdrop-filter:blur(8px);
+  box-shadow:0 8px 28px rgba(13,70,90,.22);
+  backdrop-filter:blur(10px);
 }
 body.dark header{
-  background:linear-gradient(135deg,rgba(10,40,50,.95),rgba(20,60,55,.92));
+  background:linear-gradient(135deg,rgba(10,40,55,.95),rgba(15,55,60,.93));
 }
-h1{font-size:23px;margin:0 0 6px;line-height:1.3;font-weight:800}
-header .sub{margin:0;color:rgba(255,255,255,.85);font-size:13.5px;line-height:1.45}
-.progress{margin-top:18px;display:flex;justify-content:space-between;align-items:center}
-.percent{font-size:34px;font-weight:800;letter-spacing:-1px}
-.bar{height:11px;background:rgba(255,255,255,.2);border-radius:20px;overflow:hidden;margin-top:12px}
-.fill{height:100%;background:linear-gradient(90deg,#e8c547,#d4a84b);width:0;transition:width .4s ease;border-radius:20px}
-
-main{padding:16px 12px 60px;max-width:720px;margin:auto}
-
-.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+h1{font-size:22px;margin:0 0 5px;line-height:1.3;font-weight:800}
+header .sub{margin:0;color:rgba(255,255,255,.88);font-size:13.5px;line-height:1.45}
+.progress{margin-top:16px;display:flex;justify-content:space-between;align-items:center}
+.percent{font-size:32px;font-weight:800;letter-spacing:-.5px}
+.bar{height:10px;background:rgba(255,255,255,.22);border-radius:20px;overflow:hidden;margin-top:10px}
+.fill{height:100%;background:linear-gradient(90deg,#6ec8d8,#3aa8c0);width:0;transition:width .4s ease;border-radius:20px}
+main{padding:14px 12px 55px;max-width:720px;margin:auto}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .toolbar button,button.sec-btn{
   font:inherit;cursor:pointer;
   border:1px solid var(--border);
   background:var(--card);
   backdrop-filter:blur(12px);
-  border-radius:14px;padding:11px 14px;
+  border-radius:13px;padding:10px 13px;
   color:var(--text);font-size:13.5px;
   box-shadow:var(--shadow);
-  transition:transform .15s,box-shadow .15s;
+  transition:transform .12s;
 }
 .toolbar button:active{transform:scale(.97)}
-.toolbar button:hover{box-shadow:0 4px 16px rgba(13,74,92,.15)}
-
 .section{
   background:var(--card);
   backdrop-filter:blur(14px);
   border:1px solid var(--border);
-  border-radius:18px;
-  margin:12px 0;
+  border-radius:16px;
+  margin:11px 0;
   overflow:hidden;
   box-shadow:var(--shadow);
 }
 .section summary{
-  padding:16px 15px;font-size:15.5px;font-weight:700;cursor:pointer;
+  padding:15px 14px;font-size:15.5px;font-weight:700;cursor:pointer;
   display:flex;justify-content:space-between;align-items:center;
   list-style:none;gap:8px;
 }
 .section summary::-webkit-details-marker{display:none}
 .count{font-size:13px;color:var(--muted);font-weight:500;white-space:nowrap}
-.tasks{padding:0 14px 14px}
+.tasks{padding:0 13px 13px}
 .task{
-  display:flex;align-items:flex-start;gap:11px;
-  padding:10px 0;border-top:1px solid var(--border);
-  font-size:14.5px;line-height:1.45;
+  display:flex;align-items:flex-start;gap:10px;
+  padding:9px 0;border-top:1px solid var(--border);
+  font-size:14.5px;line-height:1.4;
 }
 .task input{
-  width:22px;height:22px;flex:none;
+  width:21px;height:21px;flex:none;
   accent-color:var(--success);margin:1px 0 0;
-  border-radius:6px;
 }
 .task:has(input:checked) span{text-decoration:line-through;color:var(--muted)}
-.task .del{margin-right:auto;background:none;border:none;color:#c45c5c;font-size:18px;padding:0 4px;cursor:pointer;opacity:.5}
-.custom-input{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--border)}
+.task .del{
+  margin-right:auto;background:none;border:none;
+  color:var(--danger);font-size:17px;padding:0 3px;
+  cursor:pointer;opacity:.45;line-height:1;
+}
+.task .del:hover{opacity:.9}
+.custom-input{display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border)}
 .custom-input input{
-  flex:1;padding:10px 12px;
-  border:1px solid var(--border);border-radius:12px;
+  flex:1;padding:9px 11px;
+  border:1px solid var(--border);border-radius:11px;
   font:inherit;background:var(--card-solid);color:var(--text);font-size:14px;
 }
 .custom-input button{
-  padding:10px 14px;background:var(--primary);color:white;
-  border:none;border-radius:12px;font-weight:600;
+  padding:9px 13px;background:var(--primary);color:white;
+  border:none;border-radius:11px;font-weight:600;
 }
 .notice{
-  padding:15px;background:rgba(255,248,220,.75);
-  border:1px solid rgba(212,168,75,.3);
-  border-radius:16px;line-height:1.55;font-size:13.5px;margin:18px 0;
+  padding:14px;background:rgba(220,240,248,.75);
+  border:1px solid rgba(58,168,192,.28);
+  border-radius:15px;line-height:1.55;font-size:13.5px;margin:16px 0;
   backdrop-filter:blur(8px);
 }
-body.dark .notice{background:rgba(50,40,20,.7);border-color:rgba(200,160,60,.25)}
+body.dark .notice{background:rgba(20,45,55,.7);border-color:rgba(80,160,180,.25)}
 .notice ul{margin:8px 0 0;padding-right:18px}
 .notice li{margin-bottom:6px}
-.footer{text-align:center;color:var(--muted);font-size:12px;padding:14px;opacity:.85}
+.footer{text-align:center;color:var(--muted);font-size:12px;padding:12px;opacity:.85}
 .theme-btn{
-  position:absolute;top:16px;left:14px;
+  position:absolute;top:14px;left:12px;
   background:rgba(255,255,255,.18);border:none;color:white;
-  width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;
-  backdrop-filter:blur(6px);
+  width:34px;height:34px;border-radius:50%;font-size:17px;cursor:pointer;
 }
 .celebrate{position:fixed;inset:0;pointer-events:none;z-index:99;display:none}
 .celebrate.show{display:block}
-.confetti{position:absolute;width:9px;height:9px;border-radius:2px;animation:fall 2.5s ease-out forwards}
+.confetti{position:absolute;width:8px;height:8px;border-radius:2px;animation:fall 2.5s ease-out forwards}
 @keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
-.sec-actions{display:flex;gap:6px;margin-bottom:4px}
-.sec-actions button{font-size:12px;padding:6px 10px}
-
-/* Decorative Brit motif */
-.motif{
-  text-align:center;font-size:22px;opacity:.5;margin:8px 0 4px;
-  letter-spacing:8px;
+.sec-actions{display:flex;gap:6px;margin-bottom:4px;flex-wrap:wrap}
+.sec-actions button{font-size:12px;padding:5px 9px}
+.pdf-box{
+  display:flex;align-items:center;gap:12px;
+  padding:14px;background:rgba(255,255,255,.7);
+  border:1px solid var(--border);border-radius:14px;
+  margin:12px 0;box-shadow:var(--shadow);
 }
+body.dark .pdf-box{background:rgba(20,40,50,.75)}
+.pdf-box a{
+  display:inline-block;padding:10px 16px;
+  background:var(--primary);color:white;border-radius:11px;
+  text-decoration:none;font-weight:600;font-size:14px;
+}
+.pdf-box p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.4}
 </style>
 </head>
 <body>
@@ -245,10 +231,10 @@ body.dark .notice{background:rgba(50,40,20,.7);border-color:rgba(200,160,60,.25)
 <div class="wave wave2"></div>
 <div class="wave"></div>
 <div class="palms">
-  <div class="palm p1"></div>
-  <div class="palm p2"></div>
-  <div class="palm p3"></div>
-  <div class="palm p4"></div>
+  <div class="palm p1">🌴</div>
+  <div class="palm p2">🌴</div>
+  <div class="palm p3">🌴</div>
+  <div class="palm p4">🌴</div>
 </div>
 
 <header>
@@ -260,129 +246,87 @@ body.dark .notice{background:rgba(50,40,20,.7);border-color:rgba(200,160,60,.25)
       <div class="percent" id="percent">0%</div>
       <small id="fraction">0 מתוך 0</small>
     </div>
-    <div style="font-size:42px">✡</div>
   </div>
   <div class="bar"><div class="fill" id="fill"></div></div>
 </header>
 
 <main>
-  <div class="motif">✡ · 🌴 · ✡</div>
   <div class="toolbar">
     <button onclick="expandAll(true)">פתח הכל</button>
     <button onclick="expandAll(false)">סגור הכל</button>
     <button onclick="share()">העתקה לוואטסאפ</button>
     <button onclick="printList()">הדפסה</button>
-    <button onclick="resetAll()" style="color:#c45c5c">איפוס</button>
+    <button onclick="resetAll()" style="color:var(--danger)">איפוס</button>
   </div>
 
   <details class="section" open style="border-color:var(--accent)">
-    <summary style="background:rgba(212,168,75,.12)">
-      <span>📖 מידע כללי ומנהגי חב״ד (מתוך הספרים)</span>
+    <summary style="background:rgba(58,168,192,.1)">
+      <span>📖 מידע כללי ומנהגי חב״ד</span>
       <span class="count">לחץ</span>
     </summary>
     <div class="tasks" style="font-size:14px;line-height:1.55;padding:12px 14px">
       <p><strong>דחיית ברית בגלל צהבת / חולי</strong></p>
       <ul style="margin:6px 0 12px;padding-right:18px">
-        <li>אפילו על חשש קל או ספק שהתינוק לא התחזק מספיק – יש לדחות את הברית. ההחלטה בידי רב מורה הוראה הבקיא, לא בידי המוהל או ההורים בלבד.</li>
-        <li>ברית שנדחתה ונעשתה מאוחר – נחשבת כאילו נימול בזמנו (מתקנת למפרע).</li>
+        <li>אפילו על חשש קל או ספק שהתינוק לא התחזק מספיק – יש לדחות את הברית. ההחלטה בידי רב מורה הוראה הבקיא.</li>
+        <li>ברית שנדחתה ונעשתה מאוחר – נחשבת כאילו נימול בזמנו.</li>
         <li>ברית שלא בזמנה <strong>אינה דוחה שבת או יום טוב</strong>.</li>
-        <li>אם התינוק חולה – אין חיוב עליה לתורה בשבת שלפני הברית עד השבת שלפני המועד החדש.</li>
       </ul>
-      <p><strong>ליל שימורים (ואַך־נאַכט)</strong></p>
+      <p><strong>ליל שימורים</strong></p>
       <ul style="margin:6px 0 12px;padding-right:18px">
-        <li>הלילה שלפני הברית – ליל שמירה מיוחד. נוהגים להיות נעורים וללמוד תורה / זוהר / מזמורי תנ״ך.</li>
+        <li>הלילה שלפני הברית – ליל שמירה. נוהגים להיות נעורים וללמוד תורה / זוהר / מזמורי תנ״ך.</li>
         <li>מביאים תינוקות של בית רבן לקרוא קריאת שמע ו״המלאך הגואל״.</li>
-        <li>יש סדר קבוע של פסוקי תנ״ך ומאמרי זוהר (מופיע בספרי ברית).</li>
-        <li>בשבת ובליל פסח – יש דעות שונות; כדאי לברר עם הרב.</li>
       </ul>
       <p><strong>כיבודים עיקריים (מנהג חב״ד)</strong></p>
       <ul style="margin:6px 0 12px;padding-right:18px">
-        <li><strong>קוואטער / קוואטערין</strong> – הכנסת התינוק (סגולה להריון).</li>
-        <li><strong>חייקה</strong> – הולכת התינוק למקום הברית.</li>
-        <li><strong>כיסא אליהו</strong> – הנחה על הכיסא.</li>
-        <li><strong>סנדק</strong> (דמיושב) – מחזיק בעת המילה. אין לוקחים אותו סנדק לשני אחים (למעט רב/רבי).</li>
-        <li><strong>עמידה לברכות</strong> (סנדק דמעומד) – מחזיק בעת הברכות וקריאת השם.</li>
+        <li><strong>קוואטער / קוואטערין</strong> · <strong>חייקה</strong> · <strong>כיסא אליהו</strong></li>
+        <li><strong>סנדק</strong> (דמיושב) · <strong>עמידה לברכות</strong> (דמעומד)</li>
         <li>טלית: קוואטער, אבי הבן, מוהל, סנדק, עמידה לברכות ומקריא הברכות.</li>
       </ul>
-      <p><strong>ציוד מומלץ</strong></p>
-      <ul style="margin:6px 0 12px;padding-right:18px">
-        <li>2 חיתולי בד + 3–4 טיטולים + מגבונים</li>
-        <li>יין / מיץ ענבים + גביע</li>
-        <li>2 טליתות + כיפות</li>
-        <li>בגדים להחלפה + שמיכה</li>
-        <li>משחת ריפוי (ויטה־מרפן / בפנטן) + אקמול/נובימול לפי הנחיית המוהל</li>
-        <li>סידור עם נוסח ברית חב״די</li>
-      </ul>
-      <p><strong>סעודת הברית ומנהגים נוספים</strong></p>
-      <ul style="margin:6px 0 12px;padding-right:18px">
-        <li>רצוי סעודה עם בשר. נוהגים לחזור מאמר חסידות.</li>
-        <li>אין אומרים תחנון במקום הברית ובמקום תפילת המוהל/סנדק/אבי הבן באותו יום.</li>
-        <li>אין מזמינים לברית – רק מודיעים על מקום ושעה.</li>
-        <li>מומלץ להאכיל את התינוק עד כשעה לפני הברית (לפי הנחיית המוהל).</li>
-        <li>נהוג לתת דמי קדימה למוסד תורני בעת הברית.</li>
-      </ul>
-      <p style="font-size:13px;color:var(--muted);margin-top:10px">
-        מקורות: <em>שבח הברית</em>, <em>שמירת השמחות</em>, <em>חוברת מידע – ועד אברכי אנ״ש צפת</em>. תמיד לברר עם הרב והמוהל.
+      <p style="font-size:13px;color:var(--muted);margin-top:8px">
+        מקורות: שבח הברית, שמירת השמחות, חוברת צפת. תמיד לברר עם הרב והמוהל.
       </p>
     </div>
   </details>
 
-  <details class="section" style="border-color:#8b6b3a">
-    <summary style="background:rgba(139,107,58,.1)">
+  <details class="section" style="border-color:#5a8a9a">
+    <summary style="background:rgba(58,140,160,.08)">
       <span>📚 לימודים לפני הברית ובברית</span>
       <span class="count">לחץ</span>
     </summary>
     <div class="tasks" style="font-size:14px;line-height:1.55;padding:12px 14px">
-      <p><strong>ליל שימורים (הלילה שלפני הברית)</strong></p>
-      <ul style="margin:6px 0 12px;padding-right:18px">
+      <p><strong>ליל שימורים</strong></p>
+      <ul style="margin:6px 0 10px;padding-right:18px">
         <li>נוהגים להיות נעורים ולעסוק בתורה, זוהר ומזמורי תנ״ך.</li>
-        <li>מביאים תינוקות של בית רבן לקרוא קריאת שמע ו״המלאך הגואל״.</li>
-        <li>כל אחד מהנוכחים מכובד לומר קטע מהזוהר.</li>
-        <li>מומלץ שיהיו תלמידי חכמים וישיחו בדברי תורה וסיפורי צדיקים.</li>
+        <li>מביאים תינוקות לקריאת שמע ו״המלאך הגואל״.</li>
+        <li>מחלקים קטעי זוהר בין הנוכחים.</li>
       </ul>
-      <p><strong>זוהר לליל הברית</strong></p>
-      <ul style="margin:6px 0 12px;padding-right:18px">
-        <li>יש סדר קבוע של מאמרי זוהר הנאמרים בליל הברית (נדפס בספרים כמו ״ברית יצחק״, ״כסא אליהו״ וחוברות ייעודיות).</li>
-        <li>הקטעים עוסקים במצות מילה, כסא אליהו, ערלה ופריעה, וקדושת הברית.</li>
-        <li>מומלץ להכין מראש חוברת זוהר לליל הברית ולחלק קטעים בין הנוכחים.</li>
-      </ul>
-      <p><strong>מזמורי תנ״ך / תהלים</strong></p>
-      <ul style="margin:6px 0 12px;padding-right:18px">
-        <li>יש רשימות קבועות של מזמורים הנאמרים בליל הברית (מופיעות בספרי ברית).</li>
-        <li>נהוג לומר מזמורי תהלים הקשורים לשמירה ולברית.</li>
-      </ul>
+      <p><strong>זוהר לליל הברית – להורדה</strong></p>
+      <div class="pdf-box">
+        <div>
+          <a href="zohar-lel-habrit.pdf" target="_blank" rel="noopener">📄 הורד / פתח את הזוהר</a>
+          <p style="margin-top:6px">חוברת זוהר לליל הברית (כסא אליהו + ביאורים)</p>
+        </div>
+      </div>
       <p><strong>ביום הברית ובסעודה</strong></p>
-      <ul style="margin:6px 0 12px;padding-right:18px">
-        <li>נוהגים לחזור <strong>מאמר חסידות</strong> בסעודת הברית (יש מאמרים מיוחדים לברית, כגון ״בעצם היום הזה״, ״אשרי תבחר ותקרב״ ועוד).</li>
-        <li>מומלץ להכין מראש מאמר קצר או שיחת הרבי לעניין ברית מילה.</li>
-        <li>אפשר לנגן ניגונים חב״דיים (כולל ניגון ד׳ בבות).</li>
-        <li>יש הנוהגים לומר דבר תורה קצר בענייני ברית מילה.</li>
-      </ul>
-      <p><strong>המלצה מעשית</strong></p>
       <ul style="margin:6px 0 8px;padding-right:18px">
-        <li>להכין מראש חוברת ״זוהר לליל הברית״ + רשימת מזמורים.</li>
-        <li>לקבוע מי יאמר איזה קטע מהזוהר.</li>
-        <li>להכין מאמר חסידות לסעודה.</li>
-        <li>לבדוק עם הרב/המוהל אם יש מנהגים מיוחדים לברית דחויה.</li>
+        <li>נוהגים לחזור <strong>מאמר חסידות</strong> בסעודה.</li>
+        <li>ניגונים חב״דיים + דבר תורה קצר בענייני ברית.</li>
       </ul>
-      <p style="font-size:13px;color:var(--muted);margin-top:8px">
-        מקורות: <em>ברית יצחק</em>, <em>זוהר לליל הברית</em>, <em>שבח הברית</em>.
-      </p>
+      <p style="font-size:13px;color:var(--muted)">מקורות: ברית יצחק, זוהר לליל הברית, שבח הברית</p>
     </div>
   </details>
 
   <div id="sections"></div>
 
   <div class="notice">
-    <strong>דגשים חשובים לברית שנדחתה</strong>
+    <strong>דגשים לברית שנדחתה</strong>
     <ul>
-      <li><strong>צהבת:</strong> לא לקבוע את הברית רק לפי מספר הבילירובין. נדרשת הערכה רפואית, וההחלטה ההלכתית תלויה גם בסיבת הצהבת ובמצב התינוק. לעיתים נדרשת המתנה נוספת.</li>
-      <li><strong>שבת:</strong> ברית שלא מתקיימת ביום השמיני אינה דוחה שבת או יום טוב.</li>
-      <li><strong>מנהגי חב״ד:</strong> כדאי לברר עם הרב והמוהל את הפרטים המיוחדים לברית דחויה, כולל ליל הברית.</li>
-      <li><strong>סעודה:</strong> אפשר לנצל את המועד החדש להכנת סעודת מצווה והתוועדות חסידית מסודרת.</li>
+      <li><strong>צהבת:</strong> לא לקבוע רק לפי מספר הבילירובין – נדרשת הערכה רפואית והחלטה הלכתית.</li>
+      <li><strong>שבת:</strong> ברית שלא ביום השמיני אינה דוחה שבת או יום טוב.</li>
+      <li><strong>מנהגי חב״ד:</strong> כדאי לברר עם הרב והמוהל פרטים לברית דחויה.</li>
     </ul>
   </div>
-  <div class="footer">שמור למסך הבית · עובד גם ללא אינטרנט · גרסה 4.0 · חוף רגוע</div>
+  <div class="footer">שמור למסך הבית · עובד גם ללא אינטרנט · גרסה 4.1</div>
 </main>
 
 <div class="celebrate" id="celebrate"></div>
@@ -491,32 +435,43 @@ const data = [
   ]]
 ];
 
-const key = 'bris-checklist-v3-chabad';
+const key = 'bris-checklist-v4';
 let state = {};
 let custom = {};
+let removed = {};
 
 try {
   const saved = JSON.parse(localStorage.getItem(key) || '{}');
   state = saved.state || {};
   custom = saved.custom || {};
+  removed = saved.removed || {};
 } catch(e) {}
 
 function save() {
-  localStorage.setItem(key, JSON.stringify({state, custom}));
+  localStorage.setItem(key, JSON.stringify({state, custom, removed}));
   update();
+}
+
+function getActiveTasks(i) {
+  const orig = data[i][1];
+  const rem = new Set(removed[i] || []);
+  const activeOrig = orig.map((t, idx) => ({t, origIdx: idx, isCustom: false})).filter(x => !rem.has(x.origIdx));
+  const customs = (custom[i] || []).map((t, idx) => ({t, origIdx: idx, isCustom: true}));
+  return [...activeOrig, ...customs];
 }
 
 function update() {
   let total = 0, done = 0;
   data.forEach((s, i) => {
+    const tasks = getActiveTasks(i);
     let count = 0;
-    const allTasks = [...s[1], ...(custom[i] || [])];
-    allTasks.forEach((t, j) => {
+    tasks.forEach((item) => {
       total++;
-      if (state[i + '-' + j]) { done++; count++; }
+      const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
+      if (state[k]) { done++; count++; }
     });
     const el = document.getElementById('count-' + i);
-    if (el) el.textContent = count + '/' + allTasks.length;
+    if (el) el.textContent = count + '/' + tasks.length;
   });
   const p = total ? Math.round(100 * done / total) : 0;
   document.getElementById('percent').textContent = p + '%';
@@ -559,32 +514,50 @@ function render() {
     actions.append(markAll, unmarkAll);
     tasksDiv.append(actions);
 
-    const allTasks = [...s[1], ...(custom[i] || [])];
-    allTasks.forEach((t, j) => {
-      const isCustom = j >= s[1].length;
+    const tasks = getActiveTasks(i);
+    tasks.forEach((item) => {
       const label = document.createElement('label');
       label.className = 'task';
       const cb = document.createElement('input');
       cb.type = 'checkbox';
-      cb.checked = !!state[i + '-' + j];
+      const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
+      cb.checked = !!state[k];
       cb.onchange = () => {
-        state[i + '-' + j] = cb.checked;
+        state[k] = cb.checked;
         save();
       };
       const span = document.createElement('span');
-      span.textContent = t;
+      span.textContent = item.t;
       label.append(cb, span);
-      if (isCustom) {
-        const del = document.createElement('button');
-        del.className = 'del';
-        del.textContent = '×';
-        del.title = 'מחק משימה';
-        del.onclick = (e) => {
-          e.preventDefault();
-          deleteCustom(i, j - s[1].length);
-        };
-        label.append(del);
-      }
+
+      const del = document.createElement('button');
+      del.className = 'del';
+      del.textContent = '×';
+      del.title = 'מחק משימה';
+      del.onclick = (e) => {
+        e.preventDefault();
+        if (!confirm('למחוק את המשימה הזו?')) return;
+        if (item.isCustom) {
+          custom[i].splice(item.origIdx, 1);
+          delete state[i + '-c' + item.origIdx];
+          const newState = {};
+          Object.keys(state).forEach(key => {
+            if (key.startsWith(i + '-c')) {
+              const oldIdx = parseInt(key.split('-c')[1]);
+              if (oldIdx < item.origIdx) newState[key] = state[key];
+              else if (oldIdx > item.origIdx) newState[i + '-c' + (oldIdx - 1)] = state[key];
+            } else newState[key] = state[key];
+          });
+          state = newState;
+        } else {
+          if (!removed[i]) removed[i] = [];
+          removed[i].push(item.origIdx);
+          delete state[i + '-' + item.origIdx];
+        }
+        save();
+        render();
+      };
+      label.append(del);
       tasksDiv.append(label);
     });
 
@@ -607,8 +580,10 @@ function render() {
 }
 
 function toggleSection(i, checked) {
-  const allTasks = [...data[i][1], ...(custom[i] || [])];
-  allTasks.forEach((_, j) => { state[i + '-' + j] = checked; });
+  getActiveTasks(i).forEach(item => {
+    const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
+    state[k] = checked;
+  });
   save();
   render();
 }
@@ -624,37 +599,15 @@ function addCustom(i) {
   render();
 }
 
-function deleteCustom(i, customIdx) {
-  if (!confirm('למחוק את המשימה?')) return;
-  const baseLen = data[i][1].length;
-  const remainingChecked = [];
-  (custom[i] || []).forEach((t, idx) => {
-    if (idx !== customIdx) {
-      remainingChecked.push(!!state[i + '-' + (baseLen + idx)]);
-    }
-  });
-  custom[i].splice(customIdx, 1);
-  Object.keys(state).forEach(k => {
-    if (k.startsWith(i + '-')) {
-      const j = parseInt(k.split('-')[1]);
-      if (j >= baseLen) delete state[k];
-    }
-  });
-  remainingChecked.forEach((checked, idx) => {
-    if (checked) state[i + '-' + (baseLen + idx)] = true;
-  });
-  save();
-  render();
-}
-
 function expandAll(open) {
   document.querySelectorAll('details.section').forEach(d => d.open = open);
 }
 
 function resetAll() {
-  if (confirm('לאפס את כל הסימונים והמשימות האישיות?')) {
+  if (confirm('לאפס את כל הסימונים, המחיקות והמשימות האישיות?')) {
     state = {};
     custom = {};
+    removed = {};
     save();
     render();
   }
@@ -663,10 +616,11 @@ function resetAll() {
 function share() {
   let txt = '📋 צ׳קליסט לברית חב״דית\nברית שנדחתה משבת עקב צהבת\n\n';
   data.forEach((s, i) => {
-    const allTasks = [...s[1], ...(custom[i] || [])];
+    const tasks = getActiveTasks(i);
     txt += '▸ ' + s[0] + '\n';
-    allTasks.forEach((t, j) => {
-      txt += (state[i + '-' + j] ? '☑ ' : '☐ ') + t + '\n';
+    tasks.forEach(item => {
+      const k = item.isCustom ? i + '-c' + item.origIdx : i + '-' + item.origIdx;
+      txt += (state[k] ? '☑ ' : '☐ ') + item.t + '\n';
     });
     txt += '\n';
   });
@@ -679,13 +633,11 @@ function share() {
 
 function copyTxt(txt) {
   if (navigator.clipboard?.writeText) {
-    navigator.clipboard.writeText(txt).then(() => alert('הרשימה הועתקה! אפשר להדביק בוואטסאפ')).catch(() => prompt('העתק:', txt));
+    navigator.clipboard.writeText(txt).then(() => alert('הרשימה הועתקה!')).catch(() => prompt('העתק:', txt));
   } else prompt('העתק:', txt);
 }
 
-function printList() {
-  window.print();
-}
+function printList() { window.print(); }
 
 function toggleTheme() {
   document.body.classList.toggle('dark');
@@ -697,26 +649,22 @@ function celebrate() {
   if (el.dataset.done) return;
   el.dataset.done = '1';
   el.classList.add('show');
-  const colors = ['#d4a84b','#1b8a6b','#0d4a5c','#e8c547','#fff'];
-  for (let i = 0; i < 60; i++) {
+  const colors = ['#3aa8c0','#1b8a6b','#0d5a6e','#6ec8d8','#fff'];
+  for (let i = 0; i < 50; i++) {
     const c = document.createElement('div');
     c.className = 'confetti';
     c.style.left = Math.random() * 100 + 'vw';
     c.style.background = colors[Math.floor(Math.random() * colors.length)];
-    c.style.animationDelay = Math.random() * 0.8 + 's';
-    c.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+    c.style.animationDelay = Math.random() * 0.7 + 's';
+    c.style.animationDuration = (2 + Math.random() * 1.4) + 's';
     el.append(c);
   }
-  setTimeout(() => { el.innerHTML = ''; el.classList.remove('show'); delete el.dataset.done; }, 3500);
+  setTimeout(() => { el.innerHTML = ''; el.classList.remove('show'); delete el.dataset.done; }, 3200);
 }
 
 if (localStorage.getItem('bris-theme') === 'dark') document.body.classList.add('dark');
-
 render();
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(() => {});
-}
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 </script>
 </body>
 </html>
