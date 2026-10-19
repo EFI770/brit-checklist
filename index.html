@@ -57,6 +57,15 @@ main{padding:12px;max-width:640px;margin:auto}
 .calc-bt a,.calc-bt button{flex:1;text-align:center;padding:9px;border-radius:9px;border:0;background:var(--pr);color:#fff;font-size:13px;text-decoration:none;cursor:pointer;font-weight:600}
 .calc-check{display:flex;gap:7px;align-items:center;margin-top:8px;font-size:13.5px}
 .notice{padding:11px;background:rgba(220,240,248,.7);border-radius:11px;font-size:13px;margin:10px 0;line-height:1.5}
+.letter-box{text-align:center;padding:12px}
+.letter-box img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:8px;box-shadow:var(--sh)}
+.print-btn{margin-top:10px;padding:10px 16px;background:var(--pr);color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;font-size:14px}
+@media print{
+  body *{visibility:hidden}
+  .letter-box,.letter-box *{visibility:visible}
+  .letter-box{position:absolute;left:0;top:0;width:100%}
+  .print-btn{display:none}
+}
 </style>
 </head>
 <body>
@@ -221,7 +230,17 @@ main{padding:12px;max-width:640px;margin:auto}
 </div>
 </details>
 
-<div class="footer">גרסה 5.4 · כלי עזר · אינו פסק הלכה</div>
+<details class="section">
+<summary style="background:rgba(120,80,160,.1)"><span>📄 קבצים</span><span class="count">מכתב הרבי</span></summary>
+<div class="tasks letter-box">
+<p style="font-size:13px;color:var(--mu);margin-bottom:10px">מכתב הרבי לברית – לברכה ולשמחה</p>
+<img src="rebbe-letter.jpg" alt="מכתב הרבי">
+<br>
+<button class="print-btn" onclick="window.print()">🖨️ הדפסה</button>
+</div>
+</details>
+
+<div class="footer">גרסה 5.5 · כלי עזר · אינו פסק הלכה</div>
 </main>
 <script src="zman-calc.js"></script>
 <script>
