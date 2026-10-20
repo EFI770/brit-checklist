@@ -88,7 +88,7 @@ main{padding:12px;max-width:640px;margin:auto}
 <button onclick="shareWA()">📱 וואטסאפ</button>
 </div>
 
-<details class="section" open>
+<details class="section">
 <summary style="background:rgba(58,168,192,.1)"><span>📖 מידע הלכתי ומנהגי חב״ד</span><span class="count">גלול ↓</span></summary>
 <div class="tasks info-box scroll-box">
 <p style="font-size:12.5px;color:var(--mu);margin-bottom:10px">לקריאה והכנה · מסוכם ממנהגי חב״ד ומחוברות קהילה והלכה · <strong>אין זה פסק הלכה</strong><br>אם הרופא או המוהל מורים לדחות את הברית — ראו להלן מנהגים והלכות לברית דחויה</p>
@@ -226,7 +226,7 @@ main{padding:12px;max-width:640px;margin:auto}
 <p><strong>מקורות:</strong> מנהגי חב״ד; חוברת מידע לידה·ברית·פדיון (ועד אברכי אנ״ש צפת); שבח הברית (הרב שמואל הלוי הורוויץ); שמירת השמחות. הסיכום נעשה לצורכי לימוד והכנה בלבד.</p>
 <p><strong>פרטיות:</strong> המחשבונים והצ׳קליסט פועלים בדפדפן שלך בלבד. הנתונים נשמרים מקומית במכשיר (localStorage) ולא נשלחים לשום שרת.</p>
 <p><strong>אחריות:</strong> כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה הלכתית או רפואית — יש לפנות לרב מורה הוראה, למוהל ולרופא.</p>
-<p style="font-size:12px;color:var(--mu);margin-top:8px">הערות ותיקונים: ניתן לפנות למפתח דרך GitHub — <a href="https://github.com/EFI770/brit-checklist" target="_blank" rel="noopener">efi770/brit-checklist</a></p>
+<p style="font-size:12px;color:var(--mu);margin-top:8px">הערות ותיקונים: <a href="mailto:efie770@gmail.com">efie770@gmail.com</a></p>
 </div>
 </details>
 
@@ -246,7 +246,7 @@ main{padding:12px;max-width:640px;margin:auto}
 </div>
 </details>
 
-<div class="footer">גרסה 5.6 · כלי עזר · אינו פסק הלכה</div>
+<div class="footer">גרסה 5.7 · כלי עזר · אינו פסק הלכה</div>
 </main>
 <script src="zman-calc.js"></script>
 <script>
@@ -254,7 +254,7 @@ const data=[['רפואי וקביעת מועד',['מעקב בילירובין ו
 const key='bris-checklist-v4';let state={};try{state=(JSON.parse(localStorage.getItem(key)||'{}').state)||{}}catch(e){}
 function save(){localStorage.setItem(key,JSON.stringify({state}));upd()}
 function upd(){let t=0,d=0;data.forEach((s,i)=>{s[1].forEach((_,j)=>{t++;if(state[i+'-'+j])d++});const el=document.getElementById('c'+i);if(el)el.textContent=s[1].filter((_,j)=>state[i+'-'+j]).length+'/'+s[1].length});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%'}
-function render(){const root=document.getElementById('sections');root.innerHTML='';data.forEach((s,i)=>{const det=document.createElement('details');det.className='section';det.open=i===0;const sm=document.createElement('summary');sm.innerHTML='<span>'+(i+1)+'. '+s[0]+'</span><span class="count" id="c'+i+'">0/'+s[1].length+'</span>';det.append(sm);const td=document.createElement('div');td.className='tasks';s[1].forEach((t,j)=>{const lb=document.createElement('label');lb.className='task';const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!state[i+'-'+j];cb.onchange=()=>{state[i+'-'+j]=cb.checked;save()};const sp=document.createElement('span');sp.textContent=t;lb.append(cb,sp);td.append(lb)});det.append(td);root.append(det)});upd()}
+function render(){const root=document.getElementById('sections');root.innerHTML='';data.forEach((s,i)=>{const det=document.createElement('details');det.className='section';det.open=false;const sm=document.createElement('summary');sm.innerHTML='<span>'+(i+1)+'. '+s[0]+'</span><span class="count" id="c'+i+'">0/'+s[1].length+'</span>';det.append(sm);const td=document.createElement('div');td.className='tasks';s[1].forEach((t,j)=>{const lb=document.createElement('label');lb.className='task';const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!state[i+'-'+j];cb.onchange=()=>{state[i+'-'+j]=cb.checked;save()};const sp=document.createElement('span');sp.textContent=t;lb.append(cb,sp);td.append(lb)});det.append(td);root.append(det)});upd()}
 function shareWA(){let t='📋 צ׳קליסט ברית\n';data.forEach((s,i)=>{const done=s[1].filter((_,j)=>state[i+'-'+j]).length;t+='▸ '+s[0]+' ('+done+'/'+s[1].length+')\n'});window.open('https://wa.me/?text='+encodeURIComponent(t))}
 const $c=id=>document.getElementById(id),nC=id=>parseFloat($c(id)?.value)||0,fmtC=x=>Math.round(x).toLocaleString('he-IL');
 const calcIds=[];for(let i=0;i<3;i++)calcIds.push('a'+i,'k'+i,'p'+i);calcIds.push('ca','ck','bf','ts','hl','fx','rs','bd','dt','tm','pl','sy');
