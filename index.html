@@ -246,7 +246,9 @@ main{padding:12px;max-width:640px;margin:auto}
 <summary style="background:rgba(120,80,160,.1)"><span>📄 קבצים</span><span class="count">מכתב הרבי</span></summary>
 <div class="tasks letter-box">
 <p style="font-size:13px;color:var(--mu);margin-bottom:10px">מכתב הרבי לברית – לברכה ולשמחה</p>
-<img src="rebbe-letter.jpg" alt="מכתב הרבי">
+<img id="letterImg" src="rebbe-letter-clear.jpg" alt="מכתב הרבי">
+<br>
+<button class="print-btn" id="letterToggle" type="button" onclick="var i=document.getElementById('letterImg'),c=i.getAttribute('src')==='rebbe-letter-clear.jpg';i.src=c?'rebbe-letter.jpg':'rebbe-letter-clear.jpg';this.textContent=c?'הצג גרסה מחודדת':'הצג מקור'">הצג מקור</button>
 <br>
 <button class="print-btn" onclick="window.print()">🖨️ הדפסה</button>
 </div>
