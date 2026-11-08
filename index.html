@@ -6,6 +6,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#1a5f7a">
 <title>צ׳קליסט לברית חב״דית</title>
+<script>
+window.BRIT_LANG_CUR=(function(){var l='he';try{var q=new URLSearchParams(location.search).get('lang');if(q==='en'||q==='he'){try{localStorage.setItem('brit-lang',q)}catch(e){}l=q}else{var s=localStorage.getItem('brit-lang');if(s==='en'||s==='he')l=s}}catch(e){}return l})();
+document.documentElement.lang=window.BRIT_LANG_CUR;document.documentElement.dir=window.BRIT_LANG_CUR==='en'?'ltr':'rtl';
+window.BRIT_LANG=function(){return window.BRIT_LANG_CUR};
+</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon.png">
@@ -280,33 +285,42 @@ body.dark .share button#resetBtn{color:#e08a8a}
   .print-btn{display:none}
 }
 #bootLoader{position:fixed;inset:0;z-index:9999;background:#f5f5ee;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;font-family:inherit;color:#123e35;transition:opacity .25s}#bootLoader.done{opacity:0;pointer-events:none}#bootLoader .sp{width:46px;height:46px;border:5px solid rgba(18,62,53,.2);border-top-color:#123e35;border-radius:50%;animation:bootspin .9s linear infinite}@keyframes bootspin{to{transform:rotate(360deg)}}
+.lang-btn{position:absolute;top:14px;left:52px;width:36px;height:30px;border-radius:15px;border:1px solid var(--bd);background:rgba(255,255,255,.7);color:var(--pr);font-size:11.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit}
+body.dark .lang-btn{background:rgba(255,255,255,.1)}
+.footer a{color:inherit}
+html[dir=ltr] .info-box ul{padding-right:0;padding-left:16px}
+html[dir=ltr] header.hero,html[dir=ltr] .tile,html[dir=ltr] .ring-t{text-align:left}
+html[dir=ltr] .mem{margin:34px 0 14px}
+html[dir=ltr] .theme-btn{left:auto!important;right:14px!important}
+html[dir=ltr] .lang-btn{left:auto;right:52px}
 </style>
 </head>
 <body>
-<div id="bootLoader" role="status" aria-live="polite"><div class="sp"></div><div id="bootMsg">טוען...</div></div>
-<script>window.addEventListener("error",function(){var b=document.getElementById("bootLoader");if(b)b.remove()});setTimeout(function(){var m=document.getElementById("bootMsg");if(m&&!window.__booted)m.textContent="הטעינה לוקחת זמן... אפשר להמתין או לרענן"},8000)</script>
+<div id="bootLoader" role="status" aria-live="polite"><div class="sp"></div><div id="bootMsg" data-i18n="boot">טוען...</div></div>
+<script>window.addEventListener("error",function(){var b=document.getElementById("bootLoader");if(b)b.remove()});setTimeout(function(){var m=document.getElementById("bootMsg");if(m&&!window.__booted)m.textContent=(window.BRIT_T?BRIT_T('bootSlow'):"הטעינה לוקחת זמן... אפשר להמתין או לרענן")},8000)</script>
 <header class="hero">
-<button class="theme-btn" onclick="document.body.classList.toggle('dark')" aria-label="מצב כהה" title="מצב כהה">◐</button>
-<div class="mem">לע״נ הילדה חיילת בצבאות ה׳<br>רבקה בת יבלחט״א אפרים מנשה ואסתר חדווה</div>
-<h1>צ׳קליסט לברית חב״דית</h1>
+<button class="theme-btn" onclick="document.body.classList.toggle('dark')" aria-label="מצב כהה" title="מצב כהה" data-i18n-aria="darkMode">◐</button>
+<button class="lang-btn" id="langBtn" type="button" aria-label="Switch to English">EN</button>
+<div class="mem" data-i18n-html="memLine">לע״נ הילדה חיילת בצבאות ה׳<br>רבקה בת יבלחט״א אפרים מנשה ואסתר חדווה</div>
+<h1 data-i18n="appTitle">צ׳קליסט לברית חב״דית</h1>
 <div id="homeDate" class="home-date"></div>
-<div class="ringwrap"><div class="ring" id="ring"><div class="ring-in"><b id="percent">0%</b><small>הושלם</small></div></div><div id="homeLeft" class="ring-t"></div></div>
+<div class="ringwrap"><div class="ring" id="ring"><div class="ring-in"><b id="percent">0%</b><small data-i18n="doneLbl">הושלם</small></div></div><div id="homeLeft" class="ring-t"></div></div>
 <div class="fill" id="fill" hidden></div>
-<details class="note"><summary>כלי עזר בלבד, ואינו פסק הלכה</summary><p>כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה - ובמיוחד בדחיית ברית או בספק ביום השמיני - יש לפנות לרב מורה הוראה, למוהל ולרופא</p></details>
+<details class="note"><summary data-i18n="aidNote">כלי עזר בלבד, ואינו פסק הלכה</summary><p data-i18n="aidNoteBody">כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה - ובמיוחד בדחיית ברית או בספק ביום השמיני - יש לפנות לרב מורה הוראה, למוהל ולרופא</p></details>
 </header>
 <main>
 <div id="homeCard" class="next">
-<div class="home-k">הצעד הבא</div>
+<div class="home-k" data-i18n="nextStep">הצעד הבא</div>
 <div id="homeList" class="hlist"></div>
-<div class="home-b"><button type="button" class="print-btn" id="homeOpenNext">פתח את התחום</button><button type="button" class="print-btn ghost" id="homeBack" hidden>↩ חזרה</button><button type="button" class="print-btn ghost" id="homeOpenCalc">מחשבון זמן ברית</button></div>
+<div class="home-b"><button type="button" class="print-btn" id="homeOpenNext" data-i18n="openArea">פתח את התחום</button><button type="button" class="print-btn ghost" id="homeBack" hidden data-i18n="backBtn">↩ חזרה</button><button type="button" class="print-btn ghost" id="homeOpenCalc" data-i18n="calcBtn">מחשבון זמן ברית</button></div>
 </div>
-<h2 class="grp">התחומים</h2>
+<h2 class="grp" data-i18n="grpAreas">התחומים</h2>
 <div id="areaGrid" class="agrid"></div>
 <div id="areaPanel" class="apanel" hidden></div>
-<h2 class="grp">מידע, כלים וקישורים</h2>
+<h2 class="grp" data-i18n="grpInfo">מידע, כלים וקישורים</h2>
 <details class="section">
-<summary style="background:rgba(58,168,192,.1)"><span>מידע הלכתי ומנהגי חב״ד</span><span class="count">גלול ↓</span></summary>
-<div class="tasks info-box scroll-box">
+<summary style="background:rgba(58,168,192,.1)"><span data-i18n="infoSum">מידע הלכתי ומנהגי חב״ד</span><span class="count" data-i18n="scrollDn">גלול ↓</span></summary>
+<div class="tasks info-box scroll-box" id="infoBox">
 <p style="font-size:12.5px;color:var(--mu);margin-bottom:10px">לקריאה והכנה · מסוכם ממנהגי חב״ד ומחוברות קהילה והלכה · <strong>אין זה פסק הלכה</strong><br>אם הרופא או המוהל מורים לדחות את הברית - ראו להלן מנהגים והלכות לברית דחויה</p>
 <h3>א. דחיית ברית (צהבת, חולי או חולשה)</h3>
 <ul>
@@ -379,172 +393,393 @@ body.dark .share button#resetBtn{color:#e08a8a}
 </div>
 </details>
 
-<details class="section">
-<summary style="background:rgba(180,140,60,.1)"><span>מחשבון זמן ברית</span><span class="count">לחץ</span></summary>
+<details class="section" id="zmanSec">
+<summary style="background:rgba(180,140,60,.1)"><span data-i18n="zmanSum">מחשבון זמן ברית</span><span class="count" data-i18n="clickOpen">לחץ</span></summary>
 <div class="tasks zman-card" style="padding:12px">
-<p style="font-size:12.5px;color:var(--mu);margin-bottom:6px">חישוב יום השמיני - <strong>עזר בלבד</strong>. לאמת מול זמני חב״ד, במיוחד בלידה סביב שקיעה או בין השמשות.</p>
-<label>יישוב בישראל</label>
-<input id="zloc" autocomplete="off" value="תל אביב-יפו" placeholder="הקלד שם יישוב ובחר מהרשימה">
+<p style="font-size:12.5px;color:var(--mu);margin-bottom:6px" data-i18n-html="zmanIntro">חישוב יום השמיני - <strong>עזר בלבד</strong>. לאמת מול זמני חב״ד, במיוחד בלידה סביב שקיעה או בין השמשות.</p>
+<label data-i18n="zLoc">יישוב בישראל</label>
+<input id="zloc" autocomplete="off" value="תל אביב-יפו" placeholder="הקלד שם יישוב ובחר מהרשימה" data-i18n-ph="zLocPh">
 <div id="zresults" style="position:relative"></div>
-<label>זמן הלידה</label>
+<label data-i18n="zBirth">זמן הלידה</label>
 <input type="datetime-local" id="zbirth">
 <div class="zman-row">
-<div><label>שקיעה</label><input type="time" id="zsset"></div>
-<div><label>צאת הכוכבים</label><input type="time" id="ztzet"></div>
+<div><label data-i18n="zSunset">שקיעה</label><input type="time" id="zsset"></div>
+<div><label data-i18n="zTzeit">צאת הכוכבים</label><input type="time" id="ztzet"></div>
 </div>
-<p class="zman-note">שיטת צאת הכוכבים האוטומטית טרם אושרה בידי רב או מוהל. סביב שקיעה אין לקבוע מועד על סמך המחשבון בלבד.</p><small class="zman-small">יש לאמת זמנים למיקום הלידה; הקישור הבא אינו בוחר עיר אוטומטית: <a href="https://he.chabad.org/calendar/zmanim.htm/locationid/531/locationtype/1" target="_blank" rel="noopener">זמנים בחב״ד</a></small>
+<p class="zman-note" data-i18n="zmanNote">שיטת צאת הכוכבים האוטומטית טרם אושרה בידי רב או מוהל. סביב שקיעה אין לקבוע מועד על סמך המחשבון בלבד.</p><small class="zman-small" data-i18n-html="zmanSmall">יש לאמת זמנים למיקום הלידה; הקישור הבא אינו בוחר עיר אוטומטית: <a href="https://he.chabad.org/calendar/zmanim.htm/locationid/531/locationtype/1" target="_blank" rel="noopener">זמנים בחב״ד</a></small>
 <div id="zout" style="margin-top:10px" hidden></div>
 </div>
 </details>
 
 <div class="pdf-box">
-<a href="https://www.chabad.org/library/article_cdo/aid/145053/jewish/Zohar-for-the-Brit-Aramaic-Original.htm" target="_blank" rel="noopener">זוהר לליל הברית – חב״ד</a>
+<a href="https://www.chabad.org/library/article_cdo/aid/145053/jewish/Zohar-for-the-Brit-Aramaic-Original.htm" target="_blank" rel="noopener" data-i18n="zoharLink">זוהר לליל הברית – חב״ד</a>
 </div>
 <div class="pdf-box">
-<a href="https://he.chabad.org/library/article_cdo/aid/3140130" target="_blank" rel="noopener">מאמר אשרי תבחר ותקרב – חב״ד</a>
-<p style="font-size:12px;color:var(--mu);margin-top:8px">מאמר הרבי לברית (תשט״ז), בנוסח שהוגה על ידי הרבי בקונטרס י״ח ניסן תנש״א. נפתח באתר חב״ד ודורש חיבור לאינטרנט.</p>
+<a href="https://he.chabad.org/library/article_cdo/aid/3140130" target="_blank" rel="noopener" data-i18n="maamarLink">מאמר אשרי תבחר ותקרב – חב״ד</a>
+<p style="font-size:12px;color:var(--mu);margin-top:8px" data-i18n="maamarDesc">מאמר הרבי לברית (תשט״ז), בנוסח שהוגה על ידי הרבי בקונטרס י״ח ניסן תנש״א. נפתח באתר חב״ד ודורש חיבור לאינטרנט.</p>
 </div>
 
 <details class="section">
-<summary style="background:rgba(27,138,107,.1)"><span>מחשבון הוצאות ברית</span><span class="count">לחץ</span></summary>
+<summary style="background:rgba(27,138,107,.1)"><span data-i18n="costSum">מחשבון הוצאות ברית</span><span class="count" data-i18n="clickOpen">לחץ</span></summary>
 <div class="tasks" style="padding:12px">
-<div class="calc-g h"><span></span><span>קיבלו הודעה</span><span>ילדים</span><span>% הגעה</span></div>
-<div class="calc-g"><span>משפחה</span><input id="a0" type="number" value="40"><input id="k0" type="number" value="12"><input id="p0" type="number" value="90"></div>
-<div class="calc-g"><span>יישוב</span><input id="a1" type="number" value="30"><input id="k1" type="number" value="10"><input id="p1" type="number" value="70"></div>
-<div class="calc-g"><span>כללי</span><input id="a2" type="number" value="20"><input id="k2" type="number" value="4"><input id="p2" type="number" value="50"></div>
+<div class="calc-g h"><span></span><span data-i18n="chNotified">קיבלו הודעה</span><span data-i18n="chKids">ילדים</span><span data-i18n="chArrive">% הגעה</span></div>
+<div class="calc-g"><span data-i18n="rowFamily">משפחה</span><input id="a0" type="number" value="40"><input id="k0" type="number" value="12"><input id="p0" type="number" value="90"></div>
+<div class="calc-g"><span data-i18n="rowTown">יישוב</span><input id="a1" type="number" value="30"><input id="k1" type="number" value="10"><input id="p1" type="number" value="70"></div>
+<div class="calc-g"><span data-i18n="rowGeneral">כללי</span><input id="a2" type="number" value="20"><input id="k2" type="number" value="4"><input id="p2" type="number" value="50"></div>
 <div class="calc-f" style="margin-top:10px">
-<div><label>מנה מבוגר ₪</label><input id="ca" type="number" value="90"></div>
-<div><label>מנה ילד ₪</label><input id="ck" type="number" value="45"></div>
-<div><label>מרווח %</label><input id="bf" type="number" value="10"></div>
-<div><label>מקומות לשולחן</label><input id="ts" type="number" value="10"></div>
-<div><label>אולם ₪</label><input id="hl" type="number" value="1500"></div>
-<div><label>אחרות ₪</label><input id="fx" type="number" value="500"></div>
-<div><label>רזרבה %</label><input id="rs" type="number" value="5"></div>
-<div><label>תקציב ₪</label><input id="bd" type="number" value="10000"></div>
+<div><label data-i18n="lblAdult">מנה מבוגר ₪</label><input id="ca" type="number" value="90"></div>
+<div><label data-i18n="lblKid">מנה ילד ₪</label><input id="ck" type="number" value="45"></div>
+<div><label data-i18n="lblMargin">מרווח %</label><input id="bf" type="number" value="10"></div>
+<div><label data-i18n="lblSeats">מקומות לשולחן</label><input id="ts" type="number" value="10"></div>
+<div><label data-i18n="lblHall">אולם ₪</label><input id="hl" type="number" value="1500"></div>
+<div><label data-i18n="lblOther">אחרות ₪</label><input id="fx" type="number" value="500"></div>
+<div><label data-i18n="lblReserve">רזרבה %</label><input id="rs" type="number" value="5"></div>
+<div><label data-i18n="lblBudget">תקציב ₪</label><input id="bd" type="number" value="10000"></div>
 </div>
-<label class="calc-check"><input id="sy" type="checkbox"> בבית כנסת (בלי אולם)</label>
+<label class="calc-check"><input id="sy" type="checkbox"> <span data-i18n="syLabel">בבית כנסת (בלי אולם)</span></label>
 <div id="calc-out" style="margin-top:10px"></div>
 <div class="calc-t" id="calc-tot"></div>
 <div class="calc-f" style="margin-top:10px">
-<div><label>יום ותאריך</label><input id="dt" type="text" placeholder="יום ג׳ י״ח בחשוון"></div>
-<div><label>שעה</label><input id="tm" type="text" placeholder="10:00"></div>
+<div><label data-i18n="dtLabel">יום ותאריך</label><input id="dt" type="text" placeholder="יום ג׳ י״ח בחשוון" data-i18n-ph="dtPh"></div>
+<div><label data-i18n="tmLabel">שעה</label><input id="tm" type="text" placeholder="10:00"></div>
 </div>
-<label style="font-size:12px;color:var(--mu)">מקום</label>
-<input id="pl" type="text" placeholder="בית הכנסת">
+<label style="font-size:12px;color:var(--mu)" data-i18n="plLabel">מקום</label>
+<input id="pl" type="text" placeholder="בית הכנסת" data-i18n-ph="plPh">
 <textarea id="m1" readonly rows="3" style="width:100%;margin-top:6px;padding:8px;border:1px solid var(--bd);border-radius:9px;background:var(--cs);color:var(--tx);font:inherit;resize:none"></textarea>
-<div style="margin-top:6px"><label for="wanum" style="font-size:12px;color:var(--mu)">מספר הוואטסאפ שלך - ההודעה תישלח אליך (נשמר רק במכשיר שלך)</label><input id="wanum" type="tel" inputmode="tel" dir="ltr" placeholder="050-0000000" style="width:100%;padding:8px;border:1px solid var(--bd);border-radius:9px;background:var(--cs);color:var(--tx);font:inherit;font-size:14px"></div>
-<div class="calc-bt"><a id="wa" target="_blank" rel="noopener">שלח בוואטסאפ</a><button type="button" onclick="cpCalc('m1')">העתק</button></div>
+<div style="margin-top:6px"><label for="wanum" style="font-size:12px;color:var(--mu)" data-i18n="waNumLabel">מספר הוואטסאפ שלך - ההודעה תישלח אליך (נשמר רק במכשיר שלך)</label><input id="wanum" type="tel" inputmode="tel" dir="ltr" placeholder="050-0000000" style="width:100%;padding:8px;border:1px solid var(--bd);border-radius:9px;background:var(--cs);color:var(--tx);font:inherit;font-size:14px"></div>
+<div class="calc-bt"><a id="wa" target="_blank" rel="noopener" data-i18n="waSend">שלח בוואטסאפ</a><button type="button" onclick="cpCalc('m1')" data-i18n="copyBtn">העתק</button></div>
 </div>
 </details>
 
-<div class="notice"><strong>דגשים:</strong> ברית שנדחתה אינה דוחה שבת או יום טוב. בכל ספק ביום השמיני או בדחייה - יש לפנות לרב, למוהל ולרופא. מחשבון יום השמיני הוא עזר בלבד; יש לאמת מול זמני חב״ד, במיוחד בלידה סביב שקיעה או בין השמשות.</div>
+<div class="notice" data-i18n-html="noticeTxt"><strong>דגשים:</strong> ברית שנדחתה אינה דוחה שבת או יום טוב. בכל ספק ביום השמיני או בדחייה - יש לפנות לרב, למוהל ולרופא. מחשבון יום השמיני הוא עזר בלבד; יש לאמת מול זמני חב״ד, במיוחד בלידה סביב שקיעה או בין השמשות.</div>
 
 <details class="section">
-<summary><span>אודות · מקורות · פרטיות</span><span class="count">לחץ</span></summary>
-<div class="tasks info-box" style="padding:12px;font-size:13.5px;line-height:1.6">
+<summary><span data-i18n="aboutSum">אודות · מקורות · פרטיות</span><span class="count" data-i18n="clickOpen">לחץ</span></summary>
+<div class="tasks info-box" id="aboutBox" style="padding:12px;font-size:13.5px;line-height:1.6">
 <p><strong>מה זה?</strong> צ׳קליסט ומחשבונים להכנות לברית מילה במנהג חב״ד - כולל מחשבון יום השמיני ומחשבון הוצאות.</p>
 <p><strong>מקורות:</strong> מנהגי חב״ד; חוברת מידע לידה·ברית·פדיון (ועד אברכי אנ״ש צפת); שבח הברית (הרב שמואל הלוי הורוויץ); שמירת השמחות. הסיכום נעשה לצורכי לימוד והכנה בלבד.</p>
 <p><strong>פרטיות:</strong> המחשבונים והצ׳קליסט פועלים בדפדפן שלך בלבד. הנתונים (סימונים, ערכי מחשבון, מספר וואטסאפ ובחירת יעד תרומה מאושר) נשמרים מקומית במכשיר (localStorage) ואינם נשלחים אלינו. לחישוב זמנים נשלחים קואורדינטות היישוב והתאריך ל-Hebcal. יעד התרומה נבחר רק מתוך רשימה שאושרה על ידי בעל האתר, ונכלל בקישור האפליקציה בעת שיתופו.</p>
 <p><strong>אחריות:</strong> כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה הלכתית או רפואית - יש לפנות לרב מורה הוראה, למוהל ולרופא.</p>
+<p><strong>מסמכים:</strong> <a href="privacy.html">מדיניות פרטיות</a> · <a href="accessibility.html">הצהרת נגישות</a> · <a href="terms.html">תנאי שימוש</a></p>
 <p style="font-size:12px;color:var(--mu);margin-top:8px">שמות היישובים: מרשם היישובים של רשות האוכלוסין וההגירה (data.gov.il); קואורדינטות מקורבות: GeoNames (CC BY 4.0) ו-Wikidata (CC0), OpenStreetMap (ODbL, © תורמי OpenStreetMap) ו-ויקיפדיה העברית. הערות ותיקונים: <a href="mailto:habrit770@gmail.com">habrit770@gmail.com</a></p>
 </div>
 </details>
 
 
 <div class="pdf-box" style="background:rgba(27,138,107,.08);border-color:rgba(27,138,107,.3)">
-<a id="donate-link" href="https://ultra.kesherhk.info/external/paymentPage/328257" target="_blank" rel="noopener" style="background:#1b8a6b">תרומה ביום הברית לזכות הרך הנולד</a>
-<p style="font-size:12.5px;color:var(--mu);margin-top:8px;text-align:center">לזכות התינוק · בעת הברית</p>
-<div id="donate-import" hidden style="border:1px solid #b8860b;padding:10px;border-radius:9px;margin-bottom:10px"><p>קישור זה הגיע עם יעד תרומה שאושר על ידי בעל האתר. מקבל התרומות: <b id="donate-domain" dir="ltr"></b>. יש לתרום רק אם מקבל התרומות צפוי. הבחירה נשמרת במכשיר זה.</p></div>
+<a id="donate-link" href="https://ultra.kesherhk.info/external/paymentPage/328257" target="_blank" rel="noopener" style="background:#1b8a6b" data-i18n="donateBtn">תרומה ביום הברית לזכות הרך הנולד</a>
+<p style="font-size:12.5px;color:var(--mu);margin-top:8px;text-align:center" data-i18n="donateSub">לזכות התינוק · בעת הברית</p>
+<div id="donate-import" hidden style="border:1px solid #b8860b;padding:10px;border-radius:9px;margin-bottom:10px"><p data-i18n-html="donateImport">קישור זה הגיע עם יעד תרומה שאושר על ידי בעל האתר. מקבל התרומות: <b id="donate-domain" dir="ltr"></b>. יש לתרום רק אם מקבל התרומות צפוי. הבחירה נשמרת במכשיר זה.</p></div>
 
 <p id="donate-dom" style="font-size:11.5px;color:var(--mu);margin-top:4px;text-align:center"></p>
 
 </div>
 
 <details class="section">
-<summary style="background:rgba(120,80,160,.1)"><span>קבצים</span><span class="count">מכתב הרבי</span></summary>
+<summary style="background:rgba(120,80,160,.1)"><span data-i18n="filesSum">קבצים</span><span class="count" data-i18n="filesCount">מכתב הרבי</span></summary>
 <div class="tasks letter-box">
-<p style="font-size:13px;color:var(--mu);margin-bottom:10px">מכתב הרבי לברית – לברכה ולשמחה</p>
-<img id="letterImg" loading="lazy" decoding="async" src="rebbe-letter-clear.jpg" alt="מכתב הרבי">
+<p style="font-size:13px;color:var(--mu);margin-bottom:10px" data-i18n="letterDesc">מכתב הרבי לברית – לברכה ולשמחה</p>
+<img id="letterImg" loading="lazy" decoding="async" src="rebbe-letter-clear.jpg" alt="מכתב הרבי" data-i18n-alt="letterAlt">
 <br>
-<button class="print-btn" id="letterToggle" type="button" onclick="var i=document.getElementById('letterImg'),c=i.getAttribute('src')==='rebbe-letter-clear.jpg';i.src=c?'rebbe-letter.jpg':'rebbe-letter-clear.jpg';this.textContent=c?'הצג גרסה מחודדת':'הצג מקור'">הצג מקור</button>
+<button class="print-btn" id="letterToggle" type="button">הצג מקור</button>
 <br>
-<button class="print-btn" onclick="window.print()">הדפסה</button>
+<button class="print-btn" onclick="window.print()" data-i18n="printBtn">הדפסה</button>
 </div>
 </details>
 
-<div class="share"><button onclick="shareWA()">וואטסאפ</button><button onclick="shareApp()">שיתוף האפליקציה</button><button type="button" id="resetBtn" onclick="resetAll()">איפוס הסימונים</button></div>
-<div class="footer">גרסה 5.11 · כלי עזר · אינו פסק הלכה</div>
+<div class="share"><button onclick="shareWA()" data-i18n="shareWABtn">וואטסאפ</button><button onclick="shareApp()" data-i18n="shareAppBtn">שיתוף האפליקציה</button><button type="button" id="resetBtn" onclick="resetAll()" data-i18n="resetBtn">איפוס הסימונים</button></div>
+<div class="footer"><span data-i18n="footerVer">גרסה 5.12</span> · <a href="privacy.html" data-i18n="footerPrivacy">פרטיות</a> · <a href="accessibility.html" data-i18n="footerAccess">נגישות</a> · <a href="terms.html" data-i18n="footerTerms">תנאי שימוש</a> · <span data-i18n="footerAid">כלי עזר · אינו פסק הלכה</span></div>
 </main>
 <script src="donations.js"></script>
 <script src="localities.js"></script>
 <script src="zman-calc.js"></script>
 <script>
+const I18N={
+appTitle:["צ׳קליסט לברית חב״דית","Chabad Brit Checklist"],
+memLine:["לע״נ הילדה חיילת בצבאות ה׳<br>רבקה בת יבלחט״א אפרים מנשה ואסתר חדווה","In loving memory of the little girl Rivkah, a soldier in God's army<br>daughter of Efrayim Menashe and Esther Hadva, may they live long"],
+darkMode:["מצב כהה","Dark mode"],
+boot:["טוען...","Loading..."],
+bootSlow:["הטעינה לוקחת זמן... אפשר להמתין או לרענן","Loading is taking a while... you can wait or refresh"],
+doneLbl:["הושלם","done"],
+aidNote:["כלי עזר בלבד, ואינו פסק הלכה","An aid only - not a halachic ruling"],
+aidNoteBody:["כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה - ובמיוחד בדחיית ברית או בספק ביום השמיני - יש לפנות לרב מורה הוראה, למוהל ולרופא","This is an aid only, not a halachic ruling. For any question - especially about postponing a brit or a doubt around the eighth day - consult a qualified rabbi, the mohel, and a doctor"],
+nextStep:["הצעד הבא","Next step"],
+openArea:["פתח את התחום","Open the area"],
+backBtn:["↩ חזרה","↩ Back"],
+calcBtn:["מחשבון זמן ברית","Brit time calculator"],
+grpAreas:["התחומים","Areas"],
+grpInfo:["מידע, כלים וקישורים","Info, tools & links"],
+infoSum:["מידע הלכתי ומנהגי חב״ד","Halachic info & Chabad customs"],
+scrollDn:["גלול ↓","scroll ↓"],
+clickOpen:["לחץ","open"],
+zmanSum:["מחשבון זמן ברית","Brit time calculator"],
+zmanIntro:["חישוב יום השמיני - <strong>עזר בלבד</strong>. לאמת מול זמני חב״ד, במיוחד בלידה סביב שקיעה או בין השמשות.","Eighth-day calculation - <strong>an aid only</strong>. Verify against Chabad zmanim, especially for births around sunset or twilight."],
+zLoc:["יישוב בישראל","City (Israel or US)"],
+zLocPh:["הקלד שם יישוב ובחר מהרשימה","Type a city name and pick from the list"],
+zBirth:["זמן הלידה","Time of birth"],
+zSunset:["שקיעה","Sunset"],
+zTzeit:["צאת הכוכבים","Nightfall (tzeit hakochavim)"],
+zmanNote:["שיטת צאת הכוכבים האוטומטית טרם אושרה בידי רב או מוהל. סביב שקיעה אין לקבוע מועד על סמך המחשבון בלבד.","The automatic nightfall method has not been approved by a rabbi or mohel. Around sunset, do not set the time based on this calculator alone."],
+zmanSmall:["יש לאמת זמנים למיקום הלידה; הקישור הבא אינו בוחר עיר אוטומטית: <a href=\"https://he.chabad.org/calendar/zmanim.htm/locationid/531/locationtype/1\" target=\"_blank\" rel=\"noopener\">זמנים בחב״ד</a>","Verify times for the place of birth; this link does not auto-select a city: <a href=\"https://www.chabad.org/tools/calendar/zmanim.asp\" target=\"_blank\" rel=\"noopener\">Chabad zmanim</a>"],
+zoharLink:["זוהר לליל הברית – חב״ד","Zohar for the eve of the brit - Chabad.org"],
+maamarLink:["מאמר אשרי תבחר ותקרב – חב״ד","Maamar Ashrei Tivchar Vetikrav - Chabad.org"],
+maamarDesc:["מאמר הרבי לברית (תשט״ז), בנוסח שהוגה על ידי הרבי בקונטרס י״ח ניסן תנש״א. נפתח באתר חב״ד ודורש חיבור לאינטרנט.","The Rebbe's maamar for a brit (5716), in the version edited by the Rebbe for the 18 Nissan 5751 booklet. Opens on Chabad.org and requires an internet connection."],
+costSum:["מחשבון הוצאות ברית","Brit expenses calculator"],
+chNotified:["קיבלו הודעה","Notified"],
+chKids:["ילדים","Kids"],
+chArrive:["% הגעה","% coming"],
+rowFamily:["משפחה","Family"],
+rowTown:["יישוב","Community"],
+rowGeneral:["כללי","General"],
+lblAdult:["מנה מבוגר ₪","Adult portion ₪"],
+lblKid:["מנה ילד ₪","Kid portion ₪"],
+lblMargin:["מרווח %","Buffer %"],
+lblSeats:["מקומות לשולחן","Seats per table"],
+lblHall:["אולם ₪","Hall ₪"],
+lblOther:["אחרות ₪","Other ₪"],
+lblReserve:["רזרבה %","Reserve %"],
+lblBudget:["תקציב ₪","Budget ₪"],
+syLabel:["בבית כנסת (בלי אולם)","In a synagogue (no hall)"],
+dtLabel:["יום ותאריך","Day & date"],
+dtPh:["יום ג׳ י״ח בחשוון","Tue, 18 Cheshvan"],
+tmLabel:["שעה","Time"],
+plLabel:["מקום","Venue"],
+plPh:["בית הכנסת","The synagogue"],
+waNumLabel:["מספר הוואטסאפ שלך - ההודעה תישלח אליך (נשמר רק במכשיר שלך)","Your WhatsApp number - the message is sent to you (stored only on your device)"],
+waSend:["שלח בוואטסאפ","Send via WhatsApp"],
+copyBtn:["העתק","Copy"],
+noticeTxt:["<strong>דגשים:</strong> ברית שנדחתה אינה דוחה שבת או יום טוב. בכל ספק ביום השמיני או בדחייה - יש לפנות לרב, למוהל ולרופא. מחשבון יום השמיני הוא עזר בלבד; יש לאמת מול זמני חב״ד, במיוחד בלידה סביב שקיעה או בין השמשות.","<strong>Key points:</strong> A postponed brit does not override Shabbat or a festival. In any doubt about the eighth day or a postponement - consult a rabbi, the mohel and a doctor. The eighth-day calculator is an aid only; verify against Chabad zmanim, especially for births around sunset or twilight."],
+aboutSum:["אודות · מקורות · פרטיות","About · sources · privacy"],
+donateBtn:["תרומה ביום הברית לזכות הרך הנולד","Donate on the brit day for the newborn"],
+donateSub:["לזכות התינוק · בעת הברית","For the baby's merit · at the brit"],
+donateImport:["קישור זה הגיע עם יעד תרומה שאושר על ידי בעל האתר. מקבל התרומות: <b id=\"donate-domain\" dir=\"ltr\"></b>. יש לתרום רק אם מקבל התרומות צפוי. הבחירה נשמרת במכשיר זה.","This link arrived with a donation target approved by the site owner. Donation recipient: <b id=\"donate-domain\" dir=\"ltr\"></b>. Donate only if the recipient is the one you expect. The choice is saved on this device."],
+filesSum:["קבצים","Files"],
+filesCount:["מכתב הרבי","The Rebbe's letter"],
+letterDesc:["מכתב הרבי לברית – לברכה ולשמחה","The Rebbe's letter for a brit - for blessing and joy"],
+letterAlt:["מכתב הרבי","The Rebbe's letter"],
+letterShowOrig:["הצג מקור","Show original"],
+letterShowClear:["הצג גרסה מחודדת","Show enhanced version"],
+printBtn:["הדפסה","Print"],
+shareWABtn:["וואטסאפ","WhatsApp"],
+shareAppBtn:["שיתוף האפליקציה","Share the app"],
+resetBtn:["איפוס הסימונים","Reset all checks"],
+footerVer:["גרסה 5.12","Version 5.12"],
+footerPrivacy:["פרטיות","Privacy"],
+footerAccess:["נגישות","Accessibility"],
+footerTerms:["תנאי שימוש","Terms of use"],
+footerAid:["כלי עזר · אינו פסק הלכה","Aid only · not a halachic ruling"],
+toastMarked:["סומן: ","Checked: "],
+toastUnmarked:["הסימון הוסר: ","Unchecked: "],
+toastUndone:["הפעולה בוטלה","Action undone"],
+toastNone:["אין סימונים לאיפוס","Nothing to reset"],
+toastResetDone:["כל הסימונים אופסו","All checks were reset"],
+undoBtn:["ביטול","Undo"],
+resetConfirm:["לאפס את כל סימוני המשימות? כל הסימונים יימחקו. אפשר יהיה לבטל מיד אחרי האיפוס.","Reset all task checkmarks? Every check will be deleted. You can undo right after the reset."],
+undoReset:["ביטול האיפוס","Undo reset"],
+closeAria:["סגור","Close"],
+allTasks:["כל המשימות","All tasks"],
+optHdr:["לבחירתכם · לא נספר בהתקדמות","Optional · not counted in progress"],
+optSuffix:[" (לבחירתכם)"," (optional)"],
+chipByArea:["לפי תחום","By area"],
+chipAll:["כל המשימות","All tasks"],
+countDone:["הושלם","Done"],
+countOf:[" מתוך "," of "],
+stepsDone1:["הושלמו ",""],
+stepsDone2:[" צעדים"," steps done"],
+allDone:["כל הצעדים סומנו. מזל טוב!","All steps checked. Mazel tov!"],
+afterNext:["אחר כך: ","Then: "],
+noDateCta:["הוסיפו תאריך לידה ויישוב כדי לראות את מועד הברית ›","Add birth date and city to see the brit date ›"],
+britPrefix:["ברית: ","Brit: "],
+inDaysA:[" · בעוד "," · in "],
+inDaysB:[" ימים"," days"],
+tomorrowTxt:[" · מחר"," · tomorrow"],
+todayTxt:[" · היום"," · today"],
+shareText:["צ׳קליסט לברית חב״דית - הכנות, מנהגים ומחשבונים","Chabad brit checklist - preparations, customs and calculators"],
+shareCopied:["הקישור לאפליקציה הועתק - אפשר להדביק ולשתף","App link copied - paste it anywhere to share"],
+sharePrompt:["העתק את הקישור:","Copy the link:"],
+waNeedNum:["כדי לשלוח בוואטסאפ, הזן קודם את מספר הוואטסאפ שלך כאן","To send via WhatsApp, first enter your WhatsApp number here"],
+waSumTitle:["📋 צ׳קליסט ברית","📋 Brit checklist"],
+calcExpected:["צפויים","expected"],
+calcOf:["מתוך","of"],
+calcTotalExp:["סה״כ צפויים","Total expected"],
+calcPortions:["מנות מבוגרים / ילדים","Adult / kid portions"],
+calcTables:["שולחנות","Tables"],
+calcFoodCost:["עלות אוכל","Food cost"],
+calcLeft:["נשאר","Left"],
+calcOver:["חריגה","Over budget"],
+calcTotal:["סה״כ: ","Total: "],
+donateTarget:["יעד התרומה: ","Donation target: "],
+donateDefault:[" (ברירת מחדל)"," (default)"],
+donateApproved:[" (מאושר)"," (approved)"],
+donateBadA:["הקישור כלל יעד תרומה שאינו ברשימה המאושרת, ולכן הוחזרה ברירת המחדל: ","This link carried a donation target that is not on the approved list, so the default was restored: "],
+donateBadB:[". יעדי תרומה נקבעים רק על ידי בעל האתר.",". Donation targets are set only by the site owner."]
+};
+let LANG=window.BRIT_LANG_CUR==='en'?'en':'he';
+const T=k=>{const e=I18N[k];return e?e[LANG==='en'?1:0]:k};
+window.BRIT_T=T;
+const INFO_HE=(document.getElementById('infoBox')||{}).innerHTML||'';
+const ABOUT_HE=(document.getElementById('aboutBox')||{}).innerHTML||'';
 const data=[['רפואי וקביעת מועד',['מעקב בילירובין והצהבת','אישור רופא','עדכון המוהל','בירור מתי מותר לפי ההלכה','קביעת יום ושעה','וידוא זמינות מוהל','הנחיות האכלה לפני הברית']],['מיקום ולוגיסטיקה',['סגירת בית כנסת/אולם','תיאום עם גבאי','שולחן וכיסא אליהו','מקום למוהל','ישיבה גברים/נשים','מיזוג ותאורה','חניה','אחראי ניקיון']],['כיבודים ותפקידים',['בחירת סנדק','קוואטער וקוואטערין','כיסא אליהו','הבאת התינוק','עמידה לברכות','מברך על הכוס וקורא השם','רשימת כיבודים','תיאום עם המוהל']],['מנהגי חב״ד',['לימוד חסידות','מאמר בבוקר הברית','מאמר/שיחה בסעודה','מנהגי ליל הברית','י״ב פסוקים','לחיים והתוועדות','ניגונים חב״דיים','דבר תורה']],['ציוד לברית',['טלית','כיפות','יין/מיץ ענבים','גביע','בשמים','סידור ברית','חיתולים','בגדים להחלפה','שמיכה','מוצץ','ציוד לפי הוראות מוהל']],['סעודת מצווה',['מספר מוזמנים','קייטרינג/אוכל','תפריט','חלות','נטלות','יין ללחיים','שתייה','צלחות וסכום','מפות','כיבוד ילדים','כשרות','זימון']],['הזמנות',['עדכון שהברית נדחתה','הודעה על תאריך חדש','הזמנה לוואטסאפ','קרובים מרחוק','מכובדים וסנדק','מיקום ושעה','וידוא הגעה']],['ביום הברית',['אישור רפואי סופי','הגעת מוהל וסנדק','הכנת התינוק','הבאת ציוד','סידור כיסא אליהו','חלוקת כיבודים','צילום','לימוד בסעודה','הנחיות אחרי','מעקב עם מוהל']]];
 const MG={'4-6':['4-6','4-7','4-8','4-9'],'5-1':['5-1','5-2'],'5-7':['5-7','5-8'],'6-2':['6-2','6-5']};const HID={};Object.keys(MG).forEach(k=>MG[k].forEach(x=>{if(x!==k)HID[x]=1}));const OPT={'5-9':1,'7-6':1};const TXT={'4-6':'ציוד לתינוק: חיתולים, בגדים להחלפה, שמיכה, מוצץ','5-1':'קייטרינג ותפריט','5-7':'צלחות, סכו״ם ומפות','6-2':'הזמנה בוואטסאפ עם מיקום ושעה'};
+const dataEN=[['Medical & scheduling',['Bilirubin & jaundice monitoring','Doctor\'s approval','Update the mohel','Clarify when halacha permits','Set the day and time','Confirm mohel availability','Feeding instructions before the brit']],['Venue & logistics',['Book synagogue/hall','Coordinate with the gabbai','Table and Elijah\'s chair','A place for the mohel','Men/women seating','Air conditioning & lighting','Parking','Cleaning person in charge']],['Honors & roles',['Choose the sandak','Kvater and kvaterin','Elijah\'s chair','Bringing the baby','Standing for the blessings','Blessing over the cup & naming','Honors list','Coordinate with the mohel']],['Chabad customs',['Chassidut study','Maamar on the brit morning','Maamar/sicha at the meal','Brit-night customs','Twelve pesukim','L\'chaim & farbrengen','Chabad niggunim','Dvar Torah']],['Supplies for the brit',['Tallit','Kippot','Wine/grape juice','Cup','Besamim','Brit siddur','Diapers','Change of clothes','Blanket','Pacifier','Supplies per the mohel\'s instructions']],['Festive meal',['Guest count','Catering/food','Menu','Challot','Netilat yadayim station','Wine for l\'chaim','Drinks','Plates & cutlery','Tablecloths','Kids\' treats','Kashrut','Zimmun']],['Invitations',['Update that the brit was postponed','Announce the new date','WhatsApp invitation','Relatives from afar','Dignitaries & sandak','Location & time','Attendance confirmation']],['On the day of the brit',['Final medical approval','Mohel & sandak arrival','Preparing the baby','Bringing the supplies','Setting up Elijah\'s chair','Assigning the honors','Photography','Torah study at the meal','Aftercare instructions','Follow-up with the mohel']]];
+const TXT_EN={'4-6':'Baby supplies: diapers, change of clothes, blanket, pacifier','5-1':'Catering & menu','5-7':'Plates, cutlery & tablecloths','6-2':'WhatsApp invite with location & time'};
+const D=()=>LANG==='en'?dataEN:data;
+const TT=k=>LANG==='en'?(TXT_EN[k]||TXT[k]||''):(TXT[k]||'');
+const INFO_EN=`<p style="font-size:12.5px;color:var(--mu);margin-bottom:10px">For reading and preparation · summarized from Chabad customs and community halacha booklets · <strong>not a halachic ruling</strong><br>If the doctor or mohel instruct to postpone the brit - see the postponed-brit customs and laws below</p>
+<h3>A. Postponing a brit (jaundice, illness or weakness)</h3>
+<ul>
+<li>Even on a slight concern, a doubt of a slight concern, or even a remote doubt that the baby has not gained enough strength, jaundice and the like - <strong>postpone the brit</strong>, even for a week.</li>
+<li>If in doubt whether to postpone - postpone per a rabbi's instruction. <strong>Do not be lenient about this.</strong></li>
+<li>The decision rests with a qualified rabbi (moreh hora'ah) - not with the mohel or the parents alone.</li>
+<li>A brit performed late is considered as if circumcised on time (it is repaired retroactively).</li>
+<li>A brit not on the eighth day <strong>does not override Shabbat or a festival</strong>.</li>
+</ul>
+<h3>B. The eighth day and twilight</h3>
+<ul>
+<li>Born before sunset - that day counts as day one; the brit is on the eighth day from that date.</li>
+<li>Born after nightfall - the Hebrew day is the following day.</li>
+<li>Born at twilight (a doubt) - the custom is to be stringent and count from the later day. A doubtful brit does not override Shabbat/festival.</li>
+<li>Recommended: use the brit-time calculator, and verify against Chabad zmanim.</li>
+</ul>
+<h3>C. Between the birth and the brit</h3>
+<ul>
+<li>On the birth of a son, the blessing "Hatov Vehametiv" is said. The mother also blesses. If not said at the moment of the news - one may bless while the joy is still in his heart.</li>
+<li>The baby's father has precedence for an aliyah on the Shabbat before the brit (he does not override: a groom before his wedding, a bar-mitzvah boy, a father of a newborn girl on her first Shabbat, a yahrzeit).</li>
+<li>When the baby arrives from the hospital - it is customary to gather young children by him who recite verses and words of the Sages before sleep.</li>
+<li>On the Friday night after the birth - a "shalom zachar" gathering is held (hummus/legumes, food, fruit).</li>
+<li>It is customary to place a kippah on the baby's head from birth.</li>
+<li>The parents choose the name, by mutual agreement. Chassidic custom is to name after the Rebbes and Rebbetzins - and not to add another name to the Rebbes' names.</li>
+</ul>
+<h3>D. The watching night (vach-nacht)</h3>
+<ul>
+<li>It is customary to stay awake the whole night before the brit, near the baby, studying Torah.</li>
+<li>Various verses and Zohar passages are read (a gemach exists for these books).</li>
+<li>There is a dispute whether staying awake all night is obligatory when it falls on Shabbat or on a "watching night" (Passover) - but it is clear the verses and Zohar passages should be said.</li>
+<li>For a postponed brit - worth checking with a Chabad rabbi whether there are special emphases.</li>
+</ul>
+<h3>E. Preparing the brit - practical customs</h3>
+<ul>
+<li><strong>Do not invite to a brit - only announce</strong> the place and time (per the custom).</li>
+<li>Feed the baby until about an hour before the brit.</li>
+<li>Recommended supplies: 2 cloth diapers, diapers, wipes, wine + cup, 2 tallitot, a change of clothes. At the pharmacy: ointment and Novimol - per the mohel's instructions.</li>
+<li>Prefer two-piece clothing (shirt and pants). Halacha requires respectable clothing.</li>
+<li>The hiddur is to take an expert mohel. It is customary to pay the mohel for the brit.</li>
+</ul>
+<h3>F. Honors in Chabad custom</h3>
+<ul>
+<li><strong>Kvater / Kvaterin</strong> - bring the baby to the brit (usually a couple).</li>
+<li><strong>Cheika</strong> - holds the baby before Elijah's chair.</li>
+<li><strong>Elijah's chair</strong> · <strong>Sandak</strong> (seated) - holds during the circumcision. Considered like offering incense; a segula for long life.</li>
+<li><strong>Standing for the blessings</strong> - holds during the blessings and the naming.</li>
+<li>The blessing over the cup and reading the name - usually the baby's father. During the brit it is customary to stand.</li>
+<li>The Rebbe's instruction: one who wishes to honor the Rebbe with sandaka'ut - places the Rebbe's picture on the <strong>sandak's lap</strong> (not at the baby's head).</li>
+<li>When the Rebbes (the Rayatz and the Rebbe) were honored as sandak - they did not look at the brit but turned their heads aside.</li>
+</ul>
+<h3>G. Tachanun on the brit day</h3>
+<ul>
+<li>Tachanun is not said where the brit takes place; the mohel, the sandak and the baby's father - until after the brit.</li>
+<li>If Mincha is during the meal - no tachanun. After the meal - the congregation as usual; the brit principals do not say tachanun all day.</li>
+</ul>
+<h3>H. The brit meal and farbrengen</h3>
+<ul>
+<li>A meal with meat (per the custom). A Chassidic maamar is customarily reviewed. The Daled Bavot niggun may be sung.</li>
+<li>"Harachaman Hu yevarech et ba'alei habrit" - there are different opinions on where to say it. After each Harachaman - the congregation answers amen.</li>
+<li>It is customary to give "dmei kadima" to a Torah institution (Tomchei Temimim) - "just as he entered the covenant, so may he enter Torah".</li>
+</ul>
+<h3>I. On the brit day - reminder</h3>
+<ul>
+<li>Final medical approval · prepare the baby per the mohel · Elijah's chair and wine · assign the honors · aftercare instructions and follow-up.</li>
+</ul>
+<p style="font-size:12px;color:var(--mu);margin-top:12px;border-top:1px solid var(--bd);padding-top:8px">
+Sources: Birth-Brit-Pidyon information booklet (Safed Anash avrechim committee), Shevach Habrit (Rabbi Horowitz), Shmirat Hasemachot, Chabad customs and the Rebbe's instructions.<br>
+<strong>Not a halachic ruling.</strong> In any doubt - the mohel, a doctor and a qualified rabbi.
+</p>`;
+const ABOUT_EN=`<p><strong>What is this?</strong> A checklist and calculators for preparing a Chabad brit - including an eighth-day calculator and an expenses calculator.</p>
+<p><strong>Sources:</strong> Chabad customs; Birth-Brit-Pidyon information booklet (Safed Anash avrechim committee); Shevach Habrit (Rabbi Shmuel Halevi Horowitz); Shmirat Hasemachot. The summary was made for study and preparation only.</p>
+<p><strong>Privacy:</strong> The calculators and checklist run only in your browser. The data (checkmarks, calculator values, WhatsApp number and approved donation target) is stored locally on the device (localStorage) and is not sent to us. For the time calculation, the locality coordinates and date are sent to Hebcal. The donation target is chosen only from a list approved by the site owner, and is included in the app link when shared.</p>
+<p><strong>Responsibility:</strong> An aid only, not a halachic ruling. For any halachic or medical question - consult a qualified rabbi, the mohel and a doctor.</p>
+<p><strong>Documents:</strong> <a href="privacy.html">Privacy policy</a> · <a href="accessibility.html">Accessibility statement</a> · <a href="terms.html">Terms of use</a></p>
+<p style="font-size:12px;color:var(--mu);margin-top:8px">Locality names: Israel Population and Immigration Authority locality registry (data.gov.il); approximate coordinates: GeoNames (CC BY 4.0) and Wikidata (CC0), OpenStreetMap (ODbL, © OpenStreetMap contributors) and Hebrew Wikipedia. Comments and corrections: <a href="mailto:habrit770@gmail.com">habrit770@gmail.com</a></p>`;
+function applyLang(){
+document.documentElement.lang=LANG;document.documentElement.dir=LANG==='en'?'ltr':'rtl';
+document.title=T('appTitle');
+const lb=document.getElementById('langBtn');if(lb){lb.textContent=LANG==='en'?'עב':'EN';lb.setAttribute('aria-label',LANG==='en'?'מעבר לעברית':'Switch to English')}
+document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=T(el.dataset.i18n)});
+document.querySelectorAll('[data-i18n-html]').forEach(el=>{el.innerHTML=T(el.dataset.i18nHtml)});
+document.querySelectorAll('[data-i18n-ph]').forEach(el=>{el.setAttribute('placeholder',T(el.dataset.i18nPh))});
+document.querySelectorAll('[data-i18n-aria]').forEach(el=>{el.setAttribute('aria-label',T(el.dataset.i18nAria));el.setAttribute('title',T(el.dataset.i18nAria))});
+document.querySelectorAll('[data-i18n-alt]').forEach(el=>{el.setAttribute('alt',T(el.dataset.i18nAlt))});
+const ib=document.getElementById('infoBox');if(ib)ib.innerHTML=LANG==='en'?INFO_EN:INFO_HE;
+const ab=document.getElementById('aboutBox');if(ab)ab.innerHTML=LANG==='en'?ABOUT_EN:ABOUT_HE;
+const lt=document.getElementById('letterToggle'),li=document.getElementById('letterImg');if(lt&&li)lt.textContent=T(li.getAttribute('src')==='rebbe-letter-clear.jpg'?'letterShowOrig':'letterShowClear');
+}
+function setLang(l){if(l===LANG)return;LANG=l;window.BRIT_LANG_CUR=l;try{localStorage.setItem('brit-lang',l)}catch(e){}applyLang();render();try{calcBrit()}catch(e){}try{const zo=document.getElementById('zout');if(zo&&!zo.hidden)calcZman(true,true)}catch(e){}}
 const isVis=(i,j)=>{const k=i+'-'+j;return !HID[k]&&!OPT[k]};const isDone=(i,j)=>{const k=i+'-'+j;return MG[k]?MG[k].every(x=>state[x]):!!state[k]};const setDone=(k,v)=>{(MG[k]||[k]).forEach(x=>{state[x]=v})};
 const key='bris-checklist-v4';let state={};let hist=[];try{const saved=JSON.parse(localStorage.getItem(key)||'{}');state=saved.state||{};hist=Array.isArray(saved.hist)?saved.hist:[]}catch(e){}
 function save(){localStorage.setItem(key,JSON.stringify({state,hist}));upd()}
-function applyChange(k,v,label){setDone(k,v);hist.push({k,v,label,t:Date.now()});if(hist.length>30)hist.shift();save();toast((v?'סומן: ':'הסימון הוסר: ')+label)}
-function undoLast(){const h=hist.pop();if(!h)return;if(h.reset){state=h.prev}else if(h.v){(MG[h.k]||[h.k]).forEach(x=>{delete state[x]})}else{setDone(h.k,true)}save();toast('הפעולה בוטלה')}
-function resetAll(){if(!Object.keys(state).some(k=>state[k])){toast('אין סימונים לאיפוס');return}if(!confirm('לאפס את כל סימוני המשימות? כל הסימונים יימחקו. אפשר יהיה לבטל מיד אחרי האיפוס.'))return;hist.push({reset:true,prev:state,t:Date.now()});if(hist.length>30)hist.shift();state={};save();toast('כל הסימונים אופסו')}
+function applyChange(k,v,label){setDone(k,v);hist.push({k,v,label,t:Date.now()});if(hist.length>30)hist.shift();save();toast((v?T('toastMarked'):T('toastUnmarked'))+label)}
+function undoLast(){const h=hist.pop();if(!h)return;if(h.reset){state=h.prev}else if(h.v){(MG[h.k]||[h.k]).forEach(x=>{delete state[x]})}else{setDone(h.k,true)}save();toast(T('toastUndone'))}
+function resetAll(){if(!Object.keys(state).some(k=>state[k])){toast(T('toastNone'));return}if(!confirm(T('resetConfirm')))return;hist.push({reset:true,prev:state,t:Date.now()});if(hist.length>30)hist.shift();state={};save();toast(T('toastResetDone'))}
 let toastTimer=null;function hideToast(){const el=document.getElementById('toast');if(el)el.classList.remove('show')}
-function toast(msg){let el=document.getElementById('toast');if(!el){el=document.createElement('div');el.id='toast';el.setAttribute('role','status');document.body.append(el)}el.innerHTML='';const s=document.createElement('span');s.textContent=msg;el.append(s);if(hist.length){const b=document.createElement('button');b.type='button';b.textContent='ביטול';b.onclick=()=>{hideToast();undoLast()};el.append(b)}el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(hideToast,6000)}
-function upd(){let t=0,d=0,ar=0;data.forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((_,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++});t+=st;d+=sd;if(st&&sd===st)ar++;const el=document.getElementById('c'+i);if(el)el.textContent=sd===st?'הושלם':sd+' מתוך '+st;const tl=el&&el.closest('.tile');if(tl){tl.classList.toggle('done',sd===st);tl.style.setProperty('--w',(st?100*sd/st:0)+'%')}});document.querySelectorAll('#areaPanel label.task[data-k]').forEach(l=>{const k=l.dataset.k,ij=k.split('-');const c=l.querySelector('input');const v=OPT[k]?!!state[k]:isDone(+ij[0],+ij[1]);if(c.checked!==v)c.checked=v});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%';const rg=document.getElementById('ring');if(rg)rg.style.setProperty('--p',p);renderHome()}
-function renderHome(){try{const dEl=document.getElementById('homeDate');if(!dEl)return;let t=0,d=0,ar=0;const nexts=[];data.forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((tk,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++;else if(nexts.length<3)nexts.push({i,j,sec:sec[0],tk:TXT[i+'-'+j]||tk})});t+=st;d+=sd;if(st&&sd===st)ar++});
+function toast(msg){let el=document.getElementById('toast');if(!el){el=document.createElement('div');el.id='toast';el.setAttribute('role','status');document.body.append(el)}el.innerHTML='';const s=document.createElement('span');s.textContent=msg;el.append(s);if(hist.length){const b=document.createElement('button');b.type='button';b.textContent=T('undoBtn');b.onclick=()=>{hideToast();undoLast()};el.append(b)}el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(hideToast,6000)}
+function upd(){let t=0,d=0,ar=0;D().forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((_,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++});t+=st;d+=sd;if(st&&sd===st)ar++;const el=document.getElementById('c'+i);if(el)el.textContent=sd===st?T('countDone'):sd+T('countOf')+st;const tl=el&&el.closest('.tile');if(tl){tl.classList.toggle('done',sd===st);tl.style.setProperty('--w',(st?100*sd/st:0)+'%')}});document.querySelectorAll('#areaPanel label.task[data-k]').forEach(l=>{const k=l.dataset.k,ij=k.split('-');const c=l.querySelector('input');const v=OPT[k]?!!state[k]:isDone(+ij[0],+ij[1]);if(c.checked!==v)c.checked=v});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%';const rg=document.getElementById('ring');if(rg)rg.style.setProperty('--p',p);renderHome()}
+function renderHome(){try{const dEl=document.getElementById('homeDate');if(!dEl)return;let t=0,d=0,ar=0;const nexts=[];D().forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((tk,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++;else if(nexts.length<3)nexts.push({i,j,sec:sec[0],tk:TT(i+'-'+j)||tk})});t+=st;d+=sd;if(st&&sd===st)ar++});
 let bd=null;try{bd=JSON.parse(localStorage.getItem('brit-date')||'null')}catch(e){}
-if(bd&&bd.user===true&&bd.label){let extra='';try{const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'}));const today=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());const p=bd.iso.split('-').map(Number);const days=Math.round((Date.UTC(p[0],p[1]-1,p[2])-today)/864e5);extra=days>1?' · בעוד '+days+' ימים':days===1?' · מחר':days===0?' · היום':''}catch(e){}dEl.textContent='ברית: '+bd.label+extra;dEl.classList.remove('nodate');dEl.onclick=null}else{dEl.textContent='הוסיפו תאריך לידה ויישוב כדי לראות את מועד הברית ›';dEl.classList.add('nodate');dEl.onclick=()=>document.getElementById('homeOpenCalc').click()}
-document.getElementById('homeLeft').textContent=d===t?'כל הצעדים סומנו. מזל טוב!':'הושלמו '+d+' מתוך '+t+' צעדים';
+if(bd&&bd.user===true&&bd.label){let extra='';try{const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'}));const today=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());const p=bd.iso.split('-').map(Number);const days=Math.round((Date.UTC(p[0],p[1]-1,p[2])-today)/864e5);extra=days>1?T('inDaysA')+days+T('inDaysB'):days===1?T('tomorrowTxt'):days===0?T('todayTxt'):''}catch(e){}dEl.textContent=T('britPrefix')+bd.label+extra;dEl.classList.remove('nodate');dEl.onclick=null}else{dEl.textContent=T('noDateCta');dEl.classList.add('nodate');dEl.onclick=()=>document.getElementById('homeOpenCalc').click()}
+document.getElementById('homeLeft').textContent=d===t?T('allDone'):(T('stepsDone1')+d+T('countOf')+t+T('stepsDone2'));
 const hl=document.getElementById('homeList'),bn=document.getElementById('homeOpenNext');hl.innerHTML='';
-const bk=document.getElementById('homeBack');if(bk){const last=hist[hist.length-1];bk.hidden=!last;if(last){const lbl=last.reset?'ביטול האיפוס':(last.label||'');bk.textContent='\u21a9 '+(lbl.length>24?lbl.slice(0,24)+'\u2026':lbl);bk.onclick=undoLast}}
-if(nexts[0]){const n=nexts[0];const lb=document.createElement('label');lb.className='task hrow';const cb=document.createElement('input');cb.type='checkbox';cb.onchange=()=>{applyChange(n.i+'-'+n.j,cb.checked,n.tk)};const sp=document.createElement('span');sp.textContent=n.tk;const sm=document.createElement('small');sm.textContent=n.sec;sp.append(sm);lb.append(cb,sp);hl.append(lb);if(nexts.length>1){const af=document.createElement('div');af.className='after';af.textContent='אחר כך: '+nexts.slice(1).map(x=>x.tk).join(' · ');hl.append(af)}}
+const bk=document.getElementById('homeBack');if(bk){const last=hist[hist.length-1];bk.hidden=!last;if(last){const lbl=last.reset?T('undoReset'):(last.label||'');bk.textContent='\u21a9 '+(lbl.length>24?lbl.slice(0,24)+'\u2026':lbl);bk.onclick=undoLast}}
+if(nexts[0]){const n=nexts[0];const lb=document.createElement('label');lb.className='task hrow';const cb=document.createElement('input');cb.type='checkbox';cb.onchange=()=>{applyChange(n.i+'-'+n.j,cb.checked,n.tk)};const sp=document.createElement('span');sp.textContent=n.tk;const sm=document.createElement('small');sm.textContent=n.sec;sp.append(sm);lb.append(cb,sp);hl.append(lb);if(nexts.length>1){const af=document.createElement('div');af.className='after';af.textContent=T('afterNext')+nexts.slice(1).map(x=>x.tk).join(' · ');hl.append(af)}}
 if(nexts.length){bn.hidden=false;const n=nexts[0];bn.onclick=()=>openArea(n.i,n.i+'-'+n.j)}else bn.hidden=true;
-document.getElementById('homeOpenCalc').onclick=()=>{const c=[...document.querySelectorAll('details')].find(x=>x.textContent.includes('מחשבון זמן ברית'));if(c){c.open=true;c.scrollIntoView({behavior:'smooth',block:'start'})}}}catch(e){}}
+document.getElementById('homeOpenCalc').onclick=()=>{const c=document.getElementById('zmanSec');if(c){c.open=true;c.scrollIntoView({behavior:'smooth',block:'start'})}}}catch(e){}}
 window.renderHome=renderHome;
 function mkTask(i,j,txt,opt){const k=i+'-'+j;const lb=document.createElement('label');lb.className='task';lb.dataset.k=k;const cb=document.createElement('input');cb.type='checkbox';cb.checked=opt?!!state[k]:isDone(i,j);cb.onchange=()=>{applyChange(k,cb.checked,txt)};const sp=document.createElement('span');sp.textContent=txt;lb.append(cb,sp);return lb}
 let curArea=-1;
 function syncChips(){const a=document.getElementById('chipA'),b=document.getElementById('chipAll');if(a)a.classList.toggle('on',curArea!==-2);if(b)b.classList.toggle('on',curArea===-2)}
 function closeArea(){curArea=-1;const pn=document.getElementById('areaPanel');pn.hidden=true;pn.innerHTML='';document.querySelectorAll('.tile').forEach(x=>x.classList.remove('sel'));syncChips()}
-function openArea(i,key){const s=data[i];const pn=document.getElementById('areaPanel');curArea=i;pn.innerHTML='';const h=document.createElement('div');h.className='apanel-h';const tt=document.createElement('span');tt.textContent=s[0];const x=document.createElement('button');x.type='button';x.textContent='×';x.setAttribute('aria-label','סגור');x.onclick=closeArea;h.append(tt,x);pn.append(h);const opts=[];s[1].forEach((t,j)=>{const k=i+'-'+j;if(OPT[k]){opts.push([j,t]);return}if(!isVis(i,j))return;pn.append(mkTask(i,j,TXT[k]||t,false))});if(opts.length){const oh=document.createElement('div');oh.className='opt-h';oh.textContent='לבחירתכם · לא נספר בהתקדמות';pn.append(oh);opts.forEach(o=>pn.append(mkTask(i,o[0],o[1],true)))}const tl=document.querySelectorAll('.tile')[i];if(tl)tl.after(pn);pn.hidden=false;document.querySelectorAll('.tile').forEach((el,k)=>el.classList.toggle('sel',k===i));syncChips();const tg=key&&pn.querySelector('label.task[data-k="'+key+'"]');(tg||pn).scrollIntoView({behavior:'smooth',block:'center'})}
-function openAll(){const pn=document.getElementById('areaPanel');curArea=-2;pn.innerHTML='';const h=document.createElement('div');h.className='apanel-h';const tt=document.createElement('span');tt.textContent='כל המשימות';const x=document.createElement('button');x.type='button';x.textContent='×';x.setAttribute('aria-label','סגור');x.onclick=closeArea;h.append(tt,x);pn.append(h);data.forEach((s,i)=>{const sh=document.createElement('div');sh.className='opt-h sec-h';sh.textContent=s[0];pn.append(sh);const opts=[];s[1].forEach((t,j)=>{const k=i+'-'+j;if(OPT[k]){opts.push([j,t]);return}if(!isVis(i,j))return;pn.append(mkTask(i,j,TXT[k]||t,false))});opts.forEach(o=>pn.append(mkTask(i,o[0],o[1]+' (לבחירתכם)',true)))});document.getElementById('areaGrid').before(pn);pn.hidden=false;document.querySelectorAll('.tile').forEach(el=>el.classList.remove('sel'));syncChips();pn.scrollIntoView({behavior:'smooth',block:'start'})}
-function render(){const g=document.getElementById('areaGrid');g.innerHTML='';data.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.className='tile';b.innerHTML='<span class="tt"></span><span class="tc" id="c'+i+'"></span><i class="tbar"><b></b></i>';b.querySelector('.tt').textContent=s[0];b.onclick=()=>curArea===i?closeArea():openArea(i);g.append(b)});let cw=document.getElementById('chips');if(!cw){cw=document.createElement('div');cw.id='chips';cw.className='chips';cw.innerHTML='<button type="button" class="chip" id="chipA">לפי תחום</button><button type="button" class="chip" id="chipAll">כל המשימות</button>';g.before(cw)}document.getElementById('chipA').onclick=()=>closeArea();document.getElementById('chipAll').onclick=()=>curArea===-2?closeArea():openAll();syncChips();upd()}
+function openArea(i,key){const s=D()[i];const pn=document.getElementById('areaPanel');curArea=i;pn.innerHTML='';const h=document.createElement('div');h.className='apanel-h';const tt=document.createElement('span');tt.textContent=s[0];const x=document.createElement('button');x.type='button';x.textContent='×';x.setAttribute('aria-label',T('closeAria'));x.onclick=closeArea;h.append(tt,x);pn.append(h);const opts=[];s[1].forEach((t,j)=>{const k=i+'-'+j;if(OPT[k]){opts.push([j,t]);return}if(!isVis(i,j))return;pn.append(mkTask(i,j,TT(k)||t,false))});if(opts.length){const oh=document.createElement('div');oh.className='opt-h';oh.textContent=T('optHdr');pn.append(oh);opts.forEach(o=>pn.append(mkTask(i,o[0],o[1],true)))}const tl=document.querySelectorAll('.tile')[i];if(tl)tl.after(pn);pn.hidden=false;document.querySelectorAll('.tile').forEach((el,k)=>el.classList.toggle('sel',k===i));syncChips();const tg=key&&pn.querySelector('label.task[data-k="'+key+'"]');(tg||pn).scrollIntoView({behavior:'smooth',block:'center'})}
+function openAll(){const pn=document.getElementById('areaPanel');curArea=-2;pn.innerHTML='';const h=document.createElement('div');h.className='apanel-h';const tt=document.createElement('span');tt.textContent=T('allTasks');const x=document.createElement('button');x.type='button';x.textContent='×';x.setAttribute('aria-label',T('closeAria'));x.onclick=closeArea;h.append(tt,x);pn.append(h);D().forEach((s,i)=>{const sh=document.createElement('div');sh.className='opt-h sec-h';sh.textContent=s[0];pn.append(sh);const opts=[];s[1].forEach((t,j)=>{const k=i+'-'+j;if(OPT[k]){opts.push([j,t]);return}if(!isVis(i,j))return;pn.append(mkTask(i,j,TT(k)||t,false))});opts.forEach(o=>pn.append(mkTask(i,o[0],o[1]+T('optSuffix'),true)))});document.getElementById('areaGrid').before(pn);pn.hidden=false;document.querySelectorAll('.tile').forEach(el=>el.classList.remove('sel'));syncChips();pn.scrollIntoView({behavior:'smooth',block:'start'})}
+function render(){const g=document.getElementById('areaGrid');g.innerHTML='';D().forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.className='tile';b.innerHTML='<span class="tt"></span><span class="tc" id="c'+i+'"></span><i class="tbar"><b></b></i>';b.querySelector('.tt').textContent=s[0];b.onclick=()=>curArea===i?closeArea():openArea(i);g.append(b)});let cw=document.getElementById('chips');if(!cw){cw=document.createElement('div');cw.id='chips';cw.className='chips';cw.innerHTML='<button type="button" class="chip" id="chipA"></button><button type="button" class="chip" id="chipAll"></button>';g.before(cw)}document.getElementById('chipA').textContent=T('chipByArea');document.getElementById('chipAll').textContent=T('chipAll');document.getElementById('chipA').onclick=()=>closeArea();document.getElementById('chipAll').onclick=()=>curArea===-2?closeArea():openAll();syncChips();upd()}
 function waNum(){const raw=($c('wanum')?.value||'').replace(/\D/g,'');if(!raw)return'';let n=raw;if(n.charAt(0)==='0')n='972'+n.slice(1);return /^\d{9,15}$/.test(n)?n:''}
 function waLink(t){return 'https://wa.me/'+waNum()+'?text='+encodeURIComponent(t)}
 const DEF_DONATE=BRIT_DONATIONS['default'];
 function cleanDonateKey(k){return typeof k==='string'&&/^[a-z0-9][a-z0-9-]{0,39}$/.test(k)&&Object.prototype.hasOwnProperty.call(BRIT_DONATIONS,k)?k:null}
 function getDonateKey(){try{return cleanDonateKey(localStorage.getItem('brit-donate-key'))||'default'}catch(e){return 'default'}}
 function getDonate(){return BRIT_DONATIONS[getDonateKey()]||DEF_DONATE}
-function setDonateUI(){const a=document.getElementById('donate-link'),u=getDonate();if(a)a.href=u;const d=document.getElementById('donate-dom');if(d){try{d.textContent='יעד התרומה: '+new URL(u).hostname+(getDonateKey()==='default'?' (ברירת מחדל)':' (מאושר)')}catch(e){d.textContent=''}}}
+function setDonateUI(){const a=document.getElementById('donate-link'),u=getDonate();if(a)a.href=u;const d=document.getElementById('donate-dom');if(d){try{d.textContent=T('donateTarget')+new URL(u).hostname+(getDonateKey()==='default'?T('donateDefault'):T('donateApproved'))}catch(e){d.textContent=''}}}
 function importDonate(){
 try{localStorage.removeItem('brit-donate')}catch(e){}
 const p=new URLSearchParams(location.search);
-if(p.has('donate')){const b=document.getElementById('donate-import');if(b){b.hidden=false;b.firstElementChild.innerHTML='הקישור כלל יעד תרומה שאינו ברשימה המאושרת, ולכן הוחזרה ברירת המחדל: <b dir="ltr">'+new URL(DEF_DONATE).hostname+'</b>. יעדי תרומה נקבעים רק על ידי בעל האתר.'}setDonateUI();return}
+if(p.has('donate')){const b=document.getElementById('donate-import');if(b){b.hidden=false;b.firstElementChild.innerHTML=T('donateBadA')+'<b dir="ltr">'+new URL(DEF_DONATE).hostname+'</b>'+T('donateBadB')}setDonateUI();return}
 const key=cleanDonateKey(p.get('c'));if(!key){setDonateUI();return}
 try{if(key==='default')localStorage.removeItem('brit-donate-key');else localStorage.setItem('brit-donate-key',key)}catch(e){}
 const b=document.getElementById('donate-import');if(b&&key!=='default'){b.hidden=false;const d=document.getElementById('donate-domain');if(d){try{d.textContent=new URL(BRIT_DONATIONS[key]).hostname}catch(e){d.textContent=''}}}
 setDonateUI()}
-function shareApp(){const base='https://efi770.github.io/brit-checklist/';const k=getDonateKey();const url=k==='default'?base:base+'?c='+encodeURIComponent(k);const t='צ׳קליסט לברית חב״דית - הכנות, מנהגים ומחשבונים';
-if(navigator.share){navigator.share({title:'צ׳קליסט לברית חב״דית',text:t,url:url}).catch(()=>{})}
-else{const done=()=>alert('הקישור לאפליקציה הועתק - אפשר להדביק ולשתף'),fb=()=>prompt('העתק את הקישור:',url);try{navigator.clipboard.writeText(t+'\n'+url).then(done).catch(fb)}catch(e){fb()}}}
-function focusWaNum(){const d=$c('wanum');if(!d)return;const det=d.closest('details');if(det)det.open=true;d.scrollIntoView({block:'center'});alert('כדי לשלוח בוואטסאפ, הזן קודם את מספר הוואטסאפ שלך כאן');d.focus()}
-function shareWA(){const n=waNum();if(!n){focusWaNum();return}let t='📋 צ׳קליסט ברית\n';data.forEach((s,i)=>{const vj=s[1].map((_,j)=>j).filter(j=>isVis(i,j));const done=vj.filter(j=>isDone(i,j)).length;t+='▸ '+s[0]+' ('+done+'/'+vj.length+')\n'});window.open('https://wa.me/'+n+'?text='+encodeURIComponent(t))}
+function shareApp(){const base='https://efi770.github.io/brit-checklist/';const k=getDonateKey();const url=k==='default'?base:base+'?c='+encodeURIComponent(k);const t=T('shareText');
+if(navigator.share){navigator.share({title:T('appTitle'),text:t,url:url}).catch(()=>{})}
+else{const done=()=>alert(T('shareCopied')),fb=()=>prompt(T('sharePrompt'),url);try{navigator.clipboard.writeText(t+'\n'+url).then(done).catch(fb)}catch(e){fb()}}}
+function focusWaNum(){const d=$c('wanum');if(!d)return;const det=d.closest('details');if(det)det.open=true;d.scrollIntoView({block:'center'});alert(T('waNeedNum'));d.focus()}
+function shareWA(){const n=waNum();if(!n){focusWaNum();return}let t=T('waSumTitle')+'\n';D().forEach((s,i)=>{const vj=s[1].map((_,j)=>j).filter(j=>isVis(i,j));const done=vj.filter(j=>isDone(i,j)).length;t+='▸ '+s[0]+' ('+done+'/'+vj.length+')\n'});window.open('https://wa.me/'+n+'?text='+encodeURIComponent(t))}
 const $c=id=>document.getElementById(id),nC=id=>parseFloat($c(id)?.value)||0,fmtC=x=>Math.round(x).toLocaleString('he-IL');
 const calcIds=[];for(let i=0;i<3;i++)calcIds.push('a'+i,'k'+i,'p'+i);calcIds.push('ca','ck','bf','ts','hl','fx','rs','bd','dt','tm','pl','sy');
-function msgsCalc(){const v=i=>$c(i)?.value.trim()||'___';const m1=`בס"ד\nבשמחה ובהודיה לה' נודיע כי הברית תתקיים אי"ה ב${v('dt')} בשעה ${v('tm')} ב${v('pl')}.\nמי שיוכל להשתתף ישמח אותנו.`;if($c('m1'))$c('m1').value=m1;if($c('wa'))$c('wa').href=waLink(m1)}
+function msgsCalc(){const v=i=>$c(i)?.value.trim()||'___';const m1=LANG==='en'?`B"H\nWith joy and gratitude to God we announce that the brit will take place, God willing, on ${v('dt')} at ${v('tm')} at ${v('pl')}.\nAnyone who can join us will make us happy.`:`בס"ד\nבשמחה ובהודיה לה' נודיע כי הברית תתקיים אי"ה ב${v('dt')} בשעה ${v('tm')} ב${v('pl')}.\nמי שיוכל להשתתף ישמח אותנו.`;if($c('m1'))$c('m1').value=m1;if($c('wa'))$c('wa').href=waLink(m1)}
 function cpCalc(id){const t=$c(id);if(!t)return;t.select();try{navigator.clipboard.writeText(t.value)}catch(e){}}
-function calcBrit(){if(!$c('calc-out'))return;let ea=0,ek=0,inv=0,h='';const names=['משפחה','יישוב','כללי'];
-for(let i=0;i<3;i++){const a=nC('a'+i),k=Math.min(nC('k'+i),a),p=nC('p'+i)/100;const ex=a*p,exk=k*p;inv+=a;ea+=ex-exk;ek+=exk;h+=`<div class="calc-r"><span>${names[i]}: צפויים</span><b>${Math.round(ex)} מתוך ${a}</b></div>`}
+function calcBrit(){if(!$c('calc-out'))return;let ea=0,ek=0,inv=0,h='';const names=[T('rowFamily'),T('rowTown'),T('rowGeneral')];
+for(let i=0;i<3;i++){const a=nC('a'+i),k=Math.min(nC('k'+i),a),p=nC('p'+i)/100;const ex=a*p,exk=k*p;inv+=a;ea+=ex-exk;ek+=exk;h+=`<div class="calc-r"><span>${names[i]}: ${T('calcExpected')}</span><b>${Math.round(ex)} ${T('calcOf')} ${a}</b></div>`}
 const bf=1+nC('bf')/100,pa=Math.ceil(ea*bf),pk=Math.ceil(ek*bf);const tabs=Math.ceil((ea+ek)*bf/(nC('ts')||10));
 const food=pa*nC('ca')+pk*nC('ck'),hall=$c('sy')?.checked?0:nC('hl'),total=food+hall+nC('fx');
 const res=nC('bd')*nC('rs')/100,left=nC('bd')-res-total;
-h+=`<div class="calc-r"><span>סה״כ צפויים</span><b>${Math.round(ea+ek)} מתוך ${inv}</b></div><div class="calc-r"><span>מנות מבוגרים / ילדים</span><b>${pa} / ${pk}</b></div><div class="calc-r"><span>שולחנות</span><b>${tabs}</b></div><div class="calc-r"><span>עלות אוכל</span><b>₪${fmtC(food)}</b></div><div class="calc-r"><span>${left>=0?'נשאר':'חריגה'}</span><b>₪${fmtC(Math.abs(left))}</b></div>`;
-$c('calc-out').innerHTML=h;$c('calc-tot').innerHTML=`סה״כ: <b>₪${fmtC(total)}</b>`;msgsCalc();
+h+=`<div class="calc-r"><span>${T('calcTotalExp')}</span><b>${Math.round(ea+ek)} ${T('calcOf')} ${inv}</b></div><div class="calc-r"><span>${T('calcPortions')}</span><b>${pa} / ${pk}</b></div><div class="calc-r"><span>${T('calcTables')}</span><b>${tabs}</b></div><div class="calc-r"><span>${T('calcFoodCost')}</span><b>₪${fmtC(food)}</b></div><div class="calc-r"><span>${left>=0?T('calcLeft'):T('calcOver')}</span><b>₪${fmtC(Math.abs(left))}</b></div>`;
+$c('calc-out').innerHTML=h;$c('calc-tot').innerHTML=`${T('calcTotal')}<b>₪${fmtC(total)}</b>`;msgsCalc();
 try{localStorage.setItem('brit-calc',JSON.stringify(calcIds.map(i=>i==='sy'?!!$c(i)?.checked:($c(i)?.value||''))))}catch(e){}}
 function initCalc(){try{const s=JSON.parse(localStorage.getItem('brit-calc')||'null');if(s&&s.length===calcIds.length)calcIds.forEach((i,j)=>{if(!$c(i))return;if(i==='sy')$c(i).checked=!!s[j];else $c(i).value=s[j]})}catch(e){}
 calcIds.forEach(i=>{const el=$c(i);if(el)el.addEventListener('input',calcBrit)});if($c('sy'))$c('sy').addEventListener('change',calcBrit);
 const wn=$c('wanum');if(wn){try{wn.value=localStorage.getItem('brit-wa')||''}catch(e){}wn.addEventListener('input',()=>{try{localStorage.setItem('brit-wa',wn.value)}catch(e){}msgsCalc()})}
 const waA=$c('wa');if(waA)waA.addEventListener('click',e=>{if(!waNum()){e.preventDefault();focusWaNum()}})
 calcBrit()}
-render();initCalc();importDonate();window.__booted=1;(function(){var b=document.getElementById("bootLoader");if(b){b.classList.add("done");setTimeout(function(){b.remove()},400)}})();
+const langBtn=document.getElementById('langBtn');if(langBtn)langBtn.onclick=()=>setLang(LANG==='en'?'he':'en');
+const letterTgl=document.getElementById('letterToggle');if(letterTgl)letterTgl.onclick=()=>{const i=document.getElementById('letterImg'),c=i.getAttribute('src')==='rebbe-letter-clear.jpg';i.src=c?'rebbe-letter.jpg':'rebbe-letter-clear.jpg';letterTgl.textContent=T(c?'letterShowClear':'letterShowOrig')};
+applyLang();render();initCalc();importDonate();window.__booted=1;(function(){var b=document.getElementById("bootLoader");if(b){b.classList.add("done");setTimeout(function(){b.remove()},400)}})();
 if('serviceWorker' in navigator){const hadCtrl=!!navigator.serviceWorker.controller;let refreshing=false;
 navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!hadCtrl||refreshing)return;refreshing=true;location.reload()});
 navigator.serviceWorker.register('sw.js').then(r=>{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')r.update().catch(()=>{})})}).catch(()=>{})}
