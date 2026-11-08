@@ -19,9 +19,22 @@ function zheb(dt,opt){return new Intl.DateTimeFormat("he-u-ca-hebrew",{timeZone:
 function zisYT(dt){const p=Object.fromEntries(new Intl.DateTimeFormat("en-u-ca-hebrew",{timeZone:"UTC",day:"numeric",month:"long"}).formatToParts(dt).map(x=>[x.type,x.value]));const d=+p.day,m=p.month;return (m.startsWith("Tishri")&&[1,2,10,15,22].includes(d))||(m==="Nisan"&&[15,21].includes(d))||(m==="Sivan"&&d===6)}
 const ZPL={"ירושלים":[31.7683,35.2137],"תל אביב-יפו":[32.0853,34.7818],"חיפה":[32.794,34.9896],"באר שבע":[31.253,34.7915],"ראשון לציון":[31.973,34.7925],"פתח תקווה":[32.0841,34.8878],"אשדוד":[31.8044,34.6553],"נתניה":[32.3215,34.8532],"בני ברק":[32.0807,34.8338],"רחובות":[31.8928,34.8113],"כפר רתמים":[31.03,34.72],"רביבים":[31.0239,34.7217],"אילת":[29.5577,34.9519],"צפת":[32.9646,35.496],"טבריה":[32.7959,35.5312],"מודיעין-מכבים-רעות":[31.8969,35.0095],"בית שמש":[31.7469,34.9881],"אשקלון":[31.6688,34.5743],"נס ציונה":[31.9293,34.7987],"רמת גן":[32.0684,34.8248],"חולון":[32.0158,34.7874],"בת ים":[32.0231,34.7503],"הרצליה":[32.1663,34.8436],"כפר סבא":[32.178,34.9066],"רעננה":[32.1848,34.8713],"חדרה":[32.434,34.9196],"נהריה":[33.0089,35.0981],"עכו":[32.9281,35.0826],"כרמיאל":[32.9144,35.2927],"עפולה":[32.6078,35.2897],"יבנה":[31.8781,34.7394],"גדרה":[31.8144,34.7783],"דימונה":[31.0686,35.0333],"ערד":[31.2589,35.2128],"נתיבות":[31.4173,34.5885],"שדרות":[31.525,34.5964],"אופקים":[31.3141,34.6203]};
 (function(){const dl=document.getElementById("zplaces");if(dl)Object.keys(ZPL).forEach(k=>{const o=document.createElement("option");o.value=k;dl.appendChild(o)})})();
-function zgetCoords(){const el=document.getElementById('zloc'),c=ZPL[el.value];return c||null}
-let zmanRequest=0;
-function zerror(text){const out=document.getElementById('zout');out.textContent=text;out.hidden=false}
+let zsel={lat:32.0853,lon:34.7818,label:"תל אביב-יפו"},zseq=0,ztimer=0;
+function zsetPlace(lat,lon,label){zsel={lat:+lat,lon:+lon,label};const el=document.getElementById("zloc");if(el)el.value=label;const r=document.getElementById("zresults");if(r)r.innerHTML=""}
+function zlocalMatches(q){return Object.keys(ZPL).filter(k=>k.includes(q)).slice(0,5).map(k=>({label:k,lat:ZPL[k][0],lon:ZPL[k][1],local:true}))}
+function zrender(items,q){const r=document.getElementById("zresults");if(!r)return;
+if(!items.length){r.innerHTML='<div style="padding:8px;font-size:13px;color:var(--mu)">'+(q.length<2?'הקלד לפחות שתי אותיות':'לא נמצא יישוב')+"</div>";return}
+r.innerHTML=items.map((it,i)=>'<button type="button" data-i="'+i+'" style="display:block;width:100%;text-align:right;padding:9px;border:0;border-bottom:1px solid var(--bd);background:var(--cs);color:var(--tx);font:inherit;font-size:14px;cursor:pointer">'+it.label.replace(/</g,"&lt;")+"</button>").join("");
+r.querySelectorAll("button").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.i];zsetPlace(it.lat,it.lon,it.label);calcZman(true)})}
+function zsearch(q){const seq=++zseq;const local=zlocalMatches(q);
+if(q.length<2){zrender(local,q);return}
+fetch("https://nominatim.openstreetmap.org/search?format=jsonv2&countrycodes=il&accept-language=he&limit=8&featureType=settlement&q="+encodeURIComponent(q),{signal:AbortSignal.timeout(8000)}).then(r=>r.ok?r.json():[]).then(rows=>{
+if(seq!==zseq)return;
+const seen=new Set(local.map(x=>x.label));
+const remote=rows.map(r=>{const parts=String(r.display_name||"").split(",").map(x=>x.trim()).filter(Boolean);const label=parts.slice(0,2).join(", ")||r.name;return{label,lat:+r.lat,lon:+r.lon}}).filter(it=>it.label&&!seen.has(it.label));
+zrender(local.concat(remote).slice(0,8),q);
+}).catch(()=>{if(seq===zseq)zrender(local,q)})}
+function zgetCoords(){return zsel&&zsel.lat!=null?zsel:null}
 async function fetchHebcalZmanim(lat,lon,dateStr){
 try{
 const url="https://www.hebcal.com/zmanim?cfg=json&latitude="+lat+"&longitude="+lon+"&tzid=Asia/Jerusalem&date="+dateStr;
@@ -36,7 +49,7 @@ function calcZman(auto){
 const request=++zmanRequest;
 const birthEl=document.getElementById("zbirth");if(!birthEl)return;
 const v=birthEl.value;if(!v){zerror('יש למלא תאריך ושעת לידה.');return}
-const[dp,tp]=v.split("T"),[y,m,d]=dp.split("-").map(Number),c=zgetCoords();if(!c){zerror('בחר עיר בישראל מהרשימה. חישוב מחוץ לישראל אינו נתמך.');return}
+const[dp,tp]=v.split("T"),[y,m,d]=dp.split("-").map(Number),c=zgetCoords();if(!c){zerror('הקלד שם יישוב בישראל ובחר אותו מהרשימה.');return}
 const[lat,lon]=c;
 const finish=(S,T,srcLabel)=>{
 if(request!==zmanRequest)return;
@@ -89,7 +102,14 @@ const el=document.getElementById("zbirth");
 if(!el)return;
 el.value=n.getFullYear()+"-"+p(n.getMonth()+1)+"-"+p(n.getDate())+"T12:00";
 el.onchange=()=>calcZman(true);
-const loc=document.getElementById("zloc");if(loc){loc.onchange=()=>calcZman(true);loc.oninput=()=>{if(ZPL[loc.value])calcZman(true)}};
+const loc=document.getElementById("zloc");
+if(loc){
+loc.addEventListener("input",()=>{zsel=null;clearTimeout(ztimer);const q=loc.value.trim();
+if(ZPL[q]){zsetPlace(ZPL[q][0],ZPL[q][1],q);calcZman(true);return}
+ztimer=setTimeout(()=>zsearch(q),300)});
+loc.addEventListener("focus",()=>{if(loc.value.trim())zsearch(loc.value.trim())});
+document.addEventListener("click",e=>{const r=document.getElementById("zresults");if(r&&e.target!==loc&&!r.contains(e.target))r.innerHTML=""});
+};
 const ss=document.getElementById("zsset");if(ss)ss.onchange=()=>calcZman(false);
 const tz=document.getElementById("ztzet");if(tz)tz.onchange=()=>calcZman(false);
 calcZman(true);

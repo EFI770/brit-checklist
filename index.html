@@ -168,9 +168,9 @@ main{padding:12px;max-width:640px;margin:auto}
 <summary style="background:rgba(180,140,60,.1)"><span>⏰ מחשבון זמן ברית</span><span class="count">לחץ</span></summary>
 <div class="tasks zman-card" style="padding:12px">
 <p style="font-size:12.5px;color:var(--mu);margin-bottom:6px">חישוב יום השמיני - <strong>עזר בלבד</strong>. לאמת מול זמני חב״ד, במיוחד בלידה סביב שקיעה או בין השמשות.</p>
-<label>מיקום בישראל (ערים מהרשימה בלבד)</label>
-<input id="zloc" list="zplaces" value="תל אביב-יפו">
-<datalist id="zplaces"></datalist>
+<label>יישוב בישראל</label>
+<input id="zloc" autocomplete="off" value="תל אביב-יפו" placeholder="הקלד שם יישוב ובחר מהרשימה">
+<div id="zresults" style="position:relative"></div>
 <label>זמן הלידה</label>
 <input type="datetime-local" id="zbirth">
 <div class="zman-row">
@@ -226,7 +226,7 @@ main{padding:12px;max-width:640px;margin:auto}
 <div class="tasks info-box" style="padding:12px;font-size:13.5px;line-height:1.6">
 <p><strong>מה זה?</strong> צ׳קליסט ומחשבונים להכנות לברית מילה במנהג חב״ד - כולל מחשבון יום השמיני ומחשבון הוצאות.</p>
 <p><strong>מקורות:</strong> מנהגי חב״ד; חוברת מידע לידה·ברית·פדיון (ועד אברכי אנ״ש צפת); שבח הברית (הרב שמואל הלוי הורוויץ); שמירת השמחות. הסיכום נעשה לצורכי לימוד והכנה בלבד.</p>
-<p><strong>פרטיות:</strong> המחשבונים והצ׳קליסט פועלים בדפדפן שלך בלבד. הנתונים (סימונים, ערכי מחשבון, מספר וואטסאפ ובחירת יעד תרומה מאושר) נשמרים מקומית במכשיר (localStorage) ואינם נשלחים אלינו. לחישוב זמנים נשלחים ל-Hebcal המיקום והתאריך שהוזנו. יעד התרומה נבחר רק מתוך רשימה שאושרה על ידי בעל האתר, ונכלל בקישור האפליקציה בעת שיתופו.</p>
+<p><strong>פרטיות:</strong> המחשבונים והצ׳קליסט פועלים בדפדפן שלך בלבד. הנתונים (סימונים, ערכי מחשבון, מספר וואטסאפ ובחירת יעד תרומה מאושר) נשמרים מקומית במכשיר (localStorage) ואינם נשלחים אלינו. לחישוב זמנים נשלחים שם היישוב ל-OpenStreetMap (חיפוש) והקואורדינטות והתאריך ל-Hebcal. יעד התרומה נבחר רק מתוך רשימה שאושרה על ידי בעל האתר, ונכלל בקישור האפליקציה בעת שיתופו.</p>
 <p><strong>אחריות:</strong> כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה הלכתית או רפואית - יש לפנות לרב מורה הוראה, למוהל ולרופא.</p>
 <p style="font-size:12px;color:var(--mu);margin-top:8px">הערות ותיקונים: <a href="mailto:habrit770@gmail.com">habrit770@gmail.com</a></p>
 </div>
