@@ -208,7 +208,7 @@ main{padding:0 16px 24px}
 .section summary{padding:17px 18px;font-weight:600}
 .pdf-box,.notice{background:var(--card)!important;border:0!important;border-radius:22px;box-shadow:var(--sh)}
 .allrow{text-align:center;margin:14px 0 0}.allbtn{font:inherit;font-size:13.5px;color:var(--pr);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:9px 18px;cursor:pointer}.sec-h{font-weight:700;font-size:14px;color:var(--pr);padding:20px 0 2px}.sec-h:first-of-type{padding-top:6px}
-.share{display:flex;gap:10px;justify-content:center;margin:26px 0 4px}
+.share{display:flex;gap:10px;justify-content:center;margin:26px 0 4px;flex-wrap:wrap}
 .share button{font:inherit;font-size:13px;color:var(--mu);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:8px 16px;cursor:pointer}
 .task:has(input:checked) span{color:var(--mu)}
 /* v4: Taskflow glass + Superlist clean + original structure */
@@ -266,6 +266,13 @@ body.dark .section,body.dark .pdf-box,body.dark .notice{border-color:rgba(255,25
 .share button{background:var(--card);border:0;color:var(--pr);font-weight:600}
 body.dark .grp{color:var(--tx)}
 .theme-btn{font-size:17px!important}
+#toast{position:fixed;bottom:16px;left:50%;transform:translate(-50%,76px);background:var(--tx);color:var(--cs);border-radius:999px;padding:9px 16px 9px 9px;display:flex;gap:12px;align-items:center;font-size:13.5px;box-shadow:0 12px 32px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:transform .25s,opacity .25s;z-index:9000;max-width:94vw}
+#toast.show{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+#toast span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#toast button{font:inherit;font-size:13px;font-weight:700;color:var(--tx);background:var(--cs);border:0;border-radius:999px;padding:7px 14px;cursor:pointer;flex:none}
+.share button{white-space:nowrap}
+.share button#resetBtn{color:#b23b3b}
+body.dark .share button#resetBtn{color:#e08a8a}
 @media print{
   body *{visibility:hidden}
   .letter-box,.letter-box *{visibility:visible}
@@ -291,7 +298,7 @@ body.dark .grp{color:var(--tx)}
 <div id="homeCard" class="next">
 <div class="home-k">הצעד הבא</div>
 <div id="homeList" class="hlist"></div>
-<div class="home-b"><button type="button" class="print-btn" id="homeOpenNext">פתח את התחום</button><button type="button" class="print-btn ghost" id="homeOpenCalc">מחשבון זמן ברית</button></div>
+<div class="home-b"><button type="button" class="print-btn" id="homeOpenNext">פתח את התחום</button><button type="button" class="print-btn ghost" id="homeBack" hidden>↩ חזרה</button><button type="button" class="print-btn ghost" id="homeOpenCalc">מחשבון זמן ברית</button></div>
 </div>
 <h2 class="grp">התחומים</h2>
 <div id="areaGrid" class="agrid"></div>
@@ -465,8 +472,8 @@ body.dark .grp{color:var(--tx)}
 </div>
 </details>
 
-<div class="share"><button onclick="shareWA()">וואטסאפ</button><button onclick="shareApp()">שיתוף האפליקציה</button></div>
-<div class="footer">גרסה 5.10 · כלי עזר · אינו פסק הלכה</div>
+<div class="share"><button onclick="shareWA()">וואטסאפ</button><button onclick="shareApp()">שיתוף האפליקציה</button><button type="button" id="resetBtn" onclick="resetAll()">איפוס הסימונים</button></div>
+<div class="footer">גרסה 5.11 · כלי עזר · אינו פסק הלכה</div>
 </main>
 <script src="donations.js"></script>
 <script src="localities.js"></script>
@@ -475,19 +482,25 @@ body.dark .grp{color:var(--tx)}
 const data=[['רפואי וקביעת מועד',['מעקב בילירובין והצהבת','אישור רופא','עדכון המוהל','בירור מתי מותר לפי ההלכה','קביעת יום ושעה','וידוא זמינות מוהל','הנחיות האכלה לפני הברית']],['מיקום ולוגיסטיקה',['סגירת בית כנסת/אולם','תיאום עם גבאי','שולחן וכיסא אליהו','מקום למוהל','ישיבה גברים/נשים','מיזוג ותאורה','חניה','אחראי ניקיון']],['כיבודים ותפקידים',['בחירת סנדק','קוואטער וקוואטערין','כיסא אליהו','הבאת התינוק','עמידה לברכות','מברך על הכוס וקורא השם','רשימת כיבודים','תיאום עם המוהל']],['מנהגי חב״ד',['לימוד חסידות','מאמר בבוקר הברית','מאמר/שיחה בסעודה','מנהגי ליל ברית עם רב','י״ב פסוקים','לחיים והתוועדות','ניגונים חב״דיים','דבר תורה']],['ציוד לברית',['טלית','כיפות','יין/מיץ ענבים','גביע','בשמים','סידור ברית','חיתולים','בגדים להחלפה','שמיכה','מוצץ','ציוד לפי הוראות מוהל']],['סעודת מצווה',['מספר מוזמנים','קייטרינג/אוכל','תפריט','חלות','נטלות','יין ללחיים','שתייה','צלחות וסכום','מפות','כיבוד ילדים','כשרות','זימון']],['הזמנות',['עדכון שהברית נדחתה','הודעה על תאריך חדש','הזמנה לוואטסאפ','קרובים מרחוק','מכובדים וסנדק','מיקום ושעה','וידוא הגעה']],['ביום הברית',['אישור רפואי סופי','הגעת מוהל וסנדק','הכנת התינוק','הבאת ציוד','סידור כיסא אליהו','חלוקת כיבודים','צילום','לימוד בסעודה','הנחיות אחרי','מעקב עם מוהל']]];
 const MG={'4-6':['4-6','4-7','4-8','4-9'],'5-1':['5-1','5-2'],'5-7':['5-7','5-8'],'6-2':['6-2','6-5']};const HID={};Object.keys(MG).forEach(k=>MG[k].forEach(x=>{if(x!==k)HID[x]=1}));const OPT={'5-9':1,'7-6':1};const TXT={'4-6':'ציוד לתינוק: חיתולים, בגדים להחלפה, שמיכה, מוצץ','5-1':'קייטרינג ותפריט','5-7':'צלחות, סכו״ם ומפות','6-2':'הזמנה בוואטסאפ עם מיקום ושעה'};
 const isVis=(i,j)=>{const k=i+'-'+j;return !HID[k]&&!OPT[k]};const isDone=(i,j)=>{const k=i+'-'+j;return MG[k]?MG[k].every(x=>state[x]):!!state[k]};const setDone=(k,v)=>{(MG[k]||[k]).forEach(x=>{state[x]=v})};
-const key='bris-checklist-v4';let state={};try{state=(JSON.parse(localStorage.getItem(key)||'{}').state)||{}}catch(e){}
-function save(){localStorage.setItem(key,JSON.stringify({state}));upd()}
+const key='bris-checklist-v4';let state={};let hist=[];try{const saved=JSON.parse(localStorage.getItem(key)||'{}');state=saved.state||{};hist=Array.isArray(saved.hist)?saved.hist:[]}catch(e){}
+function save(){localStorage.setItem(key,JSON.stringify({state,hist}));upd()}
+function applyChange(k,v,label){setDone(k,v);hist.push({k,v,label,t:Date.now()});if(hist.length>30)hist.shift();save();toast((v?'סומן: ':'הסימון הוסר: ')+label)}
+function undoLast(){const h=hist.pop();if(!h)return;if(h.reset){state=h.prev}else if(h.v){(MG[h.k]||[h.k]).forEach(x=>{delete state[x]})}else{setDone(h.k,true)}save();toast('הפעולה בוטלה')}
+function resetAll(){if(!Object.keys(state).some(k=>state[k])){toast('אין סימונים לאיפוס');return}if(!confirm('לאפס את כל סימוני המשימות? כל הסימונים יימחקו. אפשר יהיה לבטל מיד אחרי האיפוס.'))return;hist.push({reset:true,prev:state,t:Date.now()});if(hist.length>30)hist.shift();state={};save();toast('כל הסימונים אופסו')}
+let toastTimer=null;function hideToast(){const el=document.getElementById('toast');if(el)el.classList.remove('show')}
+function toast(msg){let el=document.getElementById('toast');if(!el){el=document.createElement('div');el.id='toast';el.setAttribute('role','status');document.body.append(el)}el.innerHTML='';const s=document.createElement('span');s.textContent=msg;el.append(s);if(hist.length){const b=document.createElement('button');b.type='button';b.textContent='ביטול';b.onclick=()=>{hideToast();undoLast()};el.append(b)}el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(hideToast,6000)}
 function upd(){let t=0,d=0,ar=0;data.forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((_,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++});t+=st;d+=sd;if(st&&sd===st)ar++;const el=document.getElementById('c'+i);if(el)el.textContent=sd===st?'הושלם':sd+' מתוך '+st;const tl=el&&el.closest('.tile');if(tl){tl.classList.toggle('done',sd===st);tl.style.setProperty('--w',(st?100*sd/st:0)+'%')}});document.querySelectorAll('#areaPanel label.task[data-k]').forEach(l=>{const k=l.dataset.k,ij=k.split('-');const c=l.querySelector('input');const v=OPT[k]?!!state[k]:isDone(+ij[0],+ij[1]);if(c.checked!==v)c.checked=v});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%';const rg=document.getElementById('ring');if(rg)rg.style.setProperty('--p',p);renderHome()}
 function renderHome(){try{const dEl=document.getElementById('homeDate');if(!dEl)return;let t=0,d=0,ar=0;const nexts=[];data.forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((tk,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++;else if(nexts.length<3)nexts.push({i,j,sec:sec[0],tk:TXT[i+'-'+j]||tk})});t+=st;d+=sd;if(st&&sd===st)ar++});
 let bd=null;try{bd=JSON.parse(localStorage.getItem('brit-date')||'null')}catch(e){}
 if(bd&&bd.user===true&&bd.label){let extra='';try{const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'}));const today=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());const p=bd.iso.split('-').map(Number);const days=Math.round((Date.UTC(p[0],p[1]-1,p[2])-today)/864e5);extra=days>1?' · בעוד '+days+' ימים':days===1?' · מחר':days===0?' · היום':''}catch(e){}dEl.textContent='ברית: '+bd.label+extra;dEl.classList.remove('nodate');dEl.onclick=null}else{dEl.textContent='הוסיפו תאריך לידה ויישוב כדי לראות את מועד הברית ›';dEl.classList.add('nodate');dEl.onclick=()=>document.getElementById('homeOpenCalc').click()}
 document.getElementById('homeLeft').textContent=d===t?'כל הצעדים סומנו. מזל טוב!':'הושלמו '+d+' מתוך '+t+' צעדים';
 const hl=document.getElementById('homeList'),bn=document.getElementById('homeOpenNext');hl.innerHTML='';
-if(nexts[0]){const n=nexts[0];const lb=document.createElement('label');lb.className='task hrow';const cb=document.createElement('input');cb.type='checkbox';cb.onchange=()=>{setDone(n.i+'-'+n.j,cb.checked);save()};const sp=document.createElement('span');sp.textContent=n.tk;const sm=document.createElement('small');sm.textContent=n.sec;sp.append(sm);lb.append(cb,sp);hl.append(lb);if(nexts.length>1){const af=document.createElement('div');af.className='after';af.textContent='אחר כך: '+nexts.slice(1).map(x=>x.tk).join(' · ');hl.append(af)}}
+const bk=document.getElementById('homeBack');if(bk){const last=hist[hist.length-1];bk.hidden=!last;if(last){const lbl=last.reset?'ביטול האיפוס':(last.label||'');bk.textContent='\u21a9 '+(lbl.length>24?lbl.slice(0,24)+'\u2026':lbl);bk.onclick=undoLast}}
+if(nexts[0]){const n=nexts[0];const lb=document.createElement('label');lb.className='task hrow';const cb=document.createElement('input');cb.type='checkbox';cb.onchange=()=>{applyChange(n.i+'-'+n.j,cb.checked,n.tk)};const sp=document.createElement('span');sp.textContent=n.tk;const sm=document.createElement('small');sm.textContent=n.sec;sp.append(sm);lb.append(cb,sp);hl.append(lb);if(nexts.length>1){const af=document.createElement('div');af.className='after';af.textContent='אחר כך: '+nexts.slice(1).map(x=>x.tk).join(' · ');hl.append(af)}}
 if(nexts.length){bn.hidden=false;const n=nexts[0];bn.onclick=()=>openArea(n.i,n.i+'-'+n.j)}else bn.hidden=true;
 document.getElementById('homeOpenCalc').onclick=()=>{const c=[...document.querySelectorAll('details')].find(x=>x.textContent.includes('מחשבון זמן ברית'));if(c){c.open=true;c.scrollIntoView({behavior:'smooth',block:'start'})}}}catch(e){}}
 window.renderHome=renderHome;
-function mkTask(i,j,txt,opt){const k=i+'-'+j;const lb=document.createElement('label');lb.className='task';lb.dataset.k=k;const cb=document.createElement('input');cb.type='checkbox';cb.checked=opt?!!state[k]:isDone(i,j);cb.onchange=()=>{setDone(k,cb.checked);save()};const sp=document.createElement('span');sp.textContent=txt;lb.append(cb,sp);return lb}
+function mkTask(i,j,txt,opt){const k=i+'-'+j;const lb=document.createElement('label');lb.className='task';lb.dataset.k=k;const cb=document.createElement('input');cb.type='checkbox';cb.checked=opt?!!state[k]:isDone(i,j);cb.onchange=()=>{applyChange(k,cb.checked,txt)};const sp=document.createElement('span');sp.textContent=txt;lb.append(cb,sp);return lb}
 let curArea=-1;
 function syncChips(){const a=document.getElementById('chipA'),b=document.getElementById('chipAll');if(a)a.classList.toggle('on',curArea!==-2);if(b)b.classList.toggle('on',curArea===-2)}
 function closeArea(){curArea=-1;const pn=document.getElementById('areaPanel');pn.hidden=true;pn.innerHTML='';document.querySelectorAll('.tile').forEach(x=>x.classList.remove('sel'));syncChips()}
