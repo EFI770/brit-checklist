@@ -160,6 +160,8 @@ body.dark .task input{border-color:#5d6d74}
 .opt-h{font-size:12px;color:var(--mu);padding:14px 0 2px;border-top:1px solid var(--bd);letter-spacing:.3px}
 .opt-h+.task{border-top:0}
 .percent{font-size:18px}
+.home-date.nodate{font-size:14px;font-weight:500;color:var(--ac);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:11px 14px;margin:0 0 14px;cursor:pointer}
+body.dark .home-date.nodate{color:var(--ac)}
 @media print{
   body *{visibility:hidden}
   .letter-box,.letter-box *{visibility:visible}
@@ -193,7 +195,7 @@ body.dark .task input{border-color:#5d6d74}
 </div>
 <div id="homeCard" class="home">
 <div id="homeDate" class="home-date"></div>
-<div class="home-k">בתור עכשיו</div>
+<div class="home-k">הצעדים הבאים</div>
 <div id="homeList" class="hlist"></div>
 <div id="homeLeft" class="home-s"></div>
 <div class="home-b"><button type="button" class="print-btn" id="homeOpenNext" style="margin:0">פתח את התחום</button><button type="button" class="print-btn ghost" id="homeOpenCalc" style="margin:0">מחשבון זמן ברית</button></div>
@@ -385,7 +387,7 @@ function save(){localStorage.setItem(key,JSON.stringify({state}));upd()}
 function upd(){let t=0,d=0,ar=0;data.forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((_,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++});t+=st;d+=sd;if(st&&sd===st)ar++;const el=document.getElementById('c'+i);if(el)el.textContent=sd===st?'הושלם':sd+' מתוך '+st;const dt=el&&el.closest('details');if(dt)dt.classList.toggle('done',sd===st)});document.querySelectorAll('#sections label.task[data-k]').forEach(l=>{const k=l.dataset.k,ij=k.split('-');const c=l.querySelector('input');const v=OPT[k]?!!state[k]:isDone(+ij[0],+ij[1]);if(c.checked!==v)c.checked=v});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%';renderHome()}
 function renderHome(){try{const dEl=document.getElementById('homeDate');if(!dEl)return;let t=0,d=0,ar=0;const nexts=[];data.forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((tk,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++;else if(nexts.length<3)nexts.push({i,j,sec:sec[0],tk:TXT[i+'-'+j]||tk})});t+=st;d+=sd;if(st&&sd===st)ar++});
 let bd=null;try{bd=JSON.parse(localStorage.getItem('brit-date')||'null')}catch(e){}
-if(bd&&bd.user===true&&bd.label){let extra='';try{const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'}));const today=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());const p=bd.iso.split('-').map(Number);const days=Math.round((Date.UTC(p[0],p[1]-1,p[2])-today)/864e5);extra=days>1?' · בעוד '+days+' ימים':days===1?' · מחר':days===0?' · היום':''}catch(e){}dEl.textContent='ברית: '+bd.label+extra}else dEl.textContent='תאריך הברית עדיין לא חושב - הזן תאריך לידה ויישוב במחשבון';
+if(bd&&bd.user===true&&bd.label){let extra='';try{const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'}));const today=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());const p=bd.iso.split('-').map(Number);const days=Math.round((Date.UTC(p[0],p[1]-1,p[2])-today)/864e5);extra=days>1?' · בעוד '+days+' ימים':days===1?' · מחר':days===0?' · היום':''}catch(e){}dEl.textContent='ברית: '+bd.label+extradEl.classList.remove('nodate');dEl.onclick=null}else{dEl.textContent='הוסיפו תאריך לידה ויישוב במחשבון כדי לראות את מועד הברית ›';dEl.classList.add('nodate');dEl.onclick=()=>document.getElementById('homeOpenCalc').click()}
 document.getElementById('homeLeft').textContent=d===t?'כל הצעדים סומנו. מזל טוב!':'הושלמו '+d+' מתוך '+t+' צעדים · '+ar+' מתוך '+data.length+' תחומים';
 const hl=document.getElementById('homeList'),bn=document.getElementById('homeOpenNext');hl.innerHTML='';
 nexts.forEach(n=>{const lb=document.createElement('label');lb.className='task hrow';const cb=document.createElement('input');cb.type='checkbox';cb.onchange=()=>{setDone(n.i+'-'+n.j,cb.checked);save()};const sp=document.createElement('span');sp.textContent=n.tk;const sm=document.createElement('small');sm.textContent=n.sec;sp.append(sm);lb.append(cb,sp);hl.append(lb)});
