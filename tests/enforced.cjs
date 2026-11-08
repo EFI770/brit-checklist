@@ -3,7 +3,7 @@ const html=fs.readFileSync('index.html','utf8');
 const js=fs.readFileSync('donations.js','utf8')+html.slice(html.indexOf("const DEF_DONATE="),html.indexOf('function focusWaNum'));
 function mk(search){
  const storage=new Map([['bris-checklist-v4','checks'],['brit-calc','calc'],['brit-wa','phone'],['brit-donate','https://old-arbitrary.example/x']]);
- const els={};for(const id of ['donate-link','donate-dom','donate-import','donate-domain'])els[id]={hidden:true,href:'',textContent:''};
+ const els={};for(const id of ['donate-link','donate-dom','donate-import','donate-domain'])els[id]={hidden:true,href:'',textContent:'',firstElementChild:{innerHTML:''}};
  const ctx=vm.createContext({window:null,URL,URLSearchParams,Object,BRIT_DONATIONS:undefined,localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},location:{search},document:{getElementById:id=>els[id]},navigator:{share:async x=>ctx.shared=x}});
  ctx.window=ctx;vm.runInContext(js,ctx);return{ctx,els,storage,run:s=>vm.runInContext(s,ctx)};
 }
