@@ -15,4 +15,5 @@ vm.runInContext('zsearch("קריית שמונה")',ctx);assert(els.zresults.inne
 vm.runInContext('zsetPlace(30.61,34.80,"מצפה רמון");calcZman(true)',ctx);await tick();
 assert(urls.some(u=>u.includes('hebcal')&&u.includes('latitude=30.61')));console.log('PASS selected locality coords sent to Hebcal');
 vm.runInContext('zsel=null;calcZman(true)',ctx);assert(els.zout.textContent.includes('בחר')||els.zout.textContent.includes('הקלד'));console.log('PASS unselected typed text does not compute');
+vm.runInContext('zsearch("אבו עבדון")',ctx);assert(els.zresults.innerHTML.includes('אבו עבדון')&&els.zresults.innerHTML.includes('אין חישוב אוטומטי'));vm.runInContext('zsetPlace(null,null,"אבו עבדון (שבט)")',ctx);const n0=urls.length;els.zbirth.value='2026-11-08T12:00';vm.runInContext('calcZman(true)',ctx);assert(urls.length===n0);assert(els.zout.textContent.includes('אין לנו עדיין קואורדינטות'));console.log('PASS unresolved locality searchable, explicit cannot-calculate, no request, no substitute');
 })().catch(e=>{console.error(e);process.exit(1)});

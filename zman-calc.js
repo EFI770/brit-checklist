@@ -20,14 +20,14 @@ function zisYT(dt){const p=Object.fromEntries(new Intl.DateTimeFormat("en-u-ca-h
 const ZPL={"ירושלים":[31.7683,35.2137],"תל אביב-יפו":[32.0853,34.7818],"חיפה":[32.794,34.9896],"באר שבע":[31.253,34.7915],"ראשון לציון":[31.973,34.7925],"פתח תקווה":[32.0841,34.8878],"אשדוד":[31.8044,34.6553],"נתניה":[32.3215,34.8532],"בני ברק":[32.0807,34.8338],"רחובות":[31.8928,34.8113],"כפר רתמים":[31.03,34.72],"רביבים":[31.0239,34.7217],"אילת":[29.5577,34.9519],"צפת":[32.9646,35.496],"טבריה":[32.7959,35.5312],"מודיעין-מכבים-רעות":[31.8969,35.0095],"בית שמש":[31.7469,34.9881],"אשקלון":[31.6688,34.5743],"נס ציונה":[31.9293,34.7987],"רמת גן":[32.0684,34.8248],"חולון":[32.0158,34.7874],"בת ים":[32.0231,34.7503],"הרצליה":[32.1663,34.8436],"כפר סבא":[32.178,34.9066],"רעננה":[32.1848,34.8713],"חדרה":[32.434,34.9196],"נהריה":[33.0089,35.0981],"עכו":[32.9281,35.0826],"כרמיאל":[32.9144,35.2927],"עפולה":[32.6078,35.2897],"יבנה":[31.8781,34.7394],"גדרה":[31.8144,34.7783],"דימונה":[31.0686,35.0333],"ערד":[31.2589,35.2128],"נתיבות":[31.4173,34.5885],"שדרות":[31.525,34.5964],"אופקים":[31.3141,34.6203]};
 (function(){const dl=document.getElementById("zplaces");if(dl)Object.keys(ZPL).forEach(k=>{const o=document.createElement("option");o.value=k;dl.appendChild(o)})})();
 let zsel={lat:32.0853,lon:34.7818,label:"תל אביב-יפו"},zseq=0,ztimer=0;
-function zsetPlace(lat,lon,label){zsel={lat:+lat,lon:+lon,label};const el=document.getElementById("zloc");if(el)el.value=label;const r=document.getElementById("zresults");if(r)r.innerHTML=""}
+function zsetPlace(lat,lon,label){zsel=lat==null?{lat:null,lon:null,label,nocoords:true}:{lat:+lat,lon:+lon,label};const el=document.getElementById("zloc");if(el)el.value=label;const r=document.getElementById("zresults");if(r)r.innerHTML=""}
 const znorm=t=>String(t).replace(/[\u0591-\u05c7]/g,"").replace(/[׳'"״]/g,"").replace(/קריית/g,"קרית").replace(/\s+/g," ").trim();
 let zall=null;
 function zplaces(){if(zall)return zall;const m=new Map();(window.BRIT_LOCALITIES||[]).forEach(r=>m.set(znorm(r[0]),{label:r[0],lat:r[1],lon:r[2]}));Object.keys(ZPL).forEach(k=>m.set(znorm(k),{label:k,lat:ZPL[k][0],lon:ZPL[k][1]}));zall=[...m.entries()].map(([n,v])=>({n,...v}));return zall}
 function zlocalMatches(q){const n=znorm(q);if(!n)return[];const all=zplaces();const st=all.filter(x=>x.n.startsWith(n)),inc=all.filter(x=>!x.n.startsWith(n)&&x.n.includes(n));return st.concat(inc).slice(0,8)}
 function zrender(items,q){const r=document.getElementById("zresults");if(!r)return;
 if(!items.length){r.innerHTML='<div style="padding:8px;font-size:13px;color:var(--mu)">'+(q.length<1?'הקלד שם יישוב':'לא נמצא יישוב ברשימה')+"</div>";return}
-r.innerHTML=items.map((it,i)=>'<button type="button" data-i="'+i+'" style="display:block;width:100%;text-align:right;padding:9px;border:0;border-bottom:1px solid var(--bd);background:var(--cs);color:var(--tx);font:inherit;font-size:14px;cursor:pointer">'+it.label.replace(/</g,"&lt;")+"</button>").join("");
+r.innerHTML=items.map((it,i)=>'<button type="button" data-i="'+i+'" style="display:block;width:100%;text-align:right;padding:9px;border:0;border-bottom:1px solid var(--bd);background:var(--cs);color:var(--tx);font:inherit;font-size:14px;cursor:pointer">'+it.label.replace(/</g,"&lt;")+(it.lat==null?' <span style="font-size:11px;color:var(--mu)">(אין חישוב אוטומטי)</span>':"")+"</button>").join("");
 r.querySelectorAll("button").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.i];zsetPlace(it.lat,it.lon,it.label);calcZman(true)})}
 function zsearch(q){const m=zlocalMatches(q);zrender(m,q.length<1?"":q)}
 function zgetCoords(){return zsel&&zsel.lat!=null?zsel:null}
@@ -47,7 +47,7 @@ function calcZman(auto){
 const request=++zmanRequest;
 const birthEl=document.getElementById("zbirth");if(!birthEl)return;
 const v=birthEl.value;if(!v){zerror('יש למלא תאריך ושעת לידה.');return}
-const[dp,tp]=v.split("T"),[y,m,d]=dp.split("-").map(Number),c=zgetCoords();if(!c){zerror('הקלד שם יישוב בישראל ובחר אותו מהרשימה.');return}
+const[dp,tp]=v.split("T"),[y,m,d]=dp.split("-").map(Number),c=zgetCoords();if(!c){zerror(zsel&&zsel.nocoords?'היישוב "'+zsel.label+'" נמצא ברשימת היישובים הרשמית, אבל אין לנו עדיין קואורדינטות מאומתות אליו, ולכן לא ניתן לחשב אוטומטית. בדוק זמנים ליישוב בקישור חב״ד למטה או עם המוהל. לא בחרנו יישוב קרוב במקומו.':'הקלד שם יישוב בישראל ובחר אותו מהרשימה.');return}
 const lat=c.lat,lon=c.lon;
 const finish=(S,T,srcLabel)=>{
 if(request!==zmanRequest)return;
