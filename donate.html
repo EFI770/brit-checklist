@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>קישור תרומה לקהילה - צ׳קליסט לברית חב״דית</title>
+<style>
+body{font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:#eaf6f8;color:#17364a;margin:0;padding:18px;direction:rtl}
+.card{max-width:700px;margin:auto;background:#fff;border-radius:18px;padding:22px;box-shadow:0 8px 24px #1a5f7a22}
+h1{font-size:24px;margin-top:0}
+input{box-sizing:border-box;width:100%;padding:12px;border:1px solid #9ab9c7;border-radius:10px;font:inherit;font-size:16px;margin-top:6px}
+button{display:block;width:100%;margin-top:14px;padding:14px;border:0;border-radius:12px;background:#1b8a6b;color:#fff;font:inherit;font-size:17px;font-weight:700;cursor:pointer}
+button.secondary{background:#48677a}
+#out{white-space:pre-wrap;overflow-wrap:anywhere;background:#eef8f4;border-radius:12px;padding:14px;margin-top:16px;font-size:14px;direction:ltr;text-align:left}
+small{display:block;color:#5f7380;line-height:1.6;margin-top:10px}
+b{color:#1b8a6b}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>הכנת קישור תרומה לקהילה</h1>
+<p>מייצר קישור מותאם לצ׳קליסט שאתה שולח ללקוחות הקהילה. הלקוח רואה את יעד התרומה ולא יכול לערוך אותו.</p>
+<label for="u">קישור התרומה הרשמי של הקהילה (https בלבד)</label>
+<input id="u" type="url" dir="ltr" placeholder="https://..." autocomplete="url">
+<button onclick="make()">צור קישור לקהילה</button>
+<button class="secondary" onclick="copyOut()">העתק את הקישור שנוצר</button>
+<div id="out" hidden></div>
+<small>הבדיקה רק מוודאת שהקישור מאובטח ב-https, ללא פרטי התחברות. אחריות לבדוק שהיעד שייך לקהילה ולמקבל התרומות הנכון לפני השליחה.</small>
+</div>
+<script>
+const base=new URL('./',location.href).href;
+function clean(u){if(!u||u.length>500)return null;try{const x=new URL(u.trim());if(x.protocol!=='https:'||x.username||x.password)return null;return x.href}catch(e){return null}}
+function make(){const c=clean(document.getElementById('u').value),o=document.getElementById('out');o.hidden=false;if(!c){o.textContent='הקישור לא תקין. נדרש https תקין, ללא שם משתמש או סיסמה.';return}const host=new URL(c).hostname;o.textContent='יעד התרומה: '+host+'\n'+base+'?donate='+encodeURIComponent(c)}
+async function copyOut(){const o=document.getElementById('out');if(o.hidden)return;try{await navigator.clipboard.writeText(o.textContent)}catch(e){const r=document.createRange();r.selectNodeContents(o);const s=getSelection();s.removeAllRanges();s.addRange(r)}}
+</script>
+</body>
+</html>
