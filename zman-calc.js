@@ -21,19 +21,15 @@ const ZPL={"ירושלים":[31.7683,35.2137],"תל אביב-יפו":[32.0853,34
 (function(){const dl=document.getElementById("zplaces");if(dl)Object.keys(ZPL).forEach(k=>{const o=document.createElement("option");o.value=k;dl.appendChild(o)})})();
 let zsel={lat:32.0853,lon:34.7818,label:"תל אביב-יפו"},zseq=0,ztimer=0;
 function zsetPlace(lat,lon,label){zsel={lat:+lat,lon:+lon,label};const el=document.getElementById("zloc");if(el)el.value=label;const r=document.getElementById("zresults");if(r)r.innerHTML=""}
-function zlocalMatches(q){return Object.keys(ZPL).filter(k=>k.includes(q)).slice(0,5).map(k=>({label:k,lat:ZPL[k][0],lon:ZPL[k][1],local:true}))}
+const znorm=t=>String(t).replace(/[\u0591-\u05c7]/g,"").replace(/[׳'"״]/g,"").replace(/קריית/g,"קרית").replace(/\s+/g," ").trim();
+let zall=null;
+function zplaces(){if(zall)return zall;const m=new Map();(window.BRIT_LOCALITIES||[]).forEach(r=>m.set(znorm(r[0]),{label:r[0],lat:r[1],lon:r[2]}));Object.keys(ZPL).forEach(k=>m.set(znorm(k),{label:k,lat:ZPL[k][0],lon:ZPL[k][1]}));zall=[...m.entries()].map(([n,v])=>({n,...v}));return zall}
+function zlocalMatches(q){const n=znorm(q);if(!n)return[];const all=zplaces();const st=all.filter(x=>x.n.startsWith(n)),inc=all.filter(x=>!x.n.startsWith(n)&&x.n.includes(n));return st.concat(inc).slice(0,8)}
 function zrender(items,q){const r=document.getElementById("zresults");if(!r)return;
-if(!items.length){r.innerHTML='<div style="padding:8px;font-size:13px;color:var(--mu)">'+(q.length<2?'הקלד לפחות שתי אותיות':'לא נמצא יישוב')+"</div>";return}
+if(!items.length){r.innerHTML='<div style="padding:8px;font-size:13px;color:var(--mu)">'+(q.length<1?'הקלד שם יישוב':'לא נמצא יישוב ברשימה')+"</div>";return}
 r.innerHTML=items.map((it,i)=>'<button type="button" data-i="'+i+'" style="display:block;width:100%;text-align:right;padding:9px;border:0;border-bottom:1px solid var(--bd);background:var(--cs);color:var(--tx);font:inherit;font-size:14px;cursor:pointer">'+it.label.replace(/</g,"&lt;")+"</button>").join("");
 r.querySelectorAll("button").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.i];zsetPlace(it.lat,it.lon,it.label);calcZman(true)})}
-function zsearch(q){const seq=++zseq;const local=zlocalMatches(q);
-if(q.length<2){zrender(local,q);return}
-fetch("https://nominatim.openstreetmap.org/search?format=jsonv2&countrycodes=il&accept-language=he&limit=8&featureType=settlement&q="+encodeURIComponent(q),{signal:AbortSignal.timeout(8000)}).then(r=>r.ok?r.json():[]).then(rows=>{
-if(seq!==zseq)return;
-const seen=new Set(local.map(x=>x.label));
-const remote=rows.map(r=>{const parts=String(r.display_name||"").split(",").map(x=>x.trim()).filter(Boolean);const label=parts.slice(0,2).join(", ")||r.name;return{label,lat:+r.lat,lon:+r.lon}}).filter(it=>it.label&&!seen.has(it.label));
-zrender(local.concat(remote).slice(0,8),q);
-}).catch(()=>{if(seq===zseq)zrender(local,q)})}
+function zsearch(q){const m=zlocalMatches(q);zrender(m,q.length<1?"":q)}
 function zgetCoords(){return zsel&&zsel.lat!=null?zsel:null}
 let zmanRequest=0;
 function zerror(text){const out=document.getElementById("zout");out.textContent=text;out.hidden=false}
@@ -107,8 +103,8 @@ el.onchange=()=>calcZman(true);
 const loc=document.getElementById("zloc");
 if(loc){
 loc.addEventListener("input",()=>{zsel=null;clearTimeout(ztimer);const q=loc.value.trim();
-if(ZPL[q]){zsetPlace(ZPL[q][0],ZPL[q][1],q);calcZman(true);return}
-ztimer=setTimeout(()=>zsearch(q),300)});
+const ex=zplaces().find(x=>x.n===znorm(q));if(ex){zsetPlace(ex.lat,ex.lon,ex.label);calcZman(true);return}
+ztimer=setTimeout(()=>zsearch(q),120)});
 loc.addEventListener("focus",()=>{if(loc.value.trim())zsearch(loc.value.trim())});
 document.addEventListener("click",e=>{const r=document.getElementById("zresults");if(r&&e.target!==loc&&!r.contains(e.target))r.innerHTML=""});
 };
