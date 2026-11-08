@@ -35,6 +35,8 @@ const remote=rows.map(r=>{const parts=String(r.display_name||"").split(",").map(
 zrender(local.concat(remote).slice(0,8),q);
 }).catch(()=>{if(seq===zseq)zrender(local,q)})}
 function zgetCoords(){return zsel&&zsel.lat!=null?zsel:null}
+let zmanRequest=0;
+function zerror(text){const out=document.getElementById("zout");out.textContent=text;out.hidden=false}
 async function fetchHebcalZmanim(lat,lon,dateStr){
 try{
 const url="https://www.hebcal.com/zmanim?cfg=json&latitude="+lat+"&longitude="+lon+"&tzid=Asia/Jerusalem&date="+dateStr;
@@ -50,7 +52,7 @@ const request=++zmanRequest;
 const birthEl=document.getElementById("zbirth");if(!birthEl)return;
 const v=birthEl.value;if(!v){zerror('יש למלא תאריך ושעת לידה.');return}
 const[dp,tp]=v.split("T"),[y,m,d]=dp.split("-").map(Number),c=zgetCoords();if(!c){zerror('הקלד שם יישוב בישראל ובחר אותו מהרשימה.');return}
-const[lat,lon]=c;
+const lat=c.lat,lon=c.lon;
 const finish=(S,T,srcLabel)=>{
 if(request!==zmanRequest)return;
 if(!S||!T||ztoMin(T)<=ztoMin(S)){zerror('יש למלא זמני שקיעה וצאת הכוכבים תקינים, כאשר צאת הכוכבים מאוחר מהשקיעה.');return}
