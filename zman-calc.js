@@ -20,7 +20,7 @@ const ch=(cos(zen)-sd*sin(lat))/(cd*cos(lat));
 let H=Math.acos(Math.min(1,Math.max(-1,ch)))/rad;if(rise)H=360-H;H/=15;
 let UT=(H+RA-0.06571*t-6.622-lh)%24;if(UT<0)UT+=24;
 const off=+new Intl.DateTimeFormat("en-GB",{timeZone:zTZ,hour:"2-digit",hour12:false}).format(new Date(Date.UTC(y,m-1,d,12)))-12;
-return Math.round(((UT+off)%24)*60);
+return Math.round((((UT+off)%24+24)%24)*60);
 }
 const zhm=m=>String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");
 const ztoMin=s=>{const[a,b]=(s||"0:0").split(":");return +a*60+ +b};
