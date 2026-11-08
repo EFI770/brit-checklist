@@ -87,6 +87,47 @@ body.dark .grp{color:#bfe3ec}
 .task{padding:9px 0}
 .task small{display:block;font-size:11.5px;color:var(--mu);margin-top:2px;text-decoration:none}
 .task:has(input:checked) small{text-decoration:none}
+
+/* mature theme */
+:root{--card:#fff;--cs:#faf9f6;--tx:#1c262b;--mu:#66757c;--pr:#1f4e5f;--ac:#2f6f82;--bd:#e3e0d8;--ok:#2f7d6b;--sh:0 1px 2px rgba(20,35,40,.06)}
+body{background:#f4f2ec;font-feature-settings:"kern"}
+body.dark{--card:#1b2428;--cs:#222d32;--tx:#e8eef0;--mu:#93a4ab;--pr:#7fb4c4;--ac:#7fb4c4;--bd:#2d3a40;--ok:#5fb89f;--sh:none;background:#12191c}
+header{background:#1f3a45;border-radius:0;padding:18px 16px 14px}
+body.dark header{background:#18262c}
+header>div:first-child{background:transparent!important;border:1px solid rgba(255,255,255,.18);font-size:12px!important}
+h1{font-size:20px;letter-spacing:.2px}
+.percent{font-size:22px;font-weight:700}
+.bar{height:3px;background:rgba(255,255,255,.2)}
+.fill{background:#d9c9a3}
+.toolbar button{border-radius:8px;background:var(--card);color:var(--pr);font-size:12.5px;padding:7px 11px}
+.home{background:var(--card);border:1px solid var(--bd);border-radius:12px;box-shadow:var(--sh);padding:18px 16px}
+body.dark .home{background:var(--card)}
+.home-k{font-size:11.5px;color:var(--mu);letter-spacing:.4px}
+.home-date{font-size:19px;color:var(--tx);font-weight:700}
+body.dark .home-date{color:var(--tx)}
+.home-next{background:var(--cs);border:0;border-right:3px solid var(--ac);border-radius:6px}
+body.dark .home-next{background:var(--cs)}
+.home-t{font-size:16px;font-weight:600}
+.print-btn,.print-btn.ghost{border-radius:8px;font-size:13.5px;font-weight:600}
+.print-btn{background:var(--pr);color:#fff}
+body.dark .print-btn{background:#2f6f82;color:#fff}
+.print-btn.ghost,body.dark .print-btn.ghost{background:transparent;color:var(--pr);border:1px solid var(--bd)}
+.grp{font-size:13px;color:var(--mu);font-weight:700;letter-spacing:.6px;margin:26px 4px 8px;border-bottom:1px solid var(--bd);padding-bottom:6px}
+body.dark .grp{color:var(--mu)}
+.grp-sub{display:none}
+.section{border-radius:10px;box-shadow:var(--sh);background:var(--card)}
+.section summary{padding:14px 14px 12px}
+.section summary span[style]{background:transparent!important}
+.stt{gap:10px;font-weight:600;font-size:15px}
+.num{width:24px;height:24px;border:1px solid var(--bd);border-radius:50%;font-size:12px;color:var(--mu);display:inline-flex;align-items:center;justify-content:center;font-weight:600;flex:none}
+.mbar{height:2px;background:var(--bd);border-radius:2px}
+.mbar i{background:var(--ok);border-radius:2px}
+.section.done .num{background:var(--ok);border-color:var(--ok);color:#fff}
+.task{padding:10px 0;font-size:14.5px}
+.task input{accent-color:var(--ok)}
+.pdf-box,.notice{background:var(--card)!important;border:1px solid var(--bd);border-radius:10px;box-shadow:none}
+.pdf-box a{background:var(--pr);border-radius:8px}
+.notice{color:var(--tx)}
 @media print{
   body *{visibility:hidden}
   .letter-box,.letter-box *{visibility:visible}
@@ -104,7 +145,7 @@ body.dark .grp{color:#bfe3ec}
 לע״נ הילדה חיילת בצבאות ה׳<br>
 רבקה בת יבלחט״א אפרים מנשה ואסתר חדווה
 </div>
-<button class="theme-btn" onclick="document.body.classList.toggle('dark')">🌜</button>
+<button class="theme-btn" onclick="document.body.classList.toggle('dark')"></button>
 <h1>צ׳קליסט לברית חב״דית</h1>
 <p class="sub">הכנות, מנהגים וסעודה · כולל מחשבון יום השמיני ומחשבון הוצאות</p>
 <p class="sub" style="margin-top:5px;font-size:11.5px;opacity:.85">כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה - ובמיוחד בדחיית ברית או בספק ביום השמיני - יש לפנות לרב מורה הוראה, למוהל ולרופא</p>
@@ -115,8 +156,8 @@ body.dark .grp{color:#bfe3ec}
 <div class="toolbar">
 <button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=true)">פתח הכל</button>
 <button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=false)">סגור הכל</button>
-<button onclick="shareWA()">📱 וואטסאפ</button>
-<button onclick="shareApp()">🔗 שיתוף האפליקציה</button>
+<button onclick="shareWA()">וואטסאפ</button>
+<button onclick="shareApp()">שיתוף האפליקציה</button>
 </div>
 <div id="homeCard" class="home">
 <div class="home-k">במבט אחד</div>
@@ -126,12 +167,12 @@ body.dark .grp{color:#bfe3ec}
 <div class="home-b"><button type="button" class="print-btn" id="homeOpenNext" style="margin:0">פתח את הצעד הבא</button><button type="button" class="print-btn ghost" id="homeOpenCalc" style="margin:0">מחשבון זמן ברית</button></div>
 </div>
 
-<h2 class="grp">✅ המשימות שלכם</h2>
+<h2 class="grp">המשימות שלכם</h2>
 <div id="sections"></div>
-<h2 class="grp">📚 מידע, כלים וקישורים</h2>
+<h2 class="grp">מידע, כלים וקישורים</h2>
 <p class="grp-sub">לקריאה ולעזרה בדרך, לא משימות לסימון</p>
 <details class="section">
-<summary style="background:rgba(58,168,192,.1)"><span>📖 מידע הלכתי ומנהגי חב״ד</span><span class="count">גלול ↓</span></summary>
+<summary style="background:rgba(58,168,192,.1)"><span>מידע הלכתי ומנהגי חב״ד</span><span class="count">גלול ↓</span></summary>
 <div class="tasks info-box scroll-box">
 <p style="font-size:12.5px;color:var(--mu);margin-bottom:10px">לקריאה והכנה · מסוכם ממנהגי חב״ד ומחוברות קהילה והלכה · <strong>אין זה פסק הלכה</strong><br>אם הרופא או המוהל מורים לדחות את הברית - ראו להלן מנהגים והלכות לברית דחויה</p>
 <h3>א. דחיית ברית (צהבת, חולי או חולשה)</h3>
@@ -224,15 +265,15 @@ body.dark .grp{color:#bfe3ec}
 </details>
 
 <div class="pdf-box">
-<a href="https://www.chabad.org/library/article_cdo/aid/145053/jewish/Zohar-for-the-Brit-Aramaic-Original.htm" target="_blank" rel="noopener">📜 זוהר לליל הברית – חב״ד</a>
+<a href="https://www.chabad.org/library/article_cdo/aid/145053/jewish/Zohar-for-the-Brit-Aramaic-Original.htm" target="_blank" rel="noopener">זוהר לליל הברית – חב״ד</a>
 </div>
 <div class="pdf-box">
-<a href="https://he.chabad.org/library/article_cdo/aid/3140130" target="_blank" rel="noopener">📖 מאמר אשרי תבחר ותקרב – חב״ד</a>
+<a href="https://he.chabad.org/library/article_cdo/aid/3140130" target="_blank" rel="noopener">מאמר אשרי תבחר ותקרב – חב״ד</a>
 <p style="font-size:12px;color:var(--mu);margin-top:8px">מאמר הרבי לברית (תשט״ז), בנוסח שהוגה על ידי הרבי בקונטרס י״ח ניסן תנש״א. נפתח באתר חב״ד ודורש חיבור לאינטרנט.</p>
 </div>
 
 <details class="section">
-<summary style="background:rgba(27,138,107,.1)"><span>🧮 מחשבון הוצאות ברית</span><span class="count">לחץ</span></summary>
+<summary style="background:rgba(27,138,107,.1)"><span>מחשבון הוצאות ברית</span><span class="count">לחץ</span></summary>
 <div class="tasks" style="padding:12px">
 <div class="calc-g h"><span></span><span>קיבלו הודעה</span><span>ילדים</span><span>% הגעה</span></div>
 <div class="calc-g"><span>משפחה</span><input id="a0" type="number" value="40"><input id="k0" type="number" value="12"><input id="p0" type="number" value="90"></div>
@@ -266,7 +307,7 @@ body.dark .grp{color:#bfe3ec}
 <div class="notice"><strong>דגשים:</strong> ברית שנדחתה אינה דוחה שבת או יום טוב. בכל ספק ביום השמיני או בדחייה - יש לפנות לרב, למוהל ולרופא. מחשבון יום השמיני הוא עזר בלבד; יש לאמת מול זמני חב״ד, במיוחד בלידה סביב שקיעה או בין השמשות.</div>
 
 <details class="section">
-<summary><span>ℹ️ אודות · מקורות · פרטיות</span><span class="count">לחץ</span></summary>
+<summary><span>אודות · מקורות · פרטיות</span><span class="count">לחץ</span></summary>
 <div class="tasks info-box" style="padding:12px;font-size:13.5px;line-height:1.6">
 <p><strong>מה זה?</strong> צ׳קליסט ומחשבונים להכנות לברית מילה במנהג חב״ד - כולל מחשבון יום השמיני ומחשבון הוצאות.</p>
 <p><strong>מקורות:</strong> מנהגי חב״ד; חוברת מידע לידה·ברית·פדיון (ועד אברכי אנ״ש צפת); שבח הברית (הרב שמואל הלוי הורוויץ); שמירת השמחות. הסיכום נעשה לצורכי לימוד והכנה בלבד.</p>
@@ -278,7 +319,7 @@ body.dark .grp{color:#bfe3ec}
 
 
 <div class="pdf-box" style="background:rgba(27,138,107,.08);border-color:rgba(27,138,107,.3)">
-<a id="donate-link" href="https://ultra.kesherhk.info/external/paymentPage/328257" target="_blank" rel="noopener" style="background:#1b8a6b">💚 תרומה ביום הברית לזכות הרך הנולד</a>
+<a id="donate-link" href="https://ultra.kesherhk.info/external/paymentPage/328257" target="_blank" rel="noopener" style="background:#1b8a6b">תרומה ביום הברית לזכות הרך הנולד</a>
 <p style="font-size:12.5px;color:var(--mu);margin-top:8px;text-align:center">לזכות התינוק · בעת הברית</p>
 <div id="donate-import" hidden style="border:1px solid #b8860b;padding:10px;border-radius:9px;margin-bottom:10px"><p>קישור זה הגיע עם יעד תרומה שאושר על ידי בעל האתר. מקבל התרומות: <b id="donate-domain" dir="ltr"></b>. יש לתרום רק אם מקבל התרומות צפוי. הבחירה נשמרת במכשיר זה.</p></div>
 
@@ -287,14 +328,14 @@ body.dark .grp{color:#bfe3ec}
 </div>
 
 <details class="section">
-<summary style="background:rgba(120,80,160,.1)"><span>📄 קבצים</span><span class="count">מכתב הרבי</span></summary>
+<summary style="background:rgba(120,80,160,.1)"><span>קבצים</span><span class="count">מכתב הרבי</span></summary>
 <div class="tasks letter-box">
 <p style="font-size:13px;color:var(--mu);margin-bottom:10px">מכתב הרבי לברית – לברכה ולשמחה</p>
 <img id="letterImg" loading="lazy" decoding="async" src="rebbe-letter-clear.jpg" alt="מכתב הרבי">
 <br>
 <button class="print-btn" id="letterToggle" type="button" onclick="var i=document.getElementById('letterImg'),c=i.getAttribute('src')==='rebbe-letter-clear.jpg';i.src=c?'rebbe-letter.jpg':'rebbe-letter-clear.jpg';this.textContent=c?'הצג גרסה מחודדת':'הצג מקור'">הצג מקור</button>
 <br>
-<button class="print-btn" onclick="window.print()">🖨️ הדפסה</button>
+<button class="print-btn" onclick="window.print()">הדפסה</button>
 </div>
 </details>
 
@@ -309,7 +350,7 @@ const MERGE={};const ALIAS={};Object.keys(MERGE).forEach(k=>{(ALIAS[MERGE[k]]=AL
 const isVis=(i,j)=>!MERGE[i+'-'+j];const isDone=(i,j)=>{const k=i+'-'+j;return !!state[k]||(ALIAS[k]||[]).some(x=>state[x])};
 const key='bris-checklist-v4';let state={};try{state=(JSON.parse(localStorage.getItem(key)||'{}').state)||{}}catch(e){}
 function save(){localStorage.setItem(key,JSON.stringify({state}));upd()}
-function upd(){let t=0,d=0,ar=0;data.forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((_,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++});t+=st;d+=sd;if(st&&sd===st)ar++;const el=document.getElementById('c'+i);if(el)el.textContent=sd===st?'✓ הושלם':sd+'/'+st;const bf=document.getElementById('b'+i);if(bf)bf.style.width=(st?100*sd/st:0)+'%';const dt=el&&el.closest('details');if(dt)dt.classList.toggle('done',sd===st)});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%';window.__areasDone=ar;renderHome()}
+function upd(){let t=0,d=0,ar=0;data.forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((_,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++});t+=st;d+=sd;if(st&&sd===st)ar++;const el=document.getElementById('c'+i);if(el)el.textContent=sd===st?'הושלם':sd+'/'+st;const bf=document.getElementById('b'+i);if(bf)bf.style.width=(st?100*sd/st:0)+'%';const dt=el&&el.closest('details');if(dt)dt.classList.toggle('done',sd===st)});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%';window.__areasDone=ar;renderHome()}
 function renderHome(){try{const dEl=document.getElementById('homeDate');if(!dEl)return;let t=0,d=0,ar=0,next=null;data.forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((tk,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++;else if(!next)next={i,j,sec:sec[0],tk}});t+=st;d+=sd;if(st&&sd===st)ar++});
 let bd=null;try{bd=JSON.parse(localStorage.getItem('brit-date')||'null')}catch(e){}
 if(bd&&bd.user===true&&bd.label){let extra='';try{const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'}));const today=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());const p=bd.iso.split('-').map(Number);const days=Math.round((Date.UTC(p[0],p[1]-1,p[2])-today)/864e5);extra=days>1?' · בעוד '+days+' ימים':days===1?' · מחר':days===0?' · היום':''}catch(e){}dEl.textContent='ברית: '+bd.label+extra}else dEl.textContent='תאריך הברית עדיין לא חושב - הזן תאריך לידה ויישוב במחשבון';
@@ -318,7 +359,7 @@ const nx=document.getElementById('homeNext'),bn=document.getElementById('homeOpe
 if(next){nx.textContent=next.tk;if(nl){nl.textContent='הצעד הבא · '+next.sec;nl.hidden=false}bn.hidden=false;bn.onclick=()=>{const ds=document.querySelectorAll('#sections > details.section');ds.forEach((x,k)=>{x.open=(k===next.i)});const el=ds[next.i];if(el){const tk=el.querySelectorAll('label.task')[next.j];(tk||el).scrollIntoView({behavior:'smooth',block:'center'})}}}else{nx.textContent='';if(nl)nl.hidden=true;bn.hidden=true}
 document.getElementById('homeOpenCalc').onclick=()=>{const c=[...document.querySelectorAll('details')].find(x=>x.textContent.includes('מחשבון זמן ברית'));if(c){c.open=true;c.scrollIntoView({behavior:'smooth',block:'start'})}}}catch(e){}}
 window.renderHome=renderHome;
-function render(){const root=document.getElementById('sections');root.innerHTML='';data.forEach((s,i)=>{const det=document.createElement('details');det.className='section';det.open=false;const sm=document.createElement('summary');sm.innerHTML='<span class="stt"><span class="ico">'+ICONS[i]+'</span>'+s[0]+'</span><span class="count" id="c'+i+'"></span><span class="mbar"><i id="b'+i+'"></i></span>';det.append(sm);const td=document.createElement('div');td.className='tasks';s[1].forEach((t,j)=>{if(!isVis(i,j))return;const k=i+'-'+j;const lb=document.createElement('label');lb.className='task';const cb=document.createElement('input');cb.type='checkbox';cb.checked=isDone(i,j);cb.onchange=()=>{state[k]=cb.checked;if(!cb.checked)(ALIAS[k]||[]).forEach(x=>{state[x]=false});save()};const sp=document.createElement('span');sp.textContent=t;if(MNOTE[k]){const sm2=document.createElement('small');sm2.textContent=MNOTE[k];sp.append(sm2)}lb.append(cb,sp);td.append(lb)});det.append(td);root.append(det)});upd()}
+function render(){const root=document.getElementById('sections');root.innerHTML='';data.forEach((s,i)=>{const det=document.createElement('details');det.className='section';det.open=false;const sm=document.createElement('summary');sm.innerHTML='<span class="stt"><span class="num">'+(i+1)+'</span>'+s[0]+'</span><span class="count" id="c'+i+'"></span><span class="mbar"><i id="b'+i+'"></i></span>';det.append(sm);const td=document.createElement('div');td.className='tasks';s[1].forEach((t,j)=>{if(!isVis(i,j))return;const k=i+'-'+j;const lb=document.createElement('label');lb.className='task';const cb=document.createElement('input');cb.type='checkbox';cb.checked=isDone(i,j);cb.onchange=()=>{state[k]=cb.checked;if(!cb.checked)(ALIAS[k]||[]).forEach(x=>{state[x]=false});save()};const sp=document.createElement('span');sp.textContent=t;if(MNOTE[k]){const sm2=document.createElement('small');sm2.textContent=MNOTE[k];sp.append(sm2)}lb.append(cb,sp);td.append(lb)});det.append(td);root.append(det)});upd()}
 function waNum(){const raw=($c('wanum')?.value||'').replace(/\D/g,'');if(!raw)return'';let n=raw;if(n.charAt(0)==='0')n='972'+n.slice(1);return /^\d{9,15}$/.test(n)?n:''}
 function waLink(t){return 'https://wa.me/'+waNum()+'?text='+encodeURIComponent(t)}
 const DEF_DONATE=BRIT_DONATIONS['default'];
