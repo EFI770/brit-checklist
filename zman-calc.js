@@ -43,7 +43,7 @@ return{sunrise:toHM(times.sunrise),sunset:toHM(times.sunset||times.shkiah),tzeit
 }catch(e){return null}
 }
 const zdateStr=(y,m,d)=>y+"-"+String(m).padStart(2,"0")+"-"+String(d).padStart(2,"0");
-function calcZman(auto){
+function calcZman(auto,init){
 const request=++zmanRequest;
 const birthEl=document.getElementById("zbirth");if(!birthEl)return;
 const v=birthEl.value;if(!v){zerror('יש למלא תאריך ושעת לידה.');return}
@@ -64,7 +64,7 @@ if(safek)while(br.getUTCDay()===6||zisYT(br)){br=new Date(+br+864e5);shifted="נ
 const by=br.getUTCFullYear(),bm=br.getUTCMonth()+1,bd=br.getUTCDate();
 const show=(rise,set,daySource)=>{
 if(request!==zmanRequest)return;
-try{localStorage.setItem('brit-date',JSON.stringify({iso:br.getUTCFullYear()+'-'+(br.getUTCMonth()+1)+'-'+br.getUTCDate(),label:'יום '+zdays[br.getUTCDay()]+' '+br.getUTCDate()+'/'+(br.getUTCMonth()+1)+'/'+br.getUTCFullYear()}));if(window.renderHome)renderHome()}catch(e){}
+try{if(!init)localStorage.setItem('brit-date',JSON.stringify({user:true,iso:br.getUTCFullYear()+'-'+(br.getUTCMonth()+1)+'-'+br.getUTCDate(),label:'יום '+zdays[br.getUTCDay()]+' '+br.getUTCDate()+'/'+(br.getUTCMonth()+1)+'/'+br.getUTCFullYear()}));if(window.renderHome)renderHome()}catch(e){}
 const fmt=dt=>"יום "+zdays[dt.getUTCDay()]+", "+dt.getUTCDate()+"/"+(dt.getUTCMonth()+1)+"/"+dt.getUTCFullYear();
 let h='<div class="zman-big">ברית: '+fmt(br)+'</div><div style="font-size:14px;margin-bottom:6px">'+zheb(br,{day:"numeric",month:"long",year:"numeric"})+"</div>";
 h+='<table class="zman-table"><tr><td>נץ החמה ביום הברית</td><td>'+rise+'</td></tr><tr><td>שקיעה ביום הברית</td><td>'+set+"</td></tr></table>";
@@ -111,5 +111,5 @@ document.addEventListener("click",e=>{const r=document.getElementById("zresults"
 };
 const ss=document.getElementById("zsset");if(ss)ss.onchange=()=>calcZman(false);
 const tz=document.getElementById("ztzet");if(tz)tz.onchange=()=>calcZman(false);
-calcZman(true);
+calcZman(true,true);
 })();
