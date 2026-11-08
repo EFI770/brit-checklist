@@ -488,7 +488,7 @@ html[dir=ltr] .lang-btn{left:auto;right:52px}
 </details>
 
 <div class="share"><button onclick="shareWA()" data-i18n="shareWABtn">וואטסאפ</button><button onclick="shareApp()" data-i18n="shareAppBtn">שיתוף האפליקציה</button><button type="button" id="resetBtn" onclick="resetAll()" data-i18n="resetBtn">איפוס הסימונים</button></div>
-<div class="footer"><span data-i18n="footerVer">גרסה 5.12</span> · <a href="privacy.html" data-i18n="footerPrivacy">פרטיות</a> · <a href="accessibility.html" data-i18n="footerAccess">נגישות</a> · <a href="terms.html" data-i18n="footerTerms">תנאי שימוש</a> · <span data-i18n="footerAid">כלי עזר · אינו פסק הלכה</span></div>
+<div class="footer"><span data-i18n="footerVer">גרסה 5.13</span> · <a href="privacy.html" data-i18n="footerPrivacy">פרטיות</a> · <a href="accessibility.html" data-i18n="footerAccess">נגישות</a> · <a href="terms.html" data-i18n="footerTerms">תנאי שימוש</a> · <span data-i18n="footerAid">כלי עזר · אינו פסק הלכה</span></div>
 </main>
 <script src="donations.js"></script>
 <script src="localities.js"></script>
@@ -563,7 +563,7 @@ printBtn:["הדפסה","Print"],
 shareWABtn:["וואטסאפ","WhatsApp"],
 shareAppBtn:["שיתוף האפליקציה","Share the app"],
 resetBtn:["איפוס הסימונים","Reset all checks"],
-footerVer:["גרסה 5.12","Version 5.12"],
+footerVer:["גרסה 5.13","Version 5.13"],
 footerPrivacy:["פרטיות","Privacy"],
 footerAccess:["נגישות","Accessibility"],
 footerTerms:["תנאי שימוש","Terms of use"],
@@ -724,8 +724,7 @@ let toastTimer=null;function hideToast(){const el=document.getElementById('toast
 function toast(msg){let el=document.getElementById('toast');if(!el){el=document.createElement('div');el.id='toast';el.setAttribute('role','status');document.body.append(el)}el.innerHTML='';const s=document.createElement('span');s.textContent=msg;el.append(s);if(hist.length){const b=document.createElement('button');b.type='button';b.textContent=T('undoBtn');b.onclick=()=>{hideToast();undoLast()};el.append(b)}el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(hideToast,6000)}
 function upd(){let t=0,d=0,ar=0;D().forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((_,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++});t+=st;d+=sd;if(st&&sd===st)ar++;const el=document.getElementById('c'+i);if(el)el.textContent=sd===st?T('countDone'):sd+T('countOf')+st;const tl=el&&el.closest('.tile');if(tl){tl.classList.toggle('done',sd===st);tl.style.setProperty('--w',(st?100*sd/st:0)+'%')}});document.querySelectorAll('#areaPanel label.task[data-k]').forEach(l=>{const k=l.dataset.k,ij=k.split('-');const c=l.querySelector('input');const v=OPT[k]?!!state[k]:isDone(+ij[0],+ij[1]);if(c.checked!==v)c.checked=v});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%';const rg=document.getElementById('ring');if(rg)rg.style.setProperty('--p',p);renderHome()}
 function renderHome(){try{const dEl=document.getElementById('homeDate');if(!dEl)return;let t=0,d=0,ar=0;const nexts=[];D().forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((tk,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++;else if(nexts.length<3)nexts.push({i,j,sec:sec[0],tk:TT(i+'-'+j)||tk})});t+=st;d+=sd;if(st&&sd===st)ar++});
-let bd=null;try{bd=JSON.parse(localStorage.getItem('brit-date')||'null')}catch(e){}
-if(bd&&bd.user===true&&bd.label){let extra='';try{const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'}));const today=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());const p=bd.iso.split('-').map(Number);const days=Math.round((Date.UTC(p[0],p[1]-1,p[2])-today)/864e5);extra=days>1?T('inDaysA')+days+T('inDaysB'):days===1?T('tomorrowTxt'):days===0?T('todayTxt'):''}catch(e){}dEl.textContent=T('britPrefix')+bd.label+extra;dEl.classList.remove('nodate');dEl.onclick=null}else{dEl.textContent=T('noDateCta');dEl.classList.add('nodate');dEl.onclick=()=>document.getElementById('homeOpenCalc').click()}
+dEl.hidden=true;
 document.getElementById('homeLeft').textContent=d===t?T('allDone'):(T('stepsDone1')+d+T('countOf')+t+T('stepsDone2'));
 const hl=document.getElementById('homeList'),bn=document.getElementById('homeOpenNext');hl.innerHTML='';
 const bk=document.getElementById('homeBack');if(bk){const last=hist[hist.length-1];bk.hidden=!last;if(last){const lbl=last.reset?T('undoReset'):(last.label||'');bk.textContent='\u21a9 '+(lbl.length>24?lbl.slice(0,24)+'\u2026':lbl);bk.onclick=undoLast}}
