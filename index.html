@@ -162,6 +162,54 @@ body.dark .task input{border-color:#5d6d74}
 .percent{font-size:18px}
 .home-date.nodate{font-size:14px;font-weight:500;color:var(--ac);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:11px 14px;margin:0 0 14px;cursor:pointer}
 body.dark .home-date.nodate{color:var(--ac)}
+/* v3 warm celebratory concept */
+:root{--card:#fffdf9;--cs:#f6efe3;--tx:#2a2420;--mu:#7d7165;--pr:#2b5d63;--ac:#2b6b70;--bd:#eadfce;--ok:#3c8a6c;--gold:#8a6a2c;--sh:0 8px 28px rgba(110,80,40,.09)}
+body.dark{--card:#241f19;--cs:#2d261e;--tx:#f1e9dd;--mu:#a8998a;--pr:#8fc2c6;--ac:#8fc2c6;--bd:#3a3128;--ok:#6cbf9c;--gold:#d9b66a;--sh:none}
+body{background:linear-gradient(#fbf6ec,#f3eadb 70%);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
+body.dark{background:#17130f}
+header.hero{background:linear-gradient(180deg,#f6e9cf,#fbf3e2 92%)!important;color:var(--tx);border-radius:0 0 34px 34px;padding:20px 20px 24px;text-align:center;position:relative}
+body.dark header.hero{background:linear-gradient(180deg,#2b2318,#1d1810 92%)!important}
+.mem{font-size:12px;color:var(--mu);line-height:1.65;margin:2px 36px 16px}
+header.hero h1{font-family:"Frank Ruhl Libre","Times New Roman","David",Georgia,serif;font-size:31px;line-height:1.2;font-weight:700;color:var(--pr);margin:0}
+.home-date{font-family:"Frank Ruhl Libre","Times New Roman",Georgia,serif;font-size:19px;color:var(--gold);margin:10px 0 0;line-height:1.4}
+.home-date.nodate{font-family:inherit;font-size:13.5px;color:var(--ac);background:transparent;border:0;border-bottom:1px solid var(--bd);border-radius:0;padding:4px 2px;margin:12px auto 0;display:inline-block;cursor:pointer}
+.ringwrap{display:flex;align-items:center;justify-content:center;gap:16px;margin:20px 0 4px}
+.ring{--p:0;width:88px;height:88px;border-radius:50%;background:conic-gradient(var(--ok) calc(var(--p)*1%),rgba(130,105,60,.16) 0);display:flex;align-items:center;justify-content:center;flex:none}
+.ring-in{width:70px;height:70px;border-radius:50%;background:#fbf3e2;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+body.dark .ring-in{background:#1d1810}
+.ring-in b{font-size:20px;color:var(--tx)}.ring-in small{font-size:10.5px;color:var(--mu)}
+.ring-t{font-size:14px;color:var(--mu);text-align:right;max-width:150px;line-height:1.5}
+.note{margin-top:10px}.note summary{font-size:11.5px;color:var(--mu);cursor:pointer;list-style:none}.note summary::-webkit-details-marker{display:none}.note p{font-size:11.5px;color:var(--mu);line-height:1.55;margin-top:6px}
+.theme-btn{top:14px!important;bottom:auto!important;left:14px!important;border:1px solid var(--bd)!important;color:var(--mu)!important;background:transparent!important;width:30px;height:30px;display:flex;align-items:center;justify-content:center}
+main{padding:0 16px 24px}
+.next{background:var(--card);border-radius:24px;box-shadow:var(--sh);padding:20px 18px 18px;margin:-12px 0 0;position:relative}
+.home-k{font-size:12px;color:var(--mu);margin:0 0 8px;letter-spacing:.4px}
+.next .hlist{background:transparent;border:0;border-radius:0;overflow:visible}
+.next .hrow{padding:4px 0;border:0;font-size:19px;font-weight:600;line-height:1.45}
+.next .hrow small{font-size:12.5px;font-weight:400}
+.next .after{font-size:12.5px;color:var(--mu);margin:8px 0 0;line-height:1.6}
+.next .home-b{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.print-btn,.print-btn.ghost{border-radius:999px;padding:11px 20px;font-size:14px;font-weight:600;margin:0}
+.print-btn{background:var(--pr);color:#fff}body.dark .print-btn{color:#17130f}
+.print-btn.ghost,body.dark .print-btn.ghost{background:transparent;color:var(--pr);border:1px solid var(--bd)}
+.grp{font-family:"Frank Ruhl Libre","Times New Roman",Georgia,serif;font-size:20px;color:var(--pr);font-weight:700;letter-spacing:0;border:0;margin:30px 4px 12px;padding:0}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{background:var(--card);border:0;border-radius:22px;box-shadow:var(--sh);padding:16px;text-align:right;font:inherit;color:var(--tx);min-height:98px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;cursor:pointer}
+.tt{font-weight:700;font-size:15.5px;line-height:1.35}.tc{font-size:12.5px;color:var(--mu)}
+.tbar{display:block;height:3px;background:rgba(130,105,60,.16);border-radius:3px;overflow:hidden}.tbar b{display:block;height:100%;width:var(--w,0%);background:var(--ok);transition:width .3s}
+.tile.sel{outline:2px solid var(--ac)}.tile.done .tc{color:var(--ok);font-weight:600}
+.apanel{background:var(--card);border-radius:24px;box-shadow:var(--sh);padding:6px 20px 16px;margin:14px 0}
+.apanel[hidden]{display:none}
+.apanel-h{display:flex;justify-content:space-between;align-items:center;padding:14px 0 6px;font-family:"Frank Ruhl Libre","Times New Roman",Georgia,serif;font-weight:700;font-size:19px;color:var(--pr)}
+.apanel-h button{border:0;background:transparent;font-size:26px;line-height:1;color:var(--mu);cursor:pointer}
+.apanel .task{border:0;padding:11px 0}
+.opt-h{font-size:12px;color:var(--mu);padding:16px 0 2px;border:0;letter-spacing:.3px}
+.section{border:0;border-radius:22px;box-shadow:var(--sh);background:var(--card);margin:12px 0}
+.section summary{padding:17px 18px;font-weight:600}
+.pdf-box,.notice{background:var(--card)!important;border:0!important;border-radius:22px;box-shadow:var(--sh)}
+.share{display:flex;gap:10px;justify-content:center;margin:26px 0 4px}
+.share button{font:inherit;font-size:13px;color:var(--mu);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:8px 16px;cursor:pointer}
+.task:has(input:checked) span{color:var(--mu)}
 @media print{
   body *{visibility:hidden}
   .letter-box,.letter-box *{visibility:visible}
@@ -174,37 +222,25 @@ body.dark .home-date.nodate{color:var(--ac)}
 <body>
 <div id="bootLoader" role="status" aria-live="polite"><div class="sp"></div><div id="bootMsg">טוען...</div></div>
 <script>window.addEventListener("error",function(){var b=document.getElementById("bootLoader");if(b)b.remove()});setTimeout(function(){var m=document.getElementById("bootMsg");if(m&&!window.__booted)m.textContent="הטעינה לוקחת זמן... אפשר להמתין או לרענן"},8000)</script>
-<header>
-<div style="text-align:center;font-size:12.5px;line-height:1.45;opacity:.95;margin-bottom:10px;padding:8px 6px;background:rgba(255,255,255,.12);border-radius:10px">
-לע״נ הילדה חיילת בצבאות ה׳<br>
-רבקה בת יבלחט״א אפרים מנשה ואסתר חדווה
-</div>
+<header class="hero">
 <button class="theme-btn" onclick="document.body.classList.toggle('dark')" aria-label="מצב כהה" title="מצב כהה">◐</button>
+<div class="mem">לע״נ הילדה חיילת בצבאות ה׳<br>רבקה בת יבלחט״א אפרים מנשה ואסתר חדווה</div>
 <h1>צ׳קליסט לברית חב״דית</h1>
-<p class="sub">הכנות, מנהגים וסעודה · כולל מחשבון יום השמיני ומחשבון הוצאות</p>
-<p class="sub" style="margin-top:5px;font-size:11.5px;opacity:.85">כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה - ובמיוחד בדחיית ברית או בספק ביום השמיני - יש לפנות לרב מורה הוראה, למוהל ולרופא</p>
-<div class="progress"><div class="percent" id="percent">0%</div></div>
-<div class="bar"><div class="fill" id="fill"></div></div>
+<div id="homeDate" class="home-date"></div>
+<div class="ringwrap"><div class="ring" id="ring"><div class="ring-in"><b id="percent">0%</b><small>הושלם</small></div></div><div id="homeLeft" class="ring-t"></div></div>
+<div class="fill" id="fill" hidden></div>
+<details class="note"><summary>כלי עזר בלבד, ואינו פסק הלכה</summary><p>כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה - ובמיוחד בדחיית ברית או בספק ביום השמיני - יש לפנות לרב מורה הוראה, למוהל ולרופא</p></details>
 </header>
 <main>
-<div class="toolbar">
-<button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=true)">פתח הכל</button>
-<button onclick="document.querySelectorAll('details.section').forEach(d=>d.open=false)">סגור הכל</button>
-<button onclick="shareWA()">וואטסאפ</button>
-<button onclick="shareApp()">שיתוף האפליקציה</button>
-</div>
-<div id="homeCard" class="home">
-<div id="homeDate" class="home-date"></div>
-<div class="home-k">הצעדים הבאים</div>
+<div id="homeCard" class="next">
+<div class="home-k">הצעד הבא</div>
 <div id="homeList" class="hlist"></div>
-<div id="homeLeft" class="home-s"></div>
-<div class="home-b"><button type="button" class="print-btn" id="homeOpenNext" style="margin:0">פתח את התחום</button><button type="button" class="print-btn ghost" id="homeOpenCalc" style="margin:0">מחשבון זמן ברית</button></div>
+<div class="home-b"><button type="button" class="print-btn" id="homeOpenNext">פתח את התחום</button><button type="button" class="print-btn ghost" id="homeOpenCalc">מחשבון זמן ברית</button></div>
 </div>
-
-<h2 class="grp">המשימות שלכם</h2>
-<div id="sections"></div>
+<h2 class="grp">התחומים</h2>
+<div id="areaGrid" class="agrid"></div>
+<div id="areaPanel" class="apanel" hidden></div>
 <h2 class="grp">מידע, כלים וקישורים</h2>
-<p class="grp-sub">לקריאה ולעזרה בדרך, לא משימות לסימון</p>
 <details class="section">
 <summary style="background:rgba(58,168,192,.1)"><span>מידע הלכתי ומנהגי חב״ד</span><span class="count">גלול ↓</span></summary>
 <div class="tasks info-box scroll-box">
@@ -373,6 +409,7 @@ body.dark .home-date.nodate{color:var(--ac)}
 </div>
 </details>
 
+<div class="share"><button onclick="shareWA()">וואטסאפ</button><button onclick="shareApp()">שיתוף האפליקציה</button></div>
 <div class="footer">גרסה 5.10 · כלי עזר · אינו פסק הלכה</div>
 </main>
 <script src="donations.js"></script>
@@ -384,18 +421,21 @@ const MG={'4-6':['4-6','4-7','4-8','4-9'],'5-1':['5-1','5-2'],'5-7':['5-7','5-8'
 const isVis=(i,j)=>{const k=i+'-'+j;return !HID[k]&&!OPT[k]};const isDone=(i,j)=>{const k=i+'-'+j;return MG[k]?MG[k].every(x=>state[x]):!!state[k]};const setDone=(k,v)=>{(MG[k]||[k]).forEach(x=>{state[x]=v})};
 const key='bris-checklist-v4';let state={};try{state=(JSON.parse(localStorage.getItem(key)||'{}').state)||{}}catch(e){}
 function save(){localStorage.setItem(key,JSON.stringify({state}));upd()}
-function upd(){let t=0,d=0,ar=0;data.forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((_,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++});t+=st;d+=sd;if(st&&sd===st)ar++;const el=document.getElementById('c'+i);if(el)el.textContent=sd===st?'הושלם':sd+' מתוך '+st;const dt=el&&el.closest('details');if(dt)dt.classList.toggle('done',sd===st)});document.querySelectorAll('#sections label.task[data-k]').forEach(l=>{const k=l.dataset.k,ij=k.split('-');const c=l.querySelector('input');const v=OPT[k]?!!state[k]:isDone(+ij[0],+ij[1]);if(c.checked!==v)c.checked=v});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%';renderHome()}
+function upd(){let t=0,d=0,ar=0;data.forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((_,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++});t+=st;d+=sd;if(st&&sd===st)ar++;const el=document.getElementById('c'+i);if(el)el.textContent=sd===st?'הושלם':sd+' מתוך '+st;const tl=el&&el.closest('.tile');if(tl){tl.classList.toggle('done',sd===st);tl.style.setProperty('--w',(st?100*sd/st:0)+'%')}});document.querySelectorAll('#areaPanel label.task[data-k]').forEach(l=>{const k=l.dataset.k,ij=k.split('-');const c=l.querySelector('input');const v=OPT[k]?!!state[k]:isDone(+ij[0],+ij[1]);if(c.checked!==v)c.checked=v});const p=t?Math.round(100*d/t):0;document.getElementById('percent').textContent=p+'%';document.getElementById('fill').style.width=p+'%';const rg=document.getElementById('ring');if(rg)rg.style.setProperty('--p',p);renderHome()}
 function renderHome(){try{const dEl=document.getElementById('homeDate');if(!dEl)return;let t=0,d=0,ar=0;const nexts=[];data.forEach((sec,i)=>{let st=0,sd=0;sec[1].forEach((tk,j)=>{if(!isVis(i,j))return;st++;if(isDone(i,j))sd++;else if(nexts.length<3)nexts.push({i,j,sec:sec[0],tk:TXT[i+'-'+j]||tk})});t+=st;d+=sd;if(st&&sd===st)ar++});
 let bd=null;try{bd=JSON.parse(localStorage.getItem('brit-date')||'null')}catch(e){}
-if(bd&&bd.user===true&&bd.label){let extra='';try{const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'}));const today=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());const p=bd.iso.split('-').map(Number);const days=Math.round((Date.UTC(p[0],p[1]-1,p[2])-today)/864e5);extra=days>1?' · בעוד '+days+' ימים':days===1?' · מחר':days===0?' · היום':''}catch(e){}dEl.textContent='ברית: '+bd.label+extra;dEl.classList.remove('nodate');dEl.onclick=null}else{dEl.textContent='הוסיפו תאריך לידה ויישוב במחשבון כדי לראות את מועד הברית ›';dEl.classList.add('nodate');dEl.onclick=()=>document.getElementById('homeOpenCalc').click()}
-document.getElementById('homeLeft').textContent=d===t?'כל הצעדים סומנו. מזל טוב!':'הושלמו '+d+' מתוך '+t+' צעדים · '+ar+' מתוך '+data.length+' תחומים';
+if(bd&&bd.user===true&&bd.label){let extra='';try{const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Jerusalem'}));const today=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());const p=bd.iso.split('-').map(Number);const days=Math.round((Date.UTC(p[0],p[1]-1,p[2])-today)/864e5);extra=days>1?' · בעוד '+days+' ימים':days===1?' · מחר':days===0?' · היום':''}catch(e){}dEl.textContent='ברית: '+bd.label+extra;dEl.classList.remove('nodate');dEl.onclick=null}else{dEl.textContent='הוסיפו תאריך לידה ויישוב כדי לראות את מועד הברית ›';dEl.classList.add('nodate');dEl.onclick=()=>document.getElementById('homeOpenCalc').click()}
+document.getElementById('homeLeft').textContent=d===t?'כל הצעדים סומנו. מזל טוב!':'הושלמו '+d+' מתוך '+t+' צעדים';
 const hl=document.getElementById('homeList'),bn=document.getElementById('homeOpenNext');hl.innerHTML='';
-nexts.forEach(n=>{const lb=document.createElement('label');lb.className='task hrow';const cb=document.createElement('input');cb.type='checkbox';cb.onchange=()=>{setDone(n.i+'-'+n.j,cb.checked);save()};const sp=document.createElement('span');sp.textContent=n.tk;const sm=document.createElement('small');sm.textContent=n.sec;sp.append(sm);lb.append(cb,sp);hl.append(lb)});
-if(nexts.length){bn.hidden=false;const n=nexts[0];bn.onclick=()=>{const ds=document.querySelectorAll('#sections > details.section');ds.forEach((x,k)=>{x.open=(k===n.i)});const el=ds[n.i];if(el){const tk=el.querySelector('label.task[data-k="'+n.i+'-'+n.j+'"]');(tk||el).scrollIntoView({behavior:'smooth',block:'center'})}}}else bn.hidden=true;
+if(nexts[0]){const n=nexts[0];const lb=document.createElement('label');lb.className='task hrow';const cb=document.createElement('input');cb.type='checkbox';cb.onchange=()=>{setDone(n.i+'-'+n.j,cb.checked);save()};const sp=document.createElement('span');sp.textContent=n.tk;const sm=document.createElement('small');sm.textContent=n.sec;sp.append(sm);lb.append(cb,sp);hl.append(lb);if(nexts.length>1){const af=document.createElement('div');af.className='after';af.textContent='אחר כך: '+nexts.slice(1).map(x=>x.tk).join(' · ');hl.append(af)}}
+if(nexts.length){bn.hidden=false;const n=nexts[0];bn.onclick=()=>openArea(n.i,n.i+'-'+n.j)}else bn.hidden=true;
 document.getElementById('homeOpenCalc').onclick=()=>{const c=[...document.querySelectorAll('details')].find(x=>x.textContent.includes('מחשבון זמן ברית'));if(c){c.open=true;c.scrollIntoView({behavior:'smooth',block:'start'})}}}catch(e){}}
 window.renderHome=renderHome;
 function mkTask(i,j,txt,opt){const k=i+'-'+j;const lb=document.createElement('label');lb.className='task';lb.dataset.k=k;const cb=document.createElement('input');cb.type='checkbox';cb.checked=opt?!!state[k]:isDone(i,j);cb.onchange=()=>{setDone(k,cb.checked);save()};const sp=document.createElement('span');sp.textContent=txt;lb.append(cb,sp);return lb}
-function render(){const root=document.getElementById('sections');root.innerHTML='';data.forEach((s,i)=>{const det=document.createElement('details');det.className='section';det.open=false;const sm=document.createElement('summary');sm.innerHTML='<span class="stt">'+s[0]+'</span><span class="count" id="c'+i+'"></span>';det.append(sm);const td=document.createElement('div');td.className='tasks';const opts=[];s[1].forEach((t,j)=>{const k=i+'-'+j;if(OPT[k]){opts.push([j,t]);return}if(!isVis(i,j))return;td.append(mkTask(i,j,TXT[k]||t,false))});if(opts.length){const h=document.createElement('div');h.className='opt-h';h.textContent='לבחירתכם · לא נספר בהתקדמות';td.append(h);opts.forEach(o=>td.append(mkTask(i,o[0],o[1],true)))}det.append(td);root.append(det)});upd()}
+let curArea=-1;
+function closeArea(){curArea=-1;const pn=document.getElementById('areaPanel');pn.hidden=true;pn.innerHTML='';document.querySelectorAll('.tile').forEach(x=>x.classList.remove('sel'))}
+function openArea(i,key){const s=data[i];const pn=document.getElementById('areaPanel');curArea=i;pn.innerHTML='';const h=document.createElement('div');h.className='apanel-h';const tt=document.createElement('span');tt.textContent=s[0];const x=document.createElement('button');x.type='button';x.textContent='×';x.setAttribute('aria-label','סגור');x.onclick=closeArea;h.append(tt,x);pn.append(h);const opts=[];s[1].forEach((t,j)=>{const k=i+'-'+j;if(OPT[k]){opts.push([j,t]);return}if(!isVis(i,j))return;pn.append(mkTask(i,j,TXT[k]||t,false))});if(opts.length){const oh=document.createElement('div');oh.className='opt-h';oh.textContent='לבחירתכם · לא נספר בהתקדמות';pn.append(oh);opts.forEach(o=>pn.append(mkTask(i,o[0],o[1],true)))}pn.hidden=false;document.querySelectorAll('.tile').forEach((el,k)=>el.classList.toggle('sel',k===i));const tg=key&&pn.querySelector('label.task[data-k="'+key+'"]');(tg||pn).scrollIntoView({behavior:'smooth',block:'center'})}
+function render(){const g=document.getElementById('areaGrid');g.innerHTML='';data.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.className='tile';b.innerHTML='<span class="tt"></span><span class="tc" id="c'+i+'"></span><i class="tbar"><b></b></i>';b.querySelector('.tt').textContent=s[0];b.onclick=()=>curArea===i?closeArea():openArea(i);g.append(b)});upd()}
 function waNum(){const raw=($c('wanum')?.value||'').replace(/\D/g,'');if(!raw)return'';let n=raw;if(n.charAt(0)==='0')n='972'+n.slice(1);return /^\d{9,15}$/.test(n)?n:''}
 function waLink(t){return 'https://wa.me/'+waNum()+'?text='+encodeURIComponent(t)}
 const DEF_DONATE=BRIT_DONATIONS['default'];
