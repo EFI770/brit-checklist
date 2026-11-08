@@ -19,24 +19,28 @@ function zheb(dt,opt){return new Intl.DateTimeFormat("he-u-ca-hebrew",{timeZone:
 function zisYT(dt){const p=Object.fromEntries(new Intl.DateTimeFormat("en-u-ca-hebrew",{timeZone:"UTC",day:"numeric",month:"long"}).formatToParts(dt).map(x=>[x.type,x.value]));const d=+p.day,m=p.month;return (m.startsWith("Tishri")&&[1,2,10,15,22].includes(d))||(m==="Nisan"&&[15,21].includes(d))||(m==="Sivan"&&d===6)}
 const ZPL={"ירושלים":[31.7683,35.2137],"תל אביב-יפו":[32.0853,34.7818],"חיפה":[32.794,34.9896],"באר שבע":[31.253,34.7915],"ראשון לציון":[31.973,34.7925],"פתח תקווה":[32.0841,34.8878],"אשדוד":[31.8044,34.6553],"נתניה":[32.3215,34.8532],"בני ברק":[32.0807,34.8338],"רחובות":[31.8928,34.8113],"כפר רתמים":[31.03,34.72],"רביבים":[31.0239,34.7217],"אילת":[29.5577,34.9519],"צפת":[32.9646,35.496],"טבריה":[32.7959,35.5312],"מודיעין-מכבים-רעות":[31.8969,35.0095],"בית שמש":[31.7469,34.9881],"אשקלון":[31.6688,34.5743],"נס ציונה":[31.9293,34.7987],"רמת גן":[32.0684,34.8248],"חולון":[32.0158,34.7874],"בת ים":[32.0231,34.7503],"הרצליה":[32.1663,34.8436],"כפר סבא":[32.178,34.9066],"רעננה":[32.1848,34.8713],"חדרה":[32.434,34.9196],"נהריה":[33.0089,35.0981],"עכו":[32.9281,35.0826],"כרמיאל":[32.9144,35.2927],"עפולה":[32.6078,35.2897],"יבנה":[31.8781,34.7394],"גדרה":[31.8144,34.7783],"דימונה":[31.0686,35.0333],"ערד":[31.2589,35.2128],"נתיבות":[31.4173,34.5885],"שדרות":[31.525,34.5964],"אופקים":[31.3141,34.6203]};
 (function(){const dl=document.getElementById("zplaces");if(dl)Object.keys(ZPL).forEach(k=>{const o=document.createElement("option");o.value=k;dl.appendChild(o)})})();
-function zgetCoords(){const v=(document.getElementById("zloc")||{}).value||"";let m=v.match(/^(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)$/);let c=ZPL[v]||(m&&[+m[1],+m[2]]);const msg=document.getElementById("zlocmsg");if(msg)msg.textContent=c?"":"מיקום לא נמצא. בחר מהרשימה או הזן קואורדינטות.";return c}
+function zgetCoords(){const el=document.getElementById('zloc'),c=ZPL[el.value];return c||null}
+let zmanRequest=0;
+function zerror(text){const out=document.getElementById('zout');out.textContent=text;out.hidden=false}
 async function fetchHebcalZmanim(lat,lon,dateStr){
 try{
 const url="https://www.hebcal.com/zmanim?cfg=json&latitude="+lat+"&longitude="+lon+"&tzid=Asia/Jerusalem&date="+dateStr;
-const r=await fetch(url);if(!r.ok)throw new Error("hebcal");
+const r=await fetch(url,{signal:AbortSignal.timeout(10000)});if(!r.ok)throw new Error("hebcal");
 const j=await r.json();const times=j.times||{};
 const toHM=iso=>{if(!iso)return null;const m=String(iso).match(/T(\d{2}:\d{2})/);return m?m[1]:null};
-return{sunrise:toHM(times.sunrise),sunset:toHM(times.sunset||times.shkiah),tzeit:toHM(times.tzeit85deg||times.tzeit7083deg||times.tzeit||times.dusk)};
+return{sunrise:toHM(times.sunrise),sunset:toHM(times.sunset||times.shkiah),tzeit:toHM(times.tzeit85deg)};
 }catch(e){return null}
 }
 const zdateStr=(y,m,d)=>y+"-"+String(m).padStart(2,"0")+"-"+String(d).padStart(2,"0");
 function calcZman(auto){
+const request=++zmanRequest;
 const birthEl=document.getElementById("zbirth");if(!birthEl)return;
-const v=birthEl.value;if(!v)return;
-const[dp,tp]=v.split("T"),[y,m,d]=dp.split("-").map(Number),c=zgetCoords();if(!c)return;
+const v=birthEl.value;if(!v){zerror('יש למלא תאריך ושעת לידה.');return}
+const[dp,tp]=v.split("T"),[y,m,d]=dp.split("-").map(Number),c=zgetCoords();if(!c){zerror('בחר עיר בישראל מהרשימה. חישוב מחוץ לישראל אינו נתמך.');return}
 const[lat,lon]=c;
 const finish=(S,T,srcLabel)=>{
-if(!S||!T)return;
+if(request!==zmanRequest)return;
+if(!S||!T||ztoMin(T)<=ztoMin(S)){zerror('יש למלא זמני שקיעה וצאת הכוכבים תקינים, כאשר צאת הכוכבים מאוחר מהשקיעה.');return}
 const sEl=document.getElementById("zsset"),tEl=document.getElementById("ztzet");
 if(sEl)sEl.value=S;if(tEl)tEl.value=T;
 const Sm=ztoMin(S),Tm=ztoMin(T),B=ztoMin(tp);
@@ -47,7 +51,8 @@ else{add=8;status="אחרי צאת הכוכבים: היום העברי הוא ל
 const base=Date.UTC(y,m-1,d,12);let br=new Date(base+add*864e5),shifted="";
 if(safek)while(br.getUTCDay()===6||zisYT(br)){br=new Date(+br+864e5);shifted="נדחה כי ספק אינו דוחה שבת/יו״ט."}
 const by=br.getUTCFullYear(),bm=br.getUTCMonth()+1,bd=br.getUTCDate();
-const show=(rise,set)=>{
+const show=(rise,set,daySource)=>{
+if(request!==zmanRequest)return;
 const fmt=dt=>"יום "+zdays[dt.getUTCDay()]+", "+dt.getUTCDate()+"/"+(dt.getUTCMonth()+1)+"/"+dt.getUTCFullYear();
 let h='<div class="zman-big">ברית: '+fmt(br)+'</div><div style="font-size:14px;margin-bottom:6px">'+zheb(br,{day:"numeric",month:"long",year:"numeric"})+"</div>";
 h+='<table class="zman-table"><tr><td>נץ החמה ביום הברית</td><td>'+rise+'</td></tr><tr><td>שקיעה ביום הברית</td><td>'+set+"</td></tr></table>";
@@ -56,23 +61,21 @@ if(shifted)h+='<div class="zman-note">'+shifted+"</div>";
 if(!safek&&br.getUTCDay()===6)h+='<div class="zman-note">הברית חלה בשבת (ודאי) – נעשית בשבת.</div>';
 if(!safek&&zisYT(br))h+='<div class="zman-note">הברית חלה ביום טוב (ודאי) – נעשית ביום טוב.</div>';
 h+='<div class="zman-note">זמן הברית: ביום, מנץ עד שקיעה (מן המובחר בבוקר). השעה עם המוהל.</div>';
-h+='<div class="zman-note" style="font-size:12px">'+srcLabel+' לאימות: <a href="https://he.chabad.org/calendar/zmanim.htm/locationid/531/locationtype/1" target="_blank" rel="noopener">חב״ד</a></div>';
+h+='<div class="zman-note" style="font-size:12px">'+srcLabel+' '+daySource+' לאימות: <a href="https://he.chabad.org/calendar/zmanim.htm/locationid/531/locationtype/1" target="_blank" rel="noopener">חב״ד</a></div>';
 const out=document.getElementById("zout");out.innerHTML=h;out.hidden=false;
 };
-if(auto){
 fetchHebcalZmanim(lat,lon,zdateStr(by,bm,bd)).then(res2=>{
-if(res2&&res2.sunrise&&res2.sunset)show(res2.sunrise,res2.sunset);
-else show(zhm(zsolar(by,bm,bd,lat,lon,90.833,true)),zhm(zsolar(by,bm,bd,lat,lon,90.833,false)));
-}).catch(()=>show(zhm(zsolar(by,bm,bd,lat,lon,90.833,true)),zhm(zsolar(by,bm,bd,lat,lon,90.833,false))));
-}else{
-show(zhm(zsolar(by,bm,bd,lat,lon,90.833,true)),zhm(zsolar(by,bm,bd,lat,lon,90.833,false)));
-}
+if(res2&&res2.sunrise&&res2.sunset)show(res2.sunrise,res2.sunset,'נץ ושקיעה ליום הברית: Hebcal.');
+else show(zhm(zsolar(by,bm,bd,lat,lon,90.833,true)),zhm(zsolar(by,bm,bd,lat,lon,90.833,false)),'נץ ושקיעה ליום הברית: אומדן מקומי בלבד.');
+});
 };
 if(auto){
+document.getElementById('zsset').value='';document.getElementById('ztzet').value='';zerror('טוען זמנים...');
 fetchHebcalZmanim(lat,lon,zdateStr(y,m,d)).then(res=>{
-if(res&&res.sunset&&res.tzeit)finish(res.sunset,res.tzeit,"זמני שקיעה/צאת כוכבים מ־Hebcal (עדכני).");
-else finish(zhm(zsolar(y,m,d,lat,lon,90.833,false)),zhm(zsolar(y,m,d,lat,lon,97.083,false)),"זמנים משוערים מקומית — אין תשובה מ־Hebcal.");
-}).catch(()=>finish(zhm(zsolar(y,m,d,lat,lon,90.833,false)),zhm(zsolar(y,m,d,lat,lon,97.083,false)),"זמנים משוערים מקומית — אין תשובה מ־Hebcal."));
+if(request!==zmanRequest)return;
+if(res&&res.sunset&&res.tzeit)finish(res.sunset,res.tzeit,'שקיעה וצאת הכוכבים ליום הלידה: Hebcal, צאת בשיטת 8.5 מעלות (ללא שינוי מהשיטה הקיימת).');
+else zerror('לא התקבלו זמנים מ-Hebcal. לא חושב מועד על סמך אומדן בשיטה אחרת. יש להזין שקיעה וצאת כוכבים מאומתים למיקום ולתאריך הלידה.');
+});
 }else{
 const S=document.getElementById("zsset").value,T=document.getElementById("ztzet").value;
 const out=document.getElementById("zout");

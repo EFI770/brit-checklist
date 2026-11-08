@@ -168,7 +168,7 @@ main{padding:12px;max-width:640px;margin:auto}
 <summary style="background:rgba(180,140,60,.1)"><span>⏰ מחשבון זמן ברית</span><span class="count">לחץ</span></summary>
 <div class="tasks zman-card" style="padding:12px">
 <p style="font-size:12.5px;color:var(--mu);margin-bottom:6px">חישוב יום השמיני — <strong>עזר בלבד</strong>. לאמת מול זמני חב״ד, במיוחד בלידה סביב שקיעה או בין השמשות.</p>
-<label>מיקום</label>
+<label>מיקום בישראל (ערים מהרשימה בלבד)</label>
 <input id="zloc" list="zplaces" value="תל אביב-יפו">
 <datalist id="zplaces"></datalist>
 <label>זמן הלידה</label>
@@ -177,7 +177,7 @@ main{padding:12px;max-width:640px;margin:auto}
 <div><label>שקיעה</label><input type="time" id="zsset"></div>
 <div><label>צאת הכוכבים</label><input type="time" id="ztzet"></div>
 </div>
-<small class="zman-small">העתק מחב״ד לדיוק: <a href="https://he.chabad.org/calendar/zmanim.htm/locationid/531/locationtype/1" target="_blank" rel="noopener">זמנים בחב״ד</a></small>
+<p class="zman-note">שיטת צאת הכוכבים האוטומטית טרם אושרה בידי רב או מוהל. סביב שקיעה אין לקבוע מועד על סמך המחשבון בלבד.</p><small class="zman-small">יש לאמת זמנים למיקום הלידה; הקישור הבא אינו בוחר עיר אוטומטית: <a href="https://he.chabad.org/calendar/zmanim.htm/locationid/531/locationtype/1" target="_blank" rel="noopener">זמנים בחב״ד</a></small>
 <div id="zout" style="margin-top:10px" hidden></div>
 </div>
 </details>
@@ -226,7 +226,7 @@ main{padding:12px;max-width:640px;margin:auto}
 <div class="tasks info-box" style="padding:12px;font-size:13.5px;line-height:1.6">
 <p><strong>מה זה?</strong> צ׳קליסט ומחשבונים להכנות לברית מילה במנהג חב״ד — כולל מחשבון יום השמיני ומחשבון הוצאות.</p>
 <p><strong>מקורות:</strong> מנהגי חב״ד; חוברת מידע לידה·ברית·פדיון (ועד אברכי אנ״ש צפת); שבח הברית (הרב שמואל הלוי הורוויץ); שמירת השמחות. הסיכום נעשה לצורכי לימוד והכנה בלבד.</p>
-<p><strong>פרטיות:</strong> המחשבונים והצ׳קליסט פועלים בדפדפן שלך בלבד. הנתונים (סימונים, ערכי מחשבון, מספר וואטסאפ וקישור תרומה מותאם) נשמרים מקומית במכשיר (localStorage) ולא נשלחים לשום שרת.</p>
+<p><strong>פרטיות:</strong> המחשבונים והצ׳קליסט פועלים בדפדפן שלך בלבד. הנתונים (סימונים, ערכי מחשבון, מספר וואטסאפ וקישור תרומה מותאם) נשמרים מקומית במכשיר (localStorage) ואינם נשלחים אלינו. לחישוב זמנים נשלחים ל-Hebcal המיקום והתאריך שהוזנו. קישור תרומה מותאם נכלל בקישור האפליקציה בעת שיתופו.</p>
 <p><strong>אחריות:</strong> כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה הלכתית או רפואית — יש לפנות לרב מורה הוראה, למוהל ולרופא.</p>
 <p style="font-size:12px;color:var(--mu);margin-top:8px">הערות ותיקונים: <a href="mailto:habrit770@gmail.com">habrit770@gmail.com</a></p>
 </div>
@@ -236,6 +236,7 @@ main{padding:12px;max-width:640px;margin:auto}
 <div class="pdf-box" style="background:rgba(27,138,107,.08);border-color:rgba(27,138,107,.3)">
 <a id="donate-link" href="https://ultra.kesherhk.info/external/paymentPage/328257" target="_blank" rel="noopener" style="background:#1b8a6b">💚 תרומה ביום הברית לזכות הרך הנולד</a>
 <p style="font-size:12.5px;color:var(--mu);margin-top:8px;text-align:center">לזכות התינוק · בעת הברית</p>
+<div id="donate-import" hidden style="border:1px solid #b8860b;padding:10px;border-radius:9px;margin-bottom:10px"><p>הקישור שקיבלת כולל יעד תרומה אחר. יש לבדוק שהוא שייך לקהילה הרצויה לפני השימוש:</p><p id="donate-candidate" dir="ltr" style="overflow-wrap:anywhere;font-size:12px"></p><button id="donate-accept" type="button">אישור יעד התרומה הזה</button><button type="button" onclick="document.getElementById('donate-import').hidden=true">לא לשנות</button></div>
 <p id="donate-dom" style="font-size:11.5px;color:var(--mu);margin-top:4px;text-align:center"></p>
 <details style="margin-top:8px">
 <summary style="font-size:12.5px;color:var(--mu);cursor:pointer;text-align:center;list-style:none">⚙️ קישור תרומה מותאם לקהילה שלך</summary>
@@ -244,6 +245,7 @@ main{padding:12px;max-width:640px;margin:auto}
 <input id="donate-url" type="url" dir="ltr" placeholder="https://" style="width:100%;padding:8px;border:1px solid var(--bd);border-radius:9px;background:var(--cs);color:var(--tx);font:inherit;font-size:13px;box-sizing:border-box">
 <div class="calc-bt" style="margin-top:6px">
 <button type="button" onclick="saveDonate(document.getElementById('donate-url').value)">שמירת קישור</button>
+<button type="button" onclick="shareApp()">שיתוף האפליקציה עם יעד התרומה שנבחר</button>
 <button type="button" onclick="resetDonate()" style="background:var(--mu)">חזרה לברירת מחדל</button>
 </div>
 </div>
@@ -273,11 +275,12 @@ function waNum(){const raw=($c('wanum')?.value||'').replace(/\D/g,'');if(!raw)re
 function waLink(t){return 'https://wa.me/'+waNum()+'?text='+encodeURIComponent(t)}
 const DEF_DONATE='https://ultra.kesherhk.info/external/paymentPage/328257';
 function cleanDonate(u){if(!u||u.length>500)return null;try{const x=new URL(u.trim());if(x.protocol!=='https:'||x.username||x.password)return null;return x.href}catch(e){return null}}
-function getDonate(){try{return localStorage.getItem('brit-donate')||DEF_DONATE}catch(e){return DEF_DONATE}}
-function setDonateUI(){const a=$c('donate-link'),u=getDonate();if(a)a.href=u;const d=$c('donate-dom');if(d){try{d.textContent='יעד התרומה: '+new URL(u).hostname+(u===DEF_DONATE?' (ברירת מחדל)':' (מותאם)')}catch(e){d.textContent=''}}}
+function getDonate(){try{return cleanDonate(localStorage.getItem('brit-donate'))||DEF_DONATE}catch(e){return DEF_DONATE}}
+function setDonateUI(){const input=document.getElementById('donate-url');if(input)input.value=getDonate()===DEF_DONATE?'':getDonate();const a=document.getElementById('donate-link'),u=getDonate();if(a)a.href=u;const d=document.getElementById('donate-dom');if(d){try{d.textContent='יעד התרומה: '+new URL(u).hostname+(u===DEF_DONATE?' (ברירת מחדל)':' (מותאם)')}catch(e){d.textContent=''}}}
 function saveDonate(v){const c=cleanDonate(v);if(!c){alert('הקישור לא תקין — נדרש קישור מאובטח שמתחיל ב-https');return}try{localStorage.setItem('brit-donate',c)}catch(e){}const i=$c('donate-url');if(i)i.value=c;setDonateUI();alert('קישור התרומה נשמר במכשיר זה')}
 function resetDonate(){try{localStorage.removeItem('brit-donate')}catch(e){}const i=$c('donate-url');if(i)i.value='';setDonateUI()}
-(function(){const p=new URLSearchParams(location.search).get('donate');if(p){const c=cleanDonate(p);if(c){try{localStorage.setItem('brit-donate',c)}catch(e){}}}setDonateUI()})();
+function importDonate(){const candidate=cleanDonate(new URLSearchParams(location.search).get('donate'));if(candidate&&candidate!==getDonate()){const box=document.getElementById('donate-import');box.hidden=false;document.getElementById('donate-candidate').textContent=candidate;document.getElementById('donate-accept').onclick=()=>{saveDonate(candidate);box.hidden=true}}setDonateUI()}
+
 function shareApp(){const base='https://efi770.github.io/brit-checklist/';const url=getDonate()!==DEF_DONATE?base+'?donate='+encodeURIComponent(getDonate()):base;const t='צ׳קליסט לברית חב״דית — הכנות, מנהגים ומחשבונים';
 if(navigator.share){navigator.share({title:'צ׳קליסט לברית חב״דית',text:t,url:url}).catch(()=>{})}
 else{const done=()=>alert('הקישור לאפליקציה הועתק — אפשר להדביק ולשתף'),fb=()=>prompt('העתק את הקישור:',url);try{navigator.clipboard.writeText(t+'\n'+url).then(done).catch(fb)}catch(e){fb()}}}
@@ -300,7 +303,7 @@ calcIds.forEach(i=>{const el=$c(i);if(el)el.addEventListener('input',calcBrit)})
 const wn=$c('wanum');if(wn){try{wn.value=localStorage.getItem('brit-wa')||''}catch(e){}wn.addEventListener('input',()=>{try{localStorage.setItem('brit-wa',wn.value)}catch(e){}msgsCalc()})}
 const waA=$c('wa');if(waA)waA.addEventListener('click',e=>{if(!waNum()){e.preventDefault();focusWaNum()}})
 calcBrit()}
-render();initCalc();
+render();initCalc();importDonate();
 if('serviceWorker' in navigator){const hadCtrl=!!navigator.serviceWorker.controller;let refreshing=false;
 navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!hadCtrl||refreshing)return;refreshing=true;location.reload()});
 navigator.serviceWorker.register('sw.js').then(r=>{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')r.update().catch(()=>{})})}).catch(()=>{})}
