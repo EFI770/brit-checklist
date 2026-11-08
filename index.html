@@ -261,7 +261,7 @@ function waNum(){const raw=($c('wanum')?.value||'').replace(/\D/g,'');if(!raw)re
 function waLink(t){return 'https://wa.me/'+waNum()+'?text='+encodeURIComponent(t)}
 function shareApp(){const url='https://efi770.github.io/brit-checklist/';const t='צ׳קליסט לברית חב״דית — הכנות, מנהגים ומחשבונים';
 if(navigator.share){navigator.share({title:'צ׳קליסט לברית חב״דית',text:t,url:url}).catch(()=>{})}
-else{try{navigator.clipboard.writeText(t+'\n'+url);alert('הקישור לאפליקציה הועתק — אפשר להדביק ולשתף')}catch(e){prompt('העתק את הקישור:',url)}}}
+else{const done=()=>alert('הקישור לאפליקציה הועתק — אפשר להדביק ולשתף'),fb=()=>prompt('העתק את הקישור:',url);try{navigator.clipboard.writeText(t+'\n'+url).then(done).catch(fb)}catch(e){fb()}}}
 function focusWaNum(){const d=$c('wanum');if(!d)return;const det=d.closest('details');if(det)det.open=true;d.scrollIntoView({block:'center'});alert('כדי לשלוח בוואטסאפ, הזן קודם את מספר הוואטסאפ שלך כאן');d.focus()}
 function shareWA(){const n=waNum();if(!n){focusWaNum();return}let t='📋 צ׳קליסט ברית\n';data.forEach((s,i)=>{const done=s[1].filter((_,j)=>state[i+'-'+j]).length;t+='▸ '+s[0]+' ('+done+'/'+s[1].length+')\n'});window.open('https://wa.me/'+n+'?text='+encodeURIComponent(t))}
 const $c=id=>document.getElementById(id),nC=id=>parseFloat($c(id)?.value)||0,fmtC=x=>Math.round(x).toLocaleString('he-IL');
