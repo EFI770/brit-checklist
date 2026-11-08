@@ -4,8 +4,8 @@ const js=fs.readFileSync('donations.js','utf8')+html.slice(html.indexOf("const D
 function mk(search){
  const storage=new Map([['bris-checklist-v4','checks'],['brit-calc','calc'],['brit-wa','phone'],['brit-donate','https://old-arbitrary.example/x']]);
  const els={};for(const id of ['donate-link','donate-dom','donate-import','donate-domain'])els[id]={hidden:true,href:'',textContent:''};
- const ctx=vm.createContext({URL,URLSearchParams,Object,BRIT_DONATIONS:undefined,localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},location:{search},document:{getElementById:id=>els[id]},navigator:{share:async x=>ctx.shared=x}});
- vm.runInContext(js,ctx);return{ctx,els,storage,run:s=>vm.runInContext(s,ctx)};
+ const ctx=vm.createContext({window:null,URL,URLSearchParams,Object,BRIT_DONATIONS:undefined,localStorage:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},location:{search},document:{getElementById:id=>els[id]},navigator:{share:async x=>ctx.shared=x}});
+ ctx.window=ctx;vm.runInContext(js,ctx);return{ctx,els,storage,run:s=>vm.runInContext(s,ctx)};
 }
 // arbitrary URL param is no longer honored
 let t=mk('?donate=https%3A%2F%2Fevil.example%2Fpay');t.run('importDonate()');
