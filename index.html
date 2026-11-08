@@ -207,6 +207,7 @@ main{padding:0 16px 24px}
 .section{border:0;border-radius:22px;box-shadow:var(--sh);background:var(--card);margin:12px 0}
 .section summary{padding:17px 18px;font-weight:600}
 .pdf-box,.notice{background:var(--card)!important;border:0!important;border-radius:22px;box-shadow:var(--sh)}
+.allrow{text-align:center;margin:14px 0 0}.allbtn{font:inherit;font-size:13.5px;color:var(--pr);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:9px 18px;cursor:pointer}.sec-h{font-weight:700;font-size:14px;color:var(--pr);padding:20px 0 2px}.sec-h:first-of-type{padding-top:6px}
 .share{display:flex;gap:10px;justify-content:center;margin:26px 0 4px}
 .share button{font:inherit;font-size:13px;color:var(--mu);background:transparent;border:1px solid var(--bd);border-radius:999px;padding:8px 16px;cursor:pointer}
 .task:has(input:checked) span{color:var(--mu)}
@@ -239,6 +240,7 @@ main{padding:0 16px 24px}
 </div>
 <h2 class="grp">התחומים</h2>
 <div id="areaGrid" class="agrid"></div>
+<div class="allrow"><button type="button" id="allBtn" class="allbtn">הצגת כל המשימות</button></div>
 <div id="areaPanel" class="apanel" hidden></div>
 <h2 class="grp">מידע, כלים וקישורים</h2>
 <details class="section">
@@ -435,7 +437,8 @@ function mkTask(i,j,txt,opt){const k=i+'-'+j;const lb=document.createElement('la
 let curArea=-1;
 function closeArea(){curArea=-1;const pn=document.getElementById('areaPanel');pn.hidden=true;pn.innerHTML='';document.querySelectorAll('.tile').forEach(x=>x.classList.remove('sel'))}
 function openArea(i,key){const s=data[i];const pn=document.getElementById('areaPanel');curArea=i;pn.innerHTML='';const h=document.createElement('div');h.className='apanel-h';const tt=document.createElement('span');tt.textContent=s[0];const x=document.createElement('button');x.type='button';x.textContent='×';x.setAttribute('aria-label','סגור');x.onclick=closeArea;h.append(tt,x);pn.append(h);const opts=[];s[1].forEach((t,j)=>{const k=i+'-'+j;if(OPT[k]){opts.push([j,t]);return}if(!isVis(i,j))return;pn.append(mkTask(i,j,TXT[k]||t,false))});if(opts.length){const oh=document.createElement('div');oh.className='opt-h';oh.textContent='לבחירתכם · לא נספר בהתקדמות';pn.append(oh);opts.forEach(o=>pn.append(mkTask(i,o[0],o[1],true)))}pn.hidden=false;document.querySelectorAll('.tile').forEach((el,k)=>el.classList.toggle('sel',k===i));const tg=key&&pn.querySelector('label.task[data-k="'+key+'"]');(tg||pn).scrollIntoView({behavior:'smooth',block:'center'})}
-function render(){const g=document.getElementById('areaGrid');g.innerHTML='';data.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.className='tile';b.innerHTML='<span class="tt"></span><span class="tc" id="c'+i+'"></span><i class="tbar"><b></b></i>';b.querySelector('.tt').textContent=s[0];b.onclick=()=>curArea===i?closeArea():openArea(i);g.append(b)});upd()}
+function openAll(){const pn=document.getElementById('areaPanel');curArea=-2;pn.innerHTML='';const h=document.createElement('div');h.className='apanel-h';const tt=document.createElement('span');tt.textContent='כל המשימות';const x=document.createElement('button');x.type='button';x.textContent='×';x.setAttribute('aria-label','סגור');x.onclick=closeArea;h.append(tt,x);pn.append(h);data.forEach((s,i)=>{const sh=document.createElement('div');sh.className='opt-h sec-h';sh.textContent=s[0];pn.append(sh);const opts=[];s[1].forEach((t,j)=>{const k=i+'-'+j;if(OPT[k]){opts.push([j,t]);return}if(!isVis(i,j))return;pn.append(mkTask(i,j,TXT[k]||t,false))});opts.forEach(o=>pn.append(mkTask(i,o[0],o[1]+' (לבחירתכם)',true)))});pn.hidden=false;document.querySelectorAll('.tile').forEach(el=>el.classList.remove('sel'));pn.scrollIntoView({behavior:'smooth',block:'start'})}
+function render(){const g=document.getElementById('areaGrid');g.innerHTML='';data.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.className='tile';b.innerHTML='<span class="tt"></span><span class="tc" id="c'+i+'"></span><i class="tbar"><b></b></i>';b.querySelector('.tt').textContent=s[0];b.onclick=()=>curArea===i?closeArea():openArea(i);g.append(b)});const ab=document.getElementById('allBtn');if(ab)ab.onclick=()=>curArea===-2?closeArea():openAll();upd()}
 function waNum(){const raw=($c('wanum')?.value||'').replace(/\D/g,'');if(!raw)return'';let n=raw;if(n.charAt(0)==='0')n='972'+n.slice(1);return /^\d{9,15}$/.test(n)?n:''}
 function waLink(t){return 'https://wa.me/'+waNum()+'?text='+encodeURIComponent(t)}
 const DEF_DONATE=BRIT_DONATIONS['default'];
