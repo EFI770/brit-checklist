@@ -272,7 +272,7 @@ function setDonateUI(){const a=document.getElementById('donate-link'),u=getDonat
 function importDonate(){
 try{localStorage.removeItem('brit-donate')}catch(e){}
 const p=new URLSearchParams(location.search);
-if(p.has('donate')){const b=document.getElementById('donate-import');if(b){b.hidden=false;const d=document.getElementById('donate-domain');if(d)d.textContent='לא זוהה - הוחזרה ברירת המחדל'}setDonateUI();return}
+if(p.has('donate')){const b=document.getElementById('donate-import');if(b){b.hidden=false;b.firstElementChild.innerHTML='הקישור כלל יעד תרומה שאינו ברשימה המאושרת, ולכן הוחזרה ברירת המחדל: <b dir="ltr">'+new URL(DEF_DONATE).hostname+'</b>. יעדי תרומה נקבעים רק על ידי בעל האתר.'}setDonateUI();return}
 const key=cleanDonateKey(p.get('c'));if(!key){setDonateUI();return}
 try{if(key==='default')localStorage.removeItem('brit-donate-key');else localStorage.setItem('brit-donate-key',key)}catch(e){}
 const b=document.getElementById('donate-import');if(b&&key!=='default'){b.hidden=false;const d=document.getElementById('donate-domain');if(d){try{d.textContent=new URL(BRIT_DONATIONS[key]).hostname}catch(e){d.textContent=''}}}
