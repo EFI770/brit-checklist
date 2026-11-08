@@ -226,7 +226,7 @@ main{padding:12px;max-width:640px;margin:auto}
 <div class="tasks info-box" style="padding:12px;font-size:13.5px;line-height:1.6">
 <p><strong>מה זה?</strong> צ׳קליסט ומחשבונים להכנות לברית מילה במנהג חב״ד — כולל מחשבון יום השמיני ומחשבון הוצאות.</p>
 <p><strong>מקורות:</strong> מנהגי חב״ד; חוברת מידע לידה·ברית·פדיון (ועד אברכי אנ״ש צפת); שבח הברית (הרב שמואל הלוי הורוויץ); שמירת השמחות. הסיכום נעשה לצורכי לימוד והכנה בלבד.</p>
-<p><strong>פרטיות:</strong> המחשבונים והצ׳קליסט פועלים בדפדפן שלך בלבד. הנתונים (סימונים, ערכי מחשבון ומספר וואטסאפ) נשמרים מקומית במכשיר (localStorage) ולא נשלחים לשום שרת.</p>
+<p><strong>פרטיות:</strong> המחשבונים והצ׳קליסט פועלים בדפדפן שלך בלבד. הנתונים (סימונים, ערכי מחשבון, מספר וואטסאפ וקישור תרומה מותאם) נשמרים מקומית במכשיר (localStorage) ולא נשלחים לשום שרת.</p>
 <p><strong>אחריות:</strong> כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה הלכתית או רפואית — יש לפנות לרב מורה הוראה, למוהל ולרופא.</p>
 <p style="font-size:12px;color:var(--mu);margin-top:8px">הערות ותיקונים: <a href="mailto:habrit770@gmail.com">habrit770@gmail.com</a></p>
 </div>
@@ -234,8 +234,20 @@ main{padding:12px;max-width:640px;margin:auto}
 
 
 <div class="pdf-box" style="background:rgba(27,138,107,.08);border-color:rgba(27,138,107,.3)">
-<a href="https://ultra.kesherhk.info/external/paymentPage/328257" target="_blank" rel="noopener" style="background:#1b8a6b">💚 תרומה ביום הברית לזכות הרך הנולד</a>
+<a id="donate-link" href="https://ultra.kesherhk.info/external/paymentPage/328257" target="_blank" rel="noopener" style="background:#1b8a6b">💚 תרומה ביום הברית לזכות הרך הנולד</a>
 <p style="font-size:12.5px;color:var(--mu);margin-top:8px;text-align:center">לזכות התינוק · בעת הברית</p>
+<p id="donate-dom" style="font-size:11.5px;color:var(--mu);margin-top:4px;text-align:center"></p>
+<details style="margin-top:8px">
+<summary style="font-size:12.5px;color:var(--mu);cursor:pointer;text-align:center;list-style:none">⚙️ קישור תרומה מותאם לקהילה שלך</summary>
+<div style="margin-top:6px">
+<label for="donate-url" style="font-size:12px;color:var(--mu)">הדבק כאן את קישור התרומה של הקהילה שלך (https בלבד) — נשמר רק במכשיר זה</label>
+<input id="donate-url" type="url" dir="ltr" placeholder="https://" style="width:100%;padding:8px;border:1px solid var(--bd);border-radius:9px;background:var(--cs);color:var(--tx);font:inherit;font-size:13px;box-sizing:border-box">
+<div class="calc-bt" style="margin-top:6px">
+<button type="button" onclick="saveDonate(document.getElementById('donate-url').value)">שמירת קישור</button>
+<button type="button" onclick="resetDonate()" style="background:var(--mu)">חזרה לברירת מחדל</button>
+</div>
+</div>
+</details>
 </div>
 
 <details class="section">
@@ -248,7 +260,7 @@ main{padding:12px;max-width:640px;margin:auto}
 </div>
 </details>
 
-<div class="footer">גרסה 5.9 · כלי עזר · אינו פסק הלכה</div>
+<div class="footer">גרסה 5.10 · כלי עזר · אינו פסק הלכה</div>
 </main>
 <script src="zman-calc.js"></script>
 <script>
@@ -259,7 +271,14 @@ function upd(){let t=0,d=0;data.forEach((s,i)=>{s[1].forEach((_,j)=>{t++;if(stat
 function render(){const root=document.getElementById('sections');root.innerHTML='';data.forEach((s,i)=>{const det=document.createElement('details');det.className='section';det.open=false;const sm=document.createElement('summary');sm.innerHTML='<span>'+(i+1)+'. '+s[0]+'</span><span class="count" id="c'+i+'">0/'+s[1].length+'</span>';det.append(sm);const td=document.createElement('div');td.className='tasks';s[1].forEach((t,j)=>{const lb=document.createElement('label');lb.className='task';const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!state[i+'-'+j];cb.onchange=()=>{state[i+'-'+j]=cb.checked;save()};const sp=document.createElement('span');sp.textContent=t;lb.append(cb,sp);td.append(lb)});det.append(td);root.append(det)});upd()}
 function waNum(){const raw=($c('wanum')?.value||'').replace(/\D/g,'');if(!raw)return'';let n=raw;if(n.charAt(0)==='0')n='972'+n.slice(1);return /^\d{9,15}$/.test(n)?n:''}
 function waLink(t){return 'https://wa.me/'+waNum()+'?text='+encodeURIComponent(t)}
-function shareApp(){const url='https://efi770.github.io/brit-checklist/';const t='צ׳קליסט לברית חב״דית — הכנות, מנהגים ומחשבונים';
+const DEF_DONATE='https://ultra.kesherhk.info/external/paymentPage/328257';
+function cleanDonate(u){if(!u||u.length>500)return null;try{const x=new URL(u.trim());if(x.protocol!=='https:'||x.username||x.password)return null;return x.href}catch(e){return null}}
+function getDonate(){try{return localStorage.getItem('brit-donate')||DEF_DONATE}catch(e){return DEF_DONATE}}
+function setDonateUI(){const a=$c('donate-link'),u=getDonate();if(a)a.href=u;const d=$c('donate-dom');if(d){try{d.textContent='יעד התרומה: '+new URL(u).hostname+(u===DEF_DONATE?' (ברירת מחדל)':' (מותאם)')}catch(e){d.textContent=''}}}
+function saveDonate(v){const c=cleanDonate(v);if(!c){alert('הקישור לא תקין — נדרש קישור מאובטח שמתחיל ב-https');return}try{localStorage.setItem('brit-donate',c)}catch(e){}const i=$c('donate-url');if(i)i.value=c;setDonateUI();alert('קישור התרומה נשמר במכשיר זה')}
+function resetDonate(){try{localStorage.removeItem('brit-donate')}catch(e){}const i=$c('donate-url');if(i)i.value='';setDonateUI()}
+(function(){const p=new URLSearchParams(location.search).get('donate');if(p){const c=cleanDonate(p);if(c){try{localStorage.setItem('brit-donate',c)}catch(e){}}}setDonateUI()})();
+function shareApp(){const base='https://efi770.github.io/brit-checklist/';const url=getDonate()!==DEF_DONATE?base+'?donate='+encodeURIComponent(getDonate()):base;const t='צ׳קליסט לברית חב״דית — הכנות, מנהגים ומחשבונים';
 if(navigator.share){navigator.share({title:'צ׳קליסט לברית חב״דית',text:t,url:url}).catch(()=>{})}
 else{const done=()=>alert('הקישור לאפליקציה הועתק — אפשר להדביק ולשתף'),fb=()=>prompt('העתק את הקישור:',url);try{navigator.clipboard.writeText(t+'\n'+url).then(done).catch(fb)}catch(e){fb()}}}
 function focusWaNum(){const d=$c('wanum');if(!d)return;const det=d.closest('details');if(det)det.open=true;d.scrollIntoView({block:'center'});alert('כדי לשלוח בוואטסאפ, הזן קודם את מספר הוואטסאפ שלך כאן');d.focus()}
