@@ -226,7 +226,7 @@ main{padding:12px;max-width:640px;margin:auto}
 <div class="tasks info-box" style="padding:12px;font-size:13.5px;line-height:1.6">
 <p><strong>מה זה?</strong> צ׳קליסט ומחשבונים להכנות לברית מילה במנהג חב״ד — כולל מחשבון יום השמיני ומחשבון הוצאות.</p>
 <p><strong>מקורות:</strong> מנהגי חב״ד; חוברת מידע לידה·ברית·פדיון (ועד אברכי אנ״ש צפת); שבח הברית (הרב שמואל הלוי הורוויץ); שמירת השמחות. הסיכום נעשה לצורכי לימוד והכנה בלבד.</p>
-<p><strong>פרטיות:</strong> המחשבונים והצ׳קליסט פועלים בדפדפן שלך בלבד. הנתונים (סימונים, ערכי מחשבון ומספר וואטסאפ) נשמרים מקומית במכשיר (localStorage) ולא נשלחים לשום שרת.</p>
+<p><strong>פרטיות:</strong> המחשבונים והצ׳קליסט פועלים בדפדפן שלך בלבד. הנתונים (סימונים, ערכי מחשבון, מספר וואטסאפ ובחירת יעד תרומה מאושר) נשמרים מקומית במכשיר (localStorage) ואינם נשלחים אלינו. לחישוב זמנים נשלחים ל-Hebcal המיקום והתאריך שהוזנו. יעד התרומה נבחר רק מתוך רשימה שאושרה על ידי בעל האתר, ונכלל בקישור האפליקציה בעת שיתופו.</p>
 <p><strong>אחריות:</strong> כלי עזר בלבד, ואינו פסק הלכה. בכל שאלה הלכתית או רפואית — יש לפנות לרב מורה הוראה, למוהל ולרופא.</p>
 <p style="font-size:12px;color:var(--mu);margin-top:8px">הערות ותיקונים: <a href="mailto:habrit770@gmail.com">habrit770@gmail.com</a></p>
 </div>
@@ -248,7 +248,7 @@ main{padding:12px;max-width:640px;margin:auto}
 </div>
 </details>
 
-<div class="footer">גרסה 5.9 · כלי עזר · אינו פסק הלכה</div>
+<div class="footer">גרסה 5.10 · כלי עזר · אינו פסק הלכה</div>
 </main>
 <script src="zman-calc.js"></script>
 <script>
@@ -259,7 +259,20 @@ function upd(){let t=0,d=0;data.forEach((s,i)=>{s[1].forEach((_,j)=>{t++;if(stat
 function render(){const root=document.getElementById('sections');root.innerHTML='';data.forEach((s,i)=>{const det=document.createElement('details');det.className='section';det.open=false;const sm=document.createElement('summary');sm.innerHTML='<span>'+(i+1)+'. '+s[0]+'</span><span class="count" id="c'+i+'">0/'+s[1].length+'</span>';det.append(sm);const td=document.createElement('div');td.className='tasks';s[1].forEach((t,j)=>{const lb=document.createElement('label');lb.className='task';const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!state[i+'-'+j];cb.onchange=()=>{state[i+'-'+j]=cb.checked;save()};const sp=document.createElement('span');sp.textContent=t;lb.append(cb,sp);td.append(lb)});det.append(td);root.append(det)});upd()}
 function waNum(){const raw=($c('wanum')?.value||'').replace(/\D/g,'');if(!raw)return'';let n=raw;if(n.charAt(0)==='0')n='972'+n.slice(1);return /^\d{9,15}$/.test(n)?n:''}
 function waLink(t){return 'https://wa.me/'+waNum()+'?text='+encodeURIComponent(t)}
-function shareApp(){const url='https://efi770.github.io/brit-checklist/';const t='צ׳קליסט לברית חב״דית — הכנות, מנהגים ומחשבונים';
+const DEF_DONATE=BRIT_DONATIONS['default'];
+function cleanDonateKey(k){return typeof k==='string'&&/^[a-z0-9][a-z0-9-]{0,39}$/.test(k)&&Object.prototype.hasOwnProperty.call(BRIT_DONATIONS,k)?k:null}
+function getDonateKey(){try{return cleanDonateKey(localStorage.getItem('brit-donate-key'))||'default'}catch(e){return 'default'}}
+function getDonate(){return BRIT_DONATIONS[getDonateKey()]||DEF_DONATE}
+function setDonateUI(){const a=document.getElementById('donate-link'),u=getDonate();if(a)a.href=u;const d=document.getElementById('donate-dom');if(d){try{d.textContent='יעד התרומה: '+new URL(u).hostname+(getDonateKey()==='default'?' (ברירת מחדל)':' (מאושר)')}catch(e){d.textContent=''}}}
+function importDonate(){
+try{localStorage.removeItem('brit-donate')}catch(e){}
+const p=new URLSearchParams(location.search);
+if(p.has('donate')){const b=document.getElementById('donate-import');if(b){b.hidden=false;b.firstElementChild.innerHTML='הקישור כלל יעד תרומה שאינו ברשימה המאושרת, ולכן הוחזרה ברירת המחדל: <b dir="ltr">'+new URL(DEF_DONATE).hostname+'</b>. יעדי תרומה נקבעים רק על ידי בעל האתר.'}setDonateUI();return}
+const key=cleanDonateKey(p.get('c'));if(!key){setDonateUI();return}
+try{if(key==='default')localStorage.removeItem('brit-donate-key');else localStorage.setItem('brit-donate-key',key)}catch(e){}
+const b=document.getElementById('donate-import');if(b&&key!=='default'){b.hidden=false;const d=document.getElementById('donate-domain');if(d){try{d.textContent=new URL(BRIT_DONATIONS[key]).hostname}catch(e){d.textContent=''}}}
+setDonateUI()}
+function shareApp(){const base='https://efi770.github.io/brit-checklist/';const k=getDonateKey();const url=k==='default'?base:base+'?c='+encodeURIComponent(k);const t='צ׳קליסט לברית חב״דית — הכנות, מנהגים ומחשבונים';
 if(navigator.share){navigator.share({title:'צ׳קליסט לברית חב״דית',text:t,url:url}).catch(()=>{})}
 else{const done=()=>alert('הקישור לאפליקציה הועתק — אפשר להדביק ולשתף'),fb=()=>prompt('העתק את הקישור:',url);try{navigator.clipboard.writeText(t+'\n'+url).then(done).catch(fb)}catch(e){fb()}}}
 function focusWaNum(){const d=$c('wanum');if(!d)return;const det=d.closest('details');if(det)det.open=true;d.scrollIntoView({block:'center'});alert('כדי לשלוח בוואטסאפ, הזן קודם את מספר הוואטסאפ שלך כאן');d.focus()}
@@ -281,7 +294,7 @@ calcIds.forEach(i=>{const el=$c(i);if(el)el.addEventListener('input',calcBrit)})
 const wn=$c('wanum');if(wn){try{wn.value=localStorage.getItem('brit-wa')||''}catch(e){}wn.addEventListener('input',()=>{try{localStorage.setItem('brit-wa',wn.value)}catch(e){}msgsCalc()})}
 const waA=$c('wa');if(waA)waA.addEventListener('click',e=>{if(!waNum()){e.preventDefault();focusWaNum()}})
 calcBrit()}
-render();initCalc();
+render();initCalc();importDonate();
 if('serviceWorker' in navigator){const hadCtrl=!!navigator.serviceWorker.controller;let refreshing=false;
 navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!hadCtrl||refreshing)return;refreshing=true;location.reload()});
 navigator.serviceWorker.register('sw.js').then(r=>{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')r.update().catch(()=>{})})}).catch(()=>{})}
