@@ -783,5 +783,6 @@ if('serviceWorker' in navigator){const hadCtrl=!!navigator.serviceWorker.control
 navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!hadCtrl||refreshing)return;refreshing=true;location.reload()});
 navigator.serviceWorker.register('sw.js').then(r=>{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')r.update().catch(()=>{})})}).catch(()=>{})}
 </script>
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"8d7ac41306b44802b1cb639770fd8f82"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

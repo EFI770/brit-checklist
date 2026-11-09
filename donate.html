@@ -34,5 +34,6 @@ Object.keys(BRIT_DONATIONS).forEach(k=>{const o=document.createElement('option')
 function make(){const k=sel.value,u=BRIT_DONATIONS[k],o=document.getElementById('out');o.hidden=false;const link=k==='default'?base:base+'?c='+encodeURIComponent(k);o.textContent='יעד התרומה: '+new URL(u).hostname+'\n'+link}
 async function copyOut(){const o=document.getElementById('out');if(o.hidden)return;try{await navigator.clipboard.writeText(o.textContent)}catch(e){const r=document.createRange();r.selectNodeContents(o);const s=getSelection();s.removeAllRanges();s.addRange(r)}}
 </script>
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"8d7ac41306b44802b1cb639770fd8f82"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
