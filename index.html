@@ -279,11 +279,17 @@ body.dark .grp{color:var(--tx)}
 .share button#resetBtn{color:#b23b3b}
 body.dark .share button#resetBtn{color:#e08a8a}
 @media print{
-  body *{visibility:hidden}
-  .letter-box,.letter-box *{visibility:visible}
-  .letter-box{position:absolute;left:0;top:0;width:100%}
-  .print-btn{display:none}
+  #efi-a11y-root,.efi-a11y-skiplink{display:none!important}
+  body.print-list{background:#fff!important}
+  body.print-list>*:not(#printSheet){display:none!important}
+  body.print-list #printSheet{display:block;color:#123e35;font-size:13px;line-height:1.45}
+  body.print-list #printSheet h1{font-size:20px;margin:0 0 4px;text-align:center}
+  body.print-list #printSheet .ps-meta{text-align:center;color:#555;font-size:11.5px;margin-bottom:14px}
+  body.print-list #printSheet h2{font-size:14.5px;margin:16px 0 6px;padding-bottom:3px;border-bottom:1.5px solid #123e35;break-after:avoid}
+  body.print-list #printSheet .ps-task{display:flex;gap:8px;align-items:flex-start;padding:3px 0;break-inside:avoid}
+  body.print-list #printSheet .ps-box{flex:none;width:13px;height:13px;border:1.5px solid #123e35;border-radius:3px;margin-top:2px;font-size:11px;font-weight:700;line-height:12px;text-align:center}
 }
+#printSheet{display:none}
 #bootLoader{position:fixed;inset:0;z-index:9999;background:#f5f5ee;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;font-family:inherit;color:#123e35;transition:opacity .25s}#bootLoader.done{opacity:0;pointer-events:none}#bootLoader .sp{width:46px;height:46px;border:5px solid rgba(18,62,53,.2);border-top-color:#123e35;border-radius:50%;animation:bootspin .9s linear infinite}@keyframes bootspin{to{transform:rotate(360deg)}}
 .lang-btn{position:absolute;top:14px;left:52px;width:36px;height:30px;border-radius:15px;border:1px solid var(--bd);background:rgba(255,255,255,.7);color:var(--pr);font-size:11.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit}
 body.dark .lang-btn{background:rgba(255,255,255,.1)}
@@ -483,13 +489,14 @@ html[dir=ltr] .lang-btn{left:auto;right:52px}
 <br>
 <button class="print-btn" id="letterToggle" type="button">הצג מקור</button>
 <br>
-<button class="print-btn" onclick="window.print()" data-i18n="printBtn">הדפסה</button>
+<button class="print-btn" onclick="printLetter()" data-i18n="printBtn">הדפסה</button>
 </div>
 </details>
 
-<div class="share"><button onclick="shareWA()" data-i18n="shareWABtn">וואטסאפ</button><button onclick="shareApp()" data-i18n="shareAppBtn">שיתוף האפליקציה</button><button type="button" id="resetBtn" onclick="resetAll()" data-i18n="resetBtn">איפוס הסימונים</button></div>
-<div class="footer"><span data-i18n="footerVer">גרסה 5.13</span> · <a href="privacy.html" data-i18n="footerPrivacy">פרטיות</a> · <a href="accessibility.html" data-i18n="footerAccess">נגישות</a> · <a href="terms.html" data-i18n="footerTerms">תנאי שימוש</a> · <span data-i18n="footerAid">כלי עזר · אינו פסק הלכה</span></div>
+<div class="share"><button onclick="shareWA()" data-i18n="shareWABtn">וואטסאפ</button><button onclick="shareApp()" data-i18n="shareAppBtn">שיתוף האפליקציה</button><button type="button" id="printListBtn" onclick="printChecklist()" data-i18n="printListBtn">הדפסת הצ׳קליסט</button><button type="button" id="resetBtn" onclick="resetAll()" data-i18n="resetBtn">איפוס הסימונים</button></div>
+<div class="footer"><span data-i18n="footerVer">גרסה 5.14</span> · <a href="privacy.html" data-i18n="footerPrivacy">פרטיות</a> · <a href="accessibility.html" data-i18n="footerAccess">נגישות</a> · <a href="terms.html" data-i18n="footerTerms">תנאי שימוש</a> · <span data-i18n="footerAid">כלי עזר · אינו פסק הלכה</span></div>
 </main>
+<div id="printSheet" aria-hidden="true"></div>
 <script src="donations.js"></script>
 <script src="localities.js"></script>
 <script src="zman-calc.js"></script>
@@ -560,10 +567,11 @@ letterAlt:["מכתב הרבי","The Rebbe's letter"],
 letterShowOrig:["הצג מקור","Show original"],
 letterShowClear:["הצג גרסה מחודדת","Show enhanced version"],
 printBtn:["הדפסה","Print"],
+printListBtn:["הדפסת הצ׳קליסט","Print the checklist"],
 shareWABtn:["וואטסאפ","WhatsApp"],
 shareAppBtn:["שיתוף האפליקציה","Share the app"],
 resetBtn:["איפוס הסימונים","Reset all checks"],
-footerVer:["גרסה 5.13","Version 5.13"],
+footerVer:["גרסה 5.14","Version 5.14"],
 footerPrivacy:["פרטיות","Privacy"],
 footerAccess:["נגישות","Accessibility"],
 footerTerms:["תנאי שימוש","Terms of use"],
@@ -759,6 +767,12 @@ if(navigator.share){navigator.share({title:T('appTitle'),text:t,url:url}).catch(
 else{const done=()=>alert(T('shareCopied')),fb=()=>prompt(T('sharePrompt'),url);try{navigator.clipboard.writeText(t+'\n'+url).then(done).catch(fb)}catch(e){fb()}}}
 function focusWaNum(){const d=$c('wanum');if(!d)return;const det=d.closest('details');if(det)det.open=true;d.scrollIntoView({block:'center'});alert(T('waNeedNum'));d.focus()}
 function shareWA(){const n=waNum();if(!n){focusWaNum();return}let t=T('waSumTitle')+'\n';D().forEach((s,i)=>{const vj=s[1].map((_,j)=>j).filter(j=>isVis(i,j));const done=vj.filter(j=>isDone(i,j)).length;t+='▸ '+s[0]+' ('+done+'/'+vj.length+')\n'});window.open('https://wa.me/'+n+'?text='+encodeURIComponent(t))}
+function psRow(txt,done){const r=document.createElement('div');r.className='ps-task';const b=document.createElement('span');b.className='ps-box';b.textContent=done?'✓':'\u00a0';const s=document.createElement('span');s.textContent=txt;r.append(b,s);return r}
+function buildPrintSheet(){const ps=document.getElementById('printSheet');if(!ps)return;ps.innerHTML='';const h=document.createElement('h1');h.textContent=T('appTitle');ps.append(h);let t=0,d=0;D().forEach((sec,i)=>{sec[1].forEach((_,j)=>{if(!isVis(i,j))return;t++;if(isDone(i,j))d++})});const meta=document.createElement('div');meta.className='ps-meta';const ds=new Date().toLocaleDateString(LANG==='en'?'en-US':'he-IL',{day:'numeric',month:'long',year:'numeric'});meta.textContent=ds+' · '+d+'/'+t;ps.append(meta);D().forEach((sec,i)=>{const sh=document.createElement('h2');sh.textContent=sec[0];ps.append(sh);const opts=[];sec[1].forEach((tk,j)=>{const k=i+'-'+j;if(OPT[k]){opts.push([k,tk]);return}if(!isVis(i,j))return;ps.append(psRow(TT(k)||tk,isDone(i,j)))});opts.forEach(o=>ps.append(psRow(o[1]+T('optSuffix'),!!state[o[0]])))})}
+function printChecklist(){buildPrintSheet();document.body.classList.add('print-list');window.print()}
+function printLetter(){const ps=document.getElementById('printSheet');if(!ps)return;ps.innerHTML='';const img=document.createElement('img');const cur=document.getElementById('letterImg');img.src=cur?cur.getAttribute('src'):'rebbe-letter-clear.jpg';img.alt=T('letterAlt');img.style.display='block';img.style.margin='0 auto';img.style.maxWidth='100%';img.style.maxHeight='25cm';img.style.width='auto';ps.append(img);document.body.classList.add('print-list');window.print()}
+window.addEventListener('beforeprint',()=>{if(!document.body.classList.contains('print-list')){buildPrintSheet();document.body.classList.add('print-list')}});
+window.addEventListener('afterprint',()=>{document.body.classList.remove('print-list','print-letter')});
 const $c=id=>document.getElementById(id),nC=id=>parseFloat($c(id)?.value)||0,fmtC=x=>Math.round(x).toLocaleString('he-IL');
 const calcIds=[];for(let i=0;i<3;i++)calcIds.push('a'+i,'k'+i,'p'+i);calcIds.push('ca','ck','bf','ts','hl','fx','rs','bd','dt','tm','pl','sy');
 function msgsCalc(){const v=i=>$c(i)?.value.trim()||'___';const m1=LANG==='en'?`B"H\nWith joy and gratitude to God we announce that the brit will take place, God willing, on ${v('dt')} at ${v('tm')} at ${v('pl')}.\nAnyone who can join us will make us happy.`:`בס"ד\nבשמחה ובהודיה לה' נודיע כי הברית תתקיים אי"ה ב${v('dt')} בשעה ${v('tm')} ב${v('pl')}.\nמי שיוכל להשתתף ישמח אותנו.`;if($c('m1'))$c('m1').value=m1;if($c('wa'))$c('wa').href=waLink(m1)}
